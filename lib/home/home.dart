@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
-class Budgets extends StatelessWidget {
-  const Budgets({super.key});
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -9,21 +9,21 @@ class Budgets extends StatelessWidget {
       //title: "Budgets",
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("budget23 - Budgets"),
+          title: const Text("budget23 - Record Spend"),
           backgroundColor: Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
         ),
         
         body: Container(
           child: Column(
             children: [
-                Text("Where you spend from"),
-                Text("Budget"),
-                Text("macbook",),
-                Text("drone"),
-                Text("job"),
-                Text("ps5"),
+                Text("What did you buy?"),
+                Text("Name"),
+                Text("Amount",),
+                Text("description"),
+                Text("Wallet Spent from"),
+                Text("record"),
 
-                Text("Create New Budget"),
+                Text("Recents Spendings"),
             ],
           ),
         )
