@@ -20,19 +20,19 @@ class NavigationScreenState extends State<NavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Widget activePage = const SpendingScreen();
-    String activePageTitle = "Spending";
+    // Widget activePage = const SpendingScreen();
+    // String activePageTitle = "Spending";
     
     
-    if (_currentPage == 1) {
-      activePage = BudgetScreen();
-      activePageTitle = "Budgets";
-    }
+    // if (_currentPage == 1) {
+    //   activePage = BudgetScreen();
+    //   activePageTitle = "Budgets";
+    // }
     return Scaffold(
-      appBar: AppBar(
-        title: Text(activePageTitle),
-      ),
-      body: ..,
+      // appBar: AppBar(
+      //   title: Text(activePageTitle),
+      // ),
+      // body: ..,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _currentPage,
         items: [

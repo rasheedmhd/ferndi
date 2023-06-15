@@ -1,4 +1,8 @@
+import "package:app/subscriptions/list.dart";
 import "package:flutter/material.dart";
+import "subscriptions/list.dart";
+import "budgets/budgets.dart";
+import "savings/savings.dart";
 import "package:google_fonts/google_fonts.dart";
 
 final theme = ThemeData(
@@ -18,9 +22,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: theme,
       title: "budge23",
+      //home: Savings(),
+      // home: Subscriptions(),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("budget23"),
+          title: const Text("budget23", style: TextStyle(color: Colors.white),),
           backgroundColor: Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
         ),
         body: const Center(
@@ -49,7 +55,7 @@ class MyApp extends StatelessWidget {
           unselectedItemColor: Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
           onTap: (index) {},
         ),
-      ),
+     ),
     );
   }
 }

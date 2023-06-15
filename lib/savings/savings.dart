@@ -1,12 +1,12 @@
 import "package:flutter/material.dart";
 
-class Subscriptions extends StatelessWidget {
-  const Subscriptions({super.key});
+class Savings extends StatelessWidget {
+  const Savings({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Subscriptions",
+      title: "Savings",
       home: Scaffold(
         appBar: AppBar(
           title: const Text("budget23"),
@@ -16,13 +16,13 @@ class Subscriptions extends StatelessWidget {
         body: Container(
           child: Column(
             children: [
-              Text("Subscriptions"),
-                Text("ih",),
-                Text("ih"),
-                Text("ih"),
-                Text("ih"),
-                Text("ih"),
-                Text("ih"),
+              Text("Savings"),
+                Text("save",),
+                Text("save"),
+                Text("save"),
+                Text("save"),
+
+                Text("Add Savings +")
             ],
           ),
         )
