@@ -24,7 +24,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
   int _selectedPageIndex = 0;
 
   void _selectPage(int index) {
-    // setState(index) => (_currentPageIndex = index);
     setState(() {
       _selectedPageIndex = index;
     });
@@ -34,25 +33,18 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     Widget activePage = const Home();
 
-    // if (_selectedPageIndex == 2) {
-    //   activePage = Savings();
-    //   activePageTitle = "Savings";
-    // }
-
     switch (_selectedPageIndex) {
       case 1:
-        activePage = Budgets();
+        activePage = const Budgets();
       case 2:
-        activePage = Subscriptions();
+        activePage = const Subscriptions();
       case 3:
-        activePage = Savings();
+        activePage = const Savings();
     }
 
     return MaterialApp(
       theme: theme,
       title: "budget23 - Budgeting App",
-      // home: NavigationScreen(),
-      //home: Subscriptions(),
       home: Scaffold(
         // appBar: AppBar(
         //   // Dynamically changed based on the screen loaded by
@@ -82,8 +74,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
             ),
           ],
           
-          selectedItemColor: Color.fromARGB(255, 5, 61, 135),
-          unselectedItemColor: Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
+          selectedItemColor: const Color.fromARGB(255, 5, 61, 135),
+          unselectedItemColor: const Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
           onTap: _selectPage,
           currentIndex: _selectedPageIndex,
         ),
@@ -91,37 +83,3 @@ class _NavigationScreenState extends State<NavigationScreen> {
     );
   }
 }
-
-// class Nav extends StatelessWidget {
-//   const Nav({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-
-//       bottomNavigationBar: BottomNavigationBar(
-//         items: const [
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.payments),
-//             label: "Spending",
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.currency_bitcoin),
-//             label: "Budget",
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.payment),
-//             label: "Subscriptions",
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.account_balance),
-//             label: "Profile",
-//           ),
-//         ],
-//         selectedItemColor: Color.fromARGB(255, 5, 61, 135),
-//         unselectedItemColor: Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
-//         onTap: (index) {},
-//       ),
-//     );
-//   }
-// }

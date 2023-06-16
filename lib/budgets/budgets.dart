@@ -10,11 +10,11 @@ class Budgets extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("budget23 - Budgets"),
-          backgroundColor: Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
+          backgroundColor: const Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
         ),
         
         body: Container(
-          child: Column(
+          child: const Column(
             children: [
                 Text("Where you spend from"),
                 Text("Budget"),

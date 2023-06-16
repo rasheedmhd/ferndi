@@ -8,7 +8,7 @@ final theme = ThemeData(
 );
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: theme,
-        title: "budget23 - Budget",
+        title: "budget23",
         home: const NavigationScreen(),
     );
   }
