@@ -14,7 +14,8 @@ class Subscription {
     required this.amount,
     required this.wallet,
     required this.duration,
-  }) : id = uuid.v4(), date = DateTime.now();
+  })  : id = uuid.v4(),
+        date = DateTime.now();
 
   final String id;
   final String name;
@@ -29,5 +30,8 @@ class Subscription {
   final Wallet wallet;
 
   // An enum of whether the subscription is for a month or year.
-  final Duration duration; 
+  final Duration duration;
+
+  String get period => duration.name;
+  String get from => wallet.name;
 }

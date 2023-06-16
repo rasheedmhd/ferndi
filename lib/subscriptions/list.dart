@@ -1,6 +1,7 @@
 import "package:app/models/wallets.dart";
 import "package:flutter/material.dart";
 import "package:app/models/subscription.dart";
+import "package:google_fonts/google_fonts.dart";
 
 final List<Subscription> _CurrentSubscriptions = [
   Subscription(
@@ -41,6 +42,7 @@ class Subscriptions extends StatelessWidget {
   Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
     return Card(
         //elevation: 1.0,
+
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         //margin: const EdgeInsets.symmetric(),
@@ -48,7 +50,7 @@ class Subscriptions extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(children: <Widget>[
             Text(
-              subscriptionItem.wallet.toString(),
+              subscriptionItem.from,
               style: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.w500,
@@ -68,11 +70,12 @@ class Subscriptions extends StatelessWidget {
                   style: const TextStyle(
                     color: Color.fromARGB(255, 26, 114, 255),
                     fontSize: 33.0,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: "Galvji"
                   ),
                 ),
                 Text(
-                  " \/${subscriptionItem.duration.toString()}",
+                  " \/${subscriptionItem.period}",
                   style: const TextStyle(
                     color: Color.fromARGB(255, 148, 152, 158),
                     fontSize: 20.0,
@@ -96,6 +99,8 @@ class Subscriptions extends StatelessWidget {
             title: const Text("budget23 - Subscriptions"),
             backgroundColor: Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
           ),
+
+// =========================================== if shit goes wrong uncomment this.
           body: Container(
             padding: EdgeInsets.all(15.0),
             //color: Colors.amber,
@@ -106,6 +111,29 @@ class Subscriptions extends StatelessWidget {
                   //return Text(_CurrentSubscriptions[index].name);
                 }),
           ),
+// =========================================== if shit goes wrong uncomment this.
+
+// =========================================== experimentation
+
+          // body: Column(children: <Widget>[
+          //   //Padding(padding: padding)
+          //   Container(child: Text("Hi, from inside container")),
+          //   Text("Hi"),
+          //   //Container(
+          //   //padding: EdgeInsets.all(15.0),
+          //   //color: Colors.amber,
+          //   //child: 
+          //   ListView.builder(
+          //       itemCount: _CurrentSubscriptions.length,
+          //       itemBuilder: (BuildContext context, int index) {
+          //         return _BuildSubscriptionCard(_CurrentSubscriptions[index]);
+          //         //return Text(_CurrentSubscriptions[index].name);
+          //       }),
+          // //),
+          // ],)
+
+// =========================================== if shit goes wrong uncomment this.
+
         ));
   }
 }
