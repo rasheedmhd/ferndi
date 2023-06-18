@@ -2,11 +2,25 @@ import "package:flutter/material.dart";
 import "package:app/models/spend.dart";
 import "package:app/models/wallets.dart";
 
-class Spends extends StatefulWidget {
-  const Spends({super.key});
+class SpendItem extends StatelessWidget {
+  const SpendItem(this.spend, {super.key});
+
+  final Spend spend;
 
   @override
-  SpendState createState() => SpendState();
+  Widget build(BuildContext context) {
+    return Card(
+        child: Column(
+      children: [
+        const Icon(Icons.payment),
+        Text(spend.name),
+        //Text(?spend.description),
+        Text(spend.getAmount),
+        Text(spend.getWallet),
+        Text(spend.getCategory),
+      ],
+    ));
+  }
 }
 
 final List<Spend> recordedSpends = [
@@ -18,9 +32,9 @@ final List<Spend> recordedSpends = [
     category: Category.Work,
   ),
   Spend(
-    name: "Mousse",
+    name: "Mouse",
     description:
-        "Logitech MX Master 3 mouse to help with my Carpal Tunnel Sydrome",
+        "Logitech MX Master 3 mouse to help with my Carpal Tunnel Syndrome",
     amount: 2300,
     wallet: Wallet.MobileMoney,
     category: Category.Work,
@@ -28,24 +42,25 @@ final List<Spend> recordedSpends = [
   Spend(
     name: "Petrol",
     description:
-        "Logitech MX Master 3 mouse to help with my Carpal Tunnel Sydrome",
+        "Logitech MX Master 3 mouse to help with my Carpal Tunnel Syndrome",
     amount: 100,
     wallet: Wallet.PocketWallet,
     category: Category.Transportation,
   ),
 ];
 
-class SpendState extends State<Spends> {
+class Spends extends StatefulWidget {
+  const Spends({super.key});
 
   @override
+  SpendState createState() => SpendState();
+}
+
+class SpendState extends State<Spends> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Text("The Chart"),
-          SpendList(spends: recordedSpends),
-        ],
-      )
+    return Container(
+      child: SpendList(spends: recordedSpends),
     );
   }
 }
@@ -60,8 +75,7 @@ class SpendList extends StatelessWidget {
     return ListView.builder(
         itemCount: spends.length,
         itemBuilder: (BuildContext context, int index) {
-          return SpendList(spends: recordedSpends);
-        }
-      );
+          return SpendItem(spends[index]);
+        });
   }
 }

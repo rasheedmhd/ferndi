@@ -70,7 +70,7 @@ class Subscriptions extends StatelessWidget {
                 const Icon(
                   Icons.subscriptions,
                   size: 25,
-                  color: Color.fromARGB(255, 215, 8, 222),
+                  color: Color.fromARGB(255, 165, 64, 243),
                 ),
                 const SizedBox(
                   width: 10,
