@@ -103,7 +103,7 @@ class Subscriptions extends StatelessWidget {
                   width: 3,
                 ),
                 Text(
-                  "${subscriptionItem.amount.toStringAsFixed(2)}",
+                  subscriptionItem.getAmount,
                   style: const TextStyle(
                     color: Color.fromARGB(255, 26, 114, 255),
                     fontSize: 33.0,

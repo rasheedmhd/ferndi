@@ -38,6 +38,6 @@ class Spend {
   final Category category;
 
   String get getCategory => category.name;
-  String get getAmount  => "GHS " + amount.toStringAsFixed(2);
+  String get getAmount  => "GHS ${amount.toStringAsFixed(2)}";
   String get getWallet => wallet.name;
 }

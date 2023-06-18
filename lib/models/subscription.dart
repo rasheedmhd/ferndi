@@ -33,5 +33,6 @@ class Subscription {
   final Duration duration;
 
   String get period => duration.name;
+  String get getAmount => amount.toStringAsFixed(2);
   String get from => wallet.name;
 }

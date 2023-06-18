@@ -1,4 +1,3 @@
-import "package:app/cards/addSpend.dart";
 import "package:app/home/spends.dart";
 import "package:flutter/material.dart";
 import "package:app/cards/balance.dart";
@@ -22,14 +21,14 @@ class HomeState extends State<Home> {
             ),
             body: ListView(
               padding: const EdgeInsets.all(15),
-              children: [
+              children: const [
                 
-                const BalanceCard(),
+                BalanceCard(),
                 // const AddSpendCard(),
 
-                const SizedBox(height: 20,),
+                SizedBox(height: 20,),
 
-                const Text(
+                Text(
                   "Spend History",
                   style: TextStyle(
                     fontSize: 30.0,
@@ -39,12 +38,12 @@ class HomeState extends State<Home> {
                   ),
                 ),
 
-                const SizedBox(height: 10,),
+                SizedBox(height: 10,),
 
-                Container(
+                SizedBox(
                   //padding: EdgeInsets.fromLTRB(15, 10, 0, 0),
                   height: 500,
-                  child: const Spends(),
+                  child: Spends(),
                 ),
 
                 // Container(
@@ -78,7 +77,7 @@ class HomeState extends State<Home> {
                 //   Icon(Icons.money_rounded)
                 // ]),
 
-                const Text("HI"),
+                Text("HI"),
               ],
 
               // body: const Padding(
