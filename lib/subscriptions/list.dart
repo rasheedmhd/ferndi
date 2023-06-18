@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 import "package:app/models/subscription.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
-final List<Subscription> _CurrentSubscriptions = [
+final List<Subscription> CurrentSubscriptions = [
   Subscription(
     name: "Spotify",
     amount: 27,
@@ -41,11 +41,8 @@ class Subscriptions extends StatelessWidget {
 
   Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
     return Card(
-        //elevation: 1.0,
-
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        //margin: const EdgeInsets.symmetric(),
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(children: <Widget>[
@@ -54,7 +51,7 @@ class Subscriptions extends StatelessWidget {
                 const Icon(
                   Icons.account_balance_wallet,
                   size: 25,
-                  color: Color.fromARGB(255, 21, 173, 21),
+                  color: Color.fromARGB(255, 17, 221, 106),
                 ),
                 const SizedBox(
                   width: 10,
@@ -90,9 +87,9 @@ class Subscriptions extends StatelessWidget {
             const Divider(),
             Row(
               children: [
-                Text(
+                const Text(
                   "-",
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Color.fromARGB(255, 26, 114, 255),
                     fontSize: 33.0,
                     fontWeight: FontWeight.w700,
@@ -124,11 +121,13 @@ class Subscriptions extends StatelessWidget {
                 ),
               ],
             )
-          ]),
-        ));
+          ]
+        ),
+      )
+    );
   }
 
-  void add_sub() {}
+  void add_subscription() {}
 
   @override
   Widget build(BuildContext context) {
@@ -145,9 +144,9 @@ class Subscriptions extends StatelessWidget {
             padding: const EdgeInsets.all(15.0),
             //color: Colors.amber,
             child: ListView.builder(
-                itemCount: _CurrentSubscriptions.length,
+                itemCount: CurrentSubscriptions.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return _BuildSubscriptionCard(_CurrentSubscriptions[index]);
+                  return _BuildSubscriptionCard(CurrentSubscriptions[index]);
                   //return Text(_CurrentSubscriptions[index].name);
                 }),
           ),

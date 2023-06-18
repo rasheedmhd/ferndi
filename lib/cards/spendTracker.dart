@@ -20,9 +20,42 @@ class Card1 extends StatelessWidget {
         ),
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/1.png"),
-              fit: BoxFit.cover,
-            ),
+            image: AssetImage("assets/1.png"),
+            fit: BoxFit.cover,
+          ),
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          color: Colors.blueAccent,
+        ),
+      ),
+    );
+    // return MaterialApp();
+  }
+}
+
+class RecordSpend extends StatefulWidget {
+  const RecordSpend({super.key});
+
+  @override
+  RecordSpendState createState() => RecordSpendState();
+}
+
+class RecordSpendState extends State<RecordSpend> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      // TODO: Card1 Decorate Container
+      child: Container(
+        //padding: const EdgeInsets.all(16),
+        constraints: const BoxConstraints.expand(
+          width: 350,
+          height: 450,
+        ),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/1.png"),
+            fit: BoxFit.cover,
+          ),
           borderRadius: BorderRadius.all(Radius.circular(10)),
           color: Colors.blueAccent,
         ),
