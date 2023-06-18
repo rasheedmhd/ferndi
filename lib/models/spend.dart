@@ -18,7 +18,7 @@ enum Category {
 class Spend {
   Spend({
     required this.name,
-    this.description,
+    required this.notes,
     required this.amount,
     required this.wallet,
     required this.category,
@@ -29,7 +29,7 @@ class Spend {
   // name or description of what you bought
   // or spent on
   final String name;
-  final String? description;
+  final String notes;
   // amount spent
   final double amount;
   final DateTime date;
@@ -38,6 +38,6 @@ class Spend {
   final Category category;
 
   String get getCategory => category.name;
-  String get getAmount  => amount.toStringAsFixed(2);
+  String get getAmount  => "GHS " + amount.toStringAsFixed(2);
   String get getWallet => wallet.name;
 }

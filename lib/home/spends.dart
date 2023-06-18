@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:app/models/spend.dart";
 import "package:app/models/wallets.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 class SpendItem extends StatelessWidget {
   const SpendItem(this.spend, {super.key});
@@ -9,43 +10,74 @@ class SpendItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        child: Column(
-      children: [
-        const Icon(Icons.payment),
-        Text(spend.name),
-        //Text(?spend.description),
-        Text(spend.getAmount),
-        Text(spend.getWallet),
-        Text(spend.getCategory),
-      ],
-    ));
+    return ListTile(
+        leading: const FaIcon(
+          FontAwesomeIcons.receipt,
+          size: 30.0,
+          color: Color.fromARGB(255, 240, 138, 4),
+        ),
+        title: Text(spend.name),
+        subtitle: Text(spend.getWallet),
+        trailing: Text(spend.getAmount),
+    );
+    // UI ONE
+    // return Card(
+    //   child: ListTile(
+    //     leading: const FaIcon(
+    //       FontAwesomeIcons.receipt,
+    //       size: 30.0,
+    //       color: Color.fromARGB(255, 240, 138, 4),
+    //     ),
+    //     title: Text(spend.name),
+    //     subtitle: Text(spend.getWallet),
+    //     trailing: Text(spend.getAmount),
+    //   ),
+    // );
   }
 }
 
 final List<Spend> recordedSpends = [
   Spend(
     name: "Monitor",
-    description: "Dell 27\" 4K Monitor for programming",
+    notes: "Dell 27\" 4K Monitor for programming",
     amount: 2700,
     wallet: Wallet.MobileMoney,
     category: Category.Work,
   ),
   Spend(
     name: "Mouse",
-    description:
-        "Logitech MX Master 3 mouse to help with my Carpal Tunnel Syndrome",
+    notes: "Logitech MX Master 3 mouse to help with my Carpal Tunnel Syndrome",
     amount: 2300,
     wallet: Wallet.MobileMoney,
     category: Category.Work,
   ),
   Spend(
     name: "Petrol",
-    description:
-        "Logitech MX Master 3 mouse to help with my Carpal Tunnel Syndrome",
+    notes: "For My motor",
     amount: 100,
-    wallet: Wallet.PocketWallet,
+    wallet: Wallet.AccessDebitCard,
     category: Category.Transportation,
+  ),
+  Spend(
+    name: "Madrid Jersey",
+    notes: "From Gaskia",
+    amount: 170,
+    wallet: Wallet.MobileMoney,
+    category: Category.Work,
+  ),
+  Spend(
+    name: "Baby Rice",
+    notes: "Baby Rice from Two Sisters alias Safura",
+    amount: 15,
+    wallet: Wallet.Cash,
+    category: Category.Work,
+  ),
+  Spend(
+    name: "Ulcer Medication",
+    notes: "RONAKCID Omeprezole + Antacid",
+    amount: 34,
+    wallet: Wallet.Cash,
+    category: Category.Health,
   ),
 ];
 
@@ -59,7 +91,9 @@ class Spends extends StatefulWidget {
 class SpendState extends State<Spends> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Card(
+    shape:
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
       child: SpendList(spends: recordedSpends),
     );
   }

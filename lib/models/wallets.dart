@@ -12,8 +12,10 @@
 
 enum Wallet {
   PocketWallet,
+  Cash,
   MobileMoney,
   AccessDebitCard,
+  Miscellaneous,
 }
 
 // For Later

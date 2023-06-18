@@ -1,3 +1,4 @@
+import "package:app/cards/addSpend.dart";
 import "package:app/home/spends.dart";
 import "package:flutter/material.dart";
 import "package:app/cards/balance.dart";
@@ -20,54 +21,62 @@ class HomeState extends State<Home> {
               backgroundColor: const Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
             ),
             body: ListView(
+              padding: const EdgeInsets.all(15),
               children: [
-                Container(
-                  child: balanceCard(),
-                ),
-                Container(
-                  height: 100,
-                  color: Colors.yellow,
-                  child: const Text(
-                    "Ferndi",
-                    style: TextStyle(
-                        fontSize: 70.0,
-                        fontWeight: FontWeight.w900,
-                        fontFamily: "Helvetica"),
+                
+                const BalanceCard(),
+                // const AddSpendCard(),
+
+                const SizedBox(height: 20,),
+
+                const Text(
+                  "Spend History",
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    color: Colors.blueAccent,
+                    fontWeight: FontWeight.w700,
+                    // fontFamily: "WorkSans"
                   ),
                 ),
 
+                const SizedBox(height: 10,),
+
                 Container(
-                  height: 150,
-                  color: Colors.blueAccent,
+                  //padding: EdgeInsets.fromLTRB(15, 10, 0, 0),
+                  height: 500,
                   child: const Spends(),
                 ),
 
-                //Spends(),
-                const Text("HI"),
-                const SizedBox(height: 16),
+                // Container(
+                //   height: 150,
+                //   color: const Color.fromARGB(255, 224, 234, 251),
+                //   child: const Spends(),
+                // ),
 
-                Container(
-                  height: 400,
-                  color: Colors.green,
-                  child: const Spends(),
-                ),
 
-                const Row(children: [
-                  Text("Spend History"),
-                  Spacer(),
-                  Icon(Icons.money_rounded)
-                ]),
 
-                Container(
-                  height: 400,
-                  color: Colors.black54,
-                ),
+                // Container(
+                //   height: 400,
+                //   color: Colors.green,
+                //   child: const Spends(),
+                // ),
 
-                const Row(children: [
-                  Text("Spend History"),
-                  Spacer(),
-                  Icon(Icons.money_rounded)
-                ]),
+                // const Row(children: [
+                //   Text("Spend History"),
+                //   Spacer(),
+                //   Icon(Icons.money_rounded)
+                // ]),
+
+                // Container(
+                //   height: 400,
+                //   color: Colors.black54,
+                // ),
+
+                // const Row(children: [
+                //   Text("Spend History"),
+                //   Spacer(),
+                //   Icon(Icons.money_rounded)
+                // ]),
 
                 const Text("HI"),
               ],
