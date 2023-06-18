@@ -2,15 +2,21 @@
 
 A new Flutter project.
 
-## Getting Started
+## About
+An opinionated way to manage your money. 
+An app that helps users to track their Spends, Budget their money and track subscriptions.
 
-This project is a starting point for a Flutter application.
+## Motivation
+Over the past years I have tried a lot of budgeting apps unfortunately
+none worked for me. I am not saying they were terrible apps but
+they didn't resonate with my philosophy managing money.
 
-A few resources to get you started if this is your first Flutter project:
+So I set up to create an app for myself. I have played with the Idea for a while
+always saying one day I will build it.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+On 1st June, I asked myself if I could build a mobile app within 3 weeks,
+It was a challenge that I gladly accepted and this is the reply.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1st June - 7th June I learned Dart
+8th June - 14th June I learned Flutter 
+I started working on this app on the 15th.
