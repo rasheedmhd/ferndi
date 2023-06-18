@@ -1,6 +1,6 @@
-# app
+# Ferndi
 
-A new Flutter project.
+An opinionated way to manage your money. 
 
 ## About
 An opinionated way to manage your money. 
@@ -17,6 +17,6 @@ always saying one day I will build it.
 On 1st June, I asked myself if I could build a mobile app within 3 weeks,
 It was a challenge that I gladly accepted and this is the reply.
 
-1st June - 7th June I learned Dart
+1st June - 7th June I learned Dart (https://github.com/rasheedmhd/codes/tree/main/dart)
 8th June - 14th June I learned Flutter 
 I started working on this app on the 15th.
