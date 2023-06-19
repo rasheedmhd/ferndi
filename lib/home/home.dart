@@ -1,6 +1,8 @@
 import "package:app/home/spends.dart";
 import "package:flutter/material.dart";
 import "package:app/cards/balance.dart";
+import "package:app/cards/addSpend.dart";
+
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,23 +12,32 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
+  void _addSpend() {
+    showModalBottomSheet(context: context, builder: (ctx) => 
+      const Text("Hello")
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "Overview",
-        home: Scaffold(
-            appBar: AppBar(
-              title: const Text("budget23 - Record and Track spends"),
-              backgroundColor: const Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
-            ),
-            body: ListView(
-              padding: const EdgeInsets.all(15),
-              children: const [
-                
-                BalanceCard(),
-                // const AddSpendCard(),
+      title: "Overview",
+      home: Scaffold(
+        appBar: AppBar(
+          actions: [
+            IconButton(onPressed: _addSpend, icon: const Icon(Icons.add))
+          ],
+          title: const Text("Home"),
+          backgroundColor: const Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
+        ),
+        body: ListView(
+          padding: const EdgeInsets.all(15),
+          children: const [
+            
+            BalanceCard(),
+            AddSpendCard(),
 
-                SizedBox(height: 20,),
+            SizedBox(height: 20,),
 
                 Text(
                   "Spend History",

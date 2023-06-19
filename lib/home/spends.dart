@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:app/models/spend.dart";
 import "package:app/models/wallets.dart";
-import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 class SpendItem extends StatelessWidget {
   const SpendItem(this.spend, {super.key});
@@ -17,7 +16,7 @@ class SpendItem extends StatelessWidget {
         //   color: Color.fromARGB(255, 240, 138, 4),
         // ),
         leading: Icon(CategoryIcons[spend.category],
-        color: Color.fromARGB(255, 240, 138, 4),),
+        color: const Color.fromARGB(255, 240, 138, 4),),
         title: Text(spend.name),
         subtitle: Text(spend.getWallet),
         trailing: Text(spend.getAmount),
