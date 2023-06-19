@@ -1,3 +1,4 @@
+import "package:flutter/material.dart";
 //import "package:uuid/uuid.dart";
 
 // Right now we are using enums to capture the wallets the user has
@@ -18,6 +19,13 @@ enum Wallet {
   Miscellaneous,
 }
 
+const WalletIcons = {
+  Wallet.PocketWallet: Icons.add_card,
+  Wallet.Cash: Icons.wallet_sharp,
+  Wallet.MobileMoney: Icons.phone_android,
+  Wallet.AccessDebitCard: Icons.card_giftcard_sharp,
+  Wallet.Miscellaneous: Icons.online_prediction_sharp,
+};
 // For Later
 
 // const uuid = Uuid();

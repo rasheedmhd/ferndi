@@ -11,11 +11,13 @@ class SpendItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        leading: const FaIcon(
-          FontAwesomeIcons.receipt,
-          size: 30.0,
-          color: Color.fromARGB(255, 240, 138, 4),
-        ),
+        // leading: const FaIcon(
+        //   FontAwesomeIcons.receipt,
+        //   size: 30.0,
+        //   color: Color.fromARGB(255, 240, 138, 4),
+        // ),
+        leading: Icon(CategoryIcons[spend.category],
+        color: Color.fromARGB(255, 240, 138, 4),),
         title: Text(spend.name),
         subtitle: Text(spend.getWallet),
         trailing: Text(spend.getAmount),
@@ -63,14 +65,14 @@ final List<Spend> recordedSpends = [
     notes: "From Gaskia",
     amount: 170,
     wallet: Wallet.MobileMoney,
-    category: Category.Work,
+    category: Category.Miscellaneous,
   ),
   Spend(
     name: "Baby Rice",
     notes: "Baby Rice from Two Sisters alias Safura",
     amount: 15,
     wallet: Wallet.Cash,
-    category: Category.Work,
+    category: Category.Food,
   ),
   Spend(
     name: "Ulcer Medication",
