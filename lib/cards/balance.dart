@@ -7,22 +7,24 @@ class BalanceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        child:  Padding(
-            padding: EdgeInsets.all(25),
-            child: Column(
-              children: [
-                const Text("Total Account balance"),
-                Text("GHS 120,000",
-                    style: GoogleFonts.hankenGrotesk(
-                      // textStyle: Theme.of(context).textTheme.headlineLarge,
-                      fontSize: 33.0,
-                      fontWeight: FontWeight.w700,
-                      color: const Color.fromARGB(255, 26, 114, 255),
-                    )
-                  ),
-              ],
-            )));
+      shape:
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+      child:  Padding(
+        padding: const EdgeInsets.all(25),
+        child: Column(
+          children: [
+            const Text("Total Account balance"),
+            Text("GHS 120,000",
+                style: GoogleFonts.hankenGrotesk(
+                  // textStyle: Theme.of(context).textTheme.headlineLarge,
+                  fontSize: 43.0,
+                  fontWeight: FontWeight.w700,
+                  color: const Color.fromARGB(255, 26, 114, 255),
+                )
+              ),
+          ],
+        )
+      )
+    );
   }
 }

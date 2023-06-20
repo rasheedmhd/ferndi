@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:app/subscriptions/list.dart";
 import "package:app/budgets/budgets.dart";
-import "package:app/savings/savings.dart";
+import 'package:app/accounts/accounts.dart';
 import "package:app/home/home.dart";
 
 import "package:google_fonts/google_fonts.dart";
@@ -39,7 +39,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
       case 2:
         activePage = const Subscriptions();
       case 3:
-        activePage = const Savings();
+        activePage = const Accounts();
     }
 
     return MaterialApp(
@@ -75,7 +75,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           ],
           
           selectedItemColor: const Color.fromARGB(255, 5, 61, 135),
-          unselectedItemColor: const Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
+          unselectedItemColor: const Color.fromARGB(255, 26, 114, 255),
           onTap: _selectPage,
           currentIndex: _selectedPageIndex,
         ),

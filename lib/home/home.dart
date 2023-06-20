@@ -20,14 +20,14 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Overview",
+      title: "Home",
       home: Scaffold(
         appBar: AppBar(
           actions: [
             IconButton(onPressed: _addSpend, icon: const Icon(Icons.add))
           ],
           title: const Text("Home"),
-          backgroundColor: const Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
+          backgroundColor: const Color.fromARGB(255, 26, 114, 255),
         ),
         body: ListView(
           padding: const EdgeInsets.all(15),
@@ -42,7 +42,7 @@ class HomeState extends State<Home> {
                   "Spend History",
                   style: TextStyle(
                     fontSize: 30.0,
-                    color: Colors.blueAccent,
+                    color: Color.fromARGB(255, 26, 114, 255),
                     fontWeight: FontWeight.w700,
                     // fontFamily: "WorkSans"
                   ),

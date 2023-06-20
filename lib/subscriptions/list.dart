@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:app/models/subscription.dart";
 import "package:app/cards/addSubscription.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:google_fonts/google_fonts.dart";
 
 final List<Subscription> CurrentSubscriptions = [
   Subscription(
@@ -47,60 +48,31 @@ class Subscriptions extends StatefulWidget {
 class SubscriptionsState extends State<Subscriptions> {
   void _addSubscription() {
     showModalBottomSheet(
-      context: context,
-      builder: (ctx) =>
-        const AddSubscriptionCard()
-    );
+        context: context, builder: (ctx) => const AddSubscriptionCard());
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "Subscriptions",
-        home: Scaffold(
-          appBar: AppBar(
-            actions: [
-              IconButton(
-                  onPressed: _addSubscription, icon: const Icon(Icons.add))
-            ],
-            title: const Text("Track Subscriptions"),
-            backgroundColor: const Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
-          ),
-
-// =========================================== if shit goes wrong uncomment this.
-          body: Container(
-            padding: const EdgeInsets.all(15.0),
-            //color: Colors.amber,
-            child: ListView.builder(
-                itemCount: CurrentSubscriptions.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return _BuildSubscriptionCard(CurrentSubscriptions[index]);
-                  //return Text(_CurrentSubscriptions[index].name);
-                }),
-          ),
-// =========================================== if shit goes wrong uncomment this.
-
-// =========================================== experimentation
-
-          // body: Column(children: <Widget>[
-          //   //Padding(padding: padding)
-          //   Container(child: Text("Hi, from inside container")),
-          //   Text("Hi"),
-          //   //Container(
-          //   //padding: EdgeInsets.all(15.0),
-          //   //color: Colors.amber,
-          //   //child:
-          //   ListView.builder(
-          //       itemCount: _CurrentSubscriptions.length,
-          //       itemBuilder: (BuildContext context, int index) {
-          //         return _BuildSubscriptionCard(_CurrentSubscriptions[index]);
-          //         //return Text(_CurrentSubscriptions[index].name);
-          //       }),
-          // //),
-          // ],)
-
-// =========================================== if shit goes wrong uncomment this.
-        ));
+      title: "Subscriptions",
+      home: Scaffold(
+        appBar: AppBar(
+          actions: [
+            IconButton(
+                onPressed: _addSubscription, icon: const Icon(Icons.add))
+          ],
+          title: const Text("Track Subscriptions"),
+          backgroundColor: const Color.fromARGB(255, 26, 114, 255),
+        ),
+        body: Container(
+          padding: const EdgeInsets.all(15.0),
+          child: ListView.builder(
+              itemCount: CurrentSubscriptions.length,
+              itemBuilder: (BuildContext context, int index) {
+                return _BuildSubscriptionCard(CurrentSubscriptions[index]);
+              }),
+        ),
+      ));
   }
 }
 
@@ -152,11 +124,11 @@ Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
           Row(
             children: [
               const Text("-",
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 26, 114, 255),
-                    fontSize: 33.0,
-                    fontWeight: FontWeight.w700,
-                  )),
+                style: TextStyle(
+                  color: Color.fromARGB(255, 26, 114, 255),
+                  fontSize: 33.0,
+                  fontWeight: FontWeight.w700,
+                )),
               const SizedBox(
                 width: 5,
               ),
@@ -170,7 +142,7 @@ Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
               ),
               Text(
                 subscriptionItem.getAmount,
-                style: const TextStyle(
+                style: GoogleFonts.hankenGrotesk(
                   color: Color.fromARGB(255, 26, 114, 255),
                   fontSize: 33.0,
                   fontWeight: FontWeight.w700,
