@@ -10,11 +10,6 @@ class SpendItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        // leading: const FaIcon(
-        //   FontAwesomeIcons.receipt,
-        //   size: 30.0,
-        //   color: Color.fromARGB(255, 240, 138, 4),
-        // ),
         leading: Icon(CategoryIcons[spend.category],
         color: const Color.fromARGB(255, 240, 138, 4),),
         title: Text(spend.name),
@@ -108,9 +103,10 @@ class SpendList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: spends.length,
-        itemBuilder: (BuildContext context, int index) {
-          return SpendItem(spends[index]);
-        });
+      itemCount: spends.length,
+      itemBuilder: (BuildContext context, int index) {
+        return SpendItem(spends[index]);
+      }
+    );
   }
 }

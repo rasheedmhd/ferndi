@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
-//import "package:uuid/uuid.dart";
+import "package:uuid/uuid.dart";
+
+const uuid = Uuid();
 
 // Right now we are using enums to capture the wallets the user has
 // but later, we will set up functionality to allow users to
@@ -17,6 +19,29 @@ enum Wallet {
   MobileMoney,
   AccessDebitCard,
   Miscellaneous,
+}
+
+class AccountWallet {
+  AccountWallet({
+    required this.name,
+    required this.amount,
+    // To be added later
+    // required this.category,
+  })  : id = uuid.v4(),
+        date = DateTime.now();
+
+  final String id;
+  // name or description of what you bought
+  // or spent on
+  final String name;
+  // amount spent
+  final double amount;
+  final DateTime date;
+  // wallet paid from for the spend
+  // final Category category;
+
+  // String get getCategory => category.name;
+  String get getAmount => "GHS ${amount.toStringAsFixed(2)}";
 }
 
 const WalletIcons = {

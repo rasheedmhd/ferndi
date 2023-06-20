@@ -47,10 +47,9 @@ class savingsCard extends StatelessWidget {
                     FloatingActionButton(
                       elevation: 3,
                       onPressed: () {},
-                      backgroundColor: Color.fromARGB(255, 241, 0, 36),
+                      backgroundColor: const Color.fromARGB(255, 241, 0, 36),
                       child: const Icon(Icons.remove,
                       size: 35,
-                      // color: Colors.black38,
                       ),
                     ),
                     const SizedBox(height: 10,),
@@ -63,7 +62,7 @@ class savingsCard extends StatelessWidget {
                     FloatingActionButton(
                       elevation: 3,
                       onPressed: () {},
-                      backgroundColor: Color.fromARGB(255, 255, 206, 8),
+                      backgroundColor: const Color.fromARGB(255, 255, 206, 8),
                       child: const Icon(Icons.wallet,
                       size: 35,
                       // color: Colors.black38,
