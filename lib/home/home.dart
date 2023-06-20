@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 import "package:app/cards/balance.dart";
 import "package:app/cards/addSpend.dart";
 
-
 class Home extends StatefulWidget {
   const Home({super.key});
 

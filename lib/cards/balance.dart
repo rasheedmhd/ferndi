@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:google_fonts/google_fonts.dart";
 
 class BalanceCard extends StatelessWidget {
   const BalanceCard({super.key});
@@ -8,20 +9,19 @@ class BalanceCard extends StatelessWidget {
     return Card(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        child: const Padding(
+        child:  Padding(
             padding: EdgeInsets.all(25),
             child: Column(
               children: [
-                Text("Total Account balance"),
+                const Text("Total Account balance"),
                 Text("GHS 120,000",
-                    style: TextStyle(
+                    style: GoogleFonts.hankenGrotesk(
+                      // textStyle: Theme.of(context).textTheme.headlineLarge,
                       fontSize: 33.0,
                       fontWeight: FontWeight.w700,
-                      color: Color.fromARGB(255, 26, 114, 255),
-                    )),
-                Row(),
-                Row(),
-                Row(),
+                      color: const Color.fromARGB(255, 26, 114, 255),
+                    )
+                  ),
               ],
             )));
   }
