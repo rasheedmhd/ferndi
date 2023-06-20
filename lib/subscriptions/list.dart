@@ -1,6 +1,7 @@
 import "package:app/models/wallets.dart";
 import "package:flutter/material.dart";
 import "package:app/models/subscription.dart";
+import "package:app/cards/addSubscription.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 final List<Subscription> CurrentSubscriptions = [
@@ -36,98 +37,21 @@ final List<Subscription> CurrentSubscriptions = [
   ),
 ];
 
-class Subscriptions extends StatelessWidget {
+class Subscriptions extends StatefulWidget {
   const Subscriptions({super.key});
 
-  Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
-    return Card(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(children: <Widget>[
-            Row(
-              children: [
-                const Icon(
-                  Icons.account_balance_wallet,
-                  size: 25,
-                  color: Color.fromARGB(255, 17, 221, 106),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  subscriptionItem.from,
-                  style: const TextStyle(
-                    fontSize: 17.0,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                const Icon(
-                  Icons.subscriptions,
-                  size: 25,
-                  color: Color.fromARGB(255, 165, 64, 243),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  subscriptionItem.name,
-                  style: const TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-            const Divider(),
-            Row(
-              children: [
-                const Text(
-                  "-",
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 26, 114, 255),
-                    fontSize: 33.0,
-                    fontWeight: FontWeight.w700,
-                  )
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                const FaIcon(FontAwesomeIcons.cediSign, size: 30.0, color: Color.fromARGB(255, 26, 114, 255),),
-                const SizedBox(
-                  width: 3,
-                ),
-                Text(
-                  subscriptionItem.getAmount,
-                  style: const TextStyle(
-                    color: Color.fromARGB(255, 26, 114, 255),
-                    fontSize: 33.0,
-                    fontWeight: FontWeight.w700,
-                    //fontFamily: "Galvji"
-                  ),
-                ),
-                Text(
-                  " /${subscriptionItem.period}",
-                  style: const TextStyle(
-                    color: Color.fromARGB(255, 148, 152, 158),
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            )
-          ]
-        ),
-      )
+  @override
+  SubscriptionsState createState() => SubscriptionsState();
+}
+
+class SubscriptionsState extends State<Subscriptions> {
+  void _addSubscription() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) =>
+        const AddSubscriptionCard()
     );
   }
-
-  void add_subscription() {}
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +59,11 @@ class Subscriptions extends StatelessWidget {
         title: "Subscriptions",
         home: Scaffold(
           appBar: AppBar(
-            title: const Text("budget23 - Subscriptions"),
+            actions: [
+              IconButton(
+                  onPressed: _addSubscription, icon: const Icon(Icons.add))
+            ],
+            title: const Text("Track Subscriptions"),
             backgroundColor: const Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
           ),
 
@@ -174,4 +102,91 @@ class Subscriptions extends StatelessWidget {
 // =========================================== if shit goes wrong uncomment this.
         ));
   }
+}
+
+Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
+  return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(children: <Widget>[
+          Row(
+            children: [
+              const Icon(
+                Icons.account_balance_wallet,
+                size: 25,
+                color: Color.fromARGB(255, 17, 221, 106),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(
+                subscriptionItem.from,
+                style: const TextStyle(
+                  fontSize: 17.0,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              const Icon(
+                Icons.subscriptions,
+                size: 25,
+                color: Color.fromARGB(255, 165, 64, 243),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(
+                subscriptionItem.name,
+                style: const TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+          const Divider(),
+          Row(
+            children: [
+              const Text("-",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 26, 114, 255),
+                    fontSize: 33.0,
+                    fontWeight: FontWeight.w700,
+                  )),
+              const SizedBox(
+                width: 5,
+              ),
+              const FaIcon(
+                FontAwesomeIcons.cediSign,
+                size: 30.0,
+                color: Color.fromARGB(255, 26, 114, 255),
+              ),
+              const SizedBox(
+                width: 3,
+              ),
+              Text(
+                subscriptionItem.getAmount,
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 26, 114, 255),
+                  fontSize: 33.0,
+                  fontWeight: FontWeight.w700,
+                  //fontFamily: "Galvji"
+                ),
+              ),
+              Text(
+                " /${subscriptionItem.period}",
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 148, 152, 158),
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          )
+        ]),
+      ));
 }

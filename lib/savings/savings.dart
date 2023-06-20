@@ -9,10 +9,10 @@ class Savings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Savings",
+      title: "Accounts",
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("budget23 - Savings"),
+          title: const Text("Savings and Wallets"),
           backgroundColor: const Color.fromARGB(0xFF, 0x42, 0xA5, 0xF5),
         ),
         

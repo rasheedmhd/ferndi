@@ -1,31 +1,24 @@
-import "package:app/models/spend.dart";
+import "package:app/models/subscription.dart";
 import "package:app/models/wallets.dart";
 import "package:flutter/material.dart";
 
-class AddSpendCard extends StatefulWidget {
-  const AddSpendCard({super.key});
+class AddSubscriptionCard extends StatefulWidget {
+  const AddSubscriptionCard({super.key});
 
   @override
-  AddSpendCardState createState() => AddSpendCardState();
+  AddSubscriptionCardState createState() => AddSubscriptionCardState();
 }
 
-class AddSpendCardState extends State<AddSpendCard> {
-  // LEGACY
-  // List<String> spendInfo = [];
+class AddSubscriptionCardState extends State<AddSubscriptionCard> {
 
-  // void _saveSpendInfo(String info) {
-  //   spendInfo.add(info);
-  // }
   final _nameController = TextEditingController();
-  final _notesController = TextEditingController();
   final _amountController = TextEditingController();
-  Category _selectedCategory = Category.Food;
+  Duration _selectedDuration = Duration.Month;
   Wallet _selectedWallet = Wallet.Cash;
 
   @override
   void dispose() {
     _nameController.dispose();
-    _notesController.dispose();
     _amountController.dispose();
     super.dispose();
   }
@@ -42,12 +35,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                 TextField(
                   controller: _nameController,
                   maxLength: 50,
-                  decoration: const InputDecoration(label: Text("What did you buy?")),
-                ),
-                TextField(
-                  controller: _notesController,
-                  maxLength: 250,
-                  decoration: const InputDecoration(label: Text("Notes")),
+                  decoration: const InputDecoration(label: Text("Name")),
                 ),
                 TextField(
                   controller: _amountController,
@@ -59,32 +47,13 @@ class AddSpendCardState extends State<AddSpendCard> {
                 Row(
                   children: [
                     DropdownButton(
-                      value: _selectedCategory,
-                      items: Category.values
-                          .map((category) => DropdownMenuItem(
-                                value: category,
-                                child: Text(category.name),
-                              ))
-                          .toList(),
-                      onChanged: (value) {
-                        if (value == null) {
-                          return;
-                        }
-                        setState(() {
-                          _selectedCategory = value;
-                          print(_selectedCategory);
-                        });
-                      },
-                    ),
-                    const Spacer(),
-                    DropdownButton(
                       value: _selectedWallet, //const Text("Select Wallet"),
                       items: Wallet.values
-                          .map((wallet) => DropdownMenuItem(
-                                value: wallet,
-                                child: Text(wallet.name),
-                              ))
-                          .toList(),
+                        .map((wallet) => DropdownMenuItem(
+                            value: wallet,
+                            child: Text(wallet.name),
+                          ))
+                        .toList(),
                       onChanged: (value) {
                         if (value == null) {
                           return;
@@ -92,6 +61,25 @@ class AddSpendCardState extends State<AddSpendCard> {
                         setState(() {
                           _selectedWallet = value;
                           print(_selectedWallet);
+                        });
+                      },
+                    ),
+                    const Spacer(),
+                    DropdownButton(
+                      value: _selectedDuration,
+                      items: Duration.values
+                        .map((duration) => DropdownMenuItem(
+                            value: duration,
+                            child: Text(duration.name),
+                          ))
+                        .toList(),
+                      onChanged: (value) {
+                        if (value == null) {
+                          return;
+                        }
+                        setState(() {
+                          _selectedDuration = value;
+                          print(_selectedDuration);
                         });
                       },
                     ),
@@ -103,12 +91,12 @@ class AddSpendCardState extends State<AddSpendCard> {
                     ElevatedButton(
                         onPressed: () {}, child: const Text("Cancel")),
                     ElevatedButton(
-                        onPressed: () {
-                          print(_nameController.text);
-                          print(_notesController.text);
-                          print(_amountController.text);
-                        },
-                        child: const Text("Record"))
+                      onPressed: () {
+                        print(_nameController.text);
+                        print(_amountController.text);
+                      },
+                      child: const Text("Record")
+                    )
                   ],
                 )
               ],

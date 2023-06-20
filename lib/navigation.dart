@@ -70,7 +70,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.account_balance),
-              label: "Savings",
+              label: "Accounts",
             ),
           ],
           

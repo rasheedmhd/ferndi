@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   void _addSpend() {
     showModalBottomSheet(context: context, builder: (ctx) => 
-      const Text("Hello")
+      const AddSpendCard()
     );
   }
 
@@ -52,65 +52,16 @@ class HomeState extends State<Home> {
 
                 SizedBox(
                   //padding: EdgeInsets.fromLTRB(15, 10, 0, 0),
-                  height: 500,
+                  height: 700,
                   child: Spends(),
                 ),
-
-                // Container(
-                //   height: 150,
-                //   color: const Color.fromARGB(255, 224, 234, 251),
-                //   child: const Spends(),
-                // ),
-
-
-
-                // Container(
-                //   height: 400,
-                //   color: Colors.green,
-                //   child: const Spends(),
-                // ),
-
-                // const Row(children: [
-                //   Text("Spend History"),
-                //   Spacer(),
-                //   Icon(Icons.money_rounded)
-                // ]),
-
-                // Container(
-                //   height: 400,
-                //   color: Colors.black54,
-                // ),
-
-                // const Row(children: [
-                //   Text("Spend History"),
-                //   Spacer(),
-                //   Icon(Icons.money_rounded)
-                // ]),
-
-                Text("HI"),
               ],
 
-              // body: const Padding(
-              // padding: EdgeInsets.only(
-              //   left: 20,
-              //   right: 20,
-              // ),
-              // child: Column(
-              //   mainAxisAlignment: MainAxisAlignment.start,
-              //   children: [
-              //     // [[ FUTURE<feature> ]] card to display total spending amount in wallets (Money Left)
-              //     // Total budgets amount, Total Savings Amount
 
-              //     // card for inputting and recording a spend.
-              //     Text("data"),
-              //     // list of recorded expenses for the month.
-              //     Text("data"),
-              //     // SpendList(),
-              //     // [[ FUTURE<feature> ]] button to check past spends grouped in months
-              //     Text("data"),
-              //     //Spends(),
-              //   ],
-              // )
+// [[ FUTURE<feature> ]] card to display total spending amount in wallets (Money Left)
+
+// [[ FUTURE<feature> ]] button to check past spends grouped in months
+
             )));
   }
 }
