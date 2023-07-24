@@ -1,11 +1,11 @@
 import "package:flutter/material.dart";
-import "package:google_fonts/google_fonts.dart";
+// import "package:google_fonts/google_fonts.dart";
 import 'navigation.dart';
 
-final theme = ThemeData(
-  useMaterial3: true,
-  textTheme: GoogleFonts.dmSansTextTheme(),
-);
+// final theme = ThemeData(
+//   useMaterial3: true,
+//   textTheme: GoogleFonts.dmSansTextTheme(),
+// );
 
 void main() {
   runApp(const MyApp());
@@ -16,10 +16,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: theme,
-        title: "budget23",
-        home: const NavigationScreen(),
+    return const MaterialApp(
+        // theme: theme,
+        title: "ferndi",
+        home: NavigationScreen(),
     );
   }
 }

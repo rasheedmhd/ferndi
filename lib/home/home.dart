@@ -1,6 +1,6 @@
 import "package:app/home/spends.dart";
 import "package:flutter/material.dart";
-import "package:app/cards/balance.dart";
+// import "package:app/cards/balance.dart";
 import "package:app/cards/addSpend.dart";
 
 class Home extends StatefulWidget {
@@ -11,11 +11,11 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
-  void _addSpend() {
-    showModalBottomSheet(context: context, builder: (ctx) => 
-      const AddSpendCard()
-    );
-  }
+  // void _addSpend() {
+  //   showModalBottomSheet(context: context, builder: (ctx) => 
+  //     const AddSpendCard()
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -23,45 +23,48 @@ class HomeState extends State<Home> {
       title: "Home",
       home: Scaffold(
         appBar: AppBar(
-          actions: [
-            IconButton(onPressed: _addSpend, icon: const Icon(Icons.add))
-          ],
+          // actions: [
+          //   IconButton(onPressed: _addSpend, icon: const Icon(Icons.add))
+          // ],
           title: const Text("Home"),
           backgroundColor: const Color.fromARGB(255, 26, 114, 255),
         ),
+
         body: ListView(
           padding: const EdgeInsets.all(15),
           children: const [
             
-            BalanceCard(),
+            // BalanceCard(),
             AddSpendCard(),
 
             SizedBox(height: 20,),
 
-                Text(
-                  "Spend History",
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    color: Color.fromARGB(255, 26, 114, 255),
-                    fontWeight: FontWeight.w700,
-                    // fontFamily: "WorkSans"
-                  ),
-                ),
+            Text(
+              "Spend History",
+              style: TextStyle(
+                fontSize: 30.0,
+                color: Color.fromARGB(255, 26, 114, 255),
+                fontWeight: FontWeight.w700,
+                // fontFamily: "WorkSans"
+              ),
+            ),
 
-                SizedBox(height: 10,),
+            SizedBox(height: 10,),
 
-                SizedBox(
-                  //padding: EdgeInsets.fromLTRB(15, 10, 0, 0),
-                  height: 700,
-                  child: Spends(),
-                ),
-              ],
+            SizedBox(
+              //padding: EdgeInsets.fromLTRB(15, 10, 0, 0),
+              height: 400,
+              // height: double.infinity,
+              child: Spends(),
+            ),
 
+          ],
+        //   // [[ FUTURE<feature> ]] card to display total spending amount in wallets (Money Left)
 
-// [[ FUTURE<feature> ]] card to display total spending amount in wallets (Money Left)
+        //   // [[ FUTURE<feature> ]] button to check past spends grouped in months
 
-// [[ FUTURE<feature> ]] button to check past spends grouped in months
-
-            )));
+        )
+      )
+    );
   }
 }

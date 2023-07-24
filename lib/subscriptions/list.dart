@@ -86,7 +86,7 @@ Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
             children: [
               const Icon(
                 Icons.account_balance_wallet,
-                size: 25,
+                size: 20,
                 color: Color.fromARGB(255, 17, 221, 106),
               ),
               const SizedBox(
@@ -95,7 +95,7 @@ Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
               Text(
                 subscriptionItem.from,
                 style: const TextStyle(
-                  fontSize: 17.0,
+                  fontSize: 14.0,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -105,7 +105,7 @@ Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
             children: [
               const Icon(
                 Icons.subscriptions,
-                size: 25,
+                size: 20,
                 color: Color.fromARGB(255, 165, 64, 243),
               ),
               const SizedBox(
@@ -114,7 +114,7 @@ Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
               Text(
                 subscriptionItem.name,
                 style: const TextStyle(
-                  fontSize: 20.0,
+                  fontSize: 17.0,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -126,7 +126,7 @@ Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
               const Text("-",
                 style: TextStyle(
                   color: Color.fromARGB(255, 26, 114, 255),
-                  fontSize: 33.0,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.w700,
                 )),
               const SizedBox(
@@ -134,7 +134,7 @@ Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
               ),
               const FaIcon(
                 FontAwesomeIcons.cediSign,
-                size: 30.0,
+                size: 20.0,
                 color: Color.fromARGB(255, 26, 114, 255),
               ),
               const SizedBox(
@@ -144,7 +144,7 @@ Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
                 subscriptionItem.getAmount,
                 style: GoogleFonts.hankenGrotesk(
                   color: Color.fromARGB(255, 26, 114, 255),
-                  fontSize: 33.0,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.w700,
                   //fontFamily: "Galvji"
                 ),
@@ -153,7 +153,7 @@ Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
                 " /${subscriptionItem.period}",
                 style: const TextStyle(
                   color: Color.fromARGB(255, 148, 152, 158),
-                  fontSize: 20.0,
+                  fontSize: 17.0,
                   fontWeight: FontWeight.w500,
                 ),
               ),

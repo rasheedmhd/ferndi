@@ -9,26 +9,26 @@ class SpendItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-        leading: Icon(CategoryIcons[spend.category],
-        color: const Color.fromARGB(255, 240, 138, 4),),
-        title: Text(spend.name),
-        subtitle: Text(spend.getWallet),
-        trailing: Text(spend.getAmount),
-    );
-    // UI ONE
-    // return Card(
-    //   child: ListTile(
-    //     leading: const FaIcon(
-    //       FontAwesomeIcons.receipt,
-    //       size: 30.0,
-    //       color: Color.fromARGB(255, 240, 138, 4),
-    //     ),
+    // return
+    // ListTile(
+    //     leading: Icon(CategoryIcons[spend.category],
+    //     color: const Color.fromARGB(255, 240, 138, 4),),
     //     title: Text(spend.name),
     //     subtitle: Text(spend.getWallet),
     //     trailing: Text(spend.getAmount),
-    //   ),
     // );
+    // UI ONE
+    return ListTile(
+      leading: Icon(
+        CategoryIcons[spend.category],
+        size: 25.0,
+        color: const Color.fromARGB(255, 240, 138, 4),
+      ),
+      title: Text(spend.name),
+      subtitle: Text(spend.getWallet),
+      trailing: Text(spend.getAmount),
+    );
+    //);
   }
 }
 
@@ -87,11 +87,11 @@ class Spends extends StatefulWidget {
 class SpendState extends State<Spends> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-    shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-      child: SpendList(spends: recordedSpends),
-    );
+    // return Card(
+    //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+    //   child: SpendList(spends: recordedSpends),
+    // );
+    return SpendList(spends: recordedSpends);
   }
 }
 
@@ -102,11 +102,11 @@ class SpendList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: spends.length,
-      itemBuilder: (BuildContext context, int index) {
-        return SpendItem(spends[index]);
-      }
-    );
+    return Expanded(
+        child: ListView.builder(
+            itemCount: spends.length,
+            itemBuilder: (BuildContext context, int index) {
+              return SpendItem(spends[index]);
+            }));
   }
 }

@@ -14,7 +14,7 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
   final _nameController = TextEditingController();
   final _amountController = TextEditingController();
   Duration _selectedDuration = Duration.Month;
-  Wallet _selectedWallet = Wallet.Cash;
+  Wallet _selectedWallet = Wallet.AccessDebitCard;
 
   @override
   void dispose() {
@@ -32,6 +32,15 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
             padding: const EdgeInsets.all(25),
             child: Column(
               children: [
+                const Text(
+                  "Add Subscription",
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    color: Color.fromARGB(255, 26, 114, 255),
+                    fontWeight: FontWeight.w700,
+                    // fontFamily: "WorkSans"
+                  ),
+                ),
                 TextField(
                   controller: _nameController,
                   maxLength: 50,

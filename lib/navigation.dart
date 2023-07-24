@@ -44,7 +44,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
     return MaterialApp(
       theme: theme,
-      title: "budget23 - Budgeting App",
+      title: "ferndi - Budgeting App",
       home: Scaffold(
         // appBar: AppBar(
         //   // Dynamically changed based on the screen loaded by
