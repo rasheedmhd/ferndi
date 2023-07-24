@@ -1,5 +1,4 @@
-import "package:app/models/subscription.dart";
-import "package:app/models/wallets.dart";
+import 'package:app/models/schemas.dart';
 import "package:flutter/material.dart";
 
 class AddSubscriptionCard extends StatefulWidget {

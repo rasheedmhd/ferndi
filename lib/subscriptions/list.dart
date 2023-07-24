@@ -1,36 +1,35 @@
-import "package:app/models/wallets.dart";
 import "package:flutter/material.dart";
-import "package:app/models/subscription.dart";
+import 'package:app/models/schemas.dart';
 import "package:app/cards/addSubscription.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:google_fonts/google_fonts.dart";
 
-final List<Subscription> CurrentSubscriptions = [
-  Subscription(
+final List<_Subscription> CurrentSubscriptions = [
+  _Subscription(
     name: "Spotify",
     amount: 27,
     wallet: Wallet.AccessDebitCard,
-    duration: Duration.Month,
+    duration: Duration.month,
   ),
-  Subscription(
+  _Subscription(
     name: "Google One",
     amount: 13,
     wallet: Wallet.AccessDebitCard,
     duration: Duration.Month,
   ),
-  Subscription(
+  _Subscription(
     name: "Calculator",
     amount: 20,
     wallet: Wallet.AccessDebitCard,
     duration: Duration.Year,
   ),
-  Subscription(
+  _Subscription(
     name: "Netflix",
     amount: 33,
     wallet: Wallet.AccessDebitCard,
     duration: Duration.Month,
   ),
-  Subscription(
+  _Subscription(
     name: "Apple Music",
     amount: 71,
     wallet: Wallet.AccessDebitCard,
@@ -54,25 +53,25 @@ class SubscriptionsState extends State<Subscriptions> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Subscriptions",
-      home: Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-                onPressed: _addSubscription, icon: const Icon(Icons.add))
-          ],
-          title: const Text("Track Subscriptions"),
-          backgroundColor: const Color.fromARGB(255, 26, 114, 255),
-        ),
-        body: Container(
-          padding: const EdgeInsets.all(15.0),
-          child: ListView.builder(
-              itemCount: CurrentSubscriptions.length,
-              itemBuilder: (BuildContext context, int index) {
-                return _BuildSubscriptionCard(CurrentSubscriptions[index]);
-              }),
-        ),
-      ));
+        title: "Subscriptions",
+        home: Scaffold(
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                  onPressed: _addSubscription, icon: const Icon(Icons.add))
+            ],
+            title: const Text("Track Subscriptions"),
+            backgroundColor: const Color.fromARGB(255, 26, 114, 255),
+          ),
+          body: Container(
+            padding: const EdgeInsets.all(15.0),
+            child: ListView.builder(
+                itemCount: CurrentSubscriptions.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return _BuildSubscriptionCard(CurrentSubscriptions[index]);
+                }),
+          ),
+        ));
   }
 }
 
@@ -124,11 +123,11 @@ Widget _BuildSubscriptionCard(Subscription subscriptionItem) {
           Row(
             children: [
               const Text("-",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 26, 114, 255),
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w700,
-                )),
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 26, 114, 255),
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w700,
+                  )),
               const SizedBox(
                 width: 5,
               ),

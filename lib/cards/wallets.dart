@@ -1,18 +1,18 @@
 import "package:flutter/material.dart";
-import "package:app/models/wallets.dart";
-// import "package:google_fonts/google_fonts.dart";
+import "package:app/models/schemas.dart";
 
-final List<AccountWallet> createdWallets = [
-  AccountWallet(name: "MobileMoney", amount: 3345),
-  AccountWallet(name: "PocketWallet", amount: 3415),
-  AccountWallet(name: "Cash", amount: 345),
-  AccountWallet(name: "Ecobank", amount: 45),
-];
+// final List<AccountWallet> createdWallets = [
+//   AccountWallet(name: "Mobile Money", amount: 3345),
+//   AccountWallet(name: "Pocket Wallet", amount: 3415),
+//   AccountWallet(name: "Cash", amount: 345),
+//   AccountWallet(name: "Ecobank", amount: 45),
+// ];
 
 class WalletItem extends StatelessWidget {
   const WalletItem(this.wallet, {super.key});
 
-  final AccountWallet wallet;
+  final _Wallet wallet;
+  // final AccountWallet wallet;
 
   @override
   Widget build(BuildContext context) {

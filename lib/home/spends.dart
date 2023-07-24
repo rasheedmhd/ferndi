@@ -1,11 +1,11 @@
 import "package:flutter/material.dart";
-import "package:app/models/spend.dart";
-import "package:app/models/wallets.dart";
+import "package:app/models/schemas.dart";
+
 
 class SpendItem extends StatelessWidget {
   const SpendItem(this.spend, {super.key});
 
-  final Spend spend;
+  final _Spend spend;
 
   @override
   Widget build(BuildContext context) {
@@ -33,48 +33,13 @@ class SpendItem extends StatelessWidget {
 }
 
 final List<Spend> recordedSpends = [
-  Spend(
-    name: "Monitor",
-    notes: "Dell 27\" 4K Monitor for programming",
-    amount: 2700,
-    wallet: Wallet.MobileMoney,
-    category: Category.Work,
-  ),
-  Spend(
-    name: "Mouse",
-    notes: "Logitech MX Master 3 mouse to help with my Carpal Tunnel Syndrome",
-    amount: 2300,
-    wallet: Wallet.MobileMoney,
-    category: Category.Work,
-  ),
-  Spend(
-    name: "Petrol",
-    notes: "For My motor",
-    amount: 100,
-    wallet: Wallet.AccessDebitCard,
-    category: Category.Transportation,
-  ),
-  Spend(
-    name: "Madrid Jersey",
-    notes: "From Gaskia",
-    amount: 170,
-    wallet: Wallet.MobileMoney,
-    category: Category.Miscellaneous,
-  ),
-  Spend(
-    name: "Baby Rice",
-    notes: "Baby Rice from Two Sisters alias Safura",
-    amount: 15,
-    wallet: Wallet.Cash,
-    category: Category.Food,
-  ),
-  Spend(
-    name: "Ulcer Medication",
-    notes: "RONAKCID Omeprezole + Antacid",
-    amount: 34,
-    wallet: Wallet.Cash,
-    category: Category.Health,
-  ),
+  // Spend(
+  //   name: "Ulcer Medication",
+  //   notes: "RONAKCID Omeprezole + Antacid",
+  //   amount: 34,
+  //   wallet: Wallet.Cash,
+  //   category: Category.Health,
+  // ),
 ];
 
 class Spends extends StatefulWidget {

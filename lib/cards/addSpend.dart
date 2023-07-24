@@ -1,6 +1,12 @@
-import "package:app/models/spend.dart";
-import "package:app/models/wallets.dart";
+import "package:app/models/schemas.dart";
 import "package:flutter/material.dart";
+
+// final List<AccountWallet> createdWallets = [
+//   AccountWallet(name: "Mobile Money", amount: 3345),
+//   AccountWallet(name: "Pocket Wallet", amount: 3415),
+//   AccountWallet(name: "Cash", amount: 345),
+//   AccountWallet(name: "Ecobank", amount: 45),
+// ];
 
 class AddSpendCard extends StatefulWidget {
   const AddSpendCard({super.key});
@@ -20,6 +26,7 @@ class AddSpendCardState extends State<AddSpendCard> {
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
   Category _selectedCategory = Category.Food;
+  // AccountWallet _selectedWallet = createdWallets.first;
   Wallet _selectedWallet = Wallet.Cash;
 
   @override
@@ -34,9 +41,9 @@ class AddSpendCardState extends State<AddSpendCard> {
   Widget build(BuildContext context) {
     return Card(
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         child: Padding(
-            padding: const EdgeInsets.all(25),
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 TextField(
@@ -98,17 +105,17 @@ class AddSpendCardState extends State<AddSpendCard> {
                   ],
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ElevatedButton(
-                        onPressed: () {}, child: const Text("Cancel")),
+                      onPressed: () {}, child: const Text("Cancel")),
                     ElevatedButton(
-                        onPressed: () {
-                          print(_nameController.text);
-                          print(_notesController.text);
-                          print(_amountController.text);
-                        },
-                        child: const Text("Record"))
+                      onPressed: () {
+                        print(_nameController.text);
+                        print(_notesController.text);
+                        print(_amountController.text);
+                      },
+                      child: const Text("Record"))
                   ],
                 )
               ],
