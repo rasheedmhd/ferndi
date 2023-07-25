@@ -1,12 +1,62 @@
 import "package:realm/realm.dart";
-// import "package:flutter/material.dart";
 part "schemas.g.dart";
 
-// @RealmModel()
-// enum _Duration {
-//   month,
-//   year,
-// }
+final config = Configuration.local([
+  Spend.schema,
+  Wallet.schema,
+  Subscription.schema,
+  Category.schema,
+  Duration.schema,
+]);
+
+final realm = Realm(config);
+
+final List<Wallet> createdWallets = [
+  Wallet(ObjectId(), "Access Bank Debit Card", 10000),
+  Wallet(ObjectId(), "MoMo Subscriber", 100000),
+  Wallet(ObjectId(), "MoMo Agent", 200000),
+  Wallet(ObjectId(), "MoMo Merchant", 50000),
+  Wallet(ObjectId(), "Cash", 70000),
+];
+
+final List<Subscription> currentSubscriptions = [
+  Subscription(ObjectId(), "Netflix", 23, duration: Duration(ObjectId(), "month"), wallet: Wallet(ObjectId(), "Debit Card", 400)),
+  Subscription(ObjectId(), "Google One", 9),
+  Subscription(ObjectId(), "Card Service", 15),
+  Subscription(ObjectId(), "Spotify", 22),
+  Subscription(ObjectId(), "Calculator", 3),
+  Subscription(ObjectId(), "Airtime", 400),
+  Subscription(ObjectId(), "Data Bundle", 230),
+  Subscription(ObjectId(), "Nebula", 23),
+];
+
+final List<Spend> recordedSpends = [
+  Spend(ObjectId(), "Plantain", "Food", 15, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Spend(ObjectId(), "Voltic 4 packs", "Water", 150, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Spend(ObjectId(), "Petrol", "Fuel", 100, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Spend(ObjectId(), "sagt m86", "Maintenance", 15, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Spend(ObjectId(), "Plain Rice", "Food", 15, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+];
+
+final List<Wallet> wallets = [
+  Wallet(ObjectId(), "Cash", 7000),
+  Wallet(ObjectId(), "Access", 7000),
+  Wallet(ObjectId(), "EcoBank", 7000),
+  Wallet(ObjectId(), "Momo", 7000),
+  Wallet(ObjectId(), "Agent", 7000),
+  Wallet(ObjectId(), "Merchant", 7000),
+];
+final List<Category> categories = [
+  Category(ObjectId(), "Food"),
+  Category(ObjectId(), "Electricity"),
+  Category(ObjectId(), "Phone"),
+  Category(ObjectId(), "Transportation"),
+  Category(ObjectId(), "Health"),
+  Category(ObjectId(), "Lifestyle"),
+];
+// realm.write(() {
+//   realm.add(createdWallets);
+// });
 
 @RealmModel()
 class _Duration {
@@ -21,7 +71,7 @@ class _Subscription {
   late ObjectId id;
   late String name;
   late double amount;
-  //late DateTime date;
+  late DateTime date;
   // Also in Settings, I will have settings that allows users to set default
   // wallets for subscriptions
   late _Duration? duration;
@@ -89,7 +139,6 @@ class _Category {
 //   Wallet.AccessDebitCard: Icons.card_giftcard_sharp,
 //   Wallet.Miscellaneous: Icons.online_prediction_sharp,
 // };
-
 
 // enum Category {
 //   Food,

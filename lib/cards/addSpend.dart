@@ -25,9 +25,9 @@ class AddSpendCardState extends State<AddSpendCard> {
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
-  Category _selectedCategory = Category.Food;
-  // AccountWallet _selectedWallet = createdWallets.first;
-  Wallet _selectedWallet = Wallet.Cash;
+  // Category _selectedCategory = Category.Food;
+  // // AccountWallet _selectedWallet = createdWallets.first;
+  // Wallet _selectedWallet = Wallet.Cash;
 
   @override
   void dispose() {
@@ -63,47 +63,47 @@ class AddSpendCardState extends State<AddSpendCard> {
                   decoration: const InputDecoration(
                       prefix: Text("GHS "), label: Text("Amount")),
                 ),
-                Row(
-                  children: [
-                    DropdownButton(
-                      value: _selectedCategory,
-                      items: Category.values
-                          .map((category) => DropdownMenuItem(
-                                value: category,
-                                child: Text(category.name),
-                              ))
-                          .toList(),
-                      onChanged: (value) {
-                        if (value == null) {
-                          return;
-                        }
-                        setState(() {
-                          _selectedCategory = value;
-                          print(_selectedCategory);
-                        });
-                      },
-                    ),
-                    const Spacer(),
-                    DropdownButton(
-                      value: _selectedWallet, //const Text("Select Wallet"),
-                      items: Wallet.values
-                          .map((wallet) => DropdownMenuItem(
-                                value: wallet,
-                                child: Text(wallet.name),
-                              ))
-                          .toList(),
-                      onChanged: (value) {
-                        if (value == null) {
-                          return;
-                        }
-                        setState(() {
-                          _selectedWallet = value;
-                          print(_selectedWallet);
-                        });
-                      },
-                    ),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     DropdownButton(
+                //       value: _selectedCategory,
+                //       items: Category.values
+                //           .map((category) => DropdownMenuItem(
+                //                 value: category,
+                //                 child: Text(category.name),
+                //               ))
+                //           .toList(),
+                //       onChanged: (value) {
+                //         if (value == null) {
+                //           return;
+                //         }
+                //         setState(() {
+                //           _selectedCategory = value;
+                //           print(_selectedCategory);
+                //         });
+                //       },
+                //     ),
+                //     const Spacer(),
+                //     DropdownButton(
+                //       value: _selectedWallet, //const Text("Select Wallet"),
+                //       items: Wallet.values
+                //           .map((wallet) => DropdownMenuItem(
+                //                 value: wallet,
+                //                 child: Text(wallet.name),
+                //               ))
+                //           .toList(),
+                //       onChanged: (value) {
+                //         if (value == null) {
+                //           return;
+                //         }
+                //         setState(() {
+                //           _selectedWallet = value;
+                //           print(_selectedWallet);
+                //         });
+                //       },
+                //     ),
+                //   ],
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

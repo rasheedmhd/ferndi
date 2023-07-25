@@ -5,7 +5,7 @@ import "package:app/models/schemas.dart";
 class SpendItem extends StatelessWidget {
   const SpendItem(this.spend, {super.key});
 
-  final _Spend spend;
+  final Spend spend;
 
   @override
   Widget build(BuildContext context) {
@@ -19,28 +19,19 @@ class SpendItem extends StatelessWidget {
     // );
     // UI ONE
     return ListTile(
-      leading: Icon(
-        CategoryIcons[spend.category],
-        size: 25.0,
-        color: const Color.fromARGB(255, 240, 138, 4),
-      ),
+      // leading: Icon(
+      //   //CategoryIcons[spend.category],
+      //   size: 25.0,
+      //   color: const Color.fromARGB(255, 240, 138, 4),
+      // ),
       title: Text(spend.name),
-      subtitle: Text(spend.getWallet),
+      subtitle: Text(spend.notes),
+      // subtitle: const Text("spend?.wallet.name"),
       trailing: Text(spend.getAmount),
     );
     //);
   }
 }
-
-final List<Spend> recordedSpends = [
-  // Spend(
-  //   name: "Ulcer Medication",
-  //   notes: "RONAKCID Omeprezole + Antacid",
-  //   amount: 34,
-  //   wallet: Wallet.Cash,
-  //   category: Category.Health,
-  // ),
-];
 
 class Spends extends StatefulWidget {
   const Spends({super.key});

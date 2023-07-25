@@ -8,11 +8,13 @@ import "package:app/models/schemas.dart";
 //   AccountWallet(name: "Ecobank", amount: 45),
 // ];
 
+
+
+
 class WalletItem extends StatelessWidget {
   const WalletItem(this.wallet, {super.key});
 
-  final _Wallet wallet;
-  // final AccountWallet wallet;
+  final Wallet wallet;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class WalletItem extends StatelessWidget {
           Text(
             wallet.name,
             style: const TextStyle(
-              fontSize: 24.0,
+              fontSize: 20.0,
               color: Color.fromARGB(255, 26, 114, 255),
               fontWeight: FontWeight.w700,
               // fontFamily: "WorkSans"
@@ -36,7 +38,7 @@ class WalletItem extends StatelessWidget {
           Text(
             wallet.getAmount,
             style: const TextStyle(
-              fontSize: 14.0,
+              fontSize: 12.0,
               color: Color.fromARGB(255, 95, 98, 103),
               fontWeight: FontWeight.w700,
               // fontFamily: "WorkSans"
@@ -84,7 +86,7 @@ class WalletsCard extends StatelessWidget {
 class WalletList extends StatelessWidget {
   const WalletList({super.key, required this.wallets});
 
-  final List<AccountWallet> wallets;
+  final List<Wallet> wallets;
 
   @override
   Widget build(BuildContext context) {
