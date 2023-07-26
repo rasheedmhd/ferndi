@@ -20,16 +20,16 @@ final List<Wallet> createdWallets = [
 ];
 
 final List<Subscription> currentSubscriptions = [
-  Subscription(ObjectId(), "Netflix", 23,
+  Subscription(ObjectId(), "Netflix", 23, DateTime.utc(2022, 9, 18, 12, 30, 0),
       duration: Duration(ObjectId(), "month"),
       wallet: Wallet(ObjectId(), "Debit Card", 400)),
-  Subscription(ObjectId(), "Google One", 9),
-  Subscription(ObjectId(), "Card Service", 15),
-  Subscription(ObjectId(), "Spotify", 22),
-  Subscription(ObjectId(), "Calculator", 3),
-  Subscription(ObjectId(), "Airtime", 400),
-  Subscription(ObjectId(), "Data Bundle", 230),
-  Subscription(ObjectId(), "Nebula", 23),
+  Subscription(ObjectId(), "Google One", 9, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Subscription(ObjectId(), "Card Service", 15, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Subscription(ObjectId(), "Spotify", 22, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Subscription(ObjectId(), "Calculator", 3, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Subscription(ObjectId(), "Airtime", 400, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Subscription(ObjectId(), "Data Bundle", 230, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Subscription(ObjectId(), "Nebula", 23, DateTime.utc(2022, 9, 18, 12, 30, 0)),
 ];
 
 final List<Spend> recordedSpends = [

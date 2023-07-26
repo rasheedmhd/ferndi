@@ -51,13 +51,15 @@ class Subscription extends _Subscription
   Subscription(
     ObjectId id,
     String name,
-    double amount, {
+    double amount,
+    DateTime date, {
     Duration? duration,
     Wallet? wallet,
   }) {
     RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set(this, 'name', name);
     RealmObjectBase.set(this, 'amount', amount);
+    RealmObjectBase.set(this, 'date', date);
     RealmObjectBase.set(this, 'duration', duration);
     RealmObjectBase.set(this, 'wallet', wallet);
   }
@@ -78,6 +80,11 @@ class Subscription extends _Subscription
   double get amount => RealmObjectBase.get<double>(this, 'amount') as double;
   @override
   set amount(double value) => RealmObjectBase.set(this, 'amount', value);
+
+  @override
+  DateTime get date => RealmObjectBase.get<DateTime>(this, 'date') as DateTime;
+  @override
+  set date(DateTime value) => RealmObjectBase.set(this, 'date', value);
 
   @override
   Duration? get duration =>
@@ -108,6 +115,7 @@ class Subscription extends _Subscription
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
       SchemaProperty('amount', RealmPropertyType.double),
+      SchemaProperty('date', RealmPropertyType.timestamp),
       SchemaProperty('duration', RealmPropertyType.object,
           optional: true, linkTarget: 'Duration'),
       SchemaProperty('wallet', RealmPropertyType.object,
@@ -120,11 +128,17 @@ class Wallet extends _Wallet with RealmEntity, RealmObjectBase, RealmObject {
   Wallet(
     ObjectId id,
     String name,
-    double amount,
-  ) {
+    double balance, {
+    Iterable<Spend> spends = const [],
+    Iterable<Subscription> subscriptions = const [],
+  }) {
     RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set(this, 'name', name);
-    RealmObjectBase.set(this, 'amount', amount);
+    RealmObjectBase.set(this, 'balance', balance);
+    RealmObjectBase.set<RealmList<Spend>>(
+        this, 'spends', RealmList<Spend>(spends));
+    RealmObjectBase.set<RealmList<Subscription>>(
+        this, 'subscriptions', RealmList<Subscription>(subscriptions));
   }
 
   Wallet._();
@@ -140,9 +154,24 @@ class Wallet extends _Wallet with RealmEntity, RealmObjectBase, RealmObject {
   set name(String value) => RealmObjectBase.set(this, 'name', value);
 
   @override
-  double get amount => RealmObjectBase.get<double>(this, 'amount') as double;
+  double get balance => RealmObjectBase.get<double>(this, 'balance') as double;
   @override
-  set amount(double value) => RealmObjectBase.set(this, 'amount', value);
+  set balance(double value) => RealmObjectBase.set(this, 'balance', value);
+
+  @override
+  RealmList<Spend> get spends =>
+      RealmObjectBase.get<Spend>(this, 'spends') as RealmList<Spend>;
+  @override
+  set spends(covariant RealmList<Spend> value) =>
+      throw RealmUnsupportedSetError();
+
+  @override
+  RealmList<Subscription> get subscriptions =>
+      RealmObjectBase.get<Subscription>(this, 'subscriptions')
+          as RealmList<Subscription>;
+  @override
+  set subscriptions(covariant RealmList<Subscription> value) =>
+      throw RealmUnsupportedSetError();
 
   @override
   Stream<RealmObjectChanges<Wallet>> get changes =>
@@ -158,7 +187,11 @@ class Wallet extends _Wallet with RealmEntity, RealmObjectBase, RealmObject {
     return const SchemaObject(ObjectType.realmObject, Wallet, 'Wallet', [
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
-      SchemaProperty('amount', RealmPropertyType.double),
+      SchemaProperty('balance', RealmPropertyType.double),
+      SchemaProperty('spends', RealmPropertyType.object,
+          linkTarget: 'Spend', collectionType: RealmCollectionType.list),
+      SchemaProperty('subscriptions', RealmPropertyType.object,
+          linkTarget: 'Subscription', collectionType: RealmCollectionType.list),
     ]);
   }
 }
@@ -223,6 +256,32 @@ class Spend extends _Spend with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.set(this, 'category', value);
 
   @override
+  RealmResults<Wallet> get linkedWallet {
+    if (!isManaged) {
+      throw RealmError('Using backlinks is only possible for managed objects.');
+    }
+    return RealmObjectBase.get<Wallet>(this, 'linkedWallet')
+        as RealmResults<Wallet>;
+  }
+
+  @override
+  set linkedWallet(covariant RealmResults<Wallet> value) =>
+      throw RealmUnsupportedSetError();
+
+  @override
+  RealmResults<Category> get linkedCategory {
+    if (!isManaged) {
+      throw RealmError('Using backlinks is only possible for managed objects.');
+    }
+    return RealmObjectBase.get<Category>(this, 'linkedCategory')
+        as RealmResults<Category>;
+  }
+
+  @override
+  set linkedCategory(covariant RealmResults<Category> value) =>
+      throw RealmUnsupportedSetError();
+
+  @override
   Stream<RealmObjectChanges<Spend>> get changes =>
       RealmObjectBase.getChanges<Spend>(this);
 
@@ -243,6 +302,14 @@ class Spend extends _Spend with RealmEntity, RealmObjectBase, RealmObject {
           optional: true, linkTarget: 'Wallet'),
       SchemaProperty('category', RealmPropertyType.object,
           optional: true, linkTarget: 'Category'),
+      SchemaProperty('linkedWallet', RealmPropertyType.linkingObjects,
+          linkOriginProperty: 'spends',
+          collectionType: RealmCollectionType.list,
+          linkTarget: 'Wallet'),
+      SchemaProperty('linkedCategory', RealmPropertyType.linkingObjects,
+          linkOriginProperty: 'category',
+          collectionType: RealmCollectionType.list,
+          linkTarget: 'Category'),
     ]);
   }
 }
@@ -251,10 +318,13 @@ class Category extends _Category
     with RealmEntity, RealmObjectBase, RealmObject {
   Category(
     ObjectId id,
-    String name,
-  ) {
+    String name, {
+    Iterable<Spend> category = const [],
+  }) {
     RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set(this, 'name', name);
+    RealmObjectBase.set<RealmList<Spend>>(
+        this, 'category', RealmList<Spend>(category));
   }
 
   Category._();
@@ -270,6 +340,13 @@ class Category extends _Category
   set name(String value) => RealmObjectBase.set(this, 'name', value);
 
   @override
+  RealmList<Spend> get category =>
+      RealmObjectBase.get<Spend>(this, 'category') as RealmList<Spend>;
+  @override
+  set category(covariant RealmList<Spend> value) =>
+      throw RealmUnsupportedSetError();
+
+  @override
   Stream<RealmObjectChanges<Category>> get changes =>
       RealmObjectBase.getChanges<Category>(this);
 
@@ -283,6 +360,8 @@ class Category extends _Category
     return const SchemaObject(ObjectType.realmObject, Category, 'Category', [
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
+      SchemaProperty('category', RealmPropertyType.object,
+          linkTarget: 'Spend', collectionType: RealmCollectionType.list),
     ]);
   }
 }

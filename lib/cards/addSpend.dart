@@ -1,13 +1,6 @@
 import "package:app/models/schemas.dart";
 import "package:flutter/material.dart";
 
-// final List<AccountWallet> createdWallets = [
-//   AccountWallet(name: "Mobile Money", amount: 3345),
-//   AccountWallet(name: "Pocket Wallet", amount: 3415),
-//   AccountWallet(name: "Cash", amount: 345),
-//   AccountWallet(name: "Ecobank", amount: 45),
-// ];
-
 class AddSpendCard extends StatefulWidget {
   const AddSpendCard({super.key});
 
@@ -25,9 +18,9 @@ class AddSpendCardState extends State<AddSpendCard> {
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
-  // Category _selectedCategory = Category.Food;
-  // // AccountWallet _selectedWallet = createdWallets.first;
-  // Wallet _selectedWallet = Wallet.Cash;
+  Category _selectedCategory = categories.first;
+  Wallet _selectedWallet = createdWallets.first;
+
 
   @override
   void dispose() {
@@ -63,52 +56,53 @@ class AddSpendCardState extends State<AddSpendCard> {
                   decoration: const InputDecoration(
                       prefix: Text("GHS "), label: Text("Amount")),
                 ),
-                // Row(
-                //   children: [
-                //     DropdownButton(
-                //       value: _selectedCategory,
-                //       items: Category.values
-                //           .map((category) => DropdownMenuItem(
-                //                 value: category,
-                //                 child: Text(category.name),
-                //               ))
-                //           .toList(),
-                //       onChanged: (value) {
-                //         if (value == null) {
-                //           return;
-                //         }
-                //         setState(() {
-                //           _selectedCategory = value;
-                //           print(_selectedCategory);
-                //         });
-                //       },
-                //     ),
-                //     const Spacer(),
-                //     DropdownButton(
-                //       value: _selectedWallet, //const Text("Select Wallet"),
-                //       items: Wallet.values
-                //           .map((wallet) => DropdownMenuItem(
-                //                 value: wallet,
-                //                 child: Text(wallet.name),
-                //               ))
-                //           .toList(),
-                //       onChanged: (value) {
-                //         if (value == null) {
-                //           return;
-                //         }
-                //         setState(() {
-                //           _selectedWallet = value;
-                //           print(_selectedWallet);
-                //         });
-                //       },
-                //     ),
-                //   ],
-                // ),
+                Row(
+                  children: [
+                    DropdownButton(
+                      value: _selectedCategory,
+                      items: categories
+                          .map((category) => DropdownMenuItem(
+                                value: category,
+                                child: Text(category.name),
+                              ))
+                          .toList(),
+                      onChanged: (value) {
+                        if (value == null) {
+                          return;
+                        }
+                        setState(() {
+                          _selectedCategory = value;
+                          print(_selectedCategory);
+                        });
+                      },
+                    ),
+                    const Spacer(),
+                    DropdownButton(
+                      value: _selectedWallet,
+                      items: createdWallets
+                          .map((wallet) => DropdownMenuItem(
+                                value: wallet,
+                                child: Text(wallet.name),
+                              ))
+                          .toList(),
+                      onChanged: (value) {
+                        if (value == null) {
+                          return;
+                        }
+                        setState(() {
+                          _selectedWallet = value;
+                          print(_selectedWallet);
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox( height: 10,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {}, child: const Text("Cancel")),
+                    // ElevatedButton(
+                    //   onPressed: () {}, child: const Text("Cancel")),
                     ElevatedButton(
                       onPressed: () {
                         print(_nameController.text);
