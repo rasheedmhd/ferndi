@@ -36,7 +36,7 @@ class WalletItem extends StatelessWidget {
             width: 30,
           ),
           Text(
-            wallet.getAmount,
+            wallet.bal,
             style: const TextStyle(
               fontSize: 12.0,
               color: Color.fromARGB(255, 95, 98, 103),

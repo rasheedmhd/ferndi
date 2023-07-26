@@ -20,7 +20,9 @@ final List<Wallet> createdWallets = [
 ];
 
 final List<Subscription> currentSubscriptions = [
-  Subscription(ObjectId(), "Netflix", 23, duration: Duration(ObjectId(), "month"), wallet: Wallet(ObjectId(), "Debit Card", 400)),
+  Subscription(ObjectId(), "Netflix", 23,
+      duration: Duration(ObjectId(), "month"),
+      wallet: Wallet(ObjectId(), "Debit Card", 400)),
   Subscription(ObjectId(), "Google One", 9),
   Subscription(ObjectId(), "Card Service", 15),
   Subscription(ObjectId(), "Spotify", 22),
@@ -31,11 +33,16 @@ final List<Subscription> currentSubscriptions = [
 ];
 
 final List<Spend> recordedSpends = [
-  Spend(ObjectId(), "Plantain", "Food", 15, DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Spend(ObjectId(), "Voltic 4 packs", "Water", 150, DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Spend(ObjectId(), "Petrol", "Fuel", 100, DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Spend(ObjectId(), "sagt m86", "Maintenance", 15, DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Spend(ObjectId(), "Plain Rice", "Food", 15, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Spend(
+      ObjectId(), "Plantain", "Food", 15, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Spend(ObjectId(), "Voltic 4 packs", "Water", 150,
+      DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Spend(
+      ObjectId(), "Petrol", "Fuel", 100, DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Spend(ObjectId(), "sagt m86", "Maintenance", 15,
+      DateTime.utc(2022, 9, 18, 12, 30, 0)),
+  Spend(ObjectId(), "Plain Rice", "Food", 15,
+      DateTime.utc(2022, 9, 18, 12, 30, 0)),
 ];
 
 final List<Wallet> wallets = [
@@ -91,9 +98,11 @@ class _Wallet {
   // or spent on
   late String name;
   // amount spent
-  late double amount;
+  late double balance;
+  late List<_Spend> spends;
+  late List<_Subscription> subscriptions;
 
-  String get getAmount => "GHS ${amount.toStringAsFixed(2)}";
+  String get bal => "GHS ${balance.toStringAsFixed(2)}";
 }
 
 @RealmModel()
@@ -111,6 +120,11 @@ class _Spend {
   late _Wallet? wallet;
   late _Category? category;
 
+  @Backlink(#spends)
+  late Iterable<_Wallet> linkedWallet;
+  @Backlink(#category)
+  late Iterable<_Category> linkedCategory;
+
   String? get getCategory => category?.name;
   String get getAmount => "GHS ${amount.toStringAsFixed(2)}";
   String? get getWallet => wallet?.name;
@@ -121,16 +135,10 @@ class _Category {
   @PrimaryKey()
   late ObjectId id;
   late String name;
+  late List<_Spend> category;
 }
 
 //============ TO SUPPORT OLD CODE
-// enum Wallet {
-//   PocketWallet,
-//   Cash,
-//   MobileMoney,
-//   AccessDebitCard,
-//   Miscellaneous,
-// }
 
 // const WalletIcons = {
 //   Wallet.PocketWallet: Icons.add_card,
@@ -139,19 +147,6 @@ class _Category {
 //   Wallet.AccessDebitCard: Icons.card_giftcard_sharp,
 //   Wallet.Miscellaneous: Icons.online_prediction_sharp,
 // };
-
-// enum Category {
-//   Food,
-//   Groceries,
-//   Work,
-//   Health,
-//   Transportation,
-//   Miscellaneous,
-//   // more categories will be added later and
-//   // provided as default
-//   // Functionality will be added later as well
-//   // to allow users to add categories manually
-// }
 
 // const CategoryIcons = {
 //   // when users create they own categories will
