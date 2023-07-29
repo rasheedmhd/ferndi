@@ -27,7 +27,7 @@ class HomeState extends State<Home> {
           //   IconButton(onPressed: _addSpend, icon: const Icon(Icons.add))
           // ],
           title: const Text("Home"),
-          backgroundColor: const Color.fromARGB(255, 26, 114, 255),
+          backgroundColor: const Color.fromARGB(255, 5, 61, 135),
         ),
 
         body: ListView(
@@ -43,7 +43,7 @@ class HomeState extends State<Home> {
               "Spend History",
               style: TextStyle(
                 fontSize: 30.0,
-                color: Color.fromARGB(255, 26, 114, 255),
+                color: Color.fromARGB(255, 5, 61, 135),
                 fontWeight: FontWeight.w700,
                 // fontFamily: "WorkSans"
               ),

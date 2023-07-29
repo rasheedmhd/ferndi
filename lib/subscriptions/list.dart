@@ -28,8 +28,8 @@ class SubscriptionsState extends State<Subscriptions> {
             //   IconButton(
             //       onPressed: _addSubscription, icon: const Icon(Icons.add))
             // ],
-            title: const Text("Track Subscriptions"),
-            backgroundColor: const Color.fromARGB(255, 26, 114, 255),
+            title: const Text("Subscriptions"),
+            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
           ),
           body: Container(
             padding: const EdgeInsets.all(15.0),

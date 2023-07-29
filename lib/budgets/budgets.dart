@@ -10,20 +10,34 @@ class Budgets extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Budgets"),
-          backgroundColor: const Color.fromARGB(255, 26, 114, 255),
+          backgroundColor: const Color.fromARGB(255, 5, 61, 135),
         ),
         
         body: Container(
           child: const Column(
             children: [
-                Text("Where you spend from"),
-                Text("Budget"),
-                Text("macbook",),
-                Text("drone"),
-                Text("job"),
-                Text("ps5"),
+              Text(
+                "Wallets",
+                style: TextStyle(
+                  fontSize: 30.0,
+                  color: Color.fromARGB(255, 5, 61, 135),
+                  fontWeight: FontWeight.w700,
+                  // fontFamily: "WorkSans"
+                ),
+              ),
+            SizedBox(
+              height: 12,
+            ),
 
-                Text("Create New Budget"),
+            Divider(),
+
+            Text("Budget"),
+            Text("macbook",),
+            Text("drone"),
+            Text("job"),
+            Text("ps5"),
+
+            Text("Create New Budget"),
             ],
           ),
         )

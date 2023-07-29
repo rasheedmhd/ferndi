@@ -1,5 +1,5 @@
 // import "package:app/cards/balance.dart";
-import "package:app/cards/addSpend.dart";
+import "package:app/cards/addWallet.dart";
 import "package:app/cards/wallets.dart";
 // import "package:app/home/spends.dart";
 import "package:flutter/material.dart";
@@ -16,7 +16,10 @@ class Accounts extends StatefulWidget {
 
 class AccountsState extends State<Accounts> {
   void _addAccount() {
-    showModalBottomSheet(context: context, builder: (ctx) => AddSpendCard());
+    showModalBottomSheet(
+      context: context, 
+      builder: (ctx) => const AddWalletCard(),
+    );
   }
 
   @override
@@ -25,12 +28,17 @@ class AccountsState extends State<Accounts> {
         title: "Accounts",
         home: Scaffold(
           appBar: AppBar(
-            actions: [
-              IconButton(onPressed: _addAccount, icon: const Icon(Icons.add))
-            ],
+            // actions: [
+            //   IconButton(onPressed: _addAccount, icon: const Icon(Icons.settings))
+            // ],
             title: const Text("Accounts and Wallets"),
-            backgroundColor: const Color.fromARGB(255, 26, 114, 255),
+            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
           ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+            onPressed: _addAccount,
+            child: const Icon(Icons.add),
+            ),
           body: ListView(
             padding: const EdgeInsets.all(15),
             children: const [
@@ -42,7 +50,7 @@ class AccountsState extends State<Accounts> {
                 "Wallets",
                 style: TextStyle(
                   fontSize: 30.0,
-                  color: Color.fromARGB(255, 26, 114, 255),
+                  color: Color.fromARGB(255, 5, 61, 135),
                   fontWeight: FontWeight.w700,
                   // fontFamily: "WorkSans"
                 ),

@@ -59,10 +59,12 @@ class SpendList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: ListView.builder(
-            itemCount: spends.length,
-            itemBuilder: (BuildContext context, int index) {
-              return SpendItem(spends[index]);
-            }));
+      child: ListView.builder(
+        itemCount: spends.length,
+        itemBuilder: (BuildContext context, int index) {
+          return SpendItem(spends[index]);
+        }
+      )
+    );
   }
 }
