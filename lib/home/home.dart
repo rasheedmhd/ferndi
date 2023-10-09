@@ -1,6 +1,6 @@
 import "package:app/home/spends.dart";
 import "package:flutter/material.dart";
-// import "package:app/cards/balance.dart";
+import "package:app/cards/balance.dart";
 import "package:app/cards/addSpend.dart";
 
 class Home extends StatefulWidget {
@@ -34,7 +34,8 @@ class HomeState extends State<Home> {
           padding: const EdgeInsets.all(15),
           children: const [
             
-            // BalanceCard(),
+            BalanceCard(),
+            SizedBox(height: 10,),            
             AddSpendCard(),
 
             SizedBox(height: 20,),

@@ -1,16 +1,6 @@
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 
-// final List<AccountWallet> createdWallets = [
-//   AccountWallet(name: "Mobile Money", amount: 3345),
-//   AccountWallet(name: "Pocket Wallet", amount: 3415),
-//   AccountWallet(name: "Cash", amount: 345),
-//   AccountWallet(name: "Ecobank", amount: 45),
-// ];
-
-
-
-
 class WalletItem extends StatelessWidget {
   const WalletItem(this.wallet, {super.key});
 
@@ -52,8 +42,6 @@ class WalletItem extends StatelessWidget {
 
 class WalletsCard extends StatelessWidget {
   const WalletsCard({super.key});
-
-  //final AccountWallet wallet;
 
   @override
   Widget build(BuildContext context) {

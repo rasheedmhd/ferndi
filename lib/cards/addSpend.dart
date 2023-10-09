@@ -34,7 +34,7 @@ class AddSpendCardState extends State<AddSpendCard> {
   Widget build(BuildContext context) {
     return Card(
       shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -110,7 +110,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                 ),
                 foregroundColor: Colors.white,
                 backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-                icon: const Icon(Icons.wallet, size: 34.0),
+                // icon: const Icon(Icons.account_balance_wallet_sharp, size: 30.0),
                 onPressed: () {
                   print(_nameController.text);
                   print(_notesController.text);              

@@ -7,22 +7,69 @@ class BalanceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: const Color.fromARGB(255, 204, 244, 90),
       shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child:  Padding(
         padding: const EdgeInsets.all(25),
         child: Column(
+          
           children: [
-            const Text("Total Account balance"),
-            Text("GHS 120,000",
-                style: GoogleFonts.hankenGrotesk(
-                  // textStyle: Theme.of(context).textTheme.headlineLarge,
-                  fontSize: 43.0,
-                  fontWeight: FontWeight.w700,
-                  color: const Color.fromARGB(255, 26, 114, 255),
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("current balance",),
+                    Text("₵12,345679",
+                      style: GoogleFonts.hankenGrotesk(
+                        // textStyle: Theme.of(context).textTheme.headlineLarge,
+                        fontSize: 35.0,
+                        fontWeight: FontWeight.w700,
+                        color: const Color.fromARGB(255, 5, 61, 135),
+                      )
+                    ),
+                  ],
                 )
-              ),
+              ],
+            ),
+            const SizedBox(height: 20,),
+            Row( 
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,                  
+                  children: [
+                    const Text("income"),
+                    Text("₵12,000",
+                      style: GoogleFonts.hankenGrotesk(
+                        // textStyle: Theme.of(context).textTheme.headlineLarge,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w900,
+                        color: const Color.fromARGB(255, 5, 61, 135),
+                      )
+                    ),
+                  ],
+                ),
+               const SizedBox(width: 100,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,                  
+                  children: [
+                    const Text("spend"),
+                    Text("₵2,000",
+                      style: GoogleFonts.hankenGrotesk(
+                        // textStyle: Theme.of(context).textTheme.headlineLarge,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w900,
+                        color: const Color.fromARGB(255, 5, 61, 135),
+                      )
+                    ),
+                  ],
+                )
+              ],
+            
+            )
           ],
+
         )
       )
     );
