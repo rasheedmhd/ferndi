@@ -56,46 +56,41 @@ class AddSpendCardState extends State<AddSpendCard> {
                 decoration: const InputDecoration(
                     prefix: Text("GHS "), label: Text("Amount")),
               ),
-              Row(
-                children: [
-                  DropdownButton(
-                    value: _selectedCategory,
-                    items: categories
-                        .map((category) => DropdownMenuItem(
-                              value: category,
-                              child: Text(category.name),
-                            ))
-                        .toList(),
-                    onChanged: (value) {
-                      if (value == null) {
-                        return;
-                      }
-                      setState(() {
-                        _selectedCategory = value;
-                        print(_selectedCategory);
-                      });
-                    },
-                  ),
-                  const Spacer(),
-                  DropdownButton(
-                    value: _selectedWallet,
-                    items: createdWallets
-                        .map((wallet) => DropdownMenuItem(
-                              value: wallet,
-                              child: Text(wallet.name),
-                            ))
-                        .toList(),
-                    onChanged: (value) {
-                      if (value == null) {
-                        return;
-                      }
-                      setState(() {
-                        _selectedWallet = value;
-                        print(_selectedWallet);
-                      });
-                    },
-                  ),
-                ],
+              DropdownButton(
+                value: _selectedCategory,
+                items: categories
+                    .map((category) => DropdownMenuItem(
+                          value: category,
+                          child: Text(category.name),
+                        ))
+                    .toList(),
+                onChanged: (value) {
+                  if (value == null) {
+                    return;
+                  }
+                  setState(() {
+                    _selectedCategory = value;
+                    print(_selectedCategory);
+                  });
+                },
+              ),
+              DropdownButton(
+                value: _selectedWallet,
+                items: createdWallets
+                    .map((wallet) => DropdownMenuItem(
+                          value: wallet,
+                          child: Text(wallet.name),
+                        ))
+                    .toList(),
+                onChanged: (value) {
+                  if (value == null) {
+                    return;
+                  }
+                  setState(() {
+                    _selectedWallet = value;
+                    print(_selectedWallet);
+                  });
+                },
               ),
               // const SizedBox( height: 10,),    
               const SizedBox(height: 40,),

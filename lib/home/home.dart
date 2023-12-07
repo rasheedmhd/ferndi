@@ -60,9 +60,9 @@ class HomeState extends State<Home> {
             ),
 
           ],
-        //   // [[ FUTURE<feature> ]] card to display total spending amount in wallets (Money Left)
+        // [[ TODO <feature> ]] card to display total spending amount in wallets (Money Left)
 
-        //   // [[ FUTURE<feature> ]] button to check past spends grouped in months
+        // [[ TODO <feature> ]] button to check past spends grouped in months
 
         )
       )

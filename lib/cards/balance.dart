@@ -21,7 +21,7 @@ class BalanceCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text("current balance",),
-                    Text("₵12,345679",
+                    Text("₵1,234,567.99",
                       style: GoogleFonts.hankenGrotesk(
                         // textStyle: Theme.of(context).textTheme.headlineLarge,
                         fontSize: 35.0,
@@ -34,6 +34,7 @@ class BalanceCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20,),
+            
             Row( 
               children: [
                 Column(
