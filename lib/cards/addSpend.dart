@@ -92,7 +92,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                   });
                 },
               ),
-              // const SizedBox( height: 10,),    
+              // const SizedBox( height: 10,),
               const SizedBox(height: 40,),
 
               FloatingActionButton.extended(
@@ -108,9 +108,9 @@ class AddSpendCardState extends State<AddSpendCard> {
                 // icon: const Icon(Icons.account_balance_wallet_sharp, size: 30.0),
                 onPressed: () {
                   print(_nameController.text);
-                  print(_notesController.text);              
+                  print(_notesController.text);
                 },
-              ),         
+              ),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
               //   children: [

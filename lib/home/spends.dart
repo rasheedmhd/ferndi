@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 
 class SpendItem extends StatelessWidget {
@@ -20,10 +21,11 @@ class SpendItem extends StatelessWidget {
     // UI ONE
     return ListTile(
       // leading: Icon(
-      //   //CategoryIcons[spend.category],
+      //   CategoryIcons[spend.category],
       //   size: 25.0,
       //   color: const Color.fromARGB(255, 240, 138, 4),
       // ),
+      leading: const FaIcon(FontAwesomeIcons.cediSign, size: 34.0,  color: Color.fromARGB(255, 204, 244, 90),),
       title: Text(spend.name),
       subtitle: Text(spend.notes),
       // subtitle: const Text("spend?.wallet.name"),
@@ -58,13 +60,17 @@ class SpendList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: spends.length,
-        itemBuilder: (BuildContext context, int index) {
-          return SpendItem(spends[index]);
-        }
-      )
+    return Column( 
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: spends.length,
+            itemBuilder: (BuildContext context, int index) {
+              return SpendItem(spends[index]);
+            }
+          )
+        )
+      ],
     );
   }
 }
