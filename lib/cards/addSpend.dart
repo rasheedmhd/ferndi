@@ -1,3 +1,5 @@
+import "dart:ffi";
+
 import "package:app/models/schemas.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
@@ -37,29 +39,41 @@ class AddSpendCardState extends State<AddSpendCard> {
       shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: Column(
             children: [
               TextField(
                 controller: _nameController,
-                maxLength: 50,
-                decoration: const InputDecoration(label: Text("What did you buy?")),
+                // maxLength: 50,
+                decoration: const InputDecoration(
+                  label: Text("What did you buy?"), 
+                  isDense: true,
+                ),
               ),
               TextField(
                 controller: _notesController,
-                maxLength: 250,
-                decoration: const InputDecoration(label: Text("Notes")),
+                // maxLength: 250,
+                decoration: const InputDecoration(
+                  // border: OutlineInputBorder(),
+                  label: Text("Notes"), 
+                  isDense: true,
+                ),
               ),
               TextField(
                 controller: _amountController,
-                maxLength: 5, // redundant check
+                // maxLength: 5, // redundant check
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                    prefix: Text("GHS "), label: Text("Amount")),
+                    prefix: Text("GHS "), 
+                    label: Text("Amount"),
+                    isDense: true
+                  ),
               ),
               DropdownButton(
                 value: _selectedCategory,
-                icon: const Icon ( Icons.category ),
+                icon: const FaIcon ( FontAwesomeIcons.icons ),
+                isExpanded: true,
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
                 items: categories
                     .map((category) => DropdownMenuItem(
                           value: category,
@@ -78,6 +92,9 @@ class AddSpendCardState extends State<AddSpendCard> {
               ),
               DropdownButton(
                 value: _selectedWallet,
+                icon: const Icon ( Icons.wallet ),
+                isExpanded: true,
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
                 items: createdWallets
                     .map((wallet) => DropdownMenuItem(
                           value: wallet,
@@ -98,6 +115,7 @@ class AddSpendCardState extends State<AddSpendCard> {
               const SizedBox(height: 40,),
 
               FloatingActionButton.extended(
+                isExtended: true,
                 label: const Text(
                 "Save",
                   style: TextStyle(
