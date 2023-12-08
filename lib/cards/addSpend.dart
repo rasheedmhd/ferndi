@@ -1,5 +1,6 @@
 import "package:app/models/schemas.dart";
 import "package:flutter/material.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 class AddSpendCard extends StatefulWidget {
   const AddSpendCard({super.key});
@@ -58,6 +59,7 @@ class AddSpendCardState extends State<AddSpendCard> {
               ),
               DropdownButton(
                 value: _selectedCategory,
+                icon: const Icon ( Icons.category ),
                 items: categories
                     .map((category) => DropdownMenuItem(
                           value: category,

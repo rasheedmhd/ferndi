@@ -14,17 +14,14 @@ final realm = Realm(config);
 void addWallets(createdWallets) {
   realm.write(() {
     realm.addAll(createdWallets);
-  }); 
+  });
 }
-
 
 // void addWallet(createdWallets) {
 //   realm.write(() {
 //     realm.add();
-//   }); 
+//   });
 // }
-
-
 
 final List<Wallet> createdWallets = [
   Wallet(ObjectId(), "Access Bank Debit Card", 10000),
@@ -81,7 +78,6 @@ final List<Category> categories = [
   Category(ObjectId(), "Health"),
   Category(ObjectId(), "Lifestyle"),
 ];
-
 
 // final newWallets = realm.all<Wallet>();
 
@@ -140,7 +136,7 @@ class _Spend {
   late _Wallet? wallet;
   late _Category? category;
 
-  @Backlink(#spends)  
+  @Backlink(#spends)
   late Iterable<_Wallet> linkedWallet;
   @Backlink(#category)
   late Iterable<_Category> linkedCategory;
