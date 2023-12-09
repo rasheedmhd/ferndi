@@ -1,10 +1,14 @@
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
+import "package:realm/realm.dart";
 
 class WalletItem extends StatelessWidget {
   const WalletItem(this.wallet, {super.key});
 
   final Wallet wallet;
+
+  void addWallet() {
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +29,15 @@ class WalletItem extends StatelessWidget {
           const SizedBox(
             width: 30,
           ),
-          Text(
-            wallet.bal,
-            style: const TextStyle(
-              fontSize: 12.0,
-              color: Color.fromARGB(255, 95, 98, 103),
-              fontWeight: FontWeight.w700,
-              // fontFamily: "WorkSans"
-            ),
-          ),
+          // Text(
+          //   wallet.balance,
+          //   style: const TextStyle(
+          //     fontSize: 12.0,
+          //     color: Color.fromARGB(255, 95, 98, 103),
+          //     fontWeight: FontWeight.w700,
+          //     // fontFamily: "WorkSans"
+          //   ),
+          // ),
         ],
       ),
     );
@@ -46,7 +50,8 @@ class WalletsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WalletList(
-      wallets: createdWallets,
+      wallets: qWallets(),
+      // wallets: createdWallets,
     );
     // return Card(
     //     shape:
@@ -74,7 +79,8 @@ class WalletsCard extends StatelessWidget {
 class WalletList extends StatelessWidget {
   const WalletList({super.key, required this.wallets});
 
-  final List<Wallet> wallets;
+  final RealmResults<Wallet> wallets;
+  // final List<Wallet> wallets;
 
   @override
   Widget build(BuildContext context) {

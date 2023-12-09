@@ -34,9 +34,9 @@ class SubscriptionsState extends State<Subscriptions> {
           body: Container(
             padding: const EdgeInsets.all(15.0),
             child: ListView.builder(
-                itemCount: currentSubscriptions.length,
+                // itemCount: currentSubscriptions.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return _buildSubscriptionCard(currentSubscriptions[index]);
+                  // return _buildSubscriptionCard(currentSubscriptions[index]);
                 }),
           ),
         ));

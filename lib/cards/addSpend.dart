@@ -22,7 +22,7 @@ class AddSpendCardState extends State<AddSpendCard> {
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
   Category _selectedCategory = categories.first;
-  Wallet _selectedWallet = createdWallets.first;
+  // Wallet _selectedWallet = createdWallets.first;
 
 
   @override
@@ -39,7 +39,7 @@ class AddSpendCardState extends State<AddSpendCard> {
       shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
           child: Column(
             children: [
               TextField(
@@ -90,34 +90,34 @@ class AddSpendCardState extends State<AddSpendCard> {
                   });
                 },
               ),
-              DropdownButton(
-                value: _selectedWallet,
-                icon: const Icon ( Icons.wallet ),
-                isExpanded: true,
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                items: createdWallets
-                    .map((wallet) => DropdownMenuItem(
-                          value: wallet,
-                          child: Text(wallet.name),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  }
-                  setState(() {
-                    _selectedWallet = value;
-                    print(_selectedWallet);
-                  });
-                },
-              ),
+              // DropdownButton(
+              //   // value: _selectedWallet,
+              //   icon: const Icon ( Icons.wallet ),
+              //   isExpanded: true,
+              //   borderRadius: const BorderRadius.all(Radius.circular(20)),
+              //   items: createdWallets
+              //       .map((wallet) => DropdownMenuItem(
+              //             value: wallet,
+              //             child: Text(wallet.name),
+              //           ))
+              //       .toList(),
+              //   onChanged: (value) {
+              //     if (value == null) {
+              //       return;
+              //     }
+              //     setState(() {
+              //       _selectedWallet = value;
+              //       print(_selectedWallet);
+              //     });
+              //   },
+              // ),
               // const SizedBox( height: 10,),
               const SizedBox(height: 40,),
-
+     
               FloatingActionButton.extended(
-                isExtended: true,
+                // isExtended: true,
                 label: const Text(
-                "Save",
+                "          record          ",
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w700,

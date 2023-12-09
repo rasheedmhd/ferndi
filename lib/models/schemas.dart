@@ -23,31 +23,22 @@ void addWallets(createdWallets) {
 //   });
 // }
 
-final List<Wallet> createdWallets = [
-  Wallet(ObjectId(), "Access Bank Debit Card", 10000),
-  Wallet(ObjectId(), "MoMo Subscriber", 100000),
-  Wallet(ObjectId(), "MoMo Agent", 200000),
-  Wallet(ObjectId(), "MoMo Merchant", 50000),
-  Wallet(ObjectId(), "Cash", 70000),
-];
+// final List<Wallet> createdWallets = [
+//   Wallet(ObjectId(), "MoMo Merchant", 50000),
+//   Wallet(ObjectId(), "Cash", 70000),
+//   Wallet(ObjectId(), "Access Bank Debit Card", 10000),
+//   Wallet(ObjectId(), "MoMo Subscriber", 100000),
+//   Wallet(ObjectId(), "MoMo Agent", 200000),
+// ];
 
-final List<Subscription> currentSubscriptions = [
-  Subscription(ObjectId(), "Netflix", 23, DateTime.utc(2022, 9, 18, 12, 30, 0),
-      duration: Duration(ObjectId(), "month"),
-      wallet: Wallet(ObjectId(), "Debit Card", 400)),
-  Subscription(
-      ObjectId(), "Google One", 9, DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Subscription(
-      ObjectId(), "Card Service", 15, DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Subscription(ObjectId(), "Spotify", 22, DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Subscription(
-      ObjectId(), "Calculator", 3, DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Subscription(
-      ObjectId(), "Airtime", 400, DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Subscription(
-      ObjectId(), "Data Bundle", 230, DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Subscription(ObjectId(), "Nebula", 23, DateTime.utc(2022, 9, 18, 12, 30, 0)),
-];
+final qWallets = realm.all<Wallet>;
+
+void addWallet(Wallet wallet) {
+  realm.write(() {
+    realm.add(wallet);
+    print("Wallet created and persisted to mobile");
+  });
+}
 
 final List<Spend> recordedSpends = [
   Spend(
@@ -62,14 +53,15 @@ final List<Spend> recordedSpends = [
       DateTime.utc(2022, 9, 18, 12, 30, 0)),
 ];
 
-final List<Wallet> wallets = [
-  Wallet(ObjectId(), "Cash", 7000),
-  Wallet(ObjectId(), "Access", 7000),
-  Wallet(ObjectId(), "EcoBank", 7000),
-  Wallet(ObjectId(), "Momo", 7000),
-  Wallet(ObjectId(), "Agent", 7000),
-  Wallet(ObjectId(), "Merchant", 7000),
-];
+// final List<Wallet> wallets = [
+//   Wallet(ObjectId(), "Cash", 7000),
+//   Wallet(ObjectId(), "Access", 7000),
+//   Wallet(ObjectId(), "EcoBank", 7000),
+//   Wallet(ObjectId(), "Momo", 7000),
+//   Wallet(ObjectId(), "Agent", 7000),
+//   Wallet(ObjectId(), "Merchant", 7000),
+// ];
+
 final List<Category> categories = [
   Category(ObjectId(), "Food"),
   Category(ObjectId(), "Electricity"),
@@ -110,14 +102,21 @@ class _Subscription {
 class _Wallet {
   @PrimaryKey()
   late ObjectId id;
-  // name or description of what you bought
-  // or spent on
   late String name;
-  // amount spent
-  late double balance;
+  late String balance;
+  // late double balance;
   late List<_Spend> spends;
   late List<_Subscription> subscriptions;
 
+  // String get bal => "GHS ${balance.toStringAsFixed(2)}";
+}
+
+@RealmModel()
+class _TestWallet {
+  @PrimaryKey()
+  late ObjectId id;
+  late String name;
+  late double balance;
   String get bal => "GHS ${balance.toStringAsFixed(2)}";
 }
 

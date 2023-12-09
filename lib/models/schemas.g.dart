@@ -6,6 +6,7 @@ part of 'schemas.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
+// ignore_for_file: type=lint
 class Duration extends _Duration
     with RealmEntity, RealmObjectBase, RealmObject {
   Duration(
@@ -128,7 +129,7 @@ class Wallet extends _Wallet with RealmEntity, RealmObjectBase, RealmObject {
   Wallet(
     ObjectId id,
     String name,
-    double balance, {
+    String balance, {
     Iterable<Spend> spends = const [],
     Iterable<Subscription> subscriptions = const [],
   }) {
@@ -154,9 +155,9 @@ class Wallet extends _Wallet with RealmEntity, RealmObjectBase, RealmObject {
   set name(String value) => RealmObjectBase.set(this, 'name', value);
 
   @override
-  double get balance => RealmObjectBase.get<double>(this, 'balance') as double;
+  String get balance => RealmObjectBase.get<String>(this, 'balance') as String;
   @override
-  set balance(double value) => RealmObjectBase.set(this, 'balance', value);
+  set balance(String value) => RealmObjectBase.set(this, 'balance', value);
 
   @override
   RealmList<Spend> get spends =>
@@ -187,11 +188,60 @@ class Wallet extends _Wallet with RealmEntity, RealmObjectBase, RealmObject {
     return const SchemaObject(ObjectType.realmObject, Wallet, 'Wallet', [
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
-      SchemaProperty('balance', RealmPropertyType.double),
+      SchemaProperty('balance', RealmPropertyType.string),
       SchemaProperty('spends', RealmPropertyType.object,
           linkTarget: 'Spend', collectionType: RealmCollectionType.list),
       SchemaProperty('subscriptions', RealmPropertyType.object,
           linkTarget: 'Subscription', collectionType: RealmCollectionType.list),
+    ]);
+  }
+}
+
+class TestWallet extends _TestWallet
+    with RealmEntity, RealmObjectBase, RealmObject {
+  TestWallet(
+    ObjectId id,
+    String name,
+    double balance,
+  ) {
+    RealmObjectBase.set(this, 'id', id);
+    RealmObjectBase.set(this, 'name', name);
+    RealmObjectBase.set(this, 'balance', balance);
+  }
+
+  TestWallet._();
+
+  @override
+  ObjectId get id => RealmObjectBase.get<ObjectId>(this, 'id') as ObjectId;
+  @override
+  set id(ObjectId value) => RealmObjectBase.set(this, 'id', value);
+
+  @override
+  String get name => RealmObjectBase.get<String>(this, 'name') as String;
+  @override
+  set name(String value) => RealmObjectBase.set(this, 'name', value);
+
+  @override
+  double get balance => RealmObjectBase.get<double>(this, 'balance') as double;
+  @override
+  set balance(double value) => RealmObjectBase.set(this, 'balance', value);
+
+  @override
+  Stream<RealmObjectChanges<TestWallet>> get changes =>
+      RealmObjectBase.getChanges<TestWallet>(this);
+
+  @override
+  TestWallet freeze() => RealmObjectBase.freezeObject<TestWallet>(this);
+
+  static SchemaObject get schema => _schema ??= _initSchema();
+  static SchemaObject? _schema;
+  static SchemaObject _initSchema() {
+    RealmObjectBase.registerFactory(TestWallet._);
+    return const SchemaObject(
+        ObjectType.realmObject, TestWallet, 'TestWallet', [
+      SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
+      SchemaProperty('name', RealmPropertyType.string),
+      SchemaProperty('balance', RealmPropertyType.double),
     ]);
   }
 }
