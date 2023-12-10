@@ -11,11 +11,6 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
-  // void _addSpend() {
-  //   showModalBottomSheet(context: context, builder: (ctx) =>
-  //     const AddSpendCard()
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {

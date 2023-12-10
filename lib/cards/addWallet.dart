@@ -11,12 +11,7 @@ class AddWalletCard extends StatefulWidget {
 }
 
 class AddWalletCardState extends State<AddWalletCard> {
-  // LEGACY
-  // List<String> spendInfo = [];
 
-  // void _saveSpendInfo(String info) {
-  //   spendInfo.add(info);
-  // }
   final _nameController = TextEditingController();
   final _balanceController = TextEditingController();
 
@@ -84,12 +79,8 @@ class AddWalletCardState extends State<AddWalletCard> {
                   backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                   icon: const Icon(Icons.wallet, size: 34.0),
                   onPressed: () {
-                    print(_nameController.text);
-                    print(_balanceController.text);
                     createWallet(Wallet(ObjectId(), _nameController.text,
                         _balanceController.text));
-                    print(_nameController.text);
-                    print(_balanceController.text);
                   },
                 ),
 

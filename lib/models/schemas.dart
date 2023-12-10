@@ -14,6 +14,8 @@ final realm = Realm(config);
 final wallets = realm.all<Wallet>;
 final spends = realm.all<Spend>;
 final categories = realm.all<Category>;
+final duration = realm.all<Duration>;
+final subscriptions = realm.all<Subscription>;
 // for later feature
 // final budgets = realm.all<Budget>; 
 

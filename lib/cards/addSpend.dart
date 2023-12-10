@@ -10,6 +10,7 @@ class AddSpendCard extends StatefulWidget {
 }
 
 class AddSpendCardState extends State<AddSpendCard> {
+
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
@@ -76,7 +77,6 @@ class AddSpendCardState extends State<AddSpendCard> {
                     }
                     setState(() {
                       _selectedCategory = value;
-                      print(_selectedCategory);
                     });
                   },
                 ),
@@ -97,7 +97,6 @@ class AddSpendCardState extends State<AddSpendCard> {
                     }
                     setState(() {
                       _selectedWallet = value;
-                      print(_selectedWallet);
                     });
                   },
                 ),
@@ -119,9 +118,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                   backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                   // icon: const Icon(Icons.account_balance_wallet_sharp, size: 30.0),
                   onPressed: () {
-                    recordSpend(
-                      Spend(ObjectId(), _nameController.text, _notesController.text, _amountController.text, DateTime.now()),
-                    );
+                    // recordSpend(Spend(ObjectId(), _nameController.text, _notesController.text, _amountController.text, DateTime.now()));
                   },
                 ),
                 // Row(

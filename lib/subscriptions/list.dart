@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:app/models/schemas.dart';
-// import "package:app/cards/addSubscription.dart";
+import "package:app/cards/addSubscription.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:google_fonts/google_fonts.dart";
 
@@ -13,10 +13,10 @@ class Subscriptions extends StatefulWidget {
 }
 
 class SubscriptionsState extends State<Subscriptions> {
-  // void _addSubscription() {
-  //   showModalBottomSheet(
-  //       // context: context, builder: (ctx) => const AddSubscriptionCard());
-  // }
+  void _addSubscription() {
+    showModalBottomSheet(
+        context: context, builder: (ctx) => const AddSubscriptionCard());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +24,19 @@ class SubscriptionsState extends State<Subscriptions> {
         title: "Subscriptions",
         home: Scaffold(
           appBar: AppBar(
-            // actions: [
-            //   IconButton(
-            //       onPressed: _addSubscription, icon: const Icon(Icons.add))
-            // ],
+            actions: [
+              IconButton(
+                  onPressed: _addSubscription, icon: const Icon(Icons.add))
+            ],
             title: const Text("Subscriptions"),
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
           ),
           body: Container(
             padding: const EdgeInsets.all(15.0),
             child: ListView.builder(
-                // itemCount: currentSubscriptions.length,
+                itemCount: subscriptions().length,
                 itemBuilder: (BuildContext context, int index) {
-                  // return _buildSubscriptionCard(currentSubscriptions[index]);
+                  return _buildSubscriptionCard(subscriptions()[index]);
                 }),
           ),
         ));
