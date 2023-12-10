@@ -7,7 +7,7 @@ final config = Configuration.local([
   Subscription.schema,
   Category.schema,
   Duration.schema,
-]);
+], schemaVersion: 2);
 
 final realm = Realm(config);
 
