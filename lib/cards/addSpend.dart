@@ -1,6 +1,7 @@
 import "package:app/models/schemas.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:realm/realm.dart";
 
 class AddSpendCard extends StatefulWidget {
   const AddSpendCard({super.key});
@@ -118,7 +119,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                   backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                   // icon: const Icon(Icons.account_balance_wallet_sharp, size: 30.0),
                   onPressed: () {
-                    // recordSpend(Spend(ObjectId(), _nameController.text, _notesController.text, _amountController.text, DateTime.now()));
+                    recordSpend(Spend(ObjectId(), _nameController.text, _notesController.text, _amountController.text, DateTime.now()));
                   },
                 ),
                 // Row(

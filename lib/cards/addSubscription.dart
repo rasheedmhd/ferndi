@@ -1,5 +1,7 @@
 import 'package:app/models/schemas.dart';
 import "package:flutter/material.dart";
+// import "package:flutter/material.dart";
+import "package:realm/realm.dart";
 
 class AddSubscriptionCard extends StatefulWidget {
   const AddSubscriptionCard({super.key});
@@ -9,7 +11,6 @@ class AddSubscriptionCard extends StatefulWidget {
 }
 
 class AddSubscriptionCardState extends State<AddSubscriptionCard> {
-
   final _nameController = TextEditingController();
   final _amountController = TextEditingController();
   Duration _selectedDuration = duration().first;
@@ -59,11 +60,11 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
                     DropdownButton(
                       value: _selectedWallet, //const Text("Select Wallet"),
                       items: wallets()
-                        .map((wallet) => DropdownMenuItem(
-                            value: wallet,
-                            child: Text(wallet.name),
-                          ))
-                        .toList(),
+                          .map((wallet) => DropdownMenuItem(
+                                value: wallet,
+                                child: Text(wallet.name),
+                              ))
+                          .toList(),
                       onChanged: (value) {
                         if (value == null) {
                           return;
@@ -78,11 +79,11 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
                     DropdownButton(
                       value: _selectedDuration,
                       items: duration()
-                        .map((duration) => DropdownMenuItem(
-                            value: duration,
-                            child: Text(duration.name),
-                          ))
-                        .toList(),
+                          .map((duration) => DropdownMenuItem(
+                                value: duration,
+                                child: Text(duration.name),
+                              ))
+                          .toList(),
                       onChanged: (value) {
                         if (value == null) {
                           return;
@@ -101,12 +102,14 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
                     ElevatedButton(
                         onPressed: () {}, child: const Text("Cancel")),
                     ElevatedButton(
-                      onPressed: () {
-                        print(_nameController.text);
-                        print(_amountController.text);
-                      },
-                      child: const Text("Record")
-                    )
+                        onPressed: () {
+                          // addSubscription(Subscription(
+                          //     ObjectId(),
+                          //     _nameController.text,
+                          //     _amountController.text,
+                          //     DateTime.now()));
+                        },
+                        child: const Text("Record"))
                   ],
                 )
               ],
