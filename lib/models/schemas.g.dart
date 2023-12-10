@@ -52,7 +52,7 @@ class Subscription extends _Subscription
   Subscription(
     ObjectId id,
     String name,
-    double amount,
+    String amount,
     DateTime date, {
     Duration? duration,
     Wallet? wallet,
@@ -78,9 +78,9 @@ class Subscription extends _Subscription
   set name(String value) => RealmObjectBase.set(this, 'name', value);
 
   @override
-  double get amount => RealmObjectBase.get<double>(this, 'amount') as double;
+  String get amount => RealmObjectBase.get<String>(this, 'amount') as String;
   @override
-  set amount(double value) => RealmObjectBase.set(this, 'amount', value);
+  set amount(String value) => RealmObjectBase.set(this, 'amount', value);
 
   @override
   DateTime get date => RealmObjectBase.get<DateTime>(this, 'date') as DateTime;
@@ -115,7 +115,7 @@ class Subscription extends _Subscription
         ObjectType.realmObject, Subscription, 'Subscription', [
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
-      SchemaProperty('amount', RealmPropertyType.double),
+      SchemaProperty('amount', RealmPropertyType.string),
       SchemaProperty('date', RealmPropertyType.timestamp),
       SchemaProperty('duration', RealmPropertyType.object,
           optional: true, linkTarget: 'Duration'),
@@ -251,7 +251,7 @@ class Spend extends _Spend with RealmEntity, RealmObjectBase, RealmObject {
     ObjectId id,
     String name,
     String notes,
-    double amount,
+    String amount,
     DateTime date, {
     Wallet? wallet,
     Category? category,
@@ -283,9 +283,9 @@ class Spend extends _Spend with RealmEntity, RealmObjectBase, RealmObject {
   set notes(String value) => RealmObjectBase.set(this, 'notes', value);
 
   @override
-  double get amount => RealmObjectBase.get<double>(this, 'amount') as double;
+  String get amount => RealmObjectBase.get<String>(this, 'amount') as String;
   @override
-  set amount(double value) => RealmObjectBase.set(this, 'amount', value);
+  set amount(String value) => RealmObjectBase.set(this, 'amount', value);
 
   @override
   DateTime get date => RealmObjectBase.get<DateTime>(this, 'date') as DateTime;
@@ -346,7 +346,7 @@ class Spend extends _Spend with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
       SchemaProperty('notes', RealmPropertyType.string),
-      SchemaProperty('amount', RealmPropertyType.double),
+      SchemaProperty('amount', RealmPropertyType.string),
       SchemaProperty('date', RealmPropertyType.timestamp),
       SchemaProperty('wallet', RealmPropertyType.object,
           optional: true, linkTarget: 'Wallet'),

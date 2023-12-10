@@ -108,7 +108,7 @@ Widget _buildSubscriptionCard(Subscription subscriptionItem) {
                 width: 3,
               ),
               Text(
-                subscriptionItem.getAmount,
+                subscriptionItem.amount,
                 style: GoogleFonts.hankenGrotesk(
                   color: Color.fromARGB(255, 26, 114, 255),
                   fontSize: 20.0,

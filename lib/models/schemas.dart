@@ -7,7 +7,7 @@ final config = Configuration.local([
   Subscription.schema,
   Category.schema,
   Duration.schema,
-], schemaVersion: 2);
+], schemaVersion: 3);
 
 final realm = Realm(config);
 
@@ -25,7 +25,7 @@ void createWallet(Wallet wallet) {
 }
 
 // Create a new spend record and persist to db
-void addSpend(Spend spend) {
+void recordSpend(Spend spend) {
   realm.write(() {
     realm.add(spend);
   });
@@ -36,28 +36,6 @@ void createCategory(Category category) {
     realm.add(category);
   });
 }
-
-final List<Spend> recordedSpends = [
-  Spend(
-      ObjectId(), "Plantain", "Food", 15, DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Spend(ObjectId(), "Voltic 4 packs", "Water", 150,
-      DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Spend(
-      ObjectId(), "Petrol", "Fuel", 100, DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Spend(ObjectId(), "sagt m86", "Maintenance", 15,
-      DateTime.utc(2022, 9, 18, 12, 30, 0)),
-  Spend(ObjectId(), "Plain Rice", "Food", 15,
-      DateTime.utc(2022, 9, 18, 12, 30, 0)),
-];
-
-// final List<Category> categories = [
-//   Category(ObjectId(), "Food"),
-//   Category(ObjectId(), "Electricity"),
-//   Category(ObjectId(), "Phone"),
-//   Category(ObjectId(), "Transportation"),
-//   Category(ObjectId(), "Health"),
-//   Category(ObjectId(), "Lifestyle"),
-// ];
 
 @RealmModel()
 class _Duration {
@@ -71,7 +49,7 @@ class _Subscription {
   @PrimaryKey()
   late ObjectId id;
   late String name;
-  late double amount;
+  late String amount;
   late DateTime date;
   // Also in Settings, I will have settings that allows users to set default
   // wallets for subscriptions
@@ -79,7 +57,7 @@ class _Subscription {
   late _Wallet? wallet;
   // An enum of whether the subscription is for a month or year.
 
-  String get getAmount => amount.toStringAsFixed(2);
+  // String get getAmount => amount.toStringAsFixed(2);
   String? get period => duration?.name;
   String? get from => wallet?.name;
 }
@@ -90,7 +68,7 @@ class _Wallet {
   late ObjectId id;
   late String name;
   late String balance;
-  // late double balance;
+  // late num balance;
   late List<_Spend> spends;
   late List<_Subscription> subscriptions;
 
@@ -115,7 +93,7 @@ class _Spend {
   late String name;
   late String notes;
   // amount spent
-  late double amount;
+  late String amount;
   late DateTime date;
   // wallet paid from for the spend
   late _Wallet? wallet;
@@ -127,7 +105,7 @@ class _Spend {
   late Iterable<_Category> linkedCategory;
 
   String? get getCategory => category?.name;
-  String get getAmount => "GHS ${amount.toStringAsFixed(2)}";
+  // String get getAmount => "GHS ${amount.toStringAsFixed(2)}";
   String? get getWallet => wallet?.name;
 }
 

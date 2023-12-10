@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:realm/realm.dart";
 
 class SpendItem extends StatelessWidget {
   const SpendItem(this.spend, {super.key});
@@ -32,7 +33,8 @@ class SpendItem extends StatelessWidget {
       title: Text(spend.name),
       subtitle: Text(spend.notes),
       // subtitle: const Text("spend?.wallet.name"),
-      trailing: Text(spend.getAmount),
+      trailing: Text(spend.amount),
+      // trailing: Text(spend.getAmount),
     );
     //);
   }
@@ -52,14 +54,14 @@ class SpendState extends State<Spends> {
     //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
     //   child: SpendList(spends: recordedSpends),
     // );
-    return SpendList(spends: recordedSpends);
+    return SpendList(spends: spends());
   }
 }
 
 class SpendList extends StatelessWidget {
   const SpendList({super.key, required this.spends});
 
-  final List<Spend> spends;
+  final RealmResults<Spend> spends;
 
   @override
   Widget build(BuildContext context) {

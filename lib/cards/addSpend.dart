@@ -10,13 +10,11 @@ class AddSpendCard extends StatefulWidget {
 }
 
 class AddSpendCardState extends State<AddSpendCard> {
-
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
   Category _selectedCategory = categories().first;
   Wallet _selectedWallet = wallets().first;
-
 
   @override
   void dispose() {
@@ -29,118 +27,118 @@ class AddSpendCardState extends State<AddSpendCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-      child: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
-          child: Column(
-            children: [
-              TextField(
-                controller: _nameController,
-                // maxLength: 50,
-                decoration: const InputDecoration(
-                  label: Text("What did you buy?"), 
-                  isDense: true,
-                ),
-              ),
-              TextField(
-                controller: _notesController,
-                // maxLength: 250,
-                decoration: const InputDecoration(
-                  // border: OutlineInputBorder(),
-                  label: Text("Notes"), 
-                  isDense: true,
-                ),
-              ),
-              TextField(
-                controller: _amountController,
-                // maxLength: 5, // redundant check
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    prefix: Text("GHS "), 
-                    label: Text("Amount"),
-                    isDense: true
-                  ),
-              ),
-              DropdownButton(
-                value: _selectedCategory,
-                icon: const FaIcon ( FontAwesomeIcons.icons ),
-                isExpanded: true,
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                items: categories()
-                    .map((category) => DropdownMenuItem(
-                          value: category,
-                          child: Text(category.name),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  }
-                  setState(() {
-                    _selectedCategory = value;
-                    print(_selectedCategory);
-                  });
-                },
-              ),
-              DropdownButton(
-                value: _selectedWallet,
-                icon: const Icon ( Icons.wallet ),
-                isExpanded: true,
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                items: wallets()
-                    .map((wallet) => DropdownMenuItem(
-                          value: wallet,
-                          child: Text(wallet.name),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  }
-                  setState(() {
-                    _selectedWallet = value;
-                    print(_selectedWallet);
-                  });
-                },
-              ),
-              // const SizedBox( height: 10,),
-              const SizedBox(height: 40,),
-     
-              FloatingActionButton.extended(
-                // isExtended: true,
-                label: const Text(
-                "          record          ",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w700,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        child: Padding(
+            padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
+            child: Column(
+              children: [
+                TextField(
+                  controller: _nameController,
+                  // maxLength: 50,
+                  decoration: const InputDecoration(
+                    label: Text("What did you buy?"),
+                    isDense: true,
                   ),
                 ),
-                foregroundColor: Colors.white,
-                backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-                // icon: const Icon(Icons.account_balance_wallet_sharp, size: 30.0),
-                onPressed: () {
-                  print(_nameController.text);
-                  print(_notesController.text);
-                },
-              ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     // ElevatedButton(
-              //     //   onPressed: () {}, child: const Text("Cancel")),
-              //     ElevatedButton(
-              //       onPressed: () {
-              //         print(_nameController.text);
-              //         print(_notesController.text);
-              //         print(_amountController.text);
-              //       },
-              //       child: const Text("Record"))
-              //   ],
-              // )
-            ],
-          )
-        )
-      );
+                TextField(
+                  controller: _notesController,
+                  // maxLength: 250,
+                  decoration: const InputDecoration(
+                    // border: OutlineInputBorder(),
+                    label: Text("Notes"),
+                    isDense: true,
+                  ),
+                ),
+                TextField(
+                  controller: _amountController,
+                  // maxLength: 5, // redundant check
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                      prefix: Text("GHS "),
+                      label: Text("Amount"),
+                      isDense: true),
+                ),
+                DropdownButton(
+                  value: _selectedCategory,
+                  icon: const FaIcon(FontAwesomeIcons.icons),
+                  isExpanded: true,
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  items: categories()
+                      .map((category) => DropdownMenuItem(
+                            value: category,
+                            child: Text(category.name),
+                          ))
+                      .toList(),
+                  onChanged: (value) {
+                    if (value == null) {
+                      return;
+                    }
+                    setState(() {
+                      _selectedCategory = value;
+                      print(_selectedCategory);
+                    });
+                  },
+                ),
+                DropdownButton(
+                  value: _selectedWallet,
+                  icon: const Icon(Icons.wallet),
+                  isExpanded: true,
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  items: wallets()
+                      .map((wallet) => DropdownMenuItem(
+                            value: wallet,
+                            child: Text(wallet.name),
+                          ))
+                      .toList(),
+                  onChanged: (value) {
+                    if (value == null) {
+                      return;
+                    }
+                    setState(() {
+                      _selectedWallet = value;
+                      print(_selectedWallet);
+                    });
+                  },
+                ),
+                // const SizedBox( height: 10,),
+                const SizedBox(
+                  height: 40,
+                ),
+
+                FloatingActionButton.extended(
+                  // isExtended: true,
+                  label: const Text(
+                    "          record          ",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  foregroundColor: Colors.white,
+                  backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+                  // icon: const Icon(Icons.account_balance_wallet_sharp, size: 30.0),
+                  onPressed: () {
+                    recordSpend(
+                      Spend(ObjectId(), _nameController.text, _notesController.text, _amountController.text, DateTime.now()),
+                    );
+                  },
+                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     // ElevatedButton(
+                //     //   onPressed: () {}, child: const Text("Cancel")),
+                //     ElevatedButton(
+                //       onPressed: () {
+                //         print(_nameController.text);
+                //         print(_notesController.text);
+                //         print(_amountController.text);
+                //       },
+                //       child: const Text("Record"))
+                //   ],
+                // )
+              ],
+            )));
   }
 }
