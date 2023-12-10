@@ -11,32 +11,11 @@ final config = Configuration.local([
 
 final realm = Realm(config);
 
-void addWallets(createdWallets) {
-  realm.write(() {
-    realm.addAll(createdWallets);
-  });
-}
-
-// void addWallet(createdWallets) {
-//   realm.write(() {
-//     realm.add();
-//   });
-// }
-
-// final List<Wallet> createdWallets = [
-//   Wallet(ObjectId(), "MoMo Merchant", 50000),
-//   Wallet(ObjectId(), "Cash", 70000),
-//   Wallet(ObjectId(), "Access Bank Debit Card", 10000),
-//   Wallet(ObjectId(), "MoMo Subscriber", 100000),
-//   Wallet(ObjectId(), "MoMo Agent", 200000),
-// ];
-
-final qWallets = realm.all<Wallet>;
+final Wallets = realm.all<Wallet>;
 
 void addWallet(Wallet wallet) {
   realm.write(() {
     realm.add(wallet);
-    print("Wallet created and persisted to mobile");
   });
 }
 
@@ -53,15 +32,6 @@ final List<Spend> recordedSpends = [
       DateTime.utc(2022, 9, 18, 12, 30, 0)),
 ];
 
-// final List<Wallet> wallets = [
-//   Wallet(ObjectId(), "Cash", 7000),
-//   Wallet(ObjectId(), "Access", 7000),
-//   Wallet(ObjectId(), "EcoBank", 7000),
-//   Wallet(ObjectId(), "Momo", 7000),
-//   Wallet(ObjectId(), "Agent", 7000),
-//   Wallet(ObjectId(), "Merchant", 7000),
-// ];
-
 final List<Category> categories = [
   Category(ObjectId(), "Food"),
   Category(ObjectId(), "Electricity"),
@@ -70,8 +40,6 @@ final List<Category> categories = [
   Category(ObjectId(), "Health"),
   Category(ObjectId(), "Lifestyle"),
 ];
-
-// final newWallets = realm.all<Wallet>();
 
 @RealmModel()
 class _Duration {

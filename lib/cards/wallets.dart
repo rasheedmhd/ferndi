@@ -7,9 +7,6 @@ class WalletItem extends StatelessWidget {
 
   final Wallet wallet;
 
-  void addWallet() {
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,15 +26,15 @@ class WalletItem extends StatelessWidget {
           const SizedBox(
             width: 30,
           ),
-          // Text(
-          //   wallet.balance,
-          //   style: const TextStyle(
-          //     fontSize: 12.0,
-          //     color: Color.fromARGB(255, 95, 98, 103),
-          //     fontWeight: FontWeight.w700,
-          //     // fontFamily: "WorkSans"
-          //   ),
-          // ),
+          Text(
+            wallet.balance,
+            style: const TextStyle(
+              fontSize: 12.0,
+              color: Color.fromARGB(255, 95, 98, 103),
+              fontWeight: FontWeight.w700,
+              // fontFamily: "WorkSans"
+            ),
+          ),
         ],
       ),
     );
@@ -50,8 +47,7 @@ class WalletsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WalletList(
-      wallets: qWallets(),
-      // wallets: createdWallets,
+      wallets: Wallets(),
     );
     // return Card(
     //     shape:
@@ -80,7 +76,6 @@ class WalletList extends StatelessWidget {
   const WalletList({super.key, required this.wallets});
 
   final RealmResults<Wallet> wallets;
-  // final List<Wallet> wallets;
 
   @override
   Widget build(BuildContext context) {

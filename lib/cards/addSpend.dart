@@ -10,17 +10,12 @@ class AddSpendCard extends StatefulWidget {
 }
 
 class AddSpendCardState extends State<AddSpendCard> {
-  // LEGACY
-  // List<String> spendInfo = [];
 
-  // void _saveSpendInfo(String info) {
-  //   spendInfo.add(info);
-  // }
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
   Category _selectedCategory = categories.first;
-  // Wallet _selectedWallet = createdWallets.first;
+  Wallet _selectedWallet = Wallets().first;
 
 
   @override
@@ -88,27 +83,27 @@ class AddSpendCardState extends State<AddSpendCard> {
                   });
                 },
               ),
-              // DropdownButton(
-              //   // value: _selectedWallet,
-              //   icon: const Icon ( Icons.wallet ),
-              //   isExpanded: true,
-              //   borderRadius: const BorderRadius.all(Radius.circular(20)),
-              //   items: createdWallets
-              //       .map((wallet) => DropdownMenuItem(
-              //             value: wallet,
-              //             child: Text(wallet.name),
-              //           ))
-              //       .toList(),
-              //   onChanged: (value) {
-              //     if (value == null) {
-              //       return;
-              //     }
-              //     setState(() {
-              //       _selectedWallet = value;
-              //       print(_selectedWallet);
-              //     });
-              //   },
-              // ),
+              DropdownButton(
+                value: _selectedWallet,
+                icon: const Icon ( Icons.wallet ),
+                isExpanded: true,
+                borderRadius: const BorderRadius.all(Radius.circular(20)),
+                items: Wallets()
+                    .map((wallet) => DropdownMenuItem(
+                          value: wallet,
+                          child: Text(wallet.name),
+                        ))
+                    .toList(),
+                onChanged: (value) {
+                  if (value == null) {
+                    return;
+                  }
+                  setState(() {
+                    _selectedWallet = value;
+                    print(_selectedWallet);
+                  });
+                },
+              ),
               // const SizedBox( height: 10,),
               const SizedBox(height: 40,),
      
