@@ -47,7 +47,7 @@ class WalletsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WalletList(
-      wallets: Wallets(),
+      wallets: wallets(),
     );
     // return Card(
     //     shape:

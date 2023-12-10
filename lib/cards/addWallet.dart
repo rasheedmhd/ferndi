@@ -86,7 +86,7 @@ class AddWalletCardState extends State<AddWalletCard> {
                   onPressed: () {
                     print(_nameController.text);
                     print(_balanceController.text);
-                    addWallet(Wallet(ObjectId(), _nameController.text,
+                    createWallet(Wallet(ObjectId(), _nameController.text,
                         _balanceController.text));
                     print(_nameController.text);
                     print(_balanceController.text);

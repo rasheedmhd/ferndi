@@ -11,11 +11,29 @@ final config = Configuration.local([
 
 final realm = Realm(config);
 
-final Wallets = realm.all<Wallet>;
+final wallets = realm.all<Wallet>;
+final spends = realm.all<Spend>;
+final categories = realm.all<Category>;
+// for later feature
+// final budgets = realm.all<Budget>; 
 
-void addWallet(Wallet wallet) {
+// Create a new wallet and persist to db
+void createWallet(Wallet wallet) {
   realm.write(() {
     realm.add(wallet);
+  });
+}
+
+// Create a new spend record and persist to db
+void addSpend(Spend spend) {
+  realm.write(() {
+    realm.add(spend);
+  });
+}
+// Create a new Category record and persist to db
+void createCategory(Category category) {
+  realm.write(() {
+    realm.add(category);
   });
 }
 
@@ -32,14 +50,14 @@ final List<Spend> recordedSpends = [
       DateTime.utc(2022, 9, 18, 12, 30, 0)),
 ];
 
-final List<Category> categories = [
-  Category(ObjectId(), "Food"),
-  Category(ObjectId(), "Electricity"),
-  Category(ObjectId(), "Phone"),
-  Category(ObjectId(), "Transportation"),
-  Category(ObjectId(), "Health"),
-  Category(ObjectId(), "Lifestyle"),
-];
+// final List<Category> categories = [
+//   Category(ObjectId(), "Food"),
+//   Category(ObjectId(), "Electricity"),
+//   Category(ObjectId(), "Phone"),
+//   Category(ObjectId(), "Transportation"),
+//   Category(ObjectId(), "Health"),
+//   Category(ObjectId(), "Lifestyle"),
+// ];
 
 @RealmModel()
 class _Duration {
