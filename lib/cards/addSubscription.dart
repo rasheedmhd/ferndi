@@ -1,4 +1,5 @@
 import 'package:app/models/schemas.dart';
+import 'package:app/models/schemas.dart' as subscription; 
 import "package:flutter/material.dart";
 // import "package:flutter/material.dart";
 import "package:realm/realm.dart";
@@ -103,11 +104,13 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
                         onPressed: () {}, child: const Text("Cancel")),
                     ElevatedButton(
                         onPressed: () {
-                          // addSubscription(Subscription(
-                          //     ObjectId(),
-                          //     _nameController.text,
-                          //     _amountController.text,
-                          //     DateTime.now()));
+                          addSubscription(subscription.Subscription(
+                              ObjectId(),
+                              _nameController.text,
+                              _amountController.text,
+                              wallet: _selectedWallet,
+                              duration: _selectedDuration,
+                              DateTime.now()));
                         },
                         child: const Text("Record"))
                   ],
