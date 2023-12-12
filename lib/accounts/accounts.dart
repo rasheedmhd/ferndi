@@ -1,11 +1,7 @@
-// import "package:app/cards/balance.dart";
 import "package:app/cards/addWallet.dart";
 import "package:app/cards/wallets.dart";
-// import "package:app/home/spends.dart";
 import "package:flutter/material.dart";
-// import "package:app/models/wallets.dart";
-// import "package:app/cards/savings.dart";
-// import "package:google_fonts/google_fonts.dart";
+
 
 class Accounts extends StatefulWidget {
   const Accounts({super.key});

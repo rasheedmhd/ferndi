@@ -34,11 +34,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
     Widget activePage = const Home();
 
     switch (_selectedPageIndex) {
+      // case 1:
+      //   activePage = const Budgets();
       case 1:
-        activePage = const Budgets();
-      case 2:
         activePage = const Subscriptions();
-      case 3:
+      case 2:
         activePage = const Accounts();
     }
 

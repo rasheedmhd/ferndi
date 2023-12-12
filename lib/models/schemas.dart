@@ -19,6 +19,10 @@ final subscriptions = realm.all<Subscription>;
 // for later feature
 // final budgets = realm.all<Budget>; 
 
+// Querying data for balance card
+// final currentBalance = realm.query("wallets.@sum.balance");
+
+
 // Create a new wallet and persist to db
 void createWallet(Wallet wallet) {
   realm.write(() {

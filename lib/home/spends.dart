@@ -10,21 +10,7 @@ class SpendItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return
-    // ListTile(
-    //     leading: Icon(CategoryIcons[spend.category],
-    //     color: const Color.fromARGB(255, 240, 138, 4),),
-    //     title: Text(spend.name),
-    //     subtitle: Text(spend.getWallet),
-    //     trailing: Text(spend.getAmount),
-    // );
-    // UI ONE
     return ListTile(
-      // leading: Icon(
-      //   CategoryIcons[spend.category],
-      //   size: 25.0,
-      //   color: const Color.fromARGB(255, 240, 138, 4),
-      // ),
       leading: const FaIcon(
         FontAwesomeIcons.featherPointed,
         size: 30.0,
@@ -32,11 +18,8 @@ class SpendItem extends StatelessWidget {
       ),
       title: Text(spend.name),
       subtitle: Text(spend.notes),
-      // subtitle: const Text("spend?.wallet.name"),
       trailing: Text(spend.amount),
-      // trailing: Text(spend.getAmount),
     );
-    //);
   }
 }
 
@@ -52,7 +35,7 @@ class SpendState extends State<Spends> {
   Widget build(BuildContext context) {
     // return Card(
     //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-    //   child: SpendList(spends: recordedSpends),
+    //   child: SpendList(spends: spends()),
     // );
     return SpendList(spends: spends());
   }
