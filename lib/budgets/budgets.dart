@@ -9,7 +9,9 @@ class Budgets extends StatelessWidget {
       //title: "Budgets",
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Budgets"),
+          title: const Text("Budgets", style: TextStyle(
+                color: Colors.white
+            ),),
           backgroundColor: const Color.fromARGB(255, 5, 61, 135),
         ),
         

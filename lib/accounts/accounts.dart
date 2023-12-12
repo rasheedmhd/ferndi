@@ -29,9 +29,13 @@ class AccountsState extends State<Accounts> {
         home: Scaffold(
           appBar: AppBar(
             // actions: [
-            //   IconButton(onPressed: _addAccount, icon: const Icon(Icons.settings))
+            //   IconButton(onPressed: _addAccount, icon: const Icon(Icons.create))
             // ],
-            title: const Text("Accounts and Wallets"),
+            title: const Text(
+              "Accounts and Wallets", 
+              style: TextStyle(
+                color: Colors.white
+            ),),
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
           ),
           floatingActionButton: FloatingActionButton(

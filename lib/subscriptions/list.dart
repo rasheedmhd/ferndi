@@ -28,7 +28,9 @@ class SubscriptionsState extends State<Subscriptions> {
               IconButton(
                   onPressed: _addSubscription, icon: const Icon(Icons.add))
             ],
-            title: const Text("Subscriptions"),
+            title: const Text("Subscriptions",  style: TextStyle(
+                color: Colors.white
+            ),),
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
           ),
           body: Container(
@@ -60,7 +62,7 @@ Widget _buildSubscriptionCard(Subscription subscriptionItem) {
                 width: 10,
               ),
               Text(
-                subscriptionItem.name,
+                "${subscriptionItem.from}",
                 style: const TextStyle(
                   fontSize: 14.0,
                   fontWeight: FontWeight.w400,

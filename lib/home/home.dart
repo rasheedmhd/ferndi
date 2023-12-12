@@ -21,7 +21,9 @@ class HomeState extends State<Home> {
               // actions: [
               //   IconButton(onPressed: _addSpend, icon: const Icon(Icons.add))
               // ],
-              title: const Text("Home"),
+              title: const Text("Home",  style: TextStyle(
+                color: Colors.white
+            ),),
               backgroundColor: const Color.fromARGB(255, 5, 61, 135),
             ),
             body: ListView(

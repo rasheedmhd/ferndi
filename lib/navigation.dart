@@ -60,10 +60,10 @@ class _NavigationScreenState extends State<NavigationScreen> {
               icon: Icon(Icons.account_balance_wallet),
               label: "Spending",
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.currency_bitcoin),
-              label: "Budget",
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.currency_bitcoin),
+            //   label: "Budget",
+            // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.payment),
               label: "Subscriptions",
