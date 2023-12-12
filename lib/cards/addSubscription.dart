@@ -35,15 +35,39 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
             padding: const EdgeInsets.all(25),
             child: Column(
               children: [
-                const Text(
-                  "Add Subscription",
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    color: Color.fromARGB(255, 26, 114, 255),
-                    fontWeight: FontWeight.w700,
-                    // fontFamily: "WorkSans"
+                  const Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Add Subscription",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      color: Color.fromARGB(255, 5, 61, 135),
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
+                //   const Align(
+                //   alignment: Alignment.topLeft,
+                //   child: Text(
+                //     "Add",
+                //     style: TextStyle(
+                //       fontSize: 52.0,
+                //       color: Color.fromARGB(255, 5, 61, 135),
+                //       fontWeight: FontWeight.w700,
+                //     ),
+                //   ),
+                // ),
+                //   const Align(
+                //   alignment: Alignment.topLeft,
+                //   child: Text(
+                //     "Subscription",
+                //     style: TextStyle(
+                //       fontSize: 52.0,
+                //       color: Color.fromARGB(255, 5, 61, 135),
+                //       fontWeight: FontWeight.w700,
+                //     ),
+                //   ),
+                // ),
                 TextField(
                   controller: _nameController,
                   maxLength: 50,
@@ -59,7 +83,9 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
                 Row(
                   children: [
                     DropdownButton(
-                      value: _selectedWallet, //const Text("Select Wallet"),
+                      value: _selectedWallet,
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      icon: const Icon(Icons.wallet),
                       items: wallets()
                           .map((wallet) => DropdownMenuItem(
                                 value: wallet,
@@ -79,6 +105,8 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
                     const Spacer(),
                     DropdownButton(
                       value: _selectedDuration,
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      icon: const Icon(Icons.timelapse),
                       items: duration()
                           .map((duration) => DropdownMenuItem(
                                 value: duration,
