@@ -37,7 +37,7 @@ class SpendState extends State<Spends> {
     //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
     //   child: SpendList(spends: spends()),
     // );
-    return SpendList(spends: spends());
+    return SpendList(spends: spends);
   }
 }
 

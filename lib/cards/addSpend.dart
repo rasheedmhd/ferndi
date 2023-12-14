@@ -15,8 +15,8 @@ class AddSpendCardState extends State<AddSpendCard> {
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
-  Category _selectedCategory = categories().first;
-  Wallet _selectedWallet = wallets().first;
+  Category _selectedCategory = categories.first;
+  Wallet _selectedWallet = wallets.first;
 
   @override
   void dispose() {
@@ -66,7 +66,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                   icon: const FaIcon(FontAwesomeIcons.icons),
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  items: categories()
+                  items: categories
                       .map((category) => DropdownMenuItem(
                             value: category,
                             child: Text(category.name),
@@ -86,7 +86,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                   icon: const Icon(Icons.wallet),
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  items: wallets()
+                  items: wallets
                       .map((wallet) => DropdownMenuItem(
                             value: wallet,
                             child: Text(wallet.name),

@@ -11,16 +11,17 @@ final config = Configuration.local([
 
 final realm = Realm(config);
 
-final wallets = realm.all<Wallet>;
-final spends = realm.all<Spend>;
-final categories = realm.all<Category>;
-final duration = realm.all<Duration>;
-final subscriptions = realm.all<Subscription>;
+final wallets = realm.all<Wallet>();
+final spends = realm.all<Spend>();
+final categories = realm.all<Category>();
+final duration = realm.all<Duration>();
+final subscriptions = realm.all<Subscription>();
 // for later feature
-// final budgets = realm.all<Budget>; 
+// final budgets = realm.all<Budget>;
 
 // Querying data for balance card
-// final currentBalance = realm.query("wallets.@sum.balance");
+// final currentBalance = realm.query<Wallet>("wallet.balance");
+final currentBalance = realm.all<Wallet>();
 
 
 // Create a new wallet and persist to db
@@ -43,6 +44,7 @@ void addSubscription(Subscription subscription) {
     realm.add(subscription);
   });
 }
+
 // Create a new Category record and persist to db
 void createCategory(Category category) {
   realm.write(() {

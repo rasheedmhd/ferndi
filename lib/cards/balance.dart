@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
-// import "package:app/models/schemas.dart";
+import "package:app/models/schemas.dart";
 
 class BalanceCard extends StatelessWidget {
   const BalanceCard({super.key});
@@ -23,7 +23,10 @@ class BalanceCard extends StatelessWidget {
                         const Text(
                           "current balance",
                         ),
-                        Text("₵1,234,567.99",// ${currentBalance}",
+                        Text("₵1,234,567", // ${currentBalance.toString()}",
+                            // style: GoogleFonts.silkscreen(
+                              // pixelated font type
+                              // kanit bold font type
                             style: GoogleFonts.hankenGrotesk(
                               // textStyle: Theme.of(context).textTheme.headlineLarge,
                               fontSize: 35.0,

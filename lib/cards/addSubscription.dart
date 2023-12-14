@@ -14,8 +14,8 @@ class AddSubscriptionCard extends StatefulWidget {
 class AddSubscriptionCardState extends State<AddSubscriptionCard> {
   final _nameController = TextEditingController();
   final _amountController = TextEditingController();
-  Duration _selectedDuration = duration().first;
-  Wallet _selectedWallet = wallets().first;
+  Duration _selectedDuration = duration.first;
+  Wallet _selectedWallet = wallets.first;
   // Duration _selectedDuration = Duration.Month;
   // Wallet _selectedWallet = Wallet.AccessDebitCard;
 
@@ -86,7 +86,7 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
                       value: _selectedWallet,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       icon: const Icon(Icons.wallet),
-                      items: wallets()
+                      items: wallets
                           .map((wallet) => DropdownMenuItem(
                                 value: wallet,
                                 child: Text(wallet.name),
@@ -107,7 +107,7 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
                       value: _selectedDuration,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       icon: const Icon(Icons.timelapse),
-                      items: duration()
+                      items: duration
                           .map((duration) => DropdownMenuItem(
                                 value: duration,
                                 child: Text(duration.name),
