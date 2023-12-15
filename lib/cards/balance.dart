@@ -23,7 +23,7 @@ class BalanceCard extends StatelessWidget {
                         const Text(
                           "current balance",
                         ),
-                        Text("₵1,234,567", // ${currentBalance.toString()}",
+                        Text("₵ ${balance}",
                             // style: GoogleFonts.silkscreen(
                               // pixelated font type
                               // kanit bold font type
@@ -46,7 +46,7 @@ class BalanceCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text("income"),
-                        Text("₵12,000",
+                        Text("₵ ${savings.balance}",
                             style: GoogleFonts.hankenGrotesk(
                               // textStyle: Theme.of(context).textTheme.headlineLarge,
                               fontSize: 16.0,

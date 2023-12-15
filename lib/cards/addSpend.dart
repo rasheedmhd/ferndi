@@ -11,7 +11,6 @@ class AddSpendCard extends StatefulWidget {
 }
 
 class AddSpendCardState extends State<AddSpendCard> {
-
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();

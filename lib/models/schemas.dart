@@ -20,14 +20,18 @@ final subscriptions = realm.all<Subscription>();
 // final budgets = realm.all<Budget>;
 
 // Querying data for balance card
-// final currentBalance = realm.query<Wallet>("wallet.balance");
-final currentBalance = realm.all<Wallet>();
-
+final balance = wallets.map((wallet) => wallet.balance).toList().first;
+final savings = realm.query<Wallet>('name == \$0', ['Income']).first;
 
 // Create a new wallet and persist to db
 void createWallet(Wallet wallet) {
   realm.write(() {
     realm.add(wallet);
+  });
+}
+void deleteWallet(Wallet wallet) {
+  realm.write(() {
+    realm.delete(wallet);
   });
 }
 
@@ -37,6 +41,11 @@ void recordSpend(Spend spend) {
     realm.add(spend);
   });
 }
+void deleteSpend(Spend spend) {
+  realm.write(() {
+    realm.delete(spend);
+  });
+}
 
 // Create a new spend record and persist to db
 void addSubscription(Subscription subscription) {
@@ -44,9 +53,19 @@ void addSubscription(Subscription subscription) {
     realm.add(subscription);
   });
 }
+void deleteSubscription(Subscription subscription) {
+  realm.write(() {
+    realm.add(subscription);
+  });
+}
 
 // Create a new Category record and persist to db
 void createCategory(Category category) {
+  realm.write(() {
+    realm.add(category);
+  });
+}
+void deleteCategory(Category category) {
   realm.write(() {
     realm.add(category);
   });
