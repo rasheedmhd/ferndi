@@ -55,7 +55,7 @@ void addSubscription(Subscription subscription) {
 }
 void deleteSubscription(Subscription subscription) {
   realm.write(() {
-    realm.add(subscription);
+    realm.delete(subscription);
   });
 }
 
@@ -67,7 +67,7 @@ void createCategory(Category category) {
 }
 void deleteCategory(Category category) {
   realm.write(() {
-    realm.add(category);
+    realm.delete(category);
   });
 }
 
