@@ -18,7 +18,7 @@ class SpendItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Slidable(
       // Specify a key if the Slidable is dismissible.
-      key: const ValueKey(0),
+      key: ValueKey(key),
 
       // The start action pane is the one at the left or the top side.
       startActionPane: ActionPane(
@@ -26,7 +26,10 @@ class SpendItem extends StatelessWidget {
         motion: const ScrollMotion(),
 
         // A pane can dismiss the Slidable.
-        dismissible: DismissiblePane(onDismissed: () {}),
+        dismissible: DismissiblePane(onDismissed: () {
+          deleteSpend(spend);
+          print("spend deleted from sliding through");
+        }),
 
         // All actions are defined in the children parameter.
         children: [
@@ -34,19 +37,21 @@ class SpendItem extends StatelessWidget {
           SlidableAction(
             onPressed: (context) {
               deleteSpend(spend);
+              print("deleted object from pressing delete");
             },
             backgroundColor: Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             icon: Icons.delete,
             label: 'Delete',
           ),
-          SlidableAction(
-            onPressed: (context) {},
-            backgroundColor: Color(0xFF21B7CA),
-            foregroundColor: Colors.white,
-            icon: Icons.edit,
-            label: 'Edit',
-          ),
+          // SlidableAction(
+          //   onPressed: (context) {},
+          //   backgroundColor: Color.fromARGB(255, 96, 150, 249),
+          //   // backgroundColor: Color(0xFF21B7CA),
+          //   foregroundColor: Colors.white,
+          //   icon: Icons.edit,
+          //   label: 'Edit',
+          // ),
         ],
       ),
 
