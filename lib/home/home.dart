@@ -56,7 +56,6 @@ class HomeState extends State<Home> {
                   child: Spends(),
                 ),
               ],
-              // [[ TODO <feature> ]] card to display total spending amount in wallets (Money Left)
 
               // [[ TODO <feature> ]] button to check past spends grouped in months
             )));

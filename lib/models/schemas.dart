@@ -43,7 +43,7 @@ void recordSpend(Spend spend) {
 }
 void deleteSpend(Spend spend) {
   realm.write(() {
-    realm.delete(spend);
+    realm.delete<Spend>(spend);
   });
 }
 

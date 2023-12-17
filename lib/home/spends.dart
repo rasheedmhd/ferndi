@@ -14,7 +14,6 @@ class SpendItem extends StatelessWidget {
 // }
 // class SpendItemState extends State<SpendItem> {
 
-
   @override
   Widget build(BuildContext context) {
     return Slidable(
@@ -33,14 +32,16 @@ class SpendItem extends StatelessWidget {
         children: [
           // A SlidableAction can have an icon and/or a label.
           SlidableAction(
-            onPressed: (context) {},
+            onPressed: (context) {
+              deleteSpend(spend);
+            },
             backgroundColor: Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             icon: Icons.delete,
             label: 'Delete',
           ),
           SlidableAction(
-            onPressed:(context) {},
+            onPressed: (context) {},
             backgroundColor: Color(0xFF21B7CA),
             foregroundColor: Colors.white,
             icon: Icons.edit,
