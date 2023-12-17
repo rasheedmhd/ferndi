@@ -11,32 +11,53 @@ class WalletItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            wallet.name,
-            style: const TextStyle(
-              fontSize: 20.0,
-              color: Color.fromARGB(255, 26, 114, 255),
-              fontWeight: FontWeight.w700,
-              // fontFamily: "WorkSans"
+      child: ExpansionTile(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              wallet.name,
+              style: const TextStyle(
+                fontSize: 20.0,
+                color: Color.fromARGB(255, 26, 114, 255),
+                fontWeight: FontWeight.w700,
+                // fontFamily: "WorkSans"
+              ),
             ),
-          ),
-          const SizedBox(
-            width: 30,
-          ),
-          Text(
-            wallet.balance,
-            style: const TextStyle(
-              fontSize: 12.0,
-              color: Color.fromARGB(255, 95, 98, 103),
-              fontWeight: FontWeight.w700,
-              // fontFamily: "WorkSans"
+            const SizedBox(
+              width: 30,
             ),
-          ),
+            Text(
+              wallet.balance,
+              style: const TextStyle(
+                fontSize: 12.0,
+                color: Color.fromARGB(255, 95, 98, 103),
+                fontWeight: FontWeight.w700,
+                // fontFamily: "WorkSans"
+              ),
+            ),
+          ],
+        ),
+        subtitle: const Row(
+          children: [
+        ]),
+
+        children: const [ 
+          Row(
+            children: [
+            Text("[ transactions ]"),
+            Text("[ edit ]"), 
+            ]
+        ),
+          Row(
+            children: [
+            Text("[ transfer money ]"),
+            Text("[ add money ]"),
+            Text("[ withdraw money ]"),
+            ]
+        )
         ],
-      ),
+      ) 
     );
   }
 }
@@ -49,26 +70,6 @@ class WalletsCard extends StatelessWidget {
     return WalletList(
       wallets: wallets,
     );
-    // return Card(
-    //     shape:
-    //         RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-    //     child: const Padding(
-    //         padding: EdgeInsets.all(25),
-    //         child: ListTile(
-    //           // leading: const FaIcon(
-    //           //   FontAwesomeIcons.receipt,
-    //           //   size: 30.0,
-    //           //   color: Color.fromARGB(255, 240, 138, 4),
-    //           // ),
-    //           leading: Icon(
-    //             Icons.abc,
-    //             // WalletIcons[wallet.name],
-    //             color: Color.fromARGB(255, 240, 138, 4),
-    //           ),
-    //           title: Text("wallet.name"),
-    //           //subtitle: Text(wallet.),
-    //           trailing: Text("GHS 234"),
-    //         )));
   }
 }
 
