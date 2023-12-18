@@ -25,8 +25,8 @@ class BalanceCard extends StatelessWidget {
                         ),
                         Text("₵ ${balance}",
                             // style: GoogleFonts.silkscreen(
-                              // pixelated font type
-                              // kanit bold font type
+                            // pixelated font type
+                            // kanit bold font type
                             style: GoogleFonts.hankenGrotesk(
                               // textStyle: Theme.of(context).textTheme.headlineLarge,
                               fontSize: 35.0,
@@ -46,7 +46,7 @@ class BalanceCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text("income"),
-                        Text("₵ ${savings.balance}",
+                        Text("₵ ${income.balance}",
                             style: GoogleFonts.hankenGrotesk(
                               // textStyle: Theme.of(context).textTheme.headlineLarge,
                               fontSize: 16.0,
@@ -62,7 +62,7 @@ class BalanceCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text("spend"),
-                        Text("₵2,000",
+                        Text("₵ ${totalSpend}",
                             style: GoogleFonts.hankenGrotesk(
                               // textStyle: Theme.of(context).textTheme.headlineLarge,
                               fontSize: 16.0,

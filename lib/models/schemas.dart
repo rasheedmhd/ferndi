@@ -20,8 +20,9 @@ final subscriptions = realm.all<Subscription>();
 // final budgets = realm.all<Budget>;
 
 // Querying data for balance card
-final balance = wallets.map((wallet) => wallet.balance).toList().first;
-final savings = realm.query<Wallet>('name == \$0', ['Income']).first;
+String balance = wallets.map((wallet) => wallet.balance).toList().first;
+final income = realm.query<Wallet>('name == \$0', ['Income']).first;
+final totalSpend = spends.map((spend) => spend.amount).toList().first;
 
 // Create a new wallet and persist to db
 void createWallet(Wallet wallet) {
