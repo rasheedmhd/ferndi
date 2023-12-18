@@ -1,5 +1,6 @@
 import "package:app/cards/addWallet.dart";
 import "package:app/cards/wallets.dart";
+import "package:app/cards/savings.dart";
 import "package:flutter/material.dart";
 
 
@@ -28,7 +29,7 @@ class AccountsState extends State<Accounts> {
             //   IconButton(onPressed: _addAccount, icon: const Icon(Icons.create))
             // ],
             title: const Text(
-              "Accounts and Wallets", 
+              "Accounts", 
               style: TextStyle(
                 color: Colors.white
             ),),
@@ -42,10 +43,22 @@ class AccountsState extends State<Accounts> {
           body: ListView(
             padding: const EdgeInsets.all(15),
             children: const [
+              // Text(
+              //   "Savings",
+              //   style: TextStyle(
+              //     fontSize: 30.0,
+              //     color: Color.fromARGB(255, 5, 61, 135),
+              //     fontWeight: FontWeight.w700,
+              //     // fontFamily: "WorkSans"
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 12,
+              // ),
               // savingsCard(),
-              SizedBox(
-                height: 12,
-              ),
+              // SizedBox(
+              //   height: 12,
+              // ),
               Text(
                 "Wallets",
                 style: TextStyle(
@@ -60,25 +73,13 @@ class AccountsState extends State<Accounts> {
                 height: 12,
               ),
 
-              Divider(),
+              Divider(), 
 
+              // WalletsCard(),
               SizedBox(
                 height: 700,
                 child: WalletsCard(),
               )
-              // SizedBox(
-              //   height: 730,
-              //   child: ListView(
-              //     // Future Feature
-              //     // scrollDirection: Axis.horizontal,
-              //     children: const [
-              //       BalanceCard(),
-              //       savingsCard(),
-              //       savingsCard(),
-              //       BalanceCard(),
-              //     ],
-              //   ),
-              // ),
             ],
           ),
         ));
