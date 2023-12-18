@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:app/models/schemas.dart';
 import "package:app/cards/addSubscription.dart";
+import "package:flutter_slidable/flutter_slidable.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:google_fonts/google_fonts.dart";
 
@@ -46,7 +47,37 @@ class SubscriptionsState extends State<Subscriptions> {
 } 
 
 Widget _buildSubscriptionCard(Subscription subscriptionItem) {
-  return Card(
+  return Slidable(
+          // Specify a key if the Slidable is dismissible.
+      key: ValueKey(subscriptionItem),
+
+      // The start action pane is the one at the left or the top side.
+      startActionPane: ActionPane(
+        // A motion is a widget used to control how the pane animates.
+        motion: const ScrollMotion(),
+
+        // A pane can dismiss the Slidable.
+        dismissible: DismissiblePane(onDismissed: () {
+          deleteSubscription(subscriptionItem);
+          print("subscription deleted from sliding through");
+        }),
+
+        // All actions are defined in the children parameter.
+        children: [
+          // A SlidableAction can have an icon and/or a label.
+          SlidableAction(
+            onPressed: (context) {
+              deleteSubscription(subscriptionItem);
+              print("subscription deleted object from pressing delete");
+            },
+            backgroundColor: Color(0xFFFE4A49),
+            foregroundColor: Colors.white,
+            icon: Icons.delete,
+            label: 'Delete',
+          ),
+        ],
+      ),
+    child: Card (
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Padding(
         padding: const EdgeInsets.all(10),
@@ -129,5 +160,7 @@ Widget _buildSubscriptionCard(Subscription subscriptionItem) {
             ],
           )
         ]),
-      ));
+      )
+    )
+  );
 }
