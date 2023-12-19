@@ -1,3 +1,4 @@
+import 'package:app/onboarding/welcome.dart';
 import "package:flutter/material.dart";
 // import "package:google_fonts/google_fonts.dart";
 import 'navigation.dart';
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
         title: "ferndi",
-        home: NavigationScreen(),
+        home: Onboarding(),
+        // home: NavigationScreen(),
     );
   }
 }

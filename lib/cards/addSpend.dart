@@ -106,21 +106,37 @@ class AddSpendCardState extends State<AddSpendCard> {
                 ),
 
                 FloatingActionButton.extended(
-                  // isExtended: true,
-                  label: const Text(
-                    "          record          ",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w700,
+                    // isExtended: true,
+                    label: const Text(
+                      "          record          ",
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
-                  foregroundColor: Colors.white,
-                  backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-                  // icon: const Icon(Icons.account_balance_wallet_sharp, size: 30.0),
-                  onPressed: () {
-                    recordSpend(Spend(ObjectId(), _nameController.text, _notesController.text, _amountController.text, DateTime.now()));
-                  },
-                ),
+                    foregroundColor: Colors.white,
+                    backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+                    // icon: const Icon(Icons.account_balance_wallet_sharp, size: 30.0),
+                    onPressed: () {
+                      recordSpend(Spend(
+                        ObjectId(),
+                        _nameController.text,
+                        _notesController.text,
+                        _amountController.text,
+                        DateTime.now()));
+                      // if (_amountController.text < _selectedWallet.balance) {
+                      //   print(
+                      //       "POP UP: You are spending more money than you have, please top up your Wallet");
+                      // } else {
+                      //   recordSpend(Spend(
+                      //       ObjectId(),
+                      //       _nameController.text,
+                      //       _notesController.text,
+                      //       _amountController.text,
+                      //       DateTime.now()));
+                      //   _selectedWallet.balance - _amountController.text;
+                      // }
+                    }),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 //   children: [
