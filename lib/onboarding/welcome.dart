@@ -16,7 +16,30 @@ class Onboarding extends StatelessWidget {
           appBar:  AppBar(
             title: const Text("Onboarding"),
           ),
-          body: const  Center(child: Text("Welcome to Ferndi - A spending tracker that mimics real life")),
+          body: PageView(
+            children: [
+              
+              Container(
+                color: Colors.blue,
+                child: const  Center(child: Text("Welcome to Ferndi - A spending tracker that mimics real life")),
+              ),
+              
+              Container(
+                color: Colors.pink,
+                child:const  Center(child: Text("Welcome to Ferndi - A spending tracker that mimics real life")),
+              ),
+              
+              Container(
+                color: Colors.green,
+                child:const  Center(child: Text("Welcome to Ferndi - A spending tracker that mimics real life")),
+              ),
+              
+              Container(
+                child:const  Center(child: Text("Welcome to Ferndi - A spending tracker that mimics real life")),
+                  color: Colors.blue,
+              ),
+            ],
+          ) 
       )
          
     );
