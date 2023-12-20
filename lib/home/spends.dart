@@ -39,7 +39,7 @@ class SpendItem extends StatelessWidget {
               deleteSpend(spend);
               print("deleted object from pressing delete");
             },
-            backgroundColor: Color(0xFFFE4A49),
+            backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             icon: Icons.delete,
             label: 'Delete',

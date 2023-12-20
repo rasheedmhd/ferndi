@@ -30,6 +30,7 @@ void createWallet(Wallet wallet) {
     realm.add(wallet);
   });
 }
+
 void deleteWallet(Wallet wallet) {
   realm.write(() {
     realm.delete(wallet);
@@ -42,6 +43,7 @@ void recordSpend(Spend spend) {
     realm.add(spend);
   });
 }
+
 void deleteSpend(Spend spend) {
   realm.write(() {
     realm.delete<Spend>(spend);
@@ -54,6 +56,7 @@ void addSubscription(Subscription subscription) {
     realm.add(subscription);
   });
 }
+
 void deleteSubscription(Subscription subscription) {
   realm.write(() {
     realm.delete(subscription);
@@ -66,6 +69,22 @@ void createCategory(Category category) {
     realm.add(category);
   });
 }
+
+final Categories = <Category>[
+  Category(ObjectId(), "Health"),
+  Category(ObjectId(), "Food"),
+  Category(ObjectId(), "Electricity"),
+  Category(ObjectId(), "Groceries"),
+  Category(ObjectId(), "Transportation"),
+  Category(ObjectId(), "Miscellaneous"),
+];
+// Create a bunch of Categories when getting onboarded
+void addCategories(Category category) {
+  realm.write(() {
+    realm.addAll(Categories);
+  });
+}
+
 void deleteCategory(Category category) {
   realm.write(() {
     realm.delete(category);
