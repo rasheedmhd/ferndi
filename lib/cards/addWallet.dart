@@ -79,8 +79,14 @@ class AddWalletCardState extends State<AddWalletCard> {
                   backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                   icon: const Icon(Icons.wallet, size: 34.0),
                   onPressed: () {
-                    createWallet(Wallet(ObjectId(), _nameController.text,
-                        _balanceController.text));
+                    createWallet(
+                      Wallet(
+                        ObjectId(), 
+                        _nameController.text,
+                        _balanceController.text
+                      ));
+                      _nameController.text = "";
+                      _balanceController.text = "";
                   },
                 ),
 

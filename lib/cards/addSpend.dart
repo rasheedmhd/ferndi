@@ -122,7 +122,12 @@ class AddSpendCardState extends State<AddSpendCard> {
                       _nameController.text,
                       _notesController.text,
                       _amountController.text,
+                      category: _selectedCategory,
+                      wallet: _selectedWallet,
                       DateTime.now()));
+                      _nameController.text = "";
+                      _notesController.text = "";
+                      _amountController.text = "";
                     // if (_amountController.text < _selectedWallet.balance) {
                     //   print(
                     //       "POP UP: You are spending more money than you have, please top up your Wallet");
