@@ -25,7 +25,7 @@ class Onboarding extends StatelessWidget {
             body: PageView(
               children: [
                 Container(
-                  color: Colors.blue,
+                  color: Colors.white,
                   child: const Column(
                     children: [
                       Padding(padding: EdgeInsets.all(20)),
@@ -45,9 +45,9 @@ class Onboarding extends StatelessWidget {
                         "Ferndi",
                         style: TextStyle(
                           fontSize: 50.0,
-                          color: Color.fromARGB(255, 5, 61, 135),
+                          color: Color.fromARGB(255, 35, 206, 135),
                           fontWeight: FontWeight.w700,
-                          // fontFamily: "WorkSans"
+                          // fontFamily: "helvetica"
                         ),
                       ),
 
@@ -59,18 +59,18 @@ class Onboarding extends StatelessWidget {
                         leading: FaIcon(
                           FontAwesomeIcons.moneyBillTransfer,
                           size: 30.0,
-                          color: Color.fromARGB(255, 5, 61, 135),
+                          color: Color.fromARGB(255, 16, 212, 173),
                         ),
-                        title: Text("RECORD YOUR SPENDING"),
+                        title: Text("TRACK YOUR SPENDS"),
                         subtitle: Text(
-                            "Spend from your wallets and record spends in real time"),
+                            "Spend from your wallets and record spends in real time like in real life"),
                         // trailing: Text(spend.amount),
                       ),
                       ListTile(
                         leading: Icon(
                           Icons.subscriptions,
                           size: 30.0,
-                          color: Color.fromARGB(255, 5, 61, 135),
+                          color: Color.fromARGB(255, 50, 163, 255),
                         ),
                         title: Text("RECORD AND MONITOR SUBSCRIPTIONS"),
                         subtitle: Text(
@@ -81,7 +81,7 @@ class Onboarding extends StatelessWidget {
                         leading: FaIcon(
                           Icons.savings,
                           size: 30.0,
-                          color: Color.fromARGB(255, 5, 61, 135),
+                          color: Color.fromARGB(255, 222, 121, 255),
                         ),
                         title: Text("SAVE AND GROW"),
                         subtitle:
@@ -89,9 +89,11 @@ class Onboarding extends StatelessWidget {
                         // trailing: Text(spend.amount),
                       ),
 
-                      Center(
-                          child:
-                              Text("An opinionated way to manage your wealth")),
+                      SizedBox(
+                        height: 70,
+                      ),
+
+                      Text("An opinionated way to manage your wealth"),
                       //- Center(child: Text("A spend tracker app that mimics real world spending")),
 
                       SizedBox(
@@ -113,7 +115,7 @@ class Onboarding extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  color: Colors.purple,
+                  color: Colors.white,
                   child: const Column(
                     children: [
                       Padding(padding: EdgeInsets.all(20)),
@@ -133,7 +135,7 @@ class Onboarding extends StatelessWidget {
                         "Income",
                         style: TextStyle(
                           fontSize: 50.0,
-                          color: Color.fromARGB(255, 5, 61, 135),
+                          color: Color.fromARGB(255, 35, 206, 135),
                           fontWeight: FontWeight.w700,
                           // fontFamily: "WorkSans"
                         ),
@@ -147,7 +149,7 @@ class Onboarding extends StatelessWidget {
                         leading: FaIcon(
                           FontAwesomeIcons.moneyBillTransfer,
                           size: 30.0,
-                          color: Color.fromARGB(255, 5, 61, 135),
+                          color: Color.fromARGB(255, 16, 212, 173),
                         ),
                         title: Text("EARNING"),
                         subtitle: Text(
@@ -158,18 +160,12 @@ class Onboarding extends StatelessWidget {
                         leading: FaIcon(
                           FontAwesomeIcons.wallet,
                           size: 30.0,
-                          color: Color.fromARGB(255, 5, 61, 135),
+                          color: Color.fromARGB(255, 231, 65, 151),
                         ),
                         title: Text("CREATE INCOME WALLET"),
                         subtitle: Text(
-                            "In the next screen type \"Income\" in the Wallet Name field"),
-                        // trailing: Text(spend.amount),
+                          "In the next screen type \"Income\" in the Wallet Name field"),
                       ),
-
-                      Center(
-                          child:
-                              Text("An opinionated way to manage your wealth")),
-                      //- Center(child: Text("A spend tracker app that mimics real world spending")),
 
                       SizedBox(
                         height: 70,
@@ -191,59 +187,60 @@ class Onboarding extends StatelessWidget {
                 ),
 
                 Container(
-                  color: Colors.pink,
-                  child: const Column(
-                    children: [
-                      Padding(padding: EdgeInsets.all(20)),
-                      Text(
-                        "Setup your first",
-                        style: TextStyle(
-                          fontSize: 30.0,
-                          color: Color.fromARGB(255, 5, 61, 135),
-                          fontWeight: FontWeight.w700,
-                          // fontFamily: "WorkSans"
+                    color: Colors.white,
+                    child: const Column(
+                      children: [
+                        Padding(padding: EdgeInsets.all(20)),
+                        Text(
+                          "Setup your first",
+                          style: TextStyle(
+                            fontSize: 30.0,
+                            color: Color.fromARGB(255, 5, 61, 135),
+                            fontWeight: FontWeight.w700,
+                            // fontFamily: "WorkSans"
+                          ),
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Wallet",
-                            style: TextStyle(
-                              fontSize: 50.0,
-                              color: Color.fromARGB(255, 5, 61, 135),
-                              fontWeight: FontWeight.w700,
-                              // fontFamily: "WorkSans"
-                            ),
-                          ),
-                          Icon(
-                            (Icons.wallet),
-                            size: 75,
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: AddWalletCard(),
-                      ),
-                      SizedBox(
-                        height: 70,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("swipe    "),
-                            // Spacer(),
-                            Icon(Icons.arrow_forward)
+                            Text(
+                              "Wallet",
+                              style: TextStyle(
+                                fontSize: 50.0,
+                                color: Color.fromARGB(255, 35, 206, 135),
+                                fontWeight: FontWeight.w700,
+                                // fontFamily: "WorkSans"
+                              ),
+                            ),
+                            Icon(
+                              Icons.wallet,
+                              size: 75,
+                              color: Color.fromARGB(255, 231, 65, 151),
+                            ),
                           ],
                         ),
-                      ),
-                    ],
-                  )
+                        Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: AddWalletCard(),
+                        ),
+                        SizedBox(
+                          height: 70,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text("swipe    "),
+                              // Spacer(),
+                              Icon(Icons.arrow_forward)
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
                     // child: const  Center(child: Text("Welcome to Ferndi - A spending tracker that mimics real life")),
-                ),
+                    ),
                 Container(
                   color: Colors.white,
                   child: Column(
@@ -262,7 +259,7 @@ class Onboarding extends StatelessWidget {
                         "Categories",
                         style: TextStyle(
                           fontSize: 50.0,
-                          color: Color.fromARGB(255, 5, 61, 135),
+                          color: Color.fromARGB(255, 35, 206, 135),
                           fontWeight: FontWeight.w700,
                           // fontFamily: "WorkSans"
                         ),
@@ -369,7 +366,7 @@ class Onboarding extends StatelessWidget {
                   ),
                 ),
                 Container(
-                    color: Colors.green,
+                    color: Colors.white,
                     child: const Column(
                       children: [
                         Padding(padding: EdgeInsets.all(20)),
@@ -389,14 +386,15 @@ class Onboarding extends StatelessWidget {
                               "Spend",
                               style: TextStyle(
                                 fontSize: 50.0,
-                                color: Color.fromARGB(255, 5, 61, 135),
+                                color: Color.fromARGB(255, 35, 206, 135),
                                 fontWeight: FontWeight.w700,
                                 // fontFamily: "WorkSans"
                               ),
                             ),
                             FaIcon(
-                              (FontAwesomeIcons.feather),
+                              (FontAwesomeIcons.featherPointed),
                               size: 75,
+                              color: Color.fromARGB(255, 35, 206, 135),
                             ),
                           ],
                         ),
@@ -421,10 +419,10 @@ class Onboarding extends StatelessWidget {
                       ],
                     )
                     // child: const  Center(child: Text("Welcome to Ferndi - A spending tracker that mimics real life")),
-                  ),
+                    ),
 
                 Container(
-                  color: Colors.green,
+                  color: Colors.white,
                   child: const Center(
                       child: Text(
                           "Welcome to Ferndi - A spending tracker that mimics real life")),
