@@ -1,3 +1,5 @@
+import "package:app/cards/addSpend.dart";
+import "package:app/cards/addWallet.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
@@ -24,6 +26,7 @@ class Onboarding extends StatelessWidget {
               Container(
                 color: Colors.blue,
                 child: const Column( children: [
+                  Padding(padding: EdgeInsets.all(20)), 
                   SizedBox(
                     height: 12,
                   ),
@@ -90,7 +93,36 @@ class Onboarding extends StatelessWidget {
               
               Container(
                 color: Colors.pink,
-                child: const  Center(child: Text("Welcome to Ferndi - A spending tracker that mimics real life")),
+                child: const Column(
+                  children: [
+                    Text(
+                    "Setup you first",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      color: Color.fromARGB(255, 5, 61, 135),
+                      fontWeight: FontWeight.w700,
+                      // fontFamily: "WorkSans"
+                    ),),
+                    Center(
+                      child: Row(
+                        children: [
+                          Text(
+                          "Wallet",
+                          style: TextStyle(
+                            fontSize: 30.0,
+                            color: Color.fromARGB(255, 5, 61, 135),
+                            fontWeight: FontWeight.w700,
+                            // fontFamily: "WorkSans"
+                          ),),
+                          Icon((Icons.money_off_csred_outlined)),
+                      
+                        ],
+                      ),
+                    ),
+                    AddWalletCard(),
+                  ],
+                )
+                // child: const  Center(child: Text("Welcome to Ferndi - A spending tracker that mimics real life")),
               ),
               
               Container(
@@ -99,8 +131,14 @@ class Onboarding extends StatelessWidget {
               ),
               
               Container(
-                child:const  Center(child: Text("Welcome to Ferndi - A spending tracker that mimics real life")),
-                  color: Colors.blue,
+                color: Colors.blue,
+                child: const Column(
+                  children: [
+                    Text("Please create your first spend"),
+                    AddSpendCard(),
+                  ],
+                ),
+                // child: const Center(child: Text("Welcome to Ferndi - A spending tracker that mimics real life")),
               ),
             ],
           ) 
