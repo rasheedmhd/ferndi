@@ -78,10 +78,12 @@ final Categories = <Category>[
   Category(ObjectId(), "Transportation"),
   Category(ObjectId(), "Miscellaneous"),
 ];
-// Create a bunch of Categories when getting onboarded
-void addCategories(Category category) {
+
+// Create a bunch of Categories when getting onboard
+void addCategories() {
   realm.write(() {
     realm.addAll(Categories);
+    print("calling add categories");
   });
 }
 
