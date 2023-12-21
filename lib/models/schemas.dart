@@ -83,7 +83,6 @@ final Categories = <Category>[
 void addCategories() {
   realm.write(() {
     realm.addAll(Categories);
-    print("calling add categories");
   });
 }
 
