@@ -11,87 +11,126 @@ class WalletItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Slidable(
-      // Specify a key if the Slidable is dismissible.
-      key: ValueKey(key),
+        // Specify a key if the Slidable is dismissible.
+        key: ValueKey(key),
 
-      // The start action pane is the one at the left or the top side.
-      startActionPane: ActionPane(
-        // A motion is a widget used to control how the pane animates.
-        motion: const ScrollMotion(),
+        // The start action pane is the one at the left or the top side.
+        startActionPane: ActionPane(
+          // A motion is a widget used to control how the pane animates.
+          motion: const ScrollMotion(),
 
-        // A pane can dismiss the Slidable.
-        dismissible: DismissiblePane(onDismissed: () {
-          deleteWallet(wallet);
-          print("spend wallet from sliding through");
-        }),
+          // A pane can dismiss the Slidable.
+          dismissible: DismissiblePane(onDismissed: () {
+            deleteWallet(wallet);
+            print("spend wallet from sliding through");
+          }),
 
-        // All actions are defined in the children parameter.
-        children: [
-          // A SlidableAction can have an icon and/or a label.
-          SlidableAction(
-            onPressed: (context) {
-          deleteWallet(wallet);
-              print("deleted wallet object from pressing delete");
-            },
-            backgroundColor:const Color(0xFFFE4A49),
-            foregroundColor: Colors.white,
-            icon: Icons.delete,
-            label: 'Delete',
-          ),
-        ],
-      ),
-      child: 
-      Container(
-        padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-        child:  ExpansionTile(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                wallet.name,
-                style: const TextStyle(
-                  fontSize: 20.0,
-                  color: Color.fromARGB(255, 26, 114, 255),
-                  fontWeight: FontWeight.w700,
-                  // fontFamily: "WorkSans"
-                ),
-              ),
-              const SizedBox(
-                width: 30,
-              ),
-              Text(
-                wallet.balance,
-                style: const TextStyle(
-                  fontSize: 12.0,
-                  color: Color.fromARGB(255, 95, 98, 103),
-                  fontWeight: FontWeight.w700,
-                  // fontFamily: "WorkSans"
-                ),
-              ),
-            ],
-          ),
-          subtitle: const Row(
-            children: [
-          ]),
-
-          children: const [ 
-            Row(
-              children: [
-              Text("[ transactions ]"),
-              Text("[ edit ]"), 
-              ]
-          ),
-            Row(
-              children: [
-              Text("[ transfer money ]"),
-              Text("[ add money ]"),
-              Text("[ withdraw money ]"),
-              ]
-          )
+          // All actions are defined in the children parameter.
+          children: [
+            // A SlidableAction can have an icon and/or a label.
+            SlidableAction(
+              onPressed: (context) {
+                deleteWallet(wallet);
+                print("deleted wallet object from pressing delete");
+              },
+              backgroundColor: const Color(0xFFFE4A49),
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: 'Delete',
+            ),
           ],
-        ) 
-      )
-    );
+        ),
+        child: Container(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+            child: ExpansionTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    wallet.name,
+                    style: const TextStyle(
+                      fontSize: 20.0,
+                      color: Color.fromARGB(255, 26, 114, 255),
+                      fontWeight: FontWeight.w700,
+                      // fontFamily: "WorkSans"
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 30,
+                  ),
+                  Text(
+                    wallet.balance,
+                    style: const TextStyle(
+                      fontSize: 12.0,
+                      color: Color.fromARGB(255, 95, 98, 103),
+                      fontWeight: FontWeight.w700,
+                      // fontFamily: "WorkSans"
+                    ),
+                  ),
+                ],
+              ),
+              subtitle: const Row(children: []),
+              children: [
+                Row(children: [
+                  const Padding(padding: EdgeInsets.all(7)),
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(7),
+                      child: Container(
+                          padding: const EdgeInsets.all(7),
+                          color: const Color.fromARGB(200, 109, 189, 255),
+                          child: const Text(
+                            "transactions",
+                            style: TextStyle(color: Colors.white),
+                          ))),
+                  const SizedBox(width: 10,),
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(7),
+                      child: Container(
+                          padding: const EdgeInsets.all(7),
+                          color: const Color.fromARGB(199, 71, 34, 255),
+                          child: const Text(
+                            "edit",
+                            style: TextStyle(color: Colors.white),
+                          ))),
+                ]),
+
+                const SizedBox(height: 10,),
+                
+                Row(children: [
+                  const Padding(padding: EdgeInsets.all(7)),
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(7),
+                      child: Container(
+                          padding: const EdgeInsets.all(7),
+                          color: const Color.fromARGB(136, 12, 227, 123),
+                          child: const Text(
+                            "add",
+                            style: TextStyle(color: Colors.white),
+                          ))),
+                          const SizedBox(width: 10,),
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(7),
+                      child: Container(
+                          padding: const EdgeInsets.all(7),
+                          color: const Color.fromARGB(135, 255, 174, 0),
+                          child: const Text(
+                            "transfer",
+                            style: TextStyle(color: Colors.white),
+                          ))),
+                          const SizedBox(width: 10,),
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(7),
+                      child: Container(
+                          padding: const EdgeInsets.all(7),
+                          color: const Color.fromARGB(136, 255, 0, 174),
+                          child: const Text(
+                            "withdraw",
+                            style: TextStyle(color: Colors.white),
+                          ))),
+                ]),
+              const SizedBox(height: 10,),
+              ],
+            )));
   }
 }
 
