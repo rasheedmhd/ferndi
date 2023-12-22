@@ -74,7 +74,7 @@ class WalletItem extends StatelessWidget {
                 Row(children: [
                   const Padding(padding: EdgeInsets.all(7)),
                   ClipRRect(
-                      borderRadius: BorderRadius.circular(7),
+                      borderRadius: BorderRadius.circular(5),
                       child: Container(
                           padding: const EdgeInsets.all(7),
                           color: const Color.fromARGB(200, 109, 189, 255),

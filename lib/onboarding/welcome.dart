@@ -1,6 +1,5 @@
 import "package:app/cards/addSpend.dart";
 import "package:app/cards/addWallet.dart";
-import "package:app/main.dart";
 import "package:app/models/schemas.dart";
 import "package:app/navigation.dart";
 import "package:flutter/material.dart";
@@ -441,11 +440,10 @@ class Onboarding extends StatelessWidget {
                       foregroundColor: Colors.white,
                       backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                       onPressed: () {
-                        onBoard = 1;
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => const NavigationScreen()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const NavigationScreen()));
                       },
                     ),
                   ])),
