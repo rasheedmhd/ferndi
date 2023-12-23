@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
-import "package:app/models/schemas.dart";
+import "package:app/utility/schema/methods.dart";
 
 class BalanceCard extends StatelessWidget {
   const BalanceCard({super.key});
@@ -30,7 +30,7 @@ class BalanceCard extends StatelessWidget {
                             style: GoogleFonts.hankenGrotesk(
                               // textStyle: Theme.of(context).textTheme.headlineLarge,
                               fontSize: 35.0,
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.w900,
                               color: const Color.fromARGB(255, 5, 61, 135),
                             )),
                       ],

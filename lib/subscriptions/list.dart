@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:app/models/schemas.dart';
+import "package:app/utility/schema/methods.dart";
 import "package:app/cards/addSubscription.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
@@ -125,7 +126,7 @@ Widget _buildSubscriptionCard(Subscription subscriptionItem) {
             children: [
               const Text("-",
                   style: TextStyle(
-                    color: Color.fromARGB(255, 26, 114, 255),
+                    color: Color.fromARGB(255, 255, 140, 0),
                     fontSize: 20.0,
                     fontWeight: FontWeight.w700,
                   )),
@@ -134,8 +135,8 @@ Widget _buildSubscriptionCard(Subscription subscriptionItem) {
               ),
               const FaIcon(
                 FontAwesomeIcons.cediSign,
-                size: 20.0,
-                color: Color.fromARGB(255, 26, 114, 255),
+                size: 17.0,
+                color: Color.fromARGB(255, 255, 140, 0),
               ),
               const SizedBox(
                 width: 3,
@@ -143,14 +144,14 @@ Widget _buildSubscriptionCard(Subscription subscriptionItem) {
               Text(
                 subscriptionItem.amount,
                 style: GoogleFonts.hankenGrotesk(
-                  color: Color.fromARGB(255, 26, 114, 255),
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w700,
+                  color: const Color.fromARGB(255, 255, 140, 0),
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.w900,
                   //fontFamily: "Galvji"
                 ),
               ),
               Text(
-                " /${subscriptionItem.period}",
+                " / ${subscriptionItem.period}",
                 style: const TextStyle(
                   color: Color.fromARGB(255, 148, 152, 158),
                   fontSize: 17.0,
