@@ -23,6 +23,7 @@ final subscriptions = realm.all<Subscription>();
 String balance = wallets.map((wallet) => wallet.balance).toList().first;
 final income = realm.query<Wallet>('name == \$0', ['Income']).first;
 final totalSpend = spends.map((spend) => spend.amount).toList().first;
+final totalTransactions = spends.map((spend) => spend.amount).toList().length;
 
 // Create a new wallet and persist to db
 void createWallet(Wallet wallet) {
@@ -83,6 +84,18 @@ final Categories = <Category>[
 void addCategories() {
   realm.write(() {
     realm.addAll(Categories);
+  });
+}
+// Create a bunch of Durations when getting onboard
+final Durations = <Duration>[
+  Duration(ObjectId(), "month"),
+  Duration(ObjectId(), "year"),
+  Duration(ObjectId(), "one time"),
+];
+
+void addDurations() {
+  realm.write(() {
+    realm.addAll(Durations);
   });
 }
 

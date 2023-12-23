@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "ferndi",
+      title: "ferndi", 
       initialRoute: onBoard == 0 || onBoard == null ? "onboard" : "app",
       routes: {
         "app" : (context) => const NavigationScreen(),

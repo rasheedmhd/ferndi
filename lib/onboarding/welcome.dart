@@ -151,7 +151,7 @@ class Onboarding extends StatelessWidget {
                       ),
                       title: Text("EARNING"),
                       subtitle: Text(
-                          "Your regular earnings, feel free you put any amount, you can edit later"),
+                          "Your regular earnings, feel free to put any amount, you can edit later"),
                       // trailing: Text(spend.amount),
                     ),
                     ListTile(
@@ -444,6 +444,7 @@ class Onboarding extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (_) => const NavigationScreen()));
+                        addDurations();
                       },
                     ),
                   ])),
