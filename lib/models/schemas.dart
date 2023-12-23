@@ -7,7 +7,7 @@ final config = Configuration.local([
   Subscription.schema,
   Category.schema,
   Duration.schema,
-], schemaVersion: 3);
+], schemaVersion: 1, shouldDeleteIfMigrationNeeded: true);
 
 final realm = Realm(config);
 
@@ -40,7 +40,7 @@ class _Subscription {
   @PrimaryKey()
   late ObjectId id;
   late String name;
-  late String amount;
+  late num amount;
   late DateTime date;
   // Also in Settings, I will have settings that allows users to set default
   // wallets for subscriptions
@@ -48,7 +48,7 @@ class _Subscription {
   late _Wallet? wallet;
   // An enum of whether the subscription is for a month or year.
 
-  // String get getAmount => amount.toStringAsFixed(2);
+  String get getAmount => amount.toStringAsFixed(2);
   String? get period => duration?.name;
   String? get from => wallet?.name;
 }
@@ -58,20 +58,10 @@ class _Wallet {
   @PrimaryKey()
   late ObjectId id;
   late String name;
-  late String balance;
-  // late num balance;
+  late num balance;
   late List<_Spend> spends;
   late List<_Subscription> subscriptions;
 
-  // String get bal => "GHS ${balance.toStringAsFixed(2)}";
-}
-
-@RealmModel()
-class _TestWallet {
-  @PrimaryKey()
-  late ObjectId id;
-  late String name;
-  late double balance;
   String get bal => "GHS ${balance.toStringAsFixed(2)}";
 }
 
@@ -84,7 +74,7 @@ class _Spend {
   late String name;
   late String notes;
   // amount spent
-  late String amount;
+  late num amount;
   late DateTime date;
   // wallet paid from for the spend
   late _Wallet? wallet;
@@ -96,7 +86,7 @@ class _Spend {
   late Iterable<_Category> linkedCategory;
 
   String? get getCategory => category?.name;
-  // String get getAmount => "GHS ${amount.toStringAsFixed(2)}";
+  String get getAmount => "GHS ${amount.toStringAsFixed(2)}";
   String? get getWallet => wallet?.name;
 }
 

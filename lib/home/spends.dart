@@ -87,7 +87,7 @@ class SpendItem extends StatelessWidget {
         ),
         title: Text(spend.name, style: const TextStyle( fontSize: 20, fontWeight: FontWeight.w500),),
         subtitle: Text(spend.notes),
-        trailing: Text(spend.amount),
+        trailing: Text(spend.getAmount),
       ),
     );
   }

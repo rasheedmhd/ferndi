@@ -4,13 +4,6 @@ import "package:app/subscriptions/list.dart";
 import 'package:app/accounts/accounts.dart';
 import "package:app/home/home.dart";
 
-import "package:google_fonts/google_fonts.dart";
-
-final theme = ThemeData(
-  useMaterial3: true,
-  textTheme: GoogleFonts.dmSansTextTheme(),
-);
-
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});
 
@@ -43,7 +36,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
     }
 
     return MaterialApp(
-      theme: theme,
+      // theme: theme,
+      theme: ThemeData(fontFamily: 'Gilroy'),
       title: "ferndi - Budgeting App",
       home: Scaffold(
         // appBar: AppBar(

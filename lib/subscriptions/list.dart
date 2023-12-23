@@ -17,14 +17,15 @@ class Subscriptions extends StatefulWidget {
 class SubscriptionsState extends State<Subscriptions> {
   void _addSubscription() {
     showModalBottomSheet(
-        context: context, builder: (ctx) => const AddSubscriptionCard());
+      context: context, builder: (ctx) => const AddSubscriptionCard());
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "Subscriptions",
-        home: Scaffold(
+      title: "Subscriptions",
+      theme: ThemeData(fontFamily: 'Gilroy'),
+      home: Scaffold(
           appBar: AppBar(
             actions: [
               IconButton(
@@ -125,11 +126,11 @@ Widget _buildSubscriptionCard(Subscription subscriptionItem) {
           Row(
             children: [
               const Text("-",
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 255, 140, 0),
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w700,
-                  )),
+                style: TextStyle(
+                  color: Color.fromARGB(255, 255, 140, 0),
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w700,
+                )),
               const SizedBox(
                 width: 5,
               ),
@@ -142,7 +143,7 @@ Widget _buildSubscriptionCard(Subscription subscriptionItem) {
                 width: 3,
               ),
               Text(
-                subscriptionItem.amount,
+                subscriptionItem.getAmount,
                 style: GoogleFonts.hankenGrotesk(
                   color: const Color.fromARGB(255, 255, 140, 0),
                   fontSize: 25.0,

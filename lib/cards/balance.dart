@@ -21,17 +21,16 @@ class BalanceCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "current balance",
+                          "Current Balance",
                         ),
-                        Text("₵ ${balance}",
+                        Text("₵ $balance",
                             // style: GoogleFonts.silkscreen(
                             // pixelated font type
                             // kanit bold font type
-                            style: GoogleFonts.hankenGrotesk(
-                              // textStyle: Theme.of(context).textTheme.headlineLarge,
+                            style: const TextStyle(
                               fontSize: 35.0,
-                              fontWeight: FontWeight.w900,
-                              color: const Color.fromARGB(255, 5, 61, 135),
+                              fontWeight: FontWeight.w700,
+                              color: Color.fromARGB(255, 5, 61, 135),
                             )),
                       ],
                     )
@@ -45,14 +44,12 @@ class BalanceCard extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("income"),
-                        Text("₵ ${income.balance}",
-                            style: GoogleFonts.hankenGrotesk(
-                              // textStyle: Theme.of(context).textTheme.headlineLarge,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w900,
-                              color: const Color.fromARGB(255, 5, 61, 135),
-                            )),
+                        const Text("Income"),
+                        Text("₵ ${income.balance}", 
+                          style: const TextStyle(fontWeight: FontWeight.w700,
+                          color: Color.fromARGB(255, 5, 61, 135),
+                         ),
+                        )
                       ],
                     ),
                     const SizedBox(
@@ -61,14 +58,8 @@ class BalanceCard extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("spend"),
-                        Text("₵ ${totalSpend}",
-                            style: GoogleFonts.hankenGrotesk(
-                              // textStyle: Theme.of(context).textTheme.headlineLarge,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w900,
-                              color: const Color.fromARGB(255, 5, 61, 135),
-                            )),
+                        const Text("Spend"),
+                        Text("₵ ${totalSpend}", style: const TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 5, 61, 135),),)
                       ],
                     )
                   ],

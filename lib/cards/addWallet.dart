@@ -12,7 +12,6 @@ class AddWalletCard extends StatefulWidget {
 }
 
 class AddWalletCardState extends State<AddWalletCard> {
-
   final _nameController = TextEditingController();
   final _balanceController = TextEditingController();
 
@@ -49,12 +48,13 @@ class AddWalletCardState extends State<AddWalletCard> {
                 TextField(
                   controller: _nameController,
                   //maxLength: 50,
+                  keyboardType: TextInputType.number,
                   decoration: const InputDecoration(label: Text("Wallet Name")),
                 ),
                 TextField(
                   controller: _balanceController,
                   //maxLength: 5, // redundant check
-                  // keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                       prefix: FaIcon(
                         FontAwesomeIcons.cediSign,
@@ -80,14 +80,20 @@ class AddWalletCardState extends State<AddWalletCard> {
                   backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                   icon: const Icon(Icons.wallet, size: 34.0),
                   onPressed: () {
-                    createWallet(
-                      Wallet(
-                        ObjectId(), 
-                        _nameController.text,
-                        _balanceController.text
-                      ));
-                      _nameController.text = "";
-                      _balanceController.text = "";
+                    print(
+                      num.tryParse(_balanceController.text) ?? 0.0,
+                    );
+                    createWallet(Wallet(
+                      ObjectId(),
+                      _nameController.text,
+                      // num.parse(_balanceController.text),
+                      num.tryParse(_balanceController.text) ?? 0.0,
+                    ));
+                    _nameController.text = "";
+                    _balanceController.text = "";
+                    print(
+                      num.tryParse(_balanceController.text) ?? 0.0,
+                    );
                   },
                 ),
 

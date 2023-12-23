@@ -68,11 +68,11 @@ class AddSpendCardState extends State<AddSpendCard> {
                 isExpanded: true,
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
                 items: categories
-                    .map((category) => DropdownMenuItem(
-                      value: category,
-                      child: Text(category.name),
-                    ))
-                    .toList(),
+                  .map((category) => DropdownMenuItem(
+                    value: category,
+                    child: Text(category.name),
+                  ))
+                  .toList(),
                 onChanged: (value) {
                   if (value == null) {
                     return;
@@ -123,7 +123,8 @@ class AddSpendCardState extends State<AddSpendCard> {
                     ObjectId(),
                     _nameController.text,
                     _notesController.text,
-                    _amountController.text,
+                    // num.parse(_amountController.text),
+                    num.tryParse(_amountController.text) ?? 0.0,
                     category: _selectedCategory,
                     wallet: _selectedWallet,
                     DateTime.now()));

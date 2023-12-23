@@ -1,6 +1,6 @@
 import "package:app/cards/addWallet.dart";
 import "package:app/cards/wallets.dart";
-import "package:app/cards/savings.dart";
+// import "package:app/cards/savings.dart";
 import "package:flutter/material.dart";
 
 
@@ -22,7 +22,8 @@ class AccountsState extends State<Accounts> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "Accounts",
+      title: "Accounts",
+      theme: ThemeData(fontFamily: 'Gilroy'),
         home: Scaffold(
           appBar: AppBar(
             // actions: [
