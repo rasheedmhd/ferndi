@@ -44,6 +44,7 @@ class WalletItem extends StatelessWidget {
         child: Container(
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
             child: ExpansionTile(
+              shape: const Border(),
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -51,9 +52,8 @@ class WalletItem extends StatelessWidget {
                     wallet.name,
                     style: const TextStyle(
                       fontSize: 20.0,
-                      color: Color.fromARGB(255, 26, 114, 255),
+                      color: Color.fromARGB(255, 5, 61, 135),
                       fontWeight: FontWeight.w700,
-                      // fontFamily: "WorkSans"
                     ),
                   ),
                   const SizedBox(
