@@ -1,4 +1,5 @@
 import "package:app/cards/addCategory.dart";
+import "package:app/cards/addWallet.dart";
 import "package:app/cards/wallets.dart";
 // import "package:app/cards/savings.dart";
 import "package:flutter/material.dart";
@@ -16,6 +17,12 @@ class AccountsState extends State<Accounts> {
     showModalBottomSheet(
       context: context, 
       builder: (ctx) => const AddCategoryCard(),
+    );
+  }
+  void _addWallet() {
+    showModalBottomSheet(
+      context: context, 
+      builder: (ctx) => const AddWalletCard(),
     );
   }
 
@@ -38,7 +45,7 @@ class AccountsState extends State<Accounts> {
           ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-            onPressed: _addCategory,
+            onPressed: _addWallet,
             child: const Icon(Icons.add, color: Colors.white),
             ),
           body: ListView(
