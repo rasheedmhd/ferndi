@@ -52,7 +52,7 @@ class Subscription extends _Subscription
   Subscription(
     ObjectId id,
     String name,
-    num amount,
+    int amount,
     DateTime date, {
     Duration? duration,
     Wallet? wallet,
@@ -78,9 +78,9 @@ class Subscription extends _Subscription
   set name(String value) => RealmObjectBase.set(this, 'name', value);
 
   @override
-  num get amount => RealmObjectBase.get<num>(this, 'amount') as num;
+  int get amount => RealmObjectBase.get<int>(this, 'amount') as int;
   @override
-  set amount(num value) => RealmObjectBase.set(this, 'amount', value);
+  set amount(int value) => RealmObjectBase.set(this, 'amount', value);
 
   @override
   DateTime get date => RealmObjectBase.get<DateTime>(this, 'date') as DateTime;
@@ -115,7 +115,7 @@ class Subscription extends _Subscription
         ObjectType.realmObject, Subscription, 'Subscription', [
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
-      SchemaProperty('amount', RealmPropertyType.double),
+      SchemaProperty('amount', RealmPropertyType.int),
       SchemaProperty('date', RealmPropertyType.timestamp),
       SchemaProperty('duration', RealmPropertyType.object,
           optional: true, linkTarget: 'Duration'),
@@ -129,7 +129,7 @@ class Wallet extends _Wallet with RealmEntity, RealmObjectBase, RealmObject {
   Wallet(
     ObjectId id,
     String name,
-    num balance, {
+    int balance, {
     Iterable<Spend> spends = const [],
     Iterable<Subscription> subscriptions = const [],
   }) {
@@ -155,9 +155,9 @@ class Wallet extends _Wallet with RealmEntity, RealmObjectBase, RealmObject {
   set name(String value) => RealmObjectBase.set(this, 'name', value);
 
   @override
-  num get balance => RealmObjectBase.get<num>(this, 'balance') as num;
+  int get balance => RealmObjectBase.get<int>(this, 'balance') as int;
   @override
-  set balance(num value) => RealmObjectBase.set(this, 'balance', value);
+  set balance(int value) => RealmObjectBase.set(this, 'balance', value);
 
   @override
   RealmList<Spend> get spends =>
@@ -188,7 +188,7 @@ class Wallet extends _Wallet with RealmEntity, RealmObjectBase, RealmObject {
     return const SchemaObject(ObjectType.realmObject, Wallet, 'Wallet', [
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
-      SchemaProperty('balance', RealmPropertyType.double),
+      SchemaProperty('balance', RealmPropertyType.int),
       SchemaProperty('spends', RealmPropertyType.object,
           linkTarget: 'Spend', collectionType: RealmCollectionType.list),
       SchemaProperty('subscriptions', RealmPropertyType.object,
@@ -202,7 +202,7 @@ class Spend extends _Spend with RealmEntity, RealmObjectBase, RealmObject {
     ObjectId id,
     String name,
     String notes,
-    num amount,
+    int amount,
     DateTime date, {
     Wallet? wallet,
     Category? category,
@@ -234,9 +234,9 @@ class Spend extends _Spend with RealmEntity, RealmObjectBase, RealmObject {
   set notes(String value) => RealmObjectBase.set(this, 'notes', value);
 
   @override
-  num get amount => RealmObjectBase.get<num>(this, 'amount') as num;
+  int get amount => RealmObjectBase.get<int>(this, 'amount') as int;
   @override
-  set amount(num value) => RealmObjectBase.set(this, 'amount', value);
+  set amount(int value) => RealmObjectBase.set(this, 'amount', value);
 
   @override
   DateTime get date => RealmObjectBase.get<DateTime>(this, 'date') as DateTime;
@@ -297,7 +297,7 @@ class Spend extends _Spend with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
       SchemaProperty('notes', RealmPropertyType.string),
-      SchemaProperty('amount', RealmPropertyType.double),
+      SchemaProperty('amount', RealmPropertyType.int),
       SchemaProperty('date', RealmPropertyType.timestamp),
       SchemaProperty('wallet', RealmPropertyType.object,
           optional: true, linkTarget: 'Wallet'),

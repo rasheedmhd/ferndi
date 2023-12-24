@@ -123,25 +123,25 @@ class AddSpendCardState extends State<AddSpendCard> {
                     ObjectId(),
                     _nameController.text,
                     _notesController.text,
-                    // num.parse(_amountController.text),
-                    num.tryParse(_amountController.text) ?? 0.0,
+                    int.parse(_amountController.text),
+                    // num.tryParse(_amountController.text) ?? 0.0,
                     category: _selectedCategory,
                     wallet: _selectedWallet,
                     DateTime.now()));
                     _nameController.text = "";
                     _notesController.text = "";
                     _amountController.text = "";
-                  // if (_amountController.text  _selectedWallet.balance) {
+                  // if (num.parse(_amountController.text) > _selectedWallet.balance) {
                   //   print(
-                  //       "POP UP: You are spending more money than you have, please top up your Wallet");
+                  //     "POP UP: You are spending more money than you have, please top up your Wallet");
                   // } else {
                   //   recordSpend(Spend(
                   //       ObjectId(),
                   //       _nameController.text,
                   //       _notesController.text,
-                  //       _amountController.text,
+                  //       num.parse(_amountController.text),
                   //       DateTime.now()));
-                  //   _selectedWallet.balance - _amountController.text;
+                  //   _selectedWallet.balance - num.parse(_amountController.text);
                   // }
                 }
               ),

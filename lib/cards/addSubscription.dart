@@ -136,8 +136,8 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
                     addSubscription(subscription.Subscription(
                       ObjectId(),
                       _nameController.text,
-                      // num.parse(_amountController.text),
-                      num.tryParse(_amountController.text) ?? 0.0,
+                      int.parse(_amountController.text),
+                      // num.tryParse(_amountController.text) ?? 0.0,
                       wallet: _selectedWallet,
                       duration: _selectedDuration,
                       DateTime.now()));

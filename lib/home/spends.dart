@@ -121,11 +121,11 @@ class SpendList extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-            child: ListView.builder(
-                itemCount: spends.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return SpendItem(spends[index]);
-                }))
+          child: ListView.builder(
+            itemCount: spends.length,
+            itemBuilder: (BuildContext context, int index) {
+              return SpendItem(spends[index]);
+          }))
       ],
     );
   }

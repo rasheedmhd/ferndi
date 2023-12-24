@@ -81,19 +81,19 @@ class AddWalletCardState extends State<AddWalletCard> {
                   icon: const Icon(Icons.wallet, size: 34.0),
                   onPressed: () {
                     print(
-                      num.tryParse(_balanceController.text) ?? 0.0,
+                      num.parse(_balanceController.text),
                     );
                     createWallet(Wallet(
                       ObjectId(),
                       _nameController.text,
-                      // num.parse(_balanceController.text),
-                      num.tryParse(_balanceController.text) ?? 0.0,
+                      int.parse(_balanceController.text), 
+                      // num.tryParse(_balanceController.text) ?? 0.0,
                     ));
+                    print(
+                      num.parse(_balanceController.text),
+                    );
                     _nameController.text = "";
                     _balanceController.text = "";
-                    print(
-                      num.tryParse(_balanceController.text) ?? 0.0,
-                    );
                   },
                 ),
 
