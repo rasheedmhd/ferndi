@@ -1,4 +1,4 @@
-import "package:app/cards/addWallet.dart";
+import "package:app/cards/addCategory.dart";
 import "package:app/cards/wallets.dart";
 // import "package:app/cards/savings.dart";
 import "package:flutter/material.dart";
@@ -12,10 +12,10 @@ class Accounts extends StatefulWidget {
 }
 
 class AccountsState extends State<Accounts> {
-  void _addAccount() {
+  void _addCategory() {
     showModalBottomSheet(
       context: context, 
-      builder: (ctx) => const AddWalletCard(),
+      builder: (ctx) => const AddCategoryCard(),
     );
   }
 
@@ -26,9 +26,9 @@ class AccountsState extends State<Accounts> {
       theme: ThemeData(fontFamily: 'Gilroy'),
         home: Scaffold(
           appBar: AppBar(
-            // actions: [
-            //   IconButton(onPressed: _addAccount, icon: const Icon(Icons.create))
-            // ],
+            actions: [
+              IconButton(onPressed: _addCategory, icon: const Icon(Icons.add, color: Colors.white,))
+            ],
             title: const Text(
               "Accounts", 
               style: TextStyle(
@@ -38,7 +38,7 @@ class AccountsState extends State<Accounts> {
           ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-            onPressed: _addAccount,
+            onPressed: _addCategory,
             child: const Icon(Icons.add, color: Colors.white),
             ),
           body: ListView(
