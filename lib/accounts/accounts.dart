@@ -39,7 +39,7 @@ class AccountsState extends State<Accounts> {
           floatingActionButton: FloatingActionButton(
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
             onPressed: _addAccount,
-            child: const Icon(Icons.add),
+            child: const Icon(Icons.add, color: Colors.white),
             ),
           body: ListView(
             padding: const EdgeInsets.all(15),

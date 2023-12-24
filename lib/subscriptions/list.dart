@@ -29,12 +29,16 @@ class SubscriptionsState extends State<Subscriptions> {
           appBar: AppBar(
             actions: [
               IconButton(
-                  onPressed: _addSubscription, icon: const Icon(Icons.add))
+                color: Colors.white,
+                onPressed: _addSubscription, icon: const Icon(Icons.add))
             ],
             title: const Text("Subscriptions",  style: TextStyle(
                 color: Colors.white
             ),),
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+            // backgrounColor for future 
+            // backgroundColor: const Color.fromARGB(255, 176, 210, 255),
+
           ),
           body: Container(
             padding: const EdgeInsets.all(15.0),
