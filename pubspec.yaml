@@ -1,5 +1,5 @@
 name: app
-description: A new Flutter project.
+description: An opinionated way to manage your wealth.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -80,7 +80,7 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Gilroy
+    - family: Gilroy 
       fonts:
         # - asset: lib/assets/fonts/Gilroy-Black.ttf
         # - asset: lib/assets/fonts/Gilroy-BlackItalic.ttf

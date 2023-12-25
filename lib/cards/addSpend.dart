@@ -119,30 +119,30 @@ class AddSpendCardState extends State<AddSpendCard> {
                 backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                 // icon: const Icon(Icons.account_balance_wallet_sharp, size: 30.0),
                 onPressed: () {
-                  recordSpend(Spend(
-                    ObjectId(),
-                    _nameController.text,
-                    _notesController.text,
-                    int.parse(_amountController.text),
-                    // num.tryParse(_amountController.text) ?? 0.0,
-                    category: _selectedCategory,
-                    wallet: _selectedWallet,
-                    DateTime.now()));
+                  // recordSpend(Spend(
+                  //   ObjectId(),
+                  //   _nameController.text,
+                  //   _notesController.text,
+                  //   int.parse(_amountController.text),
+                  //   category: _selectedCategory,
+                  //   wallet: _selectedWallet,
+                  //   DateTime.now()));
+                  if (int.parse(_amountController.text) > _selectedWallet.balance) {
+                    print(
+                      "POP UP: You are spending more money than you have, please top up your Wallet");
+                  } else {
+                    recordSpend(Spend(
+                      ObjectId(),
+                      _nameController.text,
+                      _notesController.text,
+                      int.parse(_amountController.text),
+                      DateTime.now()
+                    ));
+                    // print(_selectedWallet.balance - int.parse(_amountController.text));
                     _nameController.text = "";
                     _notesController.text = "";
                     _amountController.text = "";
-                  // if (num.parse(_amountController.text) > _selectedWallet.balance) {
-                  //   print(
-                  //     "POP UP: You are spending more money than you have, please top up your Wallet");
-                  // } else {
-                  //   recordSpend(Spend(
-                  //       ObjectId(),
-                  //       _nameController.text,
-                  //       _notesController.text,
-                  //       num.parse(_amountController.text),
-                  //       DateTime.now()));
-                  //   _selectedWallet.balance - num.parse(_amountController.text);
-                  // }
+                  }
                 }
               ),
                 // Row(
