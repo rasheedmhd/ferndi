@@ -44,6 +44,6 @@ app.*.map.json
 /android/app/release
 
 **/android/key.>properties
-/ferndi.jks
-/ferndi-keystore.jks
-/fkeystore.jks
+ferndi.jks
+ferndi-keystore.jks
+fkeystore.jks
