@@ -45,7 +45,7 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                 TextField(
                   controller: _nameController,
                   //maxLength: 50,
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.text,
                   decoration: const InputDecoration(label: Text("Category Name")),
                 ),
 

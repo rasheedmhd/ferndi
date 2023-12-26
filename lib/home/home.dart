@@ -52,7 +52,7 @@ class HomeState extends State<Home> {
             ),
             SizedBox(
               //padding: EdgeInsets.fromLTRB(15, 10, 0, 0),
-              height: 400,
+              height: 650,
               // height: double.infinity,
               child: Spends(),
             ),

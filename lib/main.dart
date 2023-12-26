@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "ferndi", 
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Gilroy'),
       initialRoute: onBoard == 0 || onBoard == null ? "onboard" : "app",
       routes: {
