@@ -1,5 +1,5 @@
 import "package:app/cards/addSpend.dart";
-import "package:app/cards/addWallet.dart";
+import "package:app/cards/addIncome.dart";
 import "package:app/utility/schema/methods.dart";
 import "package:app/navigation.dart";
 import "package:flutter/material.dart";
@@ -124,8 +124,7 @@ class Onboarding extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text("In the Wallet Name field below, type \"Income\"."),
-                        Text("The Income Wallet will be where you spend from."),
+                        Text("Wallets are where you spend from."),
                         Text("You can add more Wallets later."),
                         SizedBox(
                           height: 12,
@@ -135,7 +134,7 @@ class Onboarding extends StatelessWidget {
                         SizedBox(
                           height: 24,
                         ),
-                        AddWalletCard(),
+                        AddIncomeCard(),
                         SizedBox(
                           height: 70,
                         ),
