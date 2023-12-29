@@ -48,6 +48,9 @@ class AccountsState extends State<Accounts> {
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
           ),
           floatingActionButton: FloatingActionButton(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0)
+            ),
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
             onPressed: _addWallet,
             child: const Icon(Icons.add, color: Colors.white),
@@ -55,29 +58,12 @@ class AccountsState extends State<Accounts> {
           body: ListView(
             padding: const EdgeInsets.all(15),
             children: const [
-              // Text(
-              //   "Savings",
-              //   style: TextStyle(
-              //     fontSize: 30.0,
-              //     color: Color.fromARGB(255, 5, 61, 135),
-              //     fontWeight: FontWeight.w700,
-              //     // fontFamily: "WorkSans"
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 12,
-              // ),
-              // savingsCard(),
-              // SizedBox(
-              //   height: 12,
-              // ),
               Text(
                 "Wallets",
                 style: TextStyle(
                   fontSize: 30.0,
                   color: Color.fromARGB(255, 5, 61, 135),
                   fontWeight: FontWeight.w700,
-                  // fontFamily: "WorkSans"
                 ),
               ),
 
@@ -87,7 +73,6 @@ class AccountsState extends State<Accounts> {
 
               Divider(), 
 
-              // WalletsCard(),
               SizedBox(
                 height: 700,
                 child: WalletsCard(),

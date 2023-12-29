@@ -43,7 +43,19 @@ class WalletItem extends StatelessWidget {
             // A SlidableAction can have an icon and/or a label.
             SlidableAction(
               onPressed: (context) {
-                deleteWallet(wallet);
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                content: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Slide through to delete",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 0, 128, 255)),
+                    ),
+                  ],
+                ),
+              ));                
               },
               backgroundColor: const Color(0xFFFE4A49),
               foregroundColor: Colors.white,
@@ -76,7 +88,6 @@ class WalletItem extends StatelessWidget {
                       fontSize: 12.0,
                       color: Color.fromARGB(255, 95, 98, 103),
                       fontWeight: FontWeight.w700,
-                      // fontFamily: "WorkSans"
                     ),
                   ),
                 ],
