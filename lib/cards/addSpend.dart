@@ -32,82 +32,76 @@ class AddSpendCardState extends State<AddSpendCard> {
       shape:
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
-          child: Column(
-            children: [
-              TextField(
-                controller: _nameController,
-                // maxLength: 50,
-                decoration: const InputDecoration(
-                  label: Text("What did you buy?"),
-                  isDense: true,
-                ),
+        padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
+        child: Column(
+          children: [
+            TextField(
+              controller: _nameController,
+              decoration: const InputDecoration(
+                label: Text("What did you buy?"),
+                isDense: true,
               ),
-              TextField(
-                controller: _notesController,
-                // maxLength: 250,
-                decoration: const InputDecoration(
-                  // border: OutlineInputBorder(),
-                  label: Text("Notes"),
-                  isDense: true,
-                ),
+            ),
+            TextField(
+              controller: _notesController,
+              decoration: const InputDecoration(
+                label: Text("Notes"),
+                isDense: true,
               ),
-              TextField(
-                controller: _amountController,
-                // maxLength: 5, // redundant check
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
+            ),
+            TextField(
+              controller: _amountController,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
                   prefix: Text("GHS "),
                   label: Text("Amount"),
-                  isDense: true
-                ),
-              ),
-              DropdownButton(
-                value: _selectedCategory,
-                icon: const FaIcon(FontAwesomeIcons.icons),
-                isExpanded: true,
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                items: categories
+                  isDense: true),
+            ),
+            DropdownButton(
+              value: _selectedCategory,
+              icon: const FaIcon(FontAwesomeIcons.icons),
+              isExpanded: true,
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              items: categories
                   .map((category) => DropdownMenuItem(
-                    value: category,
-                    child: Text(category.name),
-                  ))
+                        value: category,
+                        child: Text(category.name),
+                      ))
                   .toList(),
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  }
-                  setState(() {
-                    _selectedCategory = value;
-                  });
-                },
-              ),
-              DropdownButton(
-                value: _selectedWallet,
-                icon: const Icon(Icons.wallet),
-                isExpanded: true,
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                items: wallets
+              onChanged: (value) {
+                if (value == null) {
+                  return;
+                }
+                setState(() {
+                  _selectedCategory = value;
+                });
+              },
+            ),
+            DropdownButton(
+              value: _selectedWallet,
+              icon: const Icon(Icons.wallet),
+              isExpanded: true,
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              items: wallets
                   .map((wallet) => DropdownMenuItem(
-                    value: wallet,
-                    child: Text(wallet.name),
-                  ))
+                        value: wallet,
+                        child: Text(wallet.name),
+                      ))
                   .toList(),
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  }
-                  setState(() {
-                    _selectedWallet = value;
-                  });
-                },
-              ),
-              // const SizedBox( height: 10,),
-              const SizedBox(
-                height: 40,
-              ),
+              onChanged: (value) {
+                if (value == null) {
+                  return;
+                }
+                setState(() {
+                  _selectedWallet = value;
+                });
+              },
+            ),
+            const SizedBox(
+              height: 40,
+            ),
 
-              FloatingActionButton.extended(
+            FloatingActionButton.extended(
                 label: const Text(
                   "          record          ",
                   style: TextStyle(
@@ -117,49 +111,59 @@ class AddSpendCardState extends State<AddSpendCard> {
                 ),
                 foregroundColor: Colors.white,
                 backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-                // icon: const Icon(Icons.account_balance_wallet_sharp, size: 30.0),
                 onPressed: () {
-                  // recordSpend(Spend(
-                  //   ObjectId(),
-                  //   _nameController.text,
-                  //   _notesController.text,
-                  //   int.parse(_amountController.text),
-                  //   category: _selectedCategory,
-                  //   wallet: _selectedWallet,
-                  //   DateTime.now()));
-                  if (int.parse(_amountController.text) > _selectedWallet.balance) {
-                    print(
-                      "POP UP: You are spending more money than you have, please top up your Wallet");
+                  if (int.parse(_amountController.text) >
+                      _selectedWallet.balance) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(const SnackBar(
+                      backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                      content: Column(
+                        children: [
+                          Text(
+                            "You don't have enough money in the Wallet",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 163, 9, 71)),
+                          ),
+                          Text(
+                            "Go to Accounts and add money first.",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 163, 9, 71)),
+                          ),
+                        ],
+                      ),
+                    ));
                   } else {
                     recordSpend(Spend(
                       ObjectId(),
                       _nameController.text,
                       _notesController.text,
                       int.parse(_amountController.text),
-                      DateTime.now()
-                    ));
-                    // print(_selectedWallet.balance - int.parse(_amountController.text));
-                    _nameController.text = "";
-                    _notesController.text = "";
-                    _amountController.text = "";
+                      DateTime.now()));
+                      // print(_selectedWallet.balance - int.parse(_amountController.text));
+                      _nameController.clear();
+                      _notesController.clear();
+                      _amountController.clear();
+                      ScaffoldMessenger.of(context)
+                        .showSnackBar(const SnackBar(
+                        backgroundColor: Color.fromARGB(255, 231, 255, 245),
+                        content: Column(
+                          children: [
+                            Text(
+                              "You have successfully record you Spend. Yay!",
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 9, 163, 99)
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    );
                   }
                 }
               ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     // ElevatedButton(
-                //     //   onPressed: () {}, child: const Text("Cancel")),
-                //     ElevatedButton(
-                //       onPressed: () {
-                //         print(_nameController.text);
-                //         print(_notesController.text);
-                //         print(_amountController.text);
-                //       },
-                //       child: const Text("Record"))
-                //   ],
-                // )
-              ],
-            )));
+          ],
+        )
+      )
+    );
   }
 }
