@@ -1,3 +1,4 @@
+import "package:avatar_glow/avatar_glow.dart";
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 
@@ -26,14 +27,18 @@ class savingsCard extends StatelessWidget {
                 Column(
                   children: [
                     const SizedBox(height: 10,),
-                    FloatingActionButton(
-                      shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
-                      elevation: 3,
-                      onPressed: () {},
-                      foregroundColor: const Color.fromARGB(255, 9, 163, 99),
-                      backgroundColor: const Color.fromARGB(255, 231, 255, 245),
-                      child: const Icon(Icons.add,
-                      size: 35,
+                    AvatarGlow(
+                      glowColor: Color.fromARGB(255, 157, 255, 214),
+                      curve: Curves.fastEaseInToSlowEaseOut,
+                      child: FloatingActionButton(
+                        shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+                        elevation: 3,
+                        onPressed: () {},
+                        foregroundColor: const Color.fromARGB(255, 9, 163, 99),
+                        backgroundColor: const Color.fromARGB(255, 231, 255, 245),
+                        child: const Icon(Icons.add,
+                        size: 35,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 10,),
