@@ -15,9 +15,13 @@ class Subscriptions extends StatefulWidget {
 }
 
 class SubscriptionsState extends State<Subscriptions> {
-  void _addSubscription() {
+  void _showSubscriptionForm() {
     showModalBottomSheet(
-      context: context, builder: (ctx) => const AddSubscriptionCard());
+      showDragHandle: true,
+      context: context, 
+      isScrollControlled: true,
+      builder: (ctx) => const AddSubscriptionCard()
+    );
   }
 
   @override
@@ -26,63 +30,61 @@ class SubscriptionsState extends State<Subscriptions> {
       title: "Subscriptions",
       theme: ThemeData(fontFamily: 'Gilroy'),
       home: Scaffold(
-          appBar: AppBar(
-            actions: [
-              IconButton(
-                color: Colors.white,
-                onPressed: _addSubscription, icon: const Icon(Icons.add))
-            ],
-            title: const Text("Subscriptions",  style: TextStyle(
-                color: Colors.white
-            ),),
-            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-            // backgrounColor for future 
-            // backgroundColor: const Color.fromARGB(255, 176, 210, 255),
-
+        appBar: AppBar(
+          actions: [
+            IconButton(
+            color: Colors.white,
+            onPressed: _showSubscriptionForm, icon: const Icon(Icons.add))
+          ],
+          title: const Text("Subscriptions",  style: TextStyle(
+              color: Colors.white
+          ),),
+          backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+        ),
+        body: Container(
+          padding: const EdgeInsets.all(15.0),
+          child: ListView.builder(
+            itemCount: subscriptions.length,
+            itemBuilder: (BuildContext context, int index) {
+              return _buildSubscriptionCard(subscriptions[index]);
+            }
           ),
-          body: Container(
-            padding: const EdgeInsets.all(15.0),
-            child: ListView.builder(
-                itemCount: subscriptions.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return _buildSubscriptionCard(subscriptions[index]);
-                }),
-          ),
-        ));
+        ),
+      )
+    );
   }
 } 
 
 Widget _buildSubscriptionCard(Subscription subscriptionItem) {
   return Slidable(
-          // Specify a key if the Slidable is dismissible.
-      key: ValueKey(subscriptionItem),
+    // Specify a key if the Slidable is dismissible.
+    key: ValueKey(subscriptionItem),
 
-      // The start action pane is the one at the left or the top side.
-      startActionPane: ActionPane(
-        // A motion is a widget used to control how the pane animates.
-        motion: const ScrollMotion(),
+    // The start action pane is the one at the left or the top side.
+    startActionPane: ActionPane(
+      // A motion is a widget used to control how the pane animates.
+      motion: const ScrollMotion(),
 
-        // A pane can dismiss the Slidable.
-        dismissible: DismissiblePane(onDismissed: () {
-          deleteSubscription(subscriptionItem);
-          print("subscription deleted from sliding through");
-        }),
+      // A pane can dismiss the Slidable.
+      dismissible: DismissiblePane(onDismissed: () {
+        deleteSubscription(subscriptionItem);
+        print("subscription deleted from sliding through");
+      }),
 
-        // All actions are defined in the children parameter.
-        children: [
-          // A SlidableAction can have an icon and/or a label.
-          SlidableAction(
-            onPressed: (context) {
-              deleteSubscription(subscriptionItem);
-              print("subscription deleted object from pressing delete");
-            },
-            backgroundColor: Color(0xFFFE4A49),
-            foregroundColor: Colors.white,
-            icon: Icons.delete,
-            label: 'Delete',
-          ),
-        ],
-      ),
+      // All actions are defined in the children parameter.
+      children: [
+        // A SlidableAction can have an icon and/or a label.
+        SlidableAction(
+          onPressed: (context) {
+            deleteSubscription(subscriptionItem);
+          },
+          backgroundColor: Color(0xFFFE4A49),
+          foregroundColor: Colors.white,
+          icon: Icons.delete,
+          label: 'Delete',
+        ),
+      ],
+    ),
     child: Card (
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Padding(
@@ -91,9 +93,9 @@ Widget _buildSubscriptionCard(Subscription subscriptionItem) {
           Row(
             children: [
               const Icon(
-                Icons.account_balance_wallet,
+                Icons.wallet_sharp,
                 size: 20,
-                color: Color.fromARGB(255, 17, 221, 106),
+                color: Color.fromARGB(255, 17, 221, 163),
               ),
               const SizedBox(
                 width: 10,
@@ -110,7 +112,7 @@ Widget _buildSubscriptionCard(Subscription subscriptionItem) {
           Row(
             children: [
               const Icon(
-                Icons.subscriptions,
+                Icons.card_membership,
                 size: 20,
                 color: Color.fromARGB(255, 165, 64, 243),
               ),
@@ -131,7 +133,6 @@ Widget _buildSubscriptionCard(Subscription subscriptionItem) {
             children: [
               const Text("-",
                 style: TextStyle(
-                  color: Color.fromARGB(255, 255, 140, 0),
                   fontSize: 20.0,
                   fontWeight: FontWeight.w700,
                 )),
@@ -141,7 +142,6 @@ Widget _buildSubscriptionCard(Subscription subscriptionItem) {
               const FaIcon(
                 FontAwesomeIcons.cediSign,
                 size: 17.0,
-                color: Color.fromARGB(255, 255, 140, 0),
               ),
               const SizedBox(
                 width: 3,
@@ -149,10 +149,9 @@ Widget _buildSubscriptionCard(Subscription subscriptionItem) {
               Text(
                 subscriptionItem.getAmount,
                 style: GoogleFonts.hankenGrotesk(
-                  color: const Color.fromARGB(255, 255, 140, 0),
+                  // color: const Colo.fromARGB(255, 255, 140, 0),
                   fontSize: 25.0,
                   fontWeight: FontWeight.w900,
-                  //fontFamily: "Galvji"
                 ),
               ),
               Text(
