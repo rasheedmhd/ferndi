@@ -1,5 +1,6 @@
 import "package:app/cards/addSpend.dart";
 import "package:app/cards/addIncome.dart";
+import "package:app/cards/addCategories.dart";
 import "package:app/utility/schema/methods.dart";
 import "package:app/navigation.dart";
 import "package:flutter/material.dart";
@@ -153,12 +154,12 @@ class Onboarding extends StatelessWidget {
             ),
             Container(
               color: Colors.white,
-              child: Column(
+              child: const Column(
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     height: 12,
                   ),
-                  const Text(
+                  Text(
                     "Some good first ",
                     style: TextStyle(
                       fontSize: 30.0,
@@ -166,97 +167,15 @@ class Onboarding extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const Text(
+                  Text(
                     "Categories",
                     style: TextStyle(
                       fontSize: 50.0,
                       color: Color.fromARGB(255, 35, 206, 135),
                       fontWeight: FontWeight.w700,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
-                    child: Column(
-                      children: [
-                        const ListTile(
-                          leading: FaIcon(
-                            FontAwesomeIcons.heartCircleCheck,
-                            size: 25.0,
-                            color: Color.fromARGB(255, 251, 127, 39),
-                          ),
-                          title: Text("Health"),
-                        ),
-                        const ListTile(
-                          leading: FaIcon(
-                            FontAwesomeIcons.bowlRice,
-                            size: 25.0,
-                            color: Color.fromARGB(255, 61, 177, 250),
-                          ),
-                          title: Text("Food"),
-                        ),
-                        const ListTile(
-                          leading: FaIcon(
-                            FontAwesomeIcons.bolt,
-                            size: 25.0,
-                            color: Color.fromARGB(255, 255, 128, 0),
-                          ),
-                          title: Text("Electricity"),
-                        ),
-                        const ListTile(
-                          leading: FaIcon(
-                            FontAwesomeIcons.cartShopping,
-                            size: 25.0,
-                            color: Color.fromARGB(255, 2, 218, 117),
-                          ),
-                          title: Text("Groceries"),
-                        ),
-                        const ListTile(
-                          leading: FaIcon(
-                            FontAwesomeIcons.plane,
-                            size: 25.0,
-                            color: Color.fromARGB(255, 11, 101, 218),
-                          ),
-                          title: Text("Transportation"),
-                        ),
-                        const ListTile(
-                          leading: FaIcon(
-                            FontAwesomeIcons.thumbsUp,
-                            size: 25.0,
-                            color: Color.fromARGB(255, 0, 0, 0),
-                          ),
-                          title: Text("Miscellaneous"),
-                        ),
-                        const SizedBox(
-                          height: 35,
-                        ),
-                        FloatingActionButton.extended(
-                          label: const Text(
-                            "          add all         ",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          foregroundColor: Colors.white,
-                          backgroundColor:
-                              const Color.fromARGB(255, 5, 61, 135),
-                          onPressed: () {
-                            addCategories();
-                          },
-                        ),
-                        const SizedBox(
-                          height: 70,
-                        ),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_back),
-                            Text("    swipe"),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
+                  ),                 
+                  AddCategoriesCard(),
                 ],
               ),
             ),
