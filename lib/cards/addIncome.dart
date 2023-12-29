@@ -61,8 +61,9 @@ class AddIncomeCardState extends State<AddIncomeCard> {
             height: 70,
           ),
           FloatingActionButton.extended(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
             label: const Text(
-              "       save       ",
+              "          save          ",
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.w700,

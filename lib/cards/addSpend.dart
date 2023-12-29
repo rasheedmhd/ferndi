@@ -102,6 +102,7 @@ class AddSpendCardState extends State<AddSpendCard> {
             ),
 
             FloatingActionButton.extended(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
                 label: const Text(
                   "          record          ",
                   style: TextStyle(

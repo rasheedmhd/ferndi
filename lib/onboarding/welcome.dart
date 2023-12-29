@@ -239,6 +239,7 @@ class Onboarding extends StatelessWidget {
                           height: 200,
                         ),
                         FloatingActionButton.extended(
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
                           label: const Text(
                             "          Get Started         ",
                             style: TextStyle(

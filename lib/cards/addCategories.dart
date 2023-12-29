@@ -76,8 +76,9 @@ class AddCategoriesCardState extends State<AddCategoriesCard> {
             height: 35,
           ),
           FloatingActionButton.extended(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
             label: const Text(
-              "          add all         ",
+              "          add all          ",
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.w700,
