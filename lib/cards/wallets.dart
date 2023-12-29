@@ -23,7 +23,19 @@ class WalletItem extends StatelessWidget {
           // A pane can dismiss the Slidable.
           dismissible: DismissiblePane(onDismissed: () {
             deleteWallet(wallet);
-            print("spend wallet from sliding through");
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                content: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Wallet Deleted",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 163, 9, 71)),
+                    ),
+                  ],
+                ),
+              ));
           }),
 
           // All actions are defined in the children parameter.
@@ -32,7 +44,6 @@ class WalletItem extends StatelessWidget {
             SlidableAction(
               onPressed: (context) {
                 deleteWallet(wallet);
-                print("deleted wallet object from pressing delete");
               },
               backgroundColor: const Color(0xFFFE4A49),
               foregroundColor: Colors.white,
