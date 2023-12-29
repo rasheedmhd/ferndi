@@ -23,7 +23,9 @@ class AccountsState extends State<Accounts> {
   }
   void _addWallet() {
     showModalBottomSheet(
+      showDragHandle: true,
       context: context, 
+      isScrollControlled: true,
       builder: (ctx) => const AddWalletCard(),
     );
   }
