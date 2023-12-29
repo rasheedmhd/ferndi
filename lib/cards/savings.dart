@@ -14,14 +14,12 @@ class savingsCard extends StatelessWidget {
         child: Column(
           children: [
             const Text("Total Amount Saved"),
-            Text("GHS 120,000",
-              style: GoogleFonts.hankenGrotesk(
-                // textStyle: Theme.of(context).textTheme.headlineLarge,
-                fontSize: 43.0,
+            const Text("GHS 10,000",
+              style: TextStyle(
+                fontSize: 35.0,
                 fontWeight: FontWeight.w700,
-                color: const Color.fromARGB(255, 26, 114, 255),
-              )
-            ),
+                color: Color.fromARGB(255, 5, 61, 135),
+              )),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -29,12 +27,13 @@ class savingsCard extends StatelessWidget {
                   children: [
                     const SizedBox(height: 10,),
                     FloatingActionButton(
+                      shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
                       elevation: 3,
                       onPressed: () {},
-                      backgroundColor: const Color.fromARGB(255, 19, 177, 54),
+                      foregroundColor: const Color.fromARGB(255, 9, 163, 99),
+                      backgroundColor: const Color.fromARGB(255, 231, 255, 245),
                       child: const Icon(Icons.add,
                       size: 35,
-                      // color: Colors.black38,
                       ),
                     ),
                     const SizedBox(height: 10,),
@@ -45,9 +44,11 @@ class savingsCard extends StatelessWidget {
                   children: [
                     const SizedBox(height: 10,),
                     FloatingActionButton(
+                      shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
                       elevation: 3,
                       onPressed: () {},
-                      backgroundColor: const Color.fromARGB(255, 241, 0, 36),
+                      backgroundColor: const Color.fromARGB(255, 255, 231, 241),
+                      foregroundColor: const Color.fromARGB(255, 163, 9, 71),
                       child: const Icon(Icons.remove,
                       size: 35,
                       ),
@@ -60,12 +61,13 @@ class savingsCard extends StatelessWidget {
                   children: [
                     const SizedBox(height: 10,),
                     FloatingActionButton(
+                      shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
                       elevation: 3,
                       onPressed: () {},
-                      backgroundColor: const Color.fromARGB(255, 255, 206, 8),
+                      backgroundColor: const Color.fromARGB(255, 230, 243, 255),
+                      foregroundColor: const Color.fromARGB(2255, 0, 128, 255),
                       child: const Icon(Icons.wallet,
                       size: 35,
-                      // color: Colors.black38,
                       ),
                     ),
                     const SizedBox(height: 10,),
