@@ -15,7 +15,9 @@ class Accounts extends StatefulWidget {
 class AccountsState extends State<Accounts> {
   void _addCategory() {
     showModalBottomSheet(
+      showDragHandle: true,
       context: context, 
+      isScrollControlled: true,
       builder: (ctx) => const AddCategoryCard(),
     );
   }
