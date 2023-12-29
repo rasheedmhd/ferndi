@@ -8,10 +8,9 @@ int? onBoard;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Obtain shared preferences.
   SharedPreferences preference = await SharedPreferences.getInstance();
   onBoard = preference.getInt("onBoard");
-  await preference.setInt("onBoard", 1);
+  await preference.setInt("onBoard", 0);
   runApp(const MyApp());
 }
 
