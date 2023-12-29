@@ -59,7 +59,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                 ),
                 DropdownButton(
                   value: _selectedCategory,
-                  icon: const FaIcon(FontAwesomeIcons.icons),
+                  icon: const FaIcon(FontAwesomeIcons.boxOpen),
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   items: categories
@@ -79,7 +79,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                 ),
                 DropdownButton(
                   value: _selectedWallet,
-                  icon: const Icon(Icons.wallet),
+                  icon: const Icon(Icons.wallet_sharp),
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   items: wallets
@@ -110,9 +110,36 @@ class AddSpendCardState extends State<AddSpendCard> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    foregroundColor: Colors.white,
-                    backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+                    foregroundColor: const Color.fromARGB(255, 5, 61, 135),
+                    backgroundColor: const Color.fromARGB(255, 35, 206, 135),
                     onPressed: () {
+                      if (_nameController.text.isEmpty || _amountController.text.isEmpty || _selectedCategory.name.isEmpty || _selectedWallet.name.isEmpty ) {
+                        ScaffoldMessenger.of(context)
+                          .showSnackBar(const SnackBar(
+                          backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                          content: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Spend details incomplete",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 163, 9, 71)),
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Please add name, amount, wallet and category.",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 163, 9, 71)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ));
+                        return;
+                      }                      
                       if (int.parse(_amountController.text) >
                           _selectedWallet.balance) {
                         ScaffoldMessenger.of(context)
@@ -149,10 +176,15 @@ class AddSpendCardState extends State<AddSpendCard> {
                           backgroundColor: Color.fromARGB(255, 231, 255, 245),
                           content: Column(
                             children: [
-                              Text(
-                                "You have successfully record you Spend. Yay!",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 9, 163, 99)),
+                              Row(
+                                children: [
+                                  Text(
+                                    "You have successfully recorded your Spend. Yay! ",
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 9, 163, 99)),
+                                  ),
+                                  Icon(Icons.sentiment_very_satisfied, color: Color.fromARGB(255, 9, 163, 9))                      
+                                ],
                               ),
                             ],
                           ),

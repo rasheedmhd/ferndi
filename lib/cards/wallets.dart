@@ -55,7 +55,7 @@ class WalletItem extends StatelessWidget {
                     ),
                   ],
                 ),
-              ));                
+              ));
               },
               backgroundColor: const Color(0xFFFE4A49),
               foregroundColor: Colors.white,
@@ -118,7 +118,7 @@ class WalletItem extends StatelessWidget {
                 ]),
 
                 const SizedBox(height: 10,),
-                
+
                 Row(children: [
                   const Padding(padding: EdgeInsets.all(7)),
                   ClipRRect(

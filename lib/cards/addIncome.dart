@@ -83,9 +83,15 @@ class AddIncomeCardState extends State<AddIncomeCard> {
                 backgroundColor: Color.fromARGB(255, 231, 255, 245),
                 content: Column(
                   children: [
-                    Text(
-                      "Income Wallet successfully created.",
-                      style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Income Wallet successfully created. ",
+                          style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
+                        ),
+                        Icon(Icons.sentiment_very_satisfied, color: Color.fromARGB(255, 9, 163, 9))                      
+                      ],
                     ),
                     Text(
                       "Now Swipe right to add Categories",
