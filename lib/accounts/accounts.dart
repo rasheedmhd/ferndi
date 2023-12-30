@@ -55,45 +55,74 @@ class AccountsState extends State<Accounts> {
             onPressed: _addWallet,
             child: const Icon(Icons.add, color: Colors.white),
             ),
-          body: ListView(
-            padding: const EdgeInsets.all(15),
-            children: const [
-              Text(
-                "Savings",
-                style: TextStyle(
-                  fontSize: 30.0,
-                  color: Color.fromARGB(255, 5, 61, 135),
-                  fontWeight: FontWeight.w700,
-                  // fontFamily: "WorkSans"
-                ),
-              ),
-              SizedBox(
-                height: 12,
-              ),
-              savingsCard(),
-              SizedBox(
-                height: 12,
-              ),
-              Text(
-                "Wallets",
-                style: TextStyle(
-                  fontSize: 30.0,
-                  color: Color.fromARGB(255, 5, 61, 135),
-                  fontWeight: FontWeight.w700,
+          body:  CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                expandedHeight: 300,
+                backgroundColor: Color.fromARGB(255, 5, 61, 135),
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        savingsCard(),
+                        savingsCard(),
+                        savingsCard(),
+                        savingsCard(),
+                        savingsCard(),
+
+                      ],
+                    )
+                      // savingsCard(),
+                  ),
                 ),
               ),
 
-              SizedBox(
-                height: 12,
+            SliverToBoxAdapter(
+              child: Column(
+                // padding: const EdgeInsets.all(15),
+                children: [
+                  // Text(
+                  //   "Savings",
+                  //   style: TextStyle(
+                  //     fontSize: 30.0,
+                  //     color: Color.fromARGB(255, 5, 61, 135),
+                  //     fontWeight: FontWeight.w700,
+                  //     // fontFamily: "WorkSans"
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: 12,
+                  // ),
+                  // savingsCard(),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    "Wallets",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      color: Color.fromARGB(255, 5, 61, 135),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+              
+                  SizedBox(
+                    height: 12,
+                  ),
+              
+                  Divider(), 
+              
+                  SizedBox(
+                    height: 700,
+                    child: WalletsCard(),
+                  )
+                ],
               ),
-
-              Divider(), 
-
-              SizedBox(
-                height: 700,
-                child: WalletsCard(),
-              )
+            ),
             ],
+
           ),
         ));
   }

@@ -1,6 +1,5 @@
 import "package:avatar_glow/avatar_glow.dart";
 import "package:flutter/material.dart";
-import "package:google_fonts/google_fonts.dart";
 
 class savingsCard extends StatelessWidget {
   const savingsCard({super.key});
