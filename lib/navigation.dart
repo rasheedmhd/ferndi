@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:app/subscriptions/list.dart";
 import 'package:app/accounts/accounts.dart';
+import "package:app/budgets/budgets.dart";
 import "package:app/home/home.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
@@ -28,8 +29,10 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
     switch (_selectedPageIndex) {
       case 1:
-        activePage = const Subscriptions();
+        activePage = const Budgets();
       case 2:
+        activePage = const Subscriptions();
+      case 3:
         activePage = const Accounts();
     }
 
@@ -45,6 +48,10 @@ class _NavigationScreenState extends State<NavigationScreen> {
               label: "Spending",
             ),
             BottomNavigationBarItem(
+                icon: FaIcon(FontAwesomeIcons.sackDollar),
+                label: "Budget",
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.card_membership_sharp),
               label: "Subscriptions",
             ),
@@ -53,7 +60,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
               label: "Accounts",
             ),
           ],
-          
           selectedItemColor: const Color.fromARGB(255, 5, 61, 135),
           unselectedItemColor: const Color.fromARGB(255, 26, 114, 255),
           onTap: _selectPage,
