@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import "package:app/subscriptions/list.dart";
-// import "package:app/budgets/budgets.dart";
 import 'package:app/accounts/accounts.dart';
 import "package:app/home/home.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});
@@ -27,8 +27,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
     Widget activePage = const Home();
 
     switch (_selectedPageIndex) {
-      // case 1:
-      //   activePage = const Budgets();
       case 1:
         activePage = const Subscriptions();
       case 2:
@@ -36,28 +34,16 @@ class _NavigationScreenState extends State<NavigationScreen> {
     }
 
     return MaterialApp(
-      // theme: theme,
       theme: ThemeData(fontFamily: 'Gilroy'),
       title: "ferndi - Budgeting App",
       home: Scaffold(
-        // appBar: AppBar(
-        //   // Dynamically changed based on the screen loaded by
-        //   // the navigation
-        //   title: Text(activePageTitle),
-        // ),
-        // Dynamically loaded based on the screen selected from
-        // the bottom navigation
         body: activePage,
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.account_balance_wallet),
+              icon: FaIcon(FontAwesomeIcons.wallet),
               label: "Spending",
             ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.currency_bitcoin),
-            //   label: "Budget",
-            // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.card_membership_sharp),
               label: "Subscriptions",

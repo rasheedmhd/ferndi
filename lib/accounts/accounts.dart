@@ -1,6 +1,7 @@
 import "package:app/cards/addCategory.dart";
 import "package:app/cards/addWallet.dart";
 import "package:app/cards/wallets.dart";
+import "package:avatar_glow/avatar_glow.dart";
 // import "package:app/cards/savings.dart";
 import "package:flutter/material.dart";
 
@@ -38,7 +39,10 @@ class AccountsState extends State<Accounts> {
         home: Scaffold(
           appBar: AppBar(
             actions: [
-              IconButton(onPressed: _addCategory, icon: const Icon(Icons.add, color: Colors.white,))
+              IconButton(
+                iconSize: 35,
+                onPressed: _addCategory, 
+                icon: const Icon(Icons.add, color: Colors.white,))
             ],
             title: const Text(
               "Accounts", 
@@ -47,14 +51,17 @@ class AccountsState extends State<Accounts> {
             ),),
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
           ),
-          floatingActionButton: FloatingActionButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50.0)
-            ),
-            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-            onPressed: _addWallet,
-            child: const Icon(Icons.add, color: Colors.white),
-            ),
+          floatingActionButton: AvatarGlow(
+            glowColor: const Color.fromARGB(255, 5, 61, 135),
+            child: FloatingActionButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0)
+              ),
+              backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+              onPressed: _addWallet,
+              child: const Icon(Icons.add, color: Colors.white, size: 35,),
+              ),
+          ),
           body: ListView(
             padding: const EdgeInsets.all(15),
             children: const [
