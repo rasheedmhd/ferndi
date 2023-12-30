@@ -59,7 +59,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
             //   label: "Budget",
             // ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.payment),
+              icon: Icon(Icons.card_membership_sharp),
               label: "Subscriptions",
             ),
             BottomNavigationBarItem(

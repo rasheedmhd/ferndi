@@ -23,7 +23,19 @@ class WalletItem extends StatelessWidget {
           // A pane can dismiss the Slidable.
           dismissible: DismissiblePane(onDismissed: () {
             deleteWallet(wallet);
-            print("spend wallet from sliding through");
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                content: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Wallet Deleted",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 163, 9, 71)),
+                    ),
+                  ],
+                ),
+              ));
           }),
 
           // All actions are defined in the children parameter.
@@ -31,8 +43,19 @@ class WalletItem extends StatelessWidget {
             // A SlidableAction can have an icon and/or a label.
             SlidableAction(
               onPressed: (context) {
-                deleteWallet(wallet);
-                print("deleted wallet object from pressing delete");
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                content: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Slide through to delete",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 0, 128, 255)),
+                    ),
+                  ],
+                ),
+              ));
               },
               backgroundColor: const Color(0xFFFE4A49),
               foregroundColor: Colors.white,
@@ -65,7 +88,6 @@ class WalletItem extends StatelessWidget {
                       fontSize: 12.0,
                       color: Color.fromARGB(255, 95, 98, 103),
                       fontWeight: FontWeight.w700,
-                      // fontFamily: "WorkSans"
                     ),
                   ),
                 ],
@@ -96,7 +118,7 @@ class WalletItem extends StatelessWidget {
                 ]),
 
                 const SizedBox(height: 10,),
-                
+
                 Row(children: [
                   const Padding(padding: EdgeInsets.all(7)),
                   ClipRRect(

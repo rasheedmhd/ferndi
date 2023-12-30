@@ -7,44 +7,41 @@ class BalanceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: const Color.fromARGB(255, 204, 244, 90),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        child: Padding(
-            padding: const EdgeInsets.all(25),
-            child: Column(
+      color: const Color.fromARGB(255, 35, 206, 135),
+      shape:
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      child: Padding(
+        padding: const EdgeInsets.all(25),
+        child: Column(
+          children: [
+            Row(
               children: [
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Current Balance",
-                        ),
-                        Text("₵ $balance",
-                            // style: GoogleFonts.silkscreen(
-                            // pixelated font type
-                            // kanit bold font type
-                            style: const TextStyle(
-                              fontSize: 35.0,
-                              fontWeight: FontWeight.w700,
-                              color: Color.fromARGB(255, 5, 61, 135),
-                            )),
-                      ],
-                    )
+                    const Text(
+                      "Current Balance",
+                    ),
+                    Text("GHS $balance",
+                      style: const TextStyle(
+                        fontSize: 35.0,
+                        fontWeight: FontWeight.w700,
+                        color: Color.fromARGB(255, 5, 61, 135),
+                      )),
                   ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
+                )
+              ],
+            ),
+              const SizedBox(
+                height: 20,
+              ),
                 Row(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text("Income"),
-                        Text("₵ ${income.balance}", 
+                        Text("GHS ${income.balance}", 
                           style: const TextStyle(fontWeight: FontWeight.w700,
                           color: Color.fromARGB(255, 5, 61, 135),
                          ),
@@ -58,7 +55,7 @@ class BalanceCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text("Spend"),
-                        Text("₵ ${totalSpend}", style: const TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 5, 61, 135),),)
+                        Text("GHS ${totalSpend}", style: const TextStyle(fontWeight: FontWeight.w700, color: Color.fromARGB(255, 5, 61, 135),),)
                       ],
                     )
                   ],

@@ -29,20 +29,14 @@ I started working on this app on the 15th.
 ## Home 
 Open the app
 Type your Spend details
-Click Record, as Easy as 1 2 3
-![Home](lib/assets/showcase/home.png)  
-
+## Click Record, as Easy as 1 2 3
 ## Spend History
-![Transactions History](lib/assets/showcase/spends.png)  
-
 ## Subscriptions
-Track your Subscriptions and make informed decisions on your recurring expenditure
-![Track your Subscription](lib/assets/showcase/spends.png)  
+![Home](lib/assets/showcase/showcase.png)  
+
 
 ## Accounts
 A Single page to manage your
 Wallets, 
 Savings, [ under construction ]
 Categories [ under construction ]
-![Manage your Accounts](lib/assets/showcase/wallets.png)  
-![Manage your Wallets](lib/assets/showcase/walletso.png)  
