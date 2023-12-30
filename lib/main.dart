@@ -10,7 +10,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences preference = await SharedPreferences.getInstance();
   onBoard = preference.getInt("onBoard");
-  await preference.setInt("onBoard", 1);
+  await preference.setInt("onBoard", 0);
+  // await preference.setInt("onBoard", 1);
   runApp(const MyApp());
 }
 
@@ -23,11 +24,12 @@ class MyApp extends StatelessWidget {
       title: "ferndi", 
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Gilroy'),
-      initialRoute: onBoard == 0 || onBoard == null ? "onboard" : "app",
-      routes: {
-        "app" : (context) => const NavigationScreen(),
-        "onboard" : (context) => const Onboarding(),
-      },
+      // initialRoute: onBoard == 0 || onBoard == null ? "onboard" : "app",
+      // routes: {
+      //   "app" : (context) => const NavigationScreen(),
+      //   "onboard" : (context) => const Onboarding(),
+      // },
+      home:const Onboarding(),
     );
   }
 }

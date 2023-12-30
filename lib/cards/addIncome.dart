@@ -40,19 +40,19 @@ class AddIncomeCardState extends State<AddIncomeCard> {
                 ],
               ),
               const Spacer(),
-              // Text("Income"),
               Expanded(
                 child: TextField(
                   controller: _balanceController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
-                      prefix: Text("GH₵‎  "),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                      ),
-                      hintText: "1000",
-                      label: Text("Balance"),
-                      isDense: true),
+                    prefix: Text("GHS  "),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                    ),
+                    hintText: "1000",
+                    label: Text("Balance"),
+                    isDense: true
+                  ),
                 ),
               )
             ],
@@ -61,7 +61,8 @@ class AddIncomeCardState extends State<AddIncomeCard> {
             height: 70,
           ),
           FloatingActionButton.extended(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0)),
             label: const Text(
               "          save          ",
               style: TextStyle(
@@ -72,23 +73,41 @@ class AddIncomeCardState extends State<AddIncomeCard> {
             foregroundColor: Colors.white,
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
             onPressed: () {
+              if (_balanceController.text.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                content: Column(
+                  children: [
+                    Text(
+                      "Income Wallet can not be Empty. Add Balance.",
+                      style: TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
+                    ),
+                  ],
+                ),
+              ));               
+                return;
+              }
               createWallet(Wallet(
                 ObjectId(),
                 "Income",
                 int.tryParse(_balanceController.text) ?? 0,
               ));
               _balanceController.clear();
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  backgroundColor: Color.fromARGB(255, 231, 255, 245), 
-                  content: Column(
-                    children: [
-                      Text("Income Wallet successfully created.", style: TextStyle(color:Color.fromARGB(255, 9, 163, 99)),),
-                      Text("Now Swipe right to add Categories", style: TextStyle(color:Color.fromARGB(255, 9, 163, 99)),),
-                    ],
-                  ),
-                )
-              );
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Color.fromARGB(255, 231, 255, 245),
+                content: Column(
+                  children: [
+                    Text(
+                      "Income Wallet successfully created.",
+                      style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
+                    ),
+                    Text(
+                      "Now Swipe right to add Categories",
+                      style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
+                    ),
+                  ],
+                ),
+              ));
             },
           ),
         ],
