@@ -1,4 +1,5 @@
 import "package:app/cards/subscriptions.dart";
+import "package:app/cards/subscriptionsBalanceCard.dart";
 import "package:flutter/material.dart";
 import "package:app/cards/addSubscription.dart";
 
@@ -43,6 +44,7 @@ class SubscriptionsState extends State<Subscriptions> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SubscriptionsBalanceCard(),
                 Text(
                   "Your Subscriptions",
                   style: TextStyle(
