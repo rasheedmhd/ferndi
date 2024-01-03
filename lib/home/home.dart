@@ -2,6 +2,7 @@ import "package:app/home/spends.dart";
 import "package:flutter/material.dart";
 import "package:app/cards/balance.dart";
 import "package:app/cards/addSpend.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -19,12 +20,36 @@ class HomeState extends State<Home> {
       theme: ThemeData(fontFamily: 'Gilroy'),
       home: Scaffold(
         appBar: AppBar(
-          // actions: [
-          //   IconButton(onPressed: _addSpend, icon: const Icon(Icons.add))
-          // ],
-          title: const Text("Home",  style: TextStyle(
-            color: Colors.white
-        ),),
+          title: const 
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+
+                Row(
+                  children: [
+
+                    FaIcon(
+                      FontAwesomeIcons.chevronLeft, 
+                      size: 20,
+                      color: Colors.white
+                    ),
+                    SizedBox( width: 12,),
+                    Text(
+                      "This Month",
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                    ),
+                    SizedBox( width: 12,),
+                    FaIcon(
+                      FontAwesomeIcons.chevronRight,
+                      size: 20,
+                      color: Colors.white
+                    ),
+                  ],
+                ),
+              ],
+            ),
           backgroundColor: const Color.fromARGB(255, 5, 61, 135),
         ),
         body: ListView(

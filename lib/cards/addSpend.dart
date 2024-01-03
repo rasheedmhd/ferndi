@@ -194,7 +194,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                                     color: Color.fromARGB(255, 163, 9, 71)),
                               ),
                               Text(
-                                "Go to Accounts and add money first.",
+                                "Go to Accounts and top up first.",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 163, 9, 71)),
                               ),
@@ -209,7 +209,9 @@ class AddSpendCardState extends State<AddSpendCard> {
                             int.parse(_amountController.text),
                             category: _selectedCategory,
                             wallet: _selectedWallet,
-                            DateTime.now()));
+                            DateTime.now()
+                          )
+                        );
                         // print(_selectedWallet.balance - int.parse(_amountController.text));
                         _nameController.clear();
                         _notesController.clear();
@@ -218,6 +220,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                             .showSnackBar(const SnackBar(
                           backgroundColor: Color.fromARGB(255, 231, 255, 245),
                           content: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Row(
                                 children: [
