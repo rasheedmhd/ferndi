@@ -82,7 +82,6 @@ class HomeState extends State<Home> {
               child: Spends(),
             ),
           ],
-          /// [[ TODO <feature> ]] button to check past spends grouped in months
     )));
   }
 }

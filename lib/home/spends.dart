@@ -24,19 +24,18 @@ class SpendItem extends StatelessWidget {
         // A pane can dismiss the Slidable.
         dismissible: DismissiblePane(onDismissed: () {
           deleteSpend(spend);
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              backgroundColor: Color.fromARGB(255, 255, 231, 241),
-              content: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Spend Deleted",
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 163, 9, 71)),
-                  ),
-                ],
-              ),
-            ));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            backgroundColor: Color.fromARGB(255, 255, 231, 241),
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Spend Deleted",
+                  style: TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
+                ),
+              ],
+            ),
+          ));
         }),
 
         // All actions are defined in the children parameter.
@@ -51,8 +50,7 @@ class SpendItem extends StatelessWidget {
                   children: [
                     Text(
                       "Slide through to delete",
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 0, 128, 255)),
+                      style: TextStyle(color: Color.fromARGB(255, 0, 128, 255)),
                     ),
                   ],
                 ),
@@ -75,14 +73,27 @@ class SpendItem extends StatelessWidget {
       ),
 
       child: ListTile(
-        leading: const FaIcon(
-          FontAwesomeIcons.featherPointed,
-          size: 30.0,
-          color: Color.fromARGB(255, 5, 61, 135),
+        leading: const CircleAvatar(
+          backgroundColor: Color.fromARGB(255, 165, 204, 255),
+          child: FaIcon(
+            FontAwesomeIcons.featherPointed,
+            size: 20.0,
+            color: Color.fromARGB(255, 5, 61, 135),
+          ),
         ),
-        title: Text(spend.getWallet!, style: const TextStyle( fontSize: 20, fontWeight: FontWeight.w500),),
-        subtitle: Text(spend.name),
-        trailing: Text(spend.getAmount),
+        title: Text(
+          spend.name,
+          style: const TextStyle(
+            fontSize: 20,
+          ),
+        ),
+        subtitle: Text(spend.notes),
+        trailing: Text(
+          spend.getAmount,
+          style: const TextStyle(
+            fontSize: 16,
+          ),
+        ),
       ),
     );
   }
@@ -112,11 +123,11 @@ class SpendList extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          child: ListView.builder(
-            itemCount: spends.length,
-            itemBuilder: (BuildContext context, int index) {
-              return SpendItem(spends[index]);
-          }))
+            child: ListView.builder(
+                itemCount: spends.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return SpendItem(spends[index]);
+                }))
       ],
     );
   }
