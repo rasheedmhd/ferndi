@@ -80,8 +80,8 @@ class SpendItem extends StatelessWidget {
           size: 30.0,
           color: Color.fromARGB(255, 5, 61, 135),
         ),
-        title: Text(spend.name, style: const TextStyle( fontSize: 20, fontWeight: FontWeight.w500),),
-        subtitle: Text(spend.notes),
+        title: Text(spend.getWallet!, style: const TextStyle( fontSize: 20, fontWeight: FontWeight.w500),),
+        subtitle: Text(spend.name),
         trailing: Text(spend.getAmount),
       ),
     );

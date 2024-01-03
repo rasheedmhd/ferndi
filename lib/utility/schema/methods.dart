@@ -9,7 +9,7 @@ final subscriptions = realm.all<Subscription>();
 // final budgets = realm.all<Budget>;
 
 // Querying data for balance card
-final num balance = wallets
+final balance = wallets
     .map((wallet) => wallet.balance)
     .toList()
     .reduce((value, element) => value + element);
