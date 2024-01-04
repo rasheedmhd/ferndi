@@ -31,41 +31,52 @@ class SubscriptionsState extends State<Subscriptions> {
           actions: [
             IconButton(
             color: Colors.white,
-            onPressed: _showSubscriptionForm, icon: const Icon(Icons.add))
+            onPressed: _showSubscriptionForm, icon: const Icon(
+              Icons.add, 
+              size: 34, 
+              color: Color.fromARGB(255, 5, 61, 135),
+              )
+            )
           ],
           title: const Text("Subscriptions",  style: TextStyle(
-              color: Colors.white
+              color: Color.fromARGB(255, 5, 61, 135)
           ),),
-          backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+          backgroundColor: const Color.fromARGB(255, 202, 233, 255),
         ),
-        body: ListView(
-          padding: const EdgeInsets.all(15),
-          children: const [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SubscriptionsBalanceCard(),
-                Text(
-                  "Your Subscriptions",
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    color: Color.fromARGB(255, 5, 61, 135),
-                    fontWeight: FontWeight.w700,
+        body: Container(
+          color: const Color.fromARGB(255, 202, 233, 255),
+          child: ListView(
+            padding: const EdgeInsets.all(15),
+            children: const [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SubscriptionsBalanceCard(),
+                  SizedBox(
+                    height: 12,
                   ),
-                ),
-              ],
-            ),
-
-            SizedBox(
-              height: 12,
-            ),
-
-            SizedBox(
-              height: 700,
-              child: 
-              SubscriptionsCard()
-            ),
-          ]
+                  Text(
+                    "Your Subscriptions",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      color: Color.fromARGB(255, 5, 61, 135),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+          
+              SizedBox(
+                height: 12,
+              ),
+          
+              SizedBox(
+                height: 700,
+                child: 
+                SubscriptionsCard()
+              ),
+            ]
+          ),
         ),
       )
     );

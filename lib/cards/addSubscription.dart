@@ -111,6 +111,7 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
             Row(
               children: [
                 FloatingActionButton.extended(
+                  elevation: 1,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0)),
                     label: const Icon(Icons.close),
@@ -122,6 +123,8 @@ class AddSubscriptionCardState extends State<AddSubscriptionCard> {
                 ),
                 const Spacer(),
                 FloatingActionButton.extended(
+                  elevation: 1,
+
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50.0)),
                   label: const Text(
