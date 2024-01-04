@@ -10,11 +10,6 @@ class SpendItem extends StatelessWidget {
 
   final Spend spend;
 
-//   @override
-//   SpendItemState createState() => SpendItemState();
-// }
-// class SpendItemState extends State<SpendItem> {
-
   @override
   Widget build(BuildContext context) {
     return Slidable(
@@ -29,7 +24,18 @@ class SpendItem extends StatelessWidget {
         // A pane can dismiss the Slidable.
         dismissible: DismissiblePane(onDismissed: () {
           deleteSpend(spend);
-          print("spend deleted from sliding through");
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            backgroundColor: Color.fromARGB(255, 255, 231, 241),
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Spend Deleted",
+                  style: TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
+                ),
+              ],
+            ),
+          ));
         }),
 
         // All actions are defined in the children parameter.
@@ -37,8 +43,18 @@ class SpendItem extends StatelessWidget {
           // A SlidableAction can have an icon and/or a label.
           SlidableAction(
             onPressed: (context) {
-              deleteSpend(spend);
-              print("deleted object from pressing delete");
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                content: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Slide through to delete",
+                      style: TextStyle(color: Color.fromARGB(255, 0, 128, 255)),
+                    ),
+                  ],
+                ),
+              ));
             },
             backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
@@ -56,38 +72,28 @@ class SpendItem extends StatelessWidget {
         ],
       ),
 
-      // The end action pane is the one at the right or the bottom side.
-      // endActionPane: const ActionPane(
-      //   motion: ScrollMotion(),
-      //   children: [
-      //     SlidableAction(
-      //       // An action can be bigger than the others.
-      //       flex: 2,
-      //       onPressed: doNothing,
-      //       backgroundColor: Color(0xFF7BC043),
-      //       foregroundColor: Colors.white,
-      //       icon: Icons.archive,
-      //       label: 'Archive',
-      //     ),
-      //     SlidableAction(
-      //       onPressed: doNothing,
-      //       backgroundColor: Color(0xFF0392CF),
-      //       foregroundColor: Colors.white,
-      //       icon: Icons.save,
-      //       label: 'Save',
-      //     ),
-      //   ],
-      // ),
-
       child: ListTile(
-        leading: const FaIcon(
-          FontAwesomeIcons.featherPointed,
-          size: 30.0,
-          color: Color.fromARGB(255, 5, 61, 135),
+        leading: const CircleAvatar(
+          backgroundColor: Color.fromARGB(255, 165, 204, 255),
+          child: FaIcon(
+            FontAwesomeIcons.featherPointed,
+            size: 20.0,
+            color: Color.fromARGB(255, 5, 61, 135),
+          ),
         ),
-        title: Text(spend.name, style: const TextStyle( fontSize: 20, fontWeight: FontWeight.w500),),
+        title: Text(
+          spend.name,
+          style: const TextStyle(
+            fontSize: 20,
+          ),
+        ),
         subtitle: Text(spend.notes),
-        trailing: Text(spend.getAmount),
+        trailing: Text(
+          spend.getAmount,
+          style: const TextStyle(
+            fontSize: 16,
+          ),
+        ),
       ),
     );
   }
@@ -103,10 +109,6 @@ class Spends extends StatefulWidget {
 class SpendState extends State<Spends> {
   @override
   Widget build(BuildContext context) {
-    // return Card(
-    //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-    //   child: SpendList(spends: spends()),
-    // );
     return SpendList(spends: spends);
   }
 }
@@ -122,6 +124,8 @@ class SpendList extends StatelessWidget {
       children: [
         Expanded(
           child: ListView.builder(
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
             itemCount: spends.length,
             itemBuilder: (BuildContext context, int index) {
               return SpendItem(spends[index]);

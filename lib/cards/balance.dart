@@ -7,7 +7,7 @@ class BalanceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color.fromARGB(255, 204, 244, 90),
+      color: const Color.fromARGB(255, 35, 206, 135),
       shape:
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Padding(

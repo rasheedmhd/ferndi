@@ -35,31 +35,65 @@ class AddSpendCardState extends State<AddSpendCard> {
             padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
             child: Column(
               children: [
+                const SizedBox(
+                  height: 12,
+                ),
                 TextField(
                   controller: _nameController,
                   decoration: const InputDecoration(
-                    label: Text("What did you buy?"),
+                    iconColor: Color.fromARGB(255, 151, 151, 151),
+                    icon: FaIcon(
+                      FontAwesomeIcons.penToSquare,
+                      size: 24,
+                    ),
+                    border: InputBorder.none,
+                    label: Text("What did spend on ?"),
                     isDense: true,
                   ),
+                ),
+                const Divider(
+                  color: Color.fromARGB(255, 227, 226, 226),
                 ),
                 TextField(
                   controller: _notesController,
                   decoration: const InputDecoration(
+                    iconColor: Color.fromARGB(255, 151, 151, 151),
+                    icon: FaIcon(
+                      FontAwesomeIcons.noteSticky,
+                      size: 24,
+                    ),
+                    border: InputBorder.none,
                     label: Text("Notes"),
                     isDense: true,
                   ),
+                ),
+                const Divider(
+                  color: Color.fromARGB(255, 227, 226, 226),
                 ),
                 TextField(
                   controller: _amountController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
+                      iconColor: Color.fromARGB(255, 151, 151, 151),
+                      icon: FaIcon(
+                        FontAwesomeIcons.tags,
+                        size: 24,
+                      ),
+                      border: InputBorder.none,
                       prefix: Text("GHS "),
                       label: Text("Amount"),
                       isDense: true),
                 ),
+                const Divider(
+                  color: Color.fromARGB(255, 227, 226, 226),
+                ),
                 DropdownButton(
                   value: _selectedCategory,
-                  icon: const FaIcon(FontAwesomeIcons.icons),
+                  hint: const Text("Category"),
+                  icon: const FaIcon(
+                    FontAwesomeIcons.boxArchive,
+                    color: Color.fromARGB(255, 151, 151, 151),
+                  ),
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   items: categories
@@ -79,7 +113,11 @@ class AddSpendCardState extends State<AddSpendCard> {
                 ),
                 DropdownButton(
                   value: _selectedWallet,
-                  icon: const Icon(Icons.wallet),
+                  hint: const Text("Wallet"),
+                  icon: const Icon(
+                    Icons.wallet_sharp,
+                    color: Color.fromARGB(255, 151, 151, 151),
+                  ),
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   items: wallets
@@ -98,7 +136,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                   },
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 FloatingActionButton.extended(
                     shape: RoundedRectangleBorder(
@@ -110,9 +148,39 @@ class AddSpendCardState extends State<AddSpendCard> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    foregroundColor: Colors.white,
-                    backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+                    foregroundColor: const Color.fromARGB(255, 5, 61, 135),
+                    backgroundColor: const Color.fromARGB(255, 35, 206, 135),
                     onPressed: () {
+                      if (_nameController.text.isEmpty ||
+                          _amountController.text.isEmpty ||
+                          _selectedCategory.name.isEmpty ||
+                          _selectedWallet.name.isEmpty) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                          content: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Spend details incomplete",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 163, 9, 71)),
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Please add name, amount, wallet and category.",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 163, 9, 71)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ));
+                        return;
+                      }
                       if (int.parse(_amountController.text) >
                           _selectedWallet.balance) {
                         ScaffoldMessenger.of(context)
@@ -126,7 +194,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                                     color: Color.fromARGB(255, 163, 9, 71)),
                               ),
                               Text(
-                                "Go to Accounts and add money first.",
+                                "Go to Accounts and top up first.",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 163, 9, 71)),
                               ),
@@ -139,7 +207,11 @@ class AddSpendCardState extends State<AddSpendCard> {
                             _nameController.text,
                             _notesController.text,
                             int.parse(_amountController.text),
-                            DateTime.now()));
+                            category: _selectedCategory,
+                            wallet: _selectedWallet,
+                            DateTime.now()
+                          )
+                        );
                         // print(_selectedWallet.balance - int.parse(_amountController.text));
                         _nameController.clear();
                         _notesController.clear();
@@ -148,11 +220,18 @@ class AddSpendCardState extends State<AddSpendCard> {
                             .showSnackBar(const SnackBar(
                           backgroundColor: Color.fromARGB(255, 231, 255, 245),
                           content: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                "You have successfully record you Spend. Yay!",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 9, 163, 99)),
+                              Row(
+                                children: [
+                                  Text(
+                                    "You have successfully recorded your Spend. Yay! ",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 9, 163, 99)),
+                                  ),
+                                  Icon(Icons.sentiment_very_satisfied,
+                                      color: Color.fromARGB(255, 9, 163, 9))
+                                ],
                               ),
                             ],
                           ),
