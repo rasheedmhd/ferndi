@@ -39,19 +39,24 @@ class AccountsState extends State<Accounts> {
         home: Scaffold(
           appBar: AppBar(
             actions: [
-              IconButton(
-                iconSize: 35,
-                onPressed: _addCategory, 
-                icon: const Icon(Icons.add, color: Colors.white,))
+
+              IconButton(onPressed: _addCategory, icon: const Icon(
+                Icons.add, 
+                size: 34,
+                color: Color.fromARGB(255, 19, 194, 110),
+                )
+              )
+
             ],
             title: const Text(
               "Accounts", 
               style: TextStyle(
-                color: Colors.white
+                color: Color.fromARGB(255, 19, 194, 110),
             ),),
-            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+            backgroundColor: const Color.fromARGB(255, 241, 255, 248),
           ),
-          floatingActionButton: AvatarGlow(
+
+         floatingActionButton: AvatarGlow(
             glowColor: const Color.fromARGB(255, 5, 61, 135),
             child: FloatingActionButton(
               shape: RoundedRectangleBorder(
@@ -62,30 +67,31 @@ class AccountsState extends State<Accounts> {
               child: const Icon(Icons.add, color: Colors.white, size: 35,),
               ),
           ),
-          body: ListView(
-            padding: const EdgeInsets.all(15),
-            children: const [
-              Text(
-                "Wallets",
-                style: TextStyle(
-                  fontSize: 30.0,
-                  color: Color.fromARGB(255, 5, 61, 135),
-                  fontWeight: FontWeight.w700,
+          body: Container(
+            color: const Color.fromARGB(255, 241, 255, 248),
+            child: ListView(
+              padding: const EdgeInsets.all(15),
+              children: const [
+                Text(
+                  "Your Wallets",
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    color: Color.fromARGB(255, 48, 136, 6),
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
-
-              SizedBox(
-                height: 12,
-              ),
-
-              Divider(), 
-
-              SizedBox(
-                height: 700,
-                child: WalletsCard(),
-              )
-            ],
+            
+                SizedBox(
+                  height: 12,
+                ),
+                        
+                SizedBox(
+                  height: 2800,
+                  child: WalletsCard(),
+                )
+              ],
+            ),
           ),
         ));
   }
-}
+}  
