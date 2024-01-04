@@ -1,6 +1,7 @@
 import "package:app/cards/addCategory.dart";
 import "package:app/cards/addWallet.dart";
 import "package:app/cards/wallets.dart";
+import "package:avatar_glow/avatar_glow.dart";
 // import "package:app/cards/savings.dart";
 import "package:flutter/material.dart";
 
@@ -15,13 +16,17 @@ class Accounts extends StatefulWidget {
 class AccountsState extends State<Accounts> {
   void _addCategory() {
     showModalBottomSheet(
+      showDragHandle: true,
       context: context, 
+      isScrollControlled: true,
       builder: (ctx) => const AddCategoryCard(),
     );
   }
   void _addWallet() {
     showModalBottomSheet(
+      showDragHandle: true,
       context: context, 
+      isScrollControlled: true,
       builder: (ctx) => const AddWalletCard(),
     );
   }
@@ -34,7 +39,10 @@ class AccountsState extends State<Accounts> {
         home: Scaffold(
           appBar: AppBar(
             actions: [
-              IconButton(onPressed: _addCategory, icon: const Icon(Icons.add, color: Colors.white,))
+              IconButton(
+                iconSize: 35,
+                onPressed: _addCategory, 
+                icon: const Icon(Icons.add, color: Colors.white,))
             ],
             title: const Text(
               "Accounts", 
@@ -43,37 +51,26 @@ class AccountsState extends State<Accounts> {
             ),),
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
           ),
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-            onPressed: _addWallet,
-            child: const Icon(Icons.add, color: Colors.white),
-            ),
+          floatingActionButton: AvatarGlow(
+            glowColor: const Color.fromARGB(255, 5, 61, 135),
+            child: FloatingActionButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0)
+              ),
+              backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+              onPressed: _addWallet,
+              child: const Icon(Icons.add, color: Colors.white, size: 35,),
+              ),
+          ),
           body: ListView(
             padding: const EdgeInsets.all(15),
             children: const [
-              // Text(
-              //   "Savings",
-              //   style: TextStyle(
-              //     fontSize: 30.0,
-              //     color: Color.fromARGB(255, 5, 61, 135),
-              //     fontWeight: FontWeight.w700,
-              //     // fontFamily: "WorkSans"
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 12,
-              // ),
-              // savingsCard(),
-              // SizedBox(
-              //   height: 12,
-              // ),
               Text(
                 "Wallets",
                 style: TextStyle(
                   fontSize: 30.0,
                   color: Color.fromARGB(255, 5, 61, 135),
                   fontWeight: FontWeight.w700,
-                  // fontFamily: "WorkSans"
                 ),
               ),
 
@@ -83,7 +80,6 @@ class AccountsState extends State<Accounts> {
 
               Divider(), 
 
-              // WalletsCard(),
               SizedBox(
                 height: 700,
                 child: WalletsCard(),

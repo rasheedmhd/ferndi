@@ -46,7 +46,7 @@ class AddIncomeCardState extends State<AddIncomeCard> {
                   controller: _balanceController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
-                      prefix: Text("GH₵‎  "),
+                      prefix: Text("GHS  "),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
                       ),
@@ -61,7 +61,8 @@ class AddIncomeCardState extends State<AddIncomeCard> {
             height: 70,
           ),
           FloatingActionButton.extended(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0)),
             label: const Text(
               "          save          ",
               style: TextStyle(
@@ -78,17 +79,27 @@ class AddIncomeCardState extends State<AddIncomeCard> {
                 int.tryParse(_balanceController.text) ?? 0,
               ));
               _balanceController.clear();
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  backgroundColor: Color.fromARGB(255, 231, 255, 245), 
-                  content: Column(
-                    children: [
-                      Text("Income Wallet successfully created.", style: TextStyle(color:Color.fromARGB(255, 9, 163, 99)),),
-                      Text("Now Swipe right to add Categories", style: TextStyle(color:Color.fromARGB(255, 9, 163, 99)),),
-                    ],
-                  ),
-                )
-              );
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Color.fromARGB(255, 231, 255, 245),
+                content: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Income Wallet successfully created. ",
+                          style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
+                        ),
+                        Icon(Icons.sentiment_very_satisfied, color: Color.fromARGB(255, 9, 163, 9))                      
+                      ],
+                    ),
+                    Text(
+                      "Now Swipe right to add Categories",
+                      style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
+                    ),
+                  ],
+                ),
+              ));
             },
           ),
         ],

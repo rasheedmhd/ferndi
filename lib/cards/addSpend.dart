@@ -29,142 +29,216 @@ class AddSpendCardState extends State<AddSpendCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
-        child: Column(
-          children: [
-            TextField(
-              controller: _nameController,
-              decoration: const InputDecoration(
-                label: Text("What did you buy?"),
-                isDense: true,
-              ),
-            ),
-            TextField(
-              controller: _notesController,
-              decoration: const InputDecoration(
-                label: Text("Notes"),
-                isDense: true,
-              ),
-            ),
-            TextField(
-              controller: _amountController,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
-                  prefix: Text("GHS "),
-                  label: Text("Amount"),
-                  isDense: true),
-            ),
-            DropdownButton(
-              value: _selectedCategory,
-              icon: const FaIcon(FontAwesomeIcons.icons),
-              isExpanded: true,
-              borderRadius: const BorderRadius.all(Radius.circular(20)),
-              items: categories
-                  .map((category) => DropdownMenuItem(
-                        value: category,
-                        child: Text(category.name),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                if (value == null) {
-                  return;
-                }
-                setState(() {
-                  _selectedCategory = value;
-                });
-              },
-            ),
-            DropdownButton(
-              value: _selectedWallet,
-              icon: const Icon(Icons.wallet),
-              isExpanded: true,
-              borderRadius: const BorderRadius.all(Radius.circular(20)),
-              items: wallets
-                  .map((wallet) => DropdownMenuItem(
-                        value: wallet,
-                        child: Text(wallet.name),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                if (value == null) {
-                  return;
-                }
-                setState(() {
-                  _selectedWallet = value;
-                });
-              },
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-
-            FloatingActionButton.extended(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
-                label: const Text(
-                  "          record          ",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w700,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        child: Padding(
+            padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 12,
+                ),
+                TextField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                    iconColor: Color.fromARGB(255, 151, 151, 151),
+                    icon: FaIcon(
+                      FontAwesomeIcons.penToSquare,
+                      size: 24,
+                    ),
+                    border: InputBorder.none,
+                    label: Text("What did spend on ?"),
+                    isDense: true,
                   ),
                 ),
-                foregroundColor: Colors.white,
-                backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-                onPressed: () {
-                  if (int.parse(_amountController.text) >
-                      _selectedWallet.balance) {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(
-                      backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                      content: Column(
-                        children: [
-                          Text(
-                            "You don't have enough money in the Wallet",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 163, 9, 71)),
-                          ),
-                          Text(
-                            "Go to Accounts and add money first.",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 163, 9, 71)),
-                          ),
-                        ],
+                const Divider(
+                  color: Color.fromARGB(255, 227, 226, 226),
+                ),
+                TextField(
+                  controller: _notesController,
+                  decoration: const InputDecoration(
+                    iconColor: Color.fromARGB(255, 151, 151, 151),
+                    icon: FaIcon(
+                      FontAwesomeIcons.noteSticky,
+                      size: 24,
+                    ),
+                    border: InputBorder.none,
+                    label: Text("Notes"),
+                    isDense: true,
+                  ),
+                ),
+                const Divider(
+                  color: Color.fromARGB(255, 227, 226, 226),
+                ),
+                TextField(
+                  controller: _amountController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                      iconColor: Color.fromARGB(255, 151, 151, 151),
+                      icon: FaIcon(
+                        FontAwesomeIcons.tags,
+                        size: 24,
                       ),
-                    ));
-                  } else {
-                    recordSpend(Spend(
-                      ObjectId(),
-                      _nameController.text,
-                      _notesController.text,
-                      int.parse(_amountController.text),
-                      DateTime.now()));
-                      // print(_selectedWallet.balance - int.parse(_amountController.text));
-                      _nameController.clear();
-                      _notesController.clear();
-                      _amountController.clear();
-                      ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(
-                        backgroundColor: Color.fromARGB(255, 231, 255, 245),
-                        content: Column(
-                          children: [
-                            Text(
-                              "You have successfully record you Spend. Yay!",
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 9, 163, 99)
+                      border: InputBorder.none,
+                      prefix: Text("GHS "),
+                      label: Text("Amount"),
+                      isDense: true),
+                ),
+                const Divider(
+                  color: Color.fromARGB(255, 227, 226, 226),
+                ),
+                DropdownButton(
+                  value: _selectedCategory,
+                  hint: const Text("Category"),
+                  icon: const FaIcon(
+                    FontAwesomeIcons.boxArchive,
+                    color: Color.fromARGB(255, 151, 151, 151),
+                  ),
+                  isExpanded: true,
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  items: categories
+                      .map((category) => DropdownMenuItem(
+                            value: category,
+                            child: Text(category.name),
+                          ))
+                      .toList(),
+                  onChanged: (value) {
+                    if (value == null) {
+                      return;
+                    }
+                    setState(() {
+                      _selectedCategory = value;
+                    });
+                  },
+                ),
+                DropdownButton(
+                  value: _selectedWallet,
+                  hint: const Text("Wallet"),
+                  icon: const Icon(
+                    Icons.wallet_sharp,
+                    color: Color.fromARGB(255, 151, 151, 151),
+                  ),
+                  isExpanded: true,
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  items: wallets
+                      .map((wallet) => DropdownMenuItem(
+                            value: wallet,
+                            child: Text(wallet.name),
+                          ))
+                      .toList(),
+                  onChanged: (value) {
+                    if (value == null) {
+                      return;
+                    }
+                    setState(() {
+                      _selectedWallet = value;
+                    });
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                FloatingActionButton.extended(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0)),
+                    label: const Text(
+                      "          record          ",
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    foregroundColor: const Color.fromARGB(255, 5, 61, 135),
+                    backgroundColor: const Color.fromARGB(255, 35, 206, 135),
+                    onPressed: () {
+                      if (_nameController.text.isEmpty ||
+                          _amountController.text.isEmpty ||
+                          _selectedCategory.name.isEmpty ||
+                          _selectedWallet.name.isEmpty) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                          content: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Spend details incomplete",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 163, 9, 71)),
                               ),
-                            ),
-                          ],
-                        ),
-                      )
-                    );
-                  }
-                }
-              ),
-          ],
-        )
-      )
-    );
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Please add name, amount, wallet and category.",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 163, 9, 71)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ));
+                        return;
+                      }
+                      if (int.parse(_amountController.text) >
+                          _selectedWallet.balance) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                          content: Column(
+                            children: [
+                              Text(
+                                "You don't have enough money in the Wallet",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 163, 9, 71)),
+                              ),
+                              Text(
+                                "Go to Accounts and top up first.",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 163, 9, 71)),
+                              ),
+                            ],
+                          ),
+                        ));
+                      } else {
+                        recordSpend(Spend(
+                            ObjectId(),
+                            _nameController.text,
+                            _notesController.text,
+                            int.parse(_amountController.text),
+                            category: _selectedCategory,
+                            wallet: _selectedWallet,
+                            DateTime.now()
+                          )
+                        );
+                        // print(_selectedWallet.balance - int.parse(_amountController.text));
+                        _nameController.clear();
+                        _notesController.clear();
+                        _amountController.clear();
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          backgroundColor: Color.fromARGB(255, 231, 255, 245),
+                          content: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "You have successfully recorded your Spend. Yay! ",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 9, 163, 99)),
+                                  ),
+                                  Icon(Icons.sentiment_very_satisfied,
+                                      color: Color.fromARGB(255, 9, 163, 9))
+                                ],
+                              ),
+                            ],
+                          ),
+                        ));
+                      }
+                    }),
+              ],
+            )));
   }
 }

@@ -31,12 +31,14 @@ class SubscriptionsState extends State<Subscriptions> {
           actions: [
             IconButton(
             color: Colors.white,
+
             onPressed: _showSubscriptionForm, icon: const Icon(
               Icons.add, 
               size: 34, 
               color: Color.fromARGB(255, 5, 61, 135),
               )
             )
+
           ],
           title: const Text("Subscriptions",  style: TextStyle(
               color: Color.fromARGB(255, 5, 61, 135)
