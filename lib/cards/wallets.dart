@@ -176,9 +176,11 @@ class WalletList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
+      physics: const ClampingScrollPhysics(),
         itemCount: wallets.length,
         itemBuilder: (BuildContext context, int index) {
           return WalletItem(wallets[index]);
-        });
+      });
   }
 }

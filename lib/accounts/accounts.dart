@@ -74,7 +74,7 @@ class AccountsState extends State<Accounts> {
               Divider(), 
 
               SizedBox(
-                height: 700,
+                height: 2800,
                 child: WalletsCard(),
               )
             ],
