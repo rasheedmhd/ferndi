@@ -1,6 +1,7 @@
 import "package:app/cards/addCategory.dart";
 import "package:app/cards/addWallet.dart";
 import "package:app/cards/wallets.dart";
+import "package:avatar_glow/avatar_glow.dart";
 import "package:app/cards/savings.dart";
 import "package:flutter/material.dart";
 
@@ -38,23 +39,34 @@ class AccountsState extends State<Accounts> {
         home: Scaffold(
           appBar: AppBar(
             actions: [
-              IconButton(onPressed: _addCategory, icon: const Icon(Icons.add, color: Colors.white,))
+
+              IconButton(onPressed: _addCategory, icon: const Icon(
+                Icons.add, 
+                size: 34,
+                color: Color.fromARGB(255, 19, 194, 110),
+                )
+              )
+
             ],
             title: const Text(
               "Accounts", 
               style: TextStyle(
-                color: Colors.white
+                color: Color.fromARGB(255, 19, 194, 110),
             ),),
-            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+            backgroundColor: const Color.fromARGB(255, 241, 255, 248),
           ),
-          floatingActionButton: FloatingActionButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50.0)
-            ),
-            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-            onPressed: _addWallet,
-            child: const Icon(Icons.add, color: Colors.white),
-            ),
+         floatingActionButton: AvatarGlow(
+            glowColor: const Color.fromARGB(255, 5, 61, 135),
+            child: FloatingActionButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0)
+              ),
+              backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+              onPressed: _addWallet,
+              child: const Icon(Icons.add, color: Colors.white, size: 35,),
+              ),
+          ),
+
           body:  CustomScrollView(
             slivers: [
               SliverAppBar(
@@ -122,8 +134,7 @@ class AccountsState extends State<Accounts> {
               ),
             ),
             ],
-
           ),
         ));
   }
-}
+}  

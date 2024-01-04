@@ -9,10 +9,44 @@ final subscriptions = realm.all<Subscription>();
 // final budgets = realm.all<Budget>;
 
 // Querying data for balance card
-final num balance = wallets.map((wallet) => wallet.balance).toList().reduce((value, element) => value + element);
+final balance = wallets
+    .map((wallet) => wallet.balance)
+    .toList()
+    .reduce((value, element) => value + element);
 final income = realm.query<Wallet>('name == \$0', ['Income']).first;
-final totalSpend = spends.map((spend) => spend.amount).toList().reduce((value, element) => value + element);
-final totalTransactions = spends.map((spend) => spend.amount).toList().length;
+final totalSpend = spends
+    .map((spend) => spend.amount)
+    .toList()
+    .reduce((value, element) => value + element);
+final totalTransactions = spends
+    .map((spend) => spend.amount)
+    .toList().length;
+
+
+// Querying data for Subscriptions balance card
+final num subBalance = subscriptions
+    .map((subscription) => subscription.amount)
+    .toList()
+    .reduce((value, element) => value + element);
+final totalMonthlySubscriptionsBalance =
+    realm.query<Subscription>('duration.name == \$0', ['month'])
+    .toList()
+    .map((sub) => (sub.amount))
+    .toList()
+    .reduce((value, element) => value + element);
+final totalYearlySubscriptionsBalance =
+    realm.query<Subscription>('duration.name == \$0', ['year'])
+    .toList()
+    .map((sub) => (sub.amount))
+    .toList()
+    .reduce((value, element) => value + element);
+final totalOneTimeSubscriptionsBalance =
+    realm.query<Subscription>('duration.name == \$0', ['one time'])
+    .toList()
+    .map((sub) => (sub.amount))
+    .toList()
+    .reduce((value, element) => value + element);
+
 
 // Create a new wallet and persist to db
 void createWallet(Wallet wallet) {

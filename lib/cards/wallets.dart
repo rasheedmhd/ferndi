@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 import "package:app/utility/schema/methods.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:realm/realm.dart";
 
 class WalletItem extends StatelessWidget {
@@ -23,19 +24,18 @@ class WalletItem extends StatelessWidget {
           // A pane can dismiss the Slidable.
           dismissible: DismissiblePane(onDismissed: () {
             deleteWallet(wallet);
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                content: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Wallet Deleted",
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 163, 9, 71)),
-                    ),
-                  ],
-                ),
-              ));
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              backgroundColor: Color.fromARGB(255, 255, 231, 241),
+              content: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Wallet Deleted",
+                    style: TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
+                  ),
+                ],
+              ),
+            ));
           }),
 
           // All actions are defined in the children parameter.
@@ -66,93 +66,122 @@ class WalletItem extends StatelessWidget {
         ),
         child: Container(
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-            child: ExpansionTile(
-              shape: const Border(),
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    wallet.name,
-                    style: const TextStyle(
-                      fontSize: 20.0,
-                      color: Color.fromARGB(255, 5, 61, 135),
-                      fontWeight: FontWeight.w700,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all( color: Color.fromARGB(71, 47, 136, 6),),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ExpansionTile(
+                  collapsedBackgroundColor: Colors.white,
+                  collapsedShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  backgroundColor: Colors.white,
+                
+                  leading: const CircleAvatar(
+                    backgroundColor: Color.fromARGB(255, 204, 241, 228),
+                    child: FaIcon(
+                      FontAwesomeIcons.wallet,
+                      size: 20,
+                      color: Color.fromARGB(255, 48, 136, 6),
                     ),
                   ),
-                  const SizedBox(
-                    width: 30,
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        wallet.name,
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 48, 136, 6),
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Container(
+                          padding: const EdgeInsets.all(5),
+                          color: const Color.fromARGB(255, 23, 213, 110),
+                          child: const Text(
+                            " top up ",
+                            style: TextStyle(color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        )
+                      )
+                    ),
+                    ],
                   ),
-                  Text(
+                  
+                  subtitle: Text(
                     wallet.bal,
                     style: const TextStyle(
-                      fontSize: 12.0,
-                      color: Color.fromARGB(255, 95, 98, 103),
-                      fontWeight: FontWeight.w700,
+                      fontSize: 20.0,
+                      color: Color.fromARGB(255, 48, 136, 6),
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                ],
-              ),
-              subtitle: const Row(children: []),
-              children: [
-                Row(children: [
-                  const Padding(padding: EdgeInsets.all(7)),
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
-                      child: Container(
+                
+                  children: [
+                    Row(children: [
+                      const Padding(padding: EdgeInsets.all(7)),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Container(
                           padding: const EdgeInsets.all(7),
                           color: const Color.fromARGB(200, 109, 189, 255),
                           child: const Text(
-                            "transactions",
-                            style: TextStyle(color: Colors.white),
-                          ))),
-                  const SizedBox(width: 10,),
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(7),
-                      child: Container(
+                            " transactions ",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          )
+                        )
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Container(
                           padding: const EdgeInsets.all(7),
                           color: const Color.fromARGB(199, 71, 34, 255),
                           child: const Text(
-                            "edit",
-                            style: TextStyle(color: Colors.white),
-                          ))),
-                ]),
-
-                const SizedBox(height: 10,),
-
-                Row(children: [
-                  const Padding(padding: EdgeInsets.all(7)),
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(7),
-                      child: Container(
-                          padding: const EdgeInsets.all(7),
-                          color: const Color.fromARGB(136, 12, 227, 123),
-                          child: const Text(
-                            "add",
-                            style: TextStyle(color: Colors.white),
-                          ))),
-                          const SizedBox(width: 10,),
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(7),
-                      child: Container(
+                            " edit ",
+                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600,),
+                          )
+                        )
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Container(
                           padding: const EdgeInsets.all(7),
                           color: const Color.fromARGB(135, 255, 174, 0),
                           child: const Text(
-                            "transfer",
-                            style: TextStyle(color: Colors.white),
-                          ))),
-                          const SizedBox(width: 10,),
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(7),
-                      child: Container(
-                          padding: const EdgeInsets.all(7),
-                          color: const Color.fromARGB(136, 255, 0, 174),
-                          child: const Text(
-                            "withdraw",
-                            style: TextStyle(color: Colors.white),
-                          ))),
-                ]),
-              const SizedBox(height: 10,),
-              ],
+                            " transfer ",
+                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600,),
+                          )
+                        )
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                    ]),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                // remove the chevron up/down icon at the end of the ExpandedTIle Widget
+                // trailing: const SizedBox.shrink(),
+                ),
+              ),
             )));
   }
 }
@@ -176,6 +205,8 @@ class WalletList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+        shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
         itemCount: wallets.length,
         itemBuilder: (BuildContext context, int index) {
           return WalletItem(wallets[index]);

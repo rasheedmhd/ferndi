@@ -1,10 +1,7 @@
+import "package:app/cards/subscriptions.dart";
+import "package:app/cards/subscriptionsBalanceCard.dart";
 import "package:flutter/material.dart";
-import 'package:app/models/schemas.dart';
-import "package:app/utility/schema/methods.dart";
 import "package:app/cards/addSubscription.dart";
-import "package:flutter_slidable/flutter_slidable.dart";
-import "package:font_awesome_flutter/font_awesome_flutter.dart";
-import "package:google_fonts/google_fonts.dart";
 
 
 class Subscriptions extends StatefulWidget {
@@ -34,138 +31,56 @@ class SubscriptionsState extends State<Subscriptions> {
           actions: [
             IconButton(
             color: Colors.white,
-            onPressed: _showSubscriptionForm, icon: const Icon(Icons.add))
+
+            onPressed: _showSubscriptionForm, icon: const Icon(
+              Icons.add, 
+              size: 34, 
+              color: Color.fromARGB(255, 5, 61, 135),
+              )
+            )
+
           ],
           title: const Text("Subscriptions",  style: TextStyle(
-              color: Colors.white
+              color: Color.fromARGB(255, 5, 61, 135)
           ),),
-          backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+          backgroundColor: const Color.fromARGB(255, 202, 233, 255),
         ),
         body: Container(
-          padding: const EdgeInsets.all(15.0),
-          child: ListView.builder(
-            itemCount: subscriptions.length,
-            itemBuilder: (BuildContext context, int index) {
-              return _buildSubscriptionCard(subscriptions[index]);
-            }
+          color: const Color.fromARGB(255, 202, 233, 255),
+          child: ListView(
+            padding: const EdgeInsets.all(15),
+            children: const [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // SubscriptionsBalanceCard(),
+                  // SizedBox(
+                  //   height: 12,
+                  // ),
+                  Text(
+                    "Your Subscriptions",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      color: Color.fromARGB(255, 5, 61, 135),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+          
+              SizedBox(
+                height: 12,
+              ),
+          
+              SizedBox(
+                height: 700,
+                child: 
+                SubscriptionsCard()
+              ),
+            ]
           ),
         ),
       )
     );
   }
 } 
-
-Widget _buildSubscriptionCard(Subscription subscriptionItem) {
-  return Slidable(
-    // Specify a key if the Slidable is dismissible.
-    key: ValueKey(subscriptionItem),
-
-    // The start action pane is the one at the left or the top side.
-    startActionPane: ActionPane(
-      // A motion is a widget used to control how the pane animates.
-      motion: const ScrollMotion(),
-
-      // A pane can dismiss the Slidable.
-      dismissible: DismissiblePane(onDismissed: () {
-        deleteSubscription(subscriptionItem);
-        print("subscription deleted from sliding through");
-      }),
-
-      // All actions are defined in the children parameter.
-      children: [
-        // A SlidableAction can have an icon and/or a label.
-        SlidableAction(
-          onPressed: (context) {
-            deleteSubscription(subscriptionItem);
-          },
-          backgroundColor: Color(0xFFFE4A49),
-          foregroundColor: Colors.white,
-          icon: Icons.delete,
-          label: 'Delete',
-        ),
-      ],
-    ),
-    child: Card (
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(children: <Widget>[
-          Row(
-            children: [
-              const Icon(
-                Icons.wallet_sharp,
-                size: 20,
-                color: Color.fromARGB(255, 17, 221, 163),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Text(
-                "${subscriptionItem.from}",
-                style: const TextStyle(
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              const Icon(
-                Icons.card_membership,
-                size: 20,
-                color: Color.fromARGB(255, 165, 64, 243),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Text(
-                subscriptionItem.name,
-                style: const TextStyle(
-                  fontSize: 17.0,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
-          const Divider(),
-          Row(
-            children: [
-              const Text("-",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w700,
-                )),
-              const SizedBox(
-                width: 5,
-              ),
-              const FaIcon(
-                FontAwesomeIcons.cediSign,
-                size: 17.0,
-              ),
-              const SizedBox(
-                width: 3,
-              ),
-              Text(
-                subscriptionItem.getAmount,
-                style: GoogleFonts.hankenGrotesk(
-                  // color: const Colo.fromARGB(255, 255, 140, 0),
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-              Text(
-                " / ${subscriptionItem.period}",
-                style: const TextStyle(
-                  color: Color.fromARGB(255, 148, 152, 158),
-                  fontSize: 17.0,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          )
-        ]),
-      )
-    )
-  );
-}
