@@ -58,11 +58,11 @@ class AccountsState extends State<Accounts> {
           backgroundColor: const Color.fromARGB(255, 19, 194, 110),
         ),
         floatingActionButton: AvatarGlow(
-          glowColor: const Color.fromARGB(255, 5, 61, 135),
+          glowColor: const Color.fromARGB(255, 48, 136, 6),
           child: FloatingActionButton(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0)),
-            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+            backgroundColor: const Color.fromARGB(255, 48, 136, 6),
             onPressed: _addWallet,
             child: const Icon(
               Icons.add,
