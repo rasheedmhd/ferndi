@@ -4,6 +4,8 @@ import "package:app/cards/wallets.dart";
 import "package:avatar_glow/avatar_glow.dart";
 import "package:app/cards/savings.dart";
 import "package:flutter/material.dart";
+import "package:app/utility/schema/methods.dart";
+
 
 class Accounts extends StatefulWidget {
   const Accounts({super.key});
@@ -40,12 +42,12 @@ class AccountsState extends State<Accounts> {
             appBar: AppBar(
               actions: [
                 IconButton(
-                    onPressed: _addCategory,
-                    icon: const Icon(
-                      Icons.add,
-                      size: 34,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    ))
+                  onPressed: _addCategory,
+                  icon: const Icon(
+                    Icons.add,
+                    size: 34,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ))
               ],
               title: const Text(
                 "Accounts",
@@ -88,7 +90,17 @@ class AccountsState extends State<Accounts> {
                           Color.fromARGB(255, 201, 249, 226),
                         ])
                         ),
-                    child: const savingsCard(),
+                    child: PageView(
+                      children: [ 
+                        savingsCard(wallet: income),
+                        savingsCard(wallet: income),
+                        savingsCard(wallet: income),
+                        savingsCard(wallet: income),
+                        savingsCard(wallet: income),
+                        // savingsCard(),
+                        // savingsCard(),
+                      ]
+                    ),
                   )),
                 ),
                 SliverToBoxAdapter(
