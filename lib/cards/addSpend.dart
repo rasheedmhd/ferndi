@@ -97,11 +97,11 @@ class AddSpendCardState extends State<AddSpendCard> {
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   items: categories
-                      .map((category) => DropdownMenuItem(
-                            value: category,
-                            child: Text(category.name),
-                          ))
-                      .toList(),
+                    .map((category) => DropdownMenuItem(
+                        value: category,
+                        child: Text(category.name),
+                      ))
+                    .toList(),
                   onChanged: (value) {
                     if (value == null) {
                       return;

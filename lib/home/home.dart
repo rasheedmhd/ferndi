@@ -56,28 +56,33 @@ class HomeState extends State<Home> {
                 const SizedBox(
                   height: 20,
                 ),
-                Row(
-                  children: [
-                    const Text(
-                      "Spend History",
-                      style: TextStyle(
-                        fontSize: 30.0,
-                        color: Color.fromARGB(255, 5, 61, 135),
-                        fontWeight: FontWeight.w700,
+                GestureDetector(
+                  onTap: () => {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  AddSpendCard()))
+                  },
+                  child: Row(
+                    children: [
+                      const Text(
+                        "Spend History",
+                        style: TextStyle(
+                          fontSize: 30.0,
+                          color: Color.fromARGB(255, 5, 61, 135),
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                    ),
-                    const Spacer(),
-                    const FaIcon(FontAwesomeIcons.arrowRightLong,
-                        size: 23, color: Color.fromARGB(255, 151, 151, 151)),
-                    Text(
-                      " $totalTransactions ",
-                      style: const TextStyle(
-                        fontSize: 30.0,
-                        color: Color.fromARGB(255, 151, 151, 151),
-                        fontWeight: FontWeight.w700,
+                      const Spacer(),
+                      const FaIcon(FontAwesomeIcons.arrowRightLong,
+                          size: 23, color: Color.fromARGB(255, 151, 151, 151)),
+                      Text(
+                        " $totalTransactions ",
+                        style: const TextStyle(
+                          fontSize: 30.0,
+                          color: Color.fromARGB(255, 151, 151, 151),
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
