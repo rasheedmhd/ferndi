@@ -73,7 +73,7 @@ class SubscriptionsState extends State<Subscriptions> {
               ),
           
               SizedBox(
-                height: 700,
+                height: 2800,
                 child: 
                 SubscriptionsCard()
               ),
