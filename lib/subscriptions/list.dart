@@ -53,10 +53,10 @@ class SubscriptionsState extends State<Subscriptions> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // SubscriptionsBalanceCard(),
-                  // SizedBox(
-                  //   height: 12,
-                  // ),
+                  SubscriptionsBalanceCard(),
+                  SizedBox(
+                    height: 12,
+                  ),
                   Text(
                     "Your Subscriptions",
                     style: TextStyle(

@@ -1,83 +1,80 @@
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
+import "package:app/utility/schema/methods.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
+
+
+
 
 class savingsCard extends StatelessWidget {
   const savingsCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-      child:  Padding(
-        padding: const EdgeInsets.all(25),
-        child: Column(
-          children: [
-            const Text("Total Amount Saved"),
-            Text("GHS 120,000",
-              style: GoogleFonts.hankenGrotesk(
-                // textStyle: Theme.of(context).textTheme.headlineLarge,
-                fontSize: 43.0,
-                fontWeight: FontWeight.w700,
-                color: const Color.fromARGB(255, 26, 114, 255),
-              )
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Padding(
+            padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+            child: Column(
               children: [
-                Column(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const SizedBox(height: 10,),
                     FloatingActionButton(
-                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)
+                      ),
+                      elevation: 0,
                       onPressed: () {},
-                      backgroundColor: const Color.fromARGB(255, 19, 177, 54),
-                      child: const Icon(Icons.add,
-                      size: 35,
-                      // color: Colors.black38,
+                      backgroundColor:
+                          const Color.fromARGB(255, 204, 241, 228),
+                      child: const Icon(
+                        Icons.add,
+                        size: 35,
+                        color: Color.fromARGB(255, 48, 136, 6),
                       ),
                     ),
-                    const SizedBox(height: 10,),
-                    const Text("Add Money")
-                  ],
-                ),
-                Column(
-                  children: [
-                    const SizedBox(height: 10,),
+                    const Text("Wallets",
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    )),
                     FloatingActionButton(
-                      elevation: 3,
-                      onPressed: () {},
-                      backgroundColor: const Color.fromARGB(255, 241, 0, 36),
-                      child: const Icon(Icons.remove,
-                      size: 35,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)
                       ),
+                      elevation: 0,
+                      onPressed: () {},
+                      backgroundColor:
+                          const Color.fromARGB(255, 204, 241, 228),
+                      child: const FaIcon(
+                      FontAwesomeIcons.penToSquare,
+                      size: 24,
+                      color: Color.fromARGB(255, 48, 136, 6)
                     ),
-                    const SizedBox(height: 10,),
-                    const Text("Withdraw")
+                    ),
                   ],
                 ),
-                Column(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 10,),
-                    FloatingActionButton(
-                      elevation: 3,
-                      onPressed: () {},
-                      backgroundColor: const Color.fromARGB(255, 255, 206, 8),
-                      child: const Icon(Icons.wallet,
-                      size: 35,
-                      // color: Colors.black38,
-                      ),
-                    ),
-                    const SizedBox(height: 10,),
-                    const Text("Transfer")
+                    Text("GHS $subBalance",
+                      style: const TextStyle(
+                        fontSize: 35.0,
+                        fontWeight: FontWeight.w700,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      )),
+                    const Text(".00",
+                      style: TextStyle(
+                        fontSize: 35.0,
+                        color: Color.fromARGB(207, 255, 255, 255),
+                      )),
                   ],
                 ),
-
+                const Text("Cash",
+                  style: TextStyle(
+                    fontSize: 23.0,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  )),
               ],
-            )
-          ],
-       )
-     )
-    );
+            ));
   }
 }

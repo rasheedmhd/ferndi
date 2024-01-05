@@ -73,19 +73,29 @@ class AccountsState extends State<Accounts> {
               slivers: [
                 SliverAppBar(
                   backgroundColor: const Color.fromARGB(255, 19, 194, 110),
-                  // title: Text("Accounts"),
                   expandedHeight: 200,
                   flexibleSpace: FlexibleSpaceBar(
                       background: Container(
-                    color: const Color.fromARGB(255, 19, 194, 110),
-                    // child:
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            transform: GradientRotation(3.142 / 6),
+                            colors: [
+                          Color.fromARGB(255, 19, 194, 110),
+                          Color.fromARGB(255, 127, 0, 254),
+                          Color.fromARGB(255, 188, 247, 25),
+                          Color.fromARGB(255, 201, 249, 226),
+                        ])
+                        ),
+                    child: const savingsCard(),
                   )),
                 ),
                 SliverToBoxAdapter(
                   child: Container(
                       color: const Color.fromARGB(255, 241, 255, 248),
                       child: const Padding(
-                        padding: EdgeInsets.all(10.0),
+                        padding: EdgeInsets.fromLTRB(20, 10.0, 20, 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
