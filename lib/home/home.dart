@@ -1,3 +1,4 @@
+import "package:app/home/spendHistory.dart";
 import "package:app/home/spends.dart";
 import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
@@ -58,7 +59,7 @@ class HomeState extends State<Home> {
                 ),
                 GestureDetector(
                   onTap: () => {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  AddSpendCard()))
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  const SpendsPage()))
                   },
                   child: Row(
                     children: [
