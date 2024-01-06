@@ -1,6 +1,6 @@
-import "package:app/ops/addSpend.dart";
-import "package:app/ops/addIncome.dart";
-import "package:app/ops/addCategories.dart";
+import "package:app/ops/create/addSpend.dart";
+import "package:app/ops/create/addIncome.dart";
+import "package:app/ops/create/addCategories.dart";
 import "package:app/utility/schema/methods.dart";
 import "package:app/navigation.dart";
 import "package:flutter/material.dart";
