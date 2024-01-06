@@ -1,7 +1,7 @@
 import "package:app/cards/subscriptions.dart";
 import "package:app/cards/subscriptionsBalanceCard.dart";
 import "package:flutter/material.dart";
-import "package:app/cards/addSubscription.dart";
+import "package:app/ops/addSubscription.dart";
 
 
 class Subscriptions extends StatefulWidget {
