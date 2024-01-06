@@ -1,3 +1,4 @@
+import "package:app/ops/update/editSpend.dart";
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 import "package:app/utility/schema/methods.dart";
@@ -61,14 +62,21 @@ class SpendItem extends StatelessWidget {
             icon: Icons.delete,
             label: 'Delete',
           ),
-          // SlidableAction(
-          //   onPressed: (context) {},
-          //   backgroundColor: Color.fromARGB(255, 96, 150, 249),
-          //   // backgroundColor: Color(0xFF21B7CA),
-          //   foregroundColor: Colors.white,
-          //   icon: Icons.edit,
-          //   label: 'Edit',
-          // ),
+          SlidableAction(
+            onPressed: (context) {
+              showModalBottomSheet(
+                showDragHandle: true,
+                context: context,
+                isScrollControlled: true,
+                useSafeArea: true,
+                builder: (ctx) => const EditSpendCard(spend: spend),
+              );
+            },
+            backgroundColor: const Color.fromARGB(255, 96, 150, 249),
+            foregroundColor: Colors.white,
+            icon: Icons.edit,
+            label: 'Edit',
+          ),
         ],
       ),
 
@@ -129,7 +137,9 @@ class SpendList extends StatelessWidget {
             itemCount: spends.length,
             itemBuilder: (BuildContext context, int index) {
               return SpendItem(spends[index]);
-          }))
+            }
+          )
+        )
       ],
     );
   }

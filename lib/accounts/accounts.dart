@@ -1,5 +1,5 @@
-import "package:app/cards/addCategory.dart";
-import "package:app/cards/addWallet.dart";
+import "package:app/ops/create/addCategory.dart";
+import "package:app/ops/create/addWallet.dart";
 import "package:app/cards/wallets.dart";
 import "package:avatar_glow/avatar_glow.dart";
 import "package:app/cards/savings.dart";
