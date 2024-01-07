@@ -64,13 +64,8 @@ class SpendItem extends StatelessWidget {
           ),
           SlidableAction(
             onPressed: (context) {
-              showModalBottomSheet(
-                showDragHandle: true,
-                context: context,
-                isScrollControlled: true,
-                useSafeArea: true,
-                builder: (ctx) => const EditSpendCard(spend: spend),
-              );
+              Navigator.push(context, 
+              MaterialPageRoute(builder: (ctx) => EditSpendCard(spend: spend)));
             },
             backgroundColor: const Color.fromARGB(255, 96, 150, 249),
             foregroundColor: Colors.white,
