@@ -30,9 +30,7 @@ class EditSpendCardState extends State<EditSpendCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        
-      ),
+      appBar: AppBar(),
       body: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -79,15 +77,15 @@ class EditSpendCardState extends State<EditSpendCard> {
                     controller: _amountController,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      iconColor: Color.fromARGB(255, 151, 151, 151),
-                      icon: FaIcon(
-                        FontAwesomeIcons.tags,
-                        size: 24,
-                      ),
-                      border: InputBorder.none,
-                      prefix: Text("GHS "),
-                      label: Text("Amount"),
-                      isDense: true),
+                        iconColor: Color.fromARGB(255, 151, 151, 151),
+                        icon: FaIcon(
+                          FontAwesomeIcons.tags,
+                          size: 24,
+                        ),
+                        border: InputBorder.none,
+                        prefix: Text("GHS "),
+                        label: Text("Amount"),
+                        isDense: true),
                   ),
                   const Divider(
                     color: Color.fromARGB(255, 227, 226, 226),
@@ -102,11 +100,11 @@ class EditSpendCardState extends State<EditSpendCard> {
                     isExpanded: true,
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                     items: categories
-                      .map((category) => DropdownMenuItem(
-                            value: category,
-                            child: Text(category.name),
-                          ))
-                      .toList(),
+                        .map((category) => DropdownMenuItem(
+                              value: category,
+                              child: Text(category.name),
+                            ))
+                        .toList(),
                     onChanged: (value) {
                       if (value == null) {
                         return;
@@ -127,9 +125,9 @@ class EditSpendCardState extends State<EditSpendCard> {
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                     items: wallets
                         .map((wallet) => DropdownMenuItem(
-                            value: wallet,
-                            child: Text(wallet.name),
-                          ))
+                              value: wallet,
+                              child: Text(wallet.name),
+                            ))
                         .toList(),
                     onChanged: (value) {
                       if (value == null) {
@@ -144,16 +142,16 @@ class EditSpendCardState extends State<EditSpendCard> {
                     height: 20,
                   ),
                   FloatingActionButton.extended(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0)),
-                    label: const Text(
-                      "          save          ",
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w700,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0)),
+                      label: const Text(
+                        "          save          ",
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                    ),
-                    foregroundColor: const Color.fromARGB(255, 5, 61, 135),
+                      foregroundColor: const Color.fromARGB(255, 5, 61, 135),
                       backgroundColor: const Color.fromARGB(255, 35, 206, 135),
                       onPressed: () {
                         if (int.parse(_amountController.text) >
@@ -166,12 +164,12 @@ class EditSpendCardState extends State<EditSpendCard> {
                                 Text(
                                   "You don't have enough money in the Wallet",
                                   style: TextStyle(
-                                    color: Color.fromARGB(255, 163, 9, 71)),
+                                      color: Color.fromARGB(255, 163, 9, 71)),
                                 ),
                                 Text(
                                   "Go to Accounts and top up first.",
                                   style: TextStyle(
-                                    color: Color.fromARGB(255, 163, 9, 71)),
+                                      color: Color.fromARGB(255, 163, 9, 71)),
                                 ),
                               ],
                             ),
@@ -200,7 +198,8 @@ class EditSpendCardState extends State<EditSpendCard> {
                                     Text(
                                       "Spend edited and Saved.",
                                       style: TextStyle(
-                                          color: Color.fromARGB(255, 9, 163, 99)),
+                                          color:
+                                              Color.fromARGB(255, 9, 163, 99)),
                                     ),
                                     Icon(Icons.sentiment_very_satisfied,
                                         color: Color.fromARGB(255, 9, 163, 9))

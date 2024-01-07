@@ -11,7 +11,14 @@ class SpendItem extends StatelessWidget {
 
   final Spend spend;
 
-  @override
+  void _showSpendEditForm(BuildContext context, Spend spend) {
+    
+    Navigator.push(context, 
+      MaterialPageRoute(builder: (ctx) => EditSpendCard(spend: spend))
+    );
+  }
+
+  @override 
   Widget build(BuildContext context) {
     return Slidable(
       // Specify a key if the Slidable is dismissible.

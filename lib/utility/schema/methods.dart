@@ -73,6 +73,13 @@ void recordSpend(Spend spend) {
   });
 }
 
+
+void upateSpend(Spend spend) {
+    realm.write(() {
+     realm.add<Spend>(spend, update: true);
+  });
+}
+
 void deleteSpend(Spend spend) {
   realm.write(() {
     realm.delete<Spend>(spend);
