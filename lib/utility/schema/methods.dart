@@ -74,13 +74,13 @@ void recordSpend(Spend spend) {
 }
 
 
-void upateSpend(Spend spend) {
+void updateSpend(Spend spend) {
     realm.write(() {
      realm.add<Spend>(spend, update: true);
   });
 }
 
-void upateWallet(Wallet wallet) {
+void updateWallet(Wallet wallet) {
     realm.write(() {
      realm.add<Wallet>(wallet, update: true);
   });

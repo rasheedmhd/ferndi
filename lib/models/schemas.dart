@@ -103,7 +103,7 @@ Wallet getWallet(ObjectId id) {
 }
 
 Spend getSpend(ObjectId id) {
-  final spendToEdit = realm.query<Spend>('id == \$0', [id.toString()]).first;
+  final spendToEdit = realm.query<Spend>('id == \$0', [id]).first;
   return spendToEdit;
 }
 

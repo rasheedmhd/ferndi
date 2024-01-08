@@ -4,22 +4,26 @@ import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 class EditSpendCard extends StatefulWidget {
-  const EditSpendCard({required this.spend, super.key});
 
   final Spend spend;
+  // const EditSpendCard({required this.spend, super.key});
+  const EditSpendCard(this.spend, {super.key});
 
   @override
   EditSpendCardState createState() => EditSpendCardState();
 }
 
 class EditSpendCardState extends State<EditSpendCard> {
-  static final spend = realm.all<Spend>().elementAt(2);
+
+  late Spend spendToEdit = getSpend(widget.spend.id);
+
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
-  // [[ TODO ]] see linear issue on creating spends without wallet & categories
-  Category _selectedCategory = spend.category ??= categories.first;
-  Wallet _selectedWallet = spend.wallet ??= wallets.first; //wallets.first;
+  
+  // [[ TO DO ]] see linear issue on creating spends without wallet & categories
+  late Category _selectedCategory = spendToEdit.category ??= categories.first;
+  late Wallet _selectedWallet = spendToEdit.wallet ??= wallets.first;
 
   @override
   void dispose() {
@@ -53,7 +57,7 @@ class EditSpendCardState extends State<EditSpendCard> {
                       ),
                       border: InputBorder.none,
                       label: const Text("What did spend on ?"),
-                      hintText: "${spend.name}",
+                      hintText: "${spendToEdit.name}",
                       isDense: true,
                     ),
                   ),
@@ -70,7 +74,7 @@ class EditSpendCardState extends State<EditSpendCard> {
                       ),
                       border: InputBorder.none,
                       label: const Text("Notes"),
-                      hintText: "${spend.notes}",
+                      hintText: "${spendToEdit.notes}",
                       isDense: true,
                     ),
                   ),
@@ -81,16 +85,16 @@ class EditSpendCardState extends State<EditSpendCard> {
                     controller: _amountController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      iconColor:const  Color.fromARGB(255, 151, 151, 151),
-                      icon: const FaIcon(
-                        FontAwesomeIcons.tags,
-                        size: 24,
-                      ),
-                      border: InputBorder.none,
-                      prefix: const Text("GHS "),
-                      label: const Text("Amount"), 
-                      hintText: "${spend.amount}",
-                      isDense: true),
+                        iconColor: const Color.fromARGB(255, 151, 151, 151),
+                        icon: const FaIcon(
+                          FontAwesomeIcons.tags,
+                          size: 24,
+                        ),
+                        border: InputBorder.none,
+                        prefix: const Text("GHS "),
+                        label: const Text("Amount"),
+                        hintText: "${spendToEdit.amount}",
+                        isDense: true),
                   ),
                   const Divider(
                     color: Color.fromARGB(255, 227, 226, 226),
@@ -180,14 +184,14 @@ class EditSpendCardState extends State<EditSpendCard> {
                             ),
                           ));
                         } else {
-                          // updateSpend(Spend(
-                          //     spend.id,
-                          //     _nameController.text,
-                          //     _notesController.text,
-                          //     int.parse(_amountController.text),
-                          //     category: _selectedCategory,
-                          //     wallet: _selectedWallet,
-                          //     DateTime.now()));
+                          updateSpend(Spend(
+                              spendToEdit.id,
+                              _nameController.text,
+                              _notesController.text,
+                              int.parse(_amountController.text),
+                              category: _selectedCategory,
+                              wallet: _selectedWallet,
+                              DateTime.now()));
                           // print(_selectedWallet.balance - int.parse(_amountController.text));
                           _nameController.clear();
                           _notesController.clear();
@@ -196,12 +200,13 @@ class EditSpendCardState extends State<EditSpendCard> {
                               .showSnackBar(const SnackBar(
                             backgroundColor: Color.fromARGB(255, 231, 255, 245),
                             content: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "Spend edited and Saved.",
+                                      "Spend edited and Saved successfully. ",
                                       style: TextStyle(
                                           color:
                                               Color.fromARGB(255, 9, 163, 99)),
@@ -218,5 +223,27 @@ class EditSpendCardState extends State<EditSpendCard> {
                 ],
               ))),
     );
+  }
+}
+
+
+
+
+
+
+
+
+class MyRecord extends StatefulWidget {
+  final String recordName;
+  const MyRecord(this.recordName, {super.key});
+
+  @override
+  MyRecordState createState() => MyRecordState();
+}
+
+class MyRecordState extends State<MyRecord> {
+  @override
+  Widget build(BuildContext context) {
+    return Text(widget.recordName); // Here you direct access using widget
   }
 }

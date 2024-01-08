@@ -223,6 +223,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               "You have successfully recorded your Spend. Yay! ",
