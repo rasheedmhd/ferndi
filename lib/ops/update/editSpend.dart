@@ -13,11 +13,13 @@ class EditSpendCard extends StatefulWidget {
 }
 
 class EditSpendCardState extends State<EditSpendCard> {
+  static final spend = realm.all<Spend>().elementAt(2);
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
-  Category _selectedCategory = categories.first;
-  Wallet _selectedWallet = wallets.first;
+  // [[ TODO ]] see linear issue on creating spends without wallet & categories
+  Category _selectedCategory = spend.category ??= categories.first;
+  Wallet _selectedWallet = spend.wallet ??= wallets.first; //wallets.first;
 
   @override
   void dispose() {
@@ -43,14 +45,15 @@ class EditSpendCardState extends State<EditSpendCard> {
                   ),
                   TextField(
                     controller: _nameController,
-                    decoration: const InputDecoration(
-                      iconColor: Color.fromARGB(255, 151, 151, 151),
-                      icon: FaIcon(
+                    decoration: InputDecoration(
+                      iconColor: const Color.fromARGB(255, 151, 151, 151),
+                      icon: const FaIcon(
                         FontAwesomeIcons.penToSquare,
                         size: 24,
                       ),
                       border: InputBorder.none,
-                      label: Text("What did spend on ?"),
+                      label: const Text("What did spend on ?"),
+                      hintText: "${spend.name}",
                       isDense: true,
                     ),
                   ),
@@ -59,14 +62,15 @@ class EditSpendCardState extends State<EditSpendCard> {
                   ),
                   TextField(
                     controller: _notesController,
-                    decoration: const InputDecoration(
-                      iconColor: Color.fromARGB(255, 151, 151, 151),
-                      icon: FaIcon(
+                    decoration: InputDecoration(
+                      iconColor: const Color.fromARGB(255, 151, 151, 151),
+                      icon: const FaIcon(
                         FontAwesomeIcons.noteSticky,
                         size: 24,
                       ),
                       border: InputBorder.none,
-                      label: Text("Notes"),
+                      label: const Text("Notes"),
+                      hintText: "${spend.notes}",
                       isDense: true,
                     ),
                   ),
@@ -76,16 +80,17 @@ class EditSpendCardState extends State<EditSpendCard> {
                   TextField(
                     controller: _amountController,
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                        iconColor: Color.fromARGB(255, 151, 151, 151),
-                        icon: FaIcon(
-                          FontAwesomeIcons.tags,
-                          size: 24,
-                        ),
-                        border: InputBorder.none,
-                        prefix: Text("GHS "),
-                        label: Text("Amount"),
-                        isDense: true),
+                    decoration: InputDecoration(
+                      iconColor:const  Color.fromARGB(255, 151, 151, 151),
+                      icon: const FaIcon(
+                        FontAwesomeIcons.tags,
+                        size: 24,
+                      ),
+                      border: InputBorder.none,
+                      prefix: const Text("GHS "),
+                      label: const Text("Amount"), 
+                      hintText: "${spend.amount}",
+                      isDense: true),
                   ),
                   const Divider(
                     color: Color.fromARGB(255, 227, 226, 226),
@@ -175,14 +180,14 @@ class EditSpendCardState extends State<EditSpendCard> {
                             ),
                           ));
                         } else {
-                          // saveSpend(Spend(
-                          //   ObjectId(),
-                          //   _nameController.text,
-                          //   _notesController.text,
-                          //   int.parse(_amountController.text),
-                          //   category: _selectedCategory,
-                          //   wallet: _selectedWallet,
-                          //   DateTime.now()));
+                          // updateSpend(Spend(
+                          //     spend.id,
+                          //     _nameController.text,
+                          //     _notesController.text,
+                          //     int.parse(_amountController.text),
+                          //     category: _selectedCategory,
+                          //     wallet: _selectedWallet,
+                          //     DateTime.now()));
                           // print(_selectedWallet.balance - int.parse(_amountController.text));
                           _nameController.clear();
                           _notesController.clear();

@@ -80,6 +80,12 @@ void upateSpend(Spend spend) {
   });
 }
 
+void upateWallet(Wallet wallet) {
+    realm.write(() {
+     realm.add<Wallet>(wallet, update: true);
+  });
+}
+
 void deleteSpend(Spend spend) {
   realm.write(() {
     realm.delete<Spend>(spend);

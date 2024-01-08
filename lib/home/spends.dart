@@ -12,13 +12,11 @@ class SpendItem extends StatelessWidget {
   final Spend spend;
 
   void _showSpendEditForm(BuildContext context, Spend spend) {
-    
-    Navigator.push(context, 
-      MaterialPageRoute(builder: (ctx) => EditSpendCard(spend: spend))
-    );
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (ctx) => EditSpendCard(spend: spend)));
   }
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Slidable(
       // Specify a key if the Slidable is dismissible.
@@ -71,8 +69,10 @@ class SpendItem extends StatelessWidget {
           ),
           SlidableAction(
             onPressed: (context) {
-              Navigator.push(context, 
-              MaterialPageRoute(builder: (ctx) => EditSpendCard(spend: spend)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (ctx) => EditSpendCard(spend: spend)));
             },
             backgroundColor: const Color.fromARGB(255, 96, 150, 249),
             foregroundColor: Colors.white,
@@ -97,7 +97,8 @@ class SpendItem extends StatelessWidget {
             fontSize: 20,
           ),
         ),
-        subtitle: Text(spend.notes),
+        subtitle: Text(
+            "${spend.notes} + ${spend.category?.name.toString()} + ${spend.wallet?.name.toString()}"),
         trailing: Text(
           spend.getAmount,
           style: const TextStyle(
@@ -133,15 +134,13 @@ class SpendList extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          child: ListView.builder(
-            shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            itemCount: spends.length,
-            itemBuilder: (BuildContext context, int index) {
-              return SpendItem(spends[index]);
-            }
-          )
-        )
+            child: ListView.builder(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                itemCount: spends.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return SpendItem(spends[index]);
+                }))
       ],
     );
   }
