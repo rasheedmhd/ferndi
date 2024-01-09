@@ -1,3 +1,4 @@
+import "package:avatar_glow/avatar_glow.dart";
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
