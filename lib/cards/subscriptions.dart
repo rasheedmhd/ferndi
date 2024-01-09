@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:app/models/schemas.dart' as my;
 import "package:app/utility/schema/methods.dart";
+import "package:app/ops/update/editSubscription.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:realm/realm.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
@@ -10,40 +11,45 @@ class SubscriptionItem extends StatelessWidget {
 
   final my.Subscription subscription;
 
+  void _showSubscriptionEditForm(
+      BuildContext context, my.Subscription subscription) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) => EditSubscriptionCard(subscription)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Slidable(
-        // Specify a key if the Slidable is dismissible.
-        key: ValueKey(key),
+      // Specify a key if the Slidable is dismissible.
+      key: ValueKey(key),
 
-        // The start action pane is the one at the left or the top side.
-        startActionPane: ActionPane(
-          // A motion is a widget used to control how the pane animates.
-          motion: const ScrollMotion(),
+      // The start action pane is the one at the left or the top side.
+      startActionPane: ActionPane(
+        // A motion is a widget used to control how the pane animates.
+        motion: const ScrollMotion(),
 
-          // A pane can dismiss the Slidable.
-          dismissible: DismissiblePane(onDismissed: () {
-            deleteSubscription(subscription);
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              backgroundColor: Color.fromARGB(255, 255, 231, 241),
-              content: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Subscription Deleted.",
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 163, 9, 71)),
-                  ),
-                ],
-              ),
-            ));
-          }),
+        // A pane can dismiss the Slidable.
+        dismissible: DismissiblePane(onDismissed: () {
+          deleteSubscription(subscription);
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            backgroundColor: Color.fromARGB(255, 255, 231, 241),
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Subscription Deleted.",
+                  style: TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
+                ),
+              ],
+            ),
+          ));
+        }),
 
-          // All actions are defined in the children parameter.
-          children: [
-            // A SlidableAction can have an icon and/or a label.
-            SlidableAction(
-              onPressed: (context) {
+        // All actions are defined in the children parameter.
+        children: [
+          // A SlidableAction can have an icon and/or a label.
+          SlidableAction(
+            onPressed: (context) {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 backgroundColor: Color.fromARGB(255, 230, 243, 255),
                 content: Column(
@@ -51,27 +57,44 @@ class SubscriptionItem extends StatelessWidget {
                   children: [
                     Text(
                       "Please slide through to delete Subscription.",
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 0, 128, 255)),
+                      style: TextStyle(color: Color.fromARGB(255, 0, 128, 255)),
                     ),
                   ],
                 ),
               ));
-              },
-              backgroundColor: const Color(0xFFFE4A49),
-              foregroundColor: Colors.white,
-              icon: Icons.delete,
-              label: 'Delete',
-            ),
-          ],
-        ),
-        child: Card (
+            },
+            backgroundColor: const Color(0xFFFE4A49),
+            foregroundColor: Colors.white,
+            icon: Icons.delete,
+            label: 'Delete',
+          ),
+
+          SlidableAction(
+            //   onPressed: (context) {
+            //   Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //           builder: (ctx) => EditSubscriptionCard( subscription)));
+            // },
+            onPressed: (context) {
+              print("object to edit");
+              _showSubscriptionEditForm(context, subscription);
+            },
+            backgroundColor: const Color.fromARGB(255, 96, 150, 249),
+            foregroundColor: Colors.white,
+            icon: Icons.edit,
+            label: 'Edit',
+          ),
+        ],
+      ),
+      child: Card(
           elevation: 0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0), ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(10),
-            child: Column(
-              children: [
+            child: Column(children: [
               Row(
                 children: [
                   const CircleAvatar(
@@ -95,7 +118,7 @@ class SubscriptionItem extends StatelessWidget {
               ),
               const SizedBox(
                 height: 10,
-              ),             
+              ),
               Row(
                 children: [
                   const CircleAvatar(
@@ -124,24 +147,20 @@ class SubscriptionItem extends StatelessWidget {
               Row(
                 children: [
                   const Text("-",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w700,
-                      color: Color.fromARGB(255, 148, 152, 158)
-                    )),
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w700,
+                          color: Color.fromARGB(255, 148, 152, 158))),
                   const SizedBox(
                     width: 5,
                   ),
-                  const FaIcon(
-                    FontAwesomeIcons.cediSign,
-                    size: 17.0,
-                    color: Color.fromARGB(255, 148, 152, 158)
-                  ),
+                  const FaIcon(FontAwesomeIcons.cediSign,
+                      size: 17.0, color: Color.fromARGB(255, 148, 152, 158)),
                   const SizedBox(
                     width: 3,
                   ),
                   Text(
-                    subscription.getAmount,                  
+                    subscription.getAmount,
                     style: const TextStyle(
                       color: Color.fromARGB(255, 148, 152, 158),
                       fontSize: 17.0,
@@ -156,11 +175,10 @@ class SubscriptionItem extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-              ],
-            )
-        ]),
-      )
-    ), 
+                ],
+              )
+            ]),
+          )),
     );
   }
 }
@@ -184,11 +202,11 @@ class SubscriptionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      shrinkWrap: true,
-      physics: const ClampingScrollPhysics(),
-      itemCount: subscriptions.length,
-      itemBuilder: (BuildContext context, int index) {
-        return SubscriptionItem(subscriptions[index]);
-      });
+        shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
+        itemCount: subscriptions.length,
+        itemBuilder: (BuildContext context, int index) {
+          return SubscriptionItem(subscriptions[index]);
+        });
   }
 }

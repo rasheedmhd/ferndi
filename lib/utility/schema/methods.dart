@@ -86,6 +86,12 @@ void updateWallet(Wallet wallet) {
   });
 }
 
+void updateSubscription(Subscription subscription) {
+    realm.write(() {
+     realm.add<Subscription>(subscription, update: true);
+  });
+}
+
 void deleteSpend(Spend spend) {
   realm.write(() {
     realm.delete<Spend>(spend);

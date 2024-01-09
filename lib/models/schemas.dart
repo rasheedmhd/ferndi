@@ -107,6 +107,11 @@ Spend getSpend(ObjectId id) {
   return spendToEdit;
 }
 
+Subscription getSubscription(ObjectId id) {
+  final subscriptionToEdit = realm.query<Subscription>('id == \$0', [id]).first;
+  return subscriptionToEdit;
+}
+
 
 //============ TO SUPPORT OLD CODE
 
