@@ -1,3 +1,4 @@
+import "package:app/ops/update/editSpend.dart";
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 import "package:app/utility/schema/methods.dart";
@@ -9,6 +10,11 @@ class SpendItem extends StatelessWidget {
   const SpendItem(this.spend, {super.key});
 
   final Spend spend;
+
+  void _showSpendEditForm(BuildContext context, Spend spend) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (ctx) => EditSpendCard(spend)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,14 +67,21 @@ class SpendItem extends StatelessWidget {
             icon: Icons.delete,
             label: 'Delete',
           ),
-          // SlidableAction(
-          //   onPressed: (context) {},
-          //   backgroundColor: Color.fromARGB(255, 96, 150, 249),
-          //   // backgroundColor: Color(0xFF21B7CA),
-          //   foregroundColor: Colors.white,
-          //   icon: Icons.edit,
-          //   label: 'Edit',
-          // ),
+          SlidableAction(
+            onPressed: (context) {
+              _showSpendEditForm(context, spend);
+            },
+            // onPressed: (context) {
+            //   Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //           builder: (ctx) => EditSpendCard(spend)));
+            // },
+            backgroundColor: const Color.fromARGB(255, 96, 150, 249),
+            foregroundColor: Colors.white,
+            icon: Icons.edit,
+            label: 'Edit',
+          ),
         ],
       ),
 
@@ -87,7 +100,8 @@ class SpendItem extends StatelessWidget {
             fontSize: 20,
           ),
         ),
-        subtitle: Text(spend.notes),
+        subtitle: Text(
+            "${spend.notes} + ${spend.category?.name.toString()} + ${spend.wallet?.name.toString()}"),
         trailing: Text(
           spend.getAmount,
           style: const TextStyle(
@@ -123,13 +137,13 @@ class SpendList extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          child: ListView.builder(
-            shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            itemCount: spends.length,
-            itemBuilder: (BuildContext context, int index) {
-              return SpendItem(spends[index]);
-          }))
+            child: ListView.builder(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                itemCount: spends.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return SpendItem(spends[index]);
+                }))
       ],
     );
   }

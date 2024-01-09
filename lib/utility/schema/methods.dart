@@ -14,6 +14,11 @@ final balance = wallets
     .toList()
     .reduce((value, element) => value + element);
 final income = realm.query<Wallet>('name == \$0', ['Income']).first;
+
+// Querying data for selected wallets in accounts page wallets card
+final savings = realm.query<Wallet>('name == \$0', ['Savings']).first;
+final debts = realm.query<Wallet>('name == \$0', ['Debts']).first;
+final flexible = realm.query<Wallet>('name == \$0', ['Flexible']).first;
 final totalSpend = spends
     .map((spend) => spend.amount)
     .toList()
@@ -65,6 +70,25 @@ void deleteWallet(Wallet wallet) {
 void recordSpend(Spend spend) {
   realm.write(() {
     realm.add(spend);
+  });
+}
+
+
+void updateSpend(Spend spend) {
+    realm.write(() {
+     realm.add<Spend>(spend, update: true);
+  });
+}
+
+void updateWallet(Wallet wallet) {
+    realm.write(() {
+     realm.add<Wallet>(wallet, update: true);
+  });
+}
+
+void updateSubscription(Subscription subscription) {
+    realm.write(() {
+     realm.add<Subscription>(subscription, update: true);
   });
 }
 

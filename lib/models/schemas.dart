@@ -27,7 +27,6 @@ final Durations = <Duration>[
   Duration(ObjectId(), "one time"),
 ];
 
-
 @RealmModel()
 class _Duration {
   @PrimaryKey()
@@ -97,6 +96,22 @@ class _Category {
   late String name;
   late List<_Spend> category;
 }
+
+Wallet getWallet(ObjectId id) {
+  final walletToEdit = realm.query<Wallet>('id == \$0', [id]).first;
+  return walletToEdit;
+}
+
+Spend getSpend(ObjectId id) {
+  final spendToEdit = realm.query<Spend>('id == \$0', [id]).first;
+  return spendToEdit;
+}
+
+Subscription getSubscription(ObjectId id) {
+  final subscriptionToEdit = realm.query<Subscription>('id == \$0', [id]).first;
+  return subscriptionToEdit;
+}
+
 
 //============ TO SUPPORT OLD CODE
 

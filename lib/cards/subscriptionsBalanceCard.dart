@@ -38,16 +38,16 @@ class SubscriptionsBalanceCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("GHS $subBalance",
-                              style: const TextStyle(
-                                fontSize: 35.0,
-                                fontWeight: FontWeight.w600,
-                                color: Color.fromARGB(255, 5, 61, 135),
-                              )),
+                            style: const TextStyle(
+                              fontSize: 35.0,
+                              fontWeight: FontWeight.w600,
+                              color: Color.fromARGB(255, 5, 61, 135),
+                            )),
                           const Text(".00",
-                              style: TextStyle(
-                                fontSize: 35.0,
-                                color: Color.fromARGB(255, 202, 233, 255),
-                              )),
+                            style: TextStyle(
+                              fontSize: 35.0,
+                              color: Color.fromARGB(255, 202, 233, 255),
+                            )),
                         ],
                       ),
                     ],

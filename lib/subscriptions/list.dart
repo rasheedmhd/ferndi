@@ -1,7 +1,7 @@
 import "package:app/cards/subscriptions.dart";
 import "package:app/cards/subscriptionsBalanceCard.dart";
 import "package:flutter/material.dart";
-import "package:app/cards/addSubscription.dart";
+import "package:app/ops/create/addSubscription.dart";
 
 
 class Subscriptions extends StatefulWidget {
@@ -53,10 +53,10 @@ class SubscriptionsState extends State<Subscriptions> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // SubscriptionsBalanceCard(),
-                  // SizedBox(
-                  //   height: 12,
-                  // ),
+                  SubscriptionsBalanceCard(),
+                  SizedBox(
+                    height: 12,
+                  ),
                   Text(
                     "Your Subscriptions",
                     style: TextStyle(
@@ -73,7 +73,7 @@ class SubscriptionsState extends State<Subscriptions> {
               ),
           
               SizedBox(
-                height: 700,
+                height: 2800,
                 child: 
                 SubscriptionsCard()
               ),
