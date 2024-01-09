@@ -4,9 +4,7 @@ import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 class EditSpendCard extends StatefulWidget {
-
   final Spend spend;
-  // const EditSpendCard({required this.spend, super.key});
   const EditSpendCard(this.spend, {super.key});
 
   @override
@@ -14,24 +12,27 @@ class EditSpendCard extends StatefulWidget {
 }
 
 class EditSpendCardState extends State<EditSpendCard> {
-
   late Spend spendToEdit = getSpend(widget.spend.id);
 
-  final _nameController = TextEditingController();
-  final _notesController = TextEditingController();
-  final _amountController = TextEditingController();
-  
+  late String name = spendToEdit.name;
+  late String notes = spendToEdit.notes;
+  late String amount = spendToEdit.amount.toString();
+
+  void _newName(String typedName) {
+    name = typedName;
+  }
+
+  void _newNotes(String typedNotes) {
+    notes = typedNotes;
+  }
+
+  void _newAmount(String typedAmount) {
+    amount = typedAmount;
+  }
+
   // [[ TO DO ]] see linear issue on creating spends without wallet & categories
   late Category _selectedCategory = spendToEdit.category ??= categories.first;
   late Wallet _selectedWallet = spendToEdit.wallet ??= wallets.first;
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _notesController.dispose();
-    _amountController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +48,9 @@ class EditSpendCardState extends State<EditSpendCard> {
                   const SizedBox(
                     height: 12,
                   ),
-                  TextField(
-                    controller: _nameController,
+                  TextFormField(
+                    initialValue: name,
+                    onChanged: _newName,
                     decoration: InputDecoration(
                       iconColor: const Color.fromARGB(255, 151, 151, 151),
                       icon: const FaIcon(
@@ -64,8 +66,9 @@ class EditSpendCardState extends State<EditSpendCard> {
                   const Divider(
                     color: Color.fromARGB(255, 227, 226, 226),
                   ),
-                  TextField(
-                    controller: _notesController,
+                  TextFormField(
+                    initialValue: notes,
+                    onChanged: _newNotes,
                     decoration: InputDecoration(
                       iconColor: const Color.fromARGB(255, 151, 151, 151),
                       icon: const FaIcon(
@@ -81,8 +84,9 @@ class EditSpendCardState extends State<EditSpendCard> {
                   const Divider(
                     color: Color.fromARGB(255, 227, 226, 226),
                   ),
-                  TextField(
-                    controller: _amountController,
+                  TextFormField(
+                    initialValue: amount,
+                    onChanged: _newAmount,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                         iconColor: const Color.fromARGB(255, 151, 151, 151),
@@ -163,8 +167,38 @@ class EditSpendCardState extends State<EditSpendCard> {
                       foregroundColor: const Color.fromARGB(255, 5, 61, 135),
                       backgroundColor: const Color.fromARGB(255, 35, 206, 135),
                       onPressed: () {
-                        if (int.parse(_amountController.text) >
-                            _selectedWallet.balance) {
+                        if (name.isEmpty ||
+                            amount.isEmpty ||
+                            _selectedCategory.name.isEmpty ||
+                            _selectedWallet.name.isEmpty) {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                            content: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Spend details incomplete",
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 163, 9, 71)),
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Please add name, amount, wallet and category.",
+                                      style: TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 163, 9, 71)),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ));
+                          return;
+                        }
+                        if (int.parse(amount) > _selectedWallet.balance) {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
                             backgroundColor: Color.fromARGB(255, 255, 231, 241),
@@ -186,16 +220,12 @@ class EditSpendCardState extends State<EditSpendCard> {
                         } else {
                           updateSpend(Spend(
                               spendToEdit.id,
-                              _nameController.text,
-                              _notesController.text,
-                              int.parse(_amountController.text),
+                              name,
+                              notes,
+                              int.parse(amount.toString()),
                               category: _selectedCategory,
                               wallet: _selectedWallet,
                               DateTime.now()));
-                          // print(_selectedWallet.balance - int.parse(_amountController.text));
-                          _nameController.clear();
-                          _notesController.clear();
-                          _amountController.clear();
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
                             backgroundColor: Color.fromARGB(255, 231, 255, 245),
@@ -219,31 +249,11 @@ class EditSpendCardState extends State<EditSpendCard> {
                             ),
                           ));
                         }
+                        ;
+                        Navigator.of(context).pop();
                       }),
                 ],
               ))),
     );
-  }
-}
-
-
-
-
-
-
-
-
-class MyRecord extends StatefulWidget {
-  final String recordName;
-  const MyRecord(this.recordName, {super.key});
-
-  @override
-  MyRecordState createState() => MyRecordState();
-}
-
-class MyRecordState extends State<MyRecord> {
-  @override
-  Widget build(BuildContext context) {
-    return Text(widget.recordName); // Here you direct access using widget
   }
 }

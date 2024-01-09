@@ -98,7 +98,7 @@ class _Category {
 }
 
 Wallet getWallet(ObjectId id) {
-  final walletToEdit = realm.query<Wallet>('id == \$0', [id.toString()]).first;
+  final walletToEdit = realm.query<Wallet>('id == \$0', [id]).first;
   return walletToEdit;
 }
 
