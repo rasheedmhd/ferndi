@@ -121,13 +121,13 @@ void createCategory(Category category) {
 // Create a bunch of Categories when getting onboard
 void addCategories() {
   realm.write(() {
-    realm.addAll(Categories);
+    realm.addAll(onboardCategories);
   });
 }
 
 void addDurations() {
   realm.write(() {
-    realm.addAll(Durations);
+    realm.addAll(durations);
   });
 }
 
