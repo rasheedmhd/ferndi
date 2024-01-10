@@ -1,6 +1,5 @@
 import "package:app/models/schemas.dart";
 import "package:app/utility/schema/methods.dart";
-import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:flutter/material.dart";
 import "package:realm/realm.dart";
 
@@ -54,10 +53,7 @@ class AddWalletCardState extends State<AddWalletCard> {
                 maxLength: 10,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                    prefix: FaIcon(
-                      FontAwesomeIcons.cediSign,
-                      size: 14.0,
-                    ),
+                    prefix: Text("GHS "),
                     label: Text("Balance")),
               ),
               const SizedBox(
