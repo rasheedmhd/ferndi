@@ -16,6 +16,7 @@ class SelectedWallets extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               FloatingActionButton(
+                heroTag: "add",
                 mini: true,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50)),
@@ -34,6 +35,7 @@ class SelectedWallets extends StatelessWidget {
                   color: Color.fromARGB(255, 255, 255, 255),
                 )),
               FloatingActionButton(
+                heroTag: "edit",
                 mini: true,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50)),

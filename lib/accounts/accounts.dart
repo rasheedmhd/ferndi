@@ -60,6 +60,7 @@ class AccountsState extends State<Accounts> {
         floatingActionButton: AvatarGlow(
           glowColor: const Color.fromARGB(255, 48, 136, 6),
           child: FloatingActionButton(
+            heroTag: "AvatarGlow",
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0)),
             backgroundColor: const Color.fromARGB(255, 48, 136, 6),
