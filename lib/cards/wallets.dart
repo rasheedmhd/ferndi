@@ -1,3 +1,4 @@
+import "package:app/cards/newPage.dart";
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 import "package:app/ops/update/editWallet.dart";
@@ -14,6 +15,24 @@ class WalletItem extends StatelessWidget {
   void _showWalletEditForm(BuildContext context, Wallet wallet) {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (ctx) => EditWalletCard(wallet)));
+  }
+
+  void _showNewPage(BuildContext context, Wallet wallet) {
+    showModalBottomSheet(
+      showDragHandle: true,
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) => const NewPageCard(),
+    );
+  }
+
+  void _showEditPage(BuildContext context, Wallet wallet) {
+    showModalBottomSheet(
+      showDragHandle: true,
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) => EditWalletCard(wallet),
+    );
   }
 
   @override
@@ -117,18 +136,23 @@ class WalletItem extends StatelessWidget {
                           color: Color.fromARGB(255, 48, 136, 6),
                         ),
                       ),
-                      ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Container(
-                              padding: const EdgeInsets.all(5),
-                              color: const Color.fromARGB(255, 23, 213, 110),
-                              child: const Text(
-                                " top up ",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ))),
+                      GestureDetector(
+                        onTap: () {
+                          _showNewPage(context, wallet);
+                        },
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Container(
+                                padding: const EdgeInsets.all(5),
+                                color: const Color.fromARGB(255, 23, 213, 110),
+                                child: const Text(
+                                  " top up ",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ))),
+                      ),
                     ],
                   ),
 
@@ -159,18 +183,21 @@ class WalletItem extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Container(
-                              padding: const EdgeInsets.all(7),
-                              color: const Color.fromARGB(199, 71, 34, 255),
-                              child: const Text(
-                                " edit ",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ))),
+                      GestureDetector(
+                        onTap: () { _showEditPage(context, wallet); },
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Container(
+                                padding: const EdgeInsets.all(7),
+                                color: const Color.fromARGB(199, 71, 34, 255),
+                                child: const Text(
+                                  " edit ",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ))),
+                      ),
                       const SizedBox(
                         width: 10,
                       ),
