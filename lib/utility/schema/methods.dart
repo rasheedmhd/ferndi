@@ -23,35 +23,31 @@ final totalSpend = spends
     .map((spend) => spend.amount)
     .toList()
     .reduce((value, element) => value + element);
-final totalTransactions = spends
-    .map((spend) => spend.amount)
-    .toList().length;
-
+final totalTransactions = spends.map((spend) => spend.amount).toList().length;
 
 // Querying data for Subscriptions balance card
 final num subBalance = subscriptions
     .map((subscription) => subscription.amount)
     .toList()
     .reduce((value, element) => value + element);
-final totalMonthlySubscriptionsBalance =
-    realm.query<Subscription>('duration.name == \$0', ['month'])
+final totalMonthlySubscriptionsBalance = realm
+    .query<Subscription>('duration.name == \$0', ['month'])
     .toList()
     .map((sub) => (sub.amount))
     .toList()
     .reduce((value, element) => value + element);
-final totalYearlySubscriptionsBalance =
-    realm.query<Subscription>('duration.name == \$0', ['year'])
+final totalYearlySubscriptionsBalance = realm
+    .query<Subscription>('duration.name == \$0', ['year'])
     .toList()
     .map((sub) => (sub.amount))
     .toList()
     .reduce((value, element) => value + element);
-final totalOneTimeSubscriptionsBalance =
-    realm.query<Subscription>('duration.name == \$0', ['one time'])
+final totalOneTimeSubscriptionsBalance = realm
+    .query<Subscription>('duration.name == \$0', ['one time'])
     .toList()
     .map((sub) => (sub.amount))
     .toList()
     .reduce((value, element) => value + element);
-
 
 // Create a new wallet and persist to db
 void createWallet(Wallet wallet) {
@@ -73,22 +69,21 @@ void recordSpend(Spend spend) {
   });
 }
 
-
 void updateSpend(Spend spend) {
-    realm.write(() {
-     realm.add<Spend>(spend, update: true);
+  realm.write(() {
+    realm.add<Spend>(spend, update: true);
   });
 }
 
 void updateWallet(Wallet wallet) {
-    realm.write(() {
-     realm.add<Wallet>(wallet, update: true);
+  realm.write(() {
+    realm.add<Wallet>(wallet, update: true);
   });
 }
 
 void updateSubscription(Subscription subscription) {
-    realm.write(() {
-     realm.add<Subscription>(subscription, update: true);
+  realm.write(() {
+    realm.add<Subscription>(subscription, update: true);
   });
 }
 
@@ -135,4 +130,9 @@ void deleteCategory(Category category) {
   realm.write(() {
     realm.delete(category);
   });
+}
+
+Wallet getSpendsByWallet(String walletName) {
+  final wallet = realm.query<Wallet>('name == \$0', [walletName]).first;
+  return wallet;
 }
