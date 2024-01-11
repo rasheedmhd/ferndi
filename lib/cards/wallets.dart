@@ -1,4 +1,4 @@
-import "package:app/cards/newPage.dart";
+import "package:app/accounts/transactions.dart";
 import "package:app/ops/update/topUpWallet.dart";
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
@@ -33,6 +33,15 @@ class WalletItem extends StatelessWidget {
       context: context,
       isScrollControlled: true,
       builder: (ctx) => EditWalletCard(wallet),
+    );
+  }
+
+  void _showTransactionsPage(BuildContext context, Wallet wallet) {
+    showModalBottomSheet(
+      showDragHandle: true,
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) => TransactionsPage(wallet),
     );
   }
 
@@ -169,23 +178,30 @@ class WalletItem extends StatelessWidget {
                   children: [
                     Row(children: [
                       const Padding(padding: EdgeInsets.all(7)),
-                      ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Container(
-                              padding: const EdgeInsets.all(7),
-                              color: const Color.fromARGB(200, 109, 189, 255),
-                              child: const Text(
-                                " transactions ",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ))),
+                      GestureDetector(
+                        onTap: () {
+                          _showTransactionsPage(context, wallet);
+                        },
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Container(
+                                padding: const EdgeInsets.all(7),
+                                color: const Color.fromARGB(200, 109, 189, 255),
+                                child: const Text(
+                                  " transactions ",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ))),
+                      ),
                       const SizedBox(
                         width: 10,
                       ),
                       GestureDetector(
-                        onTap: () { _showEditPage(context, wallet); },
+                        onTap: () {
+                          _showEditPage(context, wallet);
+                        },
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(50),
                             child: Container(

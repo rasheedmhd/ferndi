@@ -1,5 +1,3 @@
-import "dart:ffi";
-
 import "package:app/models/schemas.dart";
 import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
