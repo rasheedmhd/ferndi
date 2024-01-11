@@ -1,4 +1,5 @@
 import "package:app/cards/newPage.dart";
+import "package:app/ops/update/topUpWallet.dart";
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 import "package:app/ops/update/editWallet.dart";
@@ -17,12 +18,12 @@ class WalletItem extends StatelessWidget {
         .push(MaterialPageRoute(builder: (ctx) => EditWalletCard(wallet)));
   }
 
-  void _showNewPage(BuildContext context, Wallet wallet) {
+  void _showTopUpWalletPage(BuildContext context, Wallet wallet) {
     showModalBottomSheet(
       showDragHandle: true,
       context: context,
       isScrollControlled: true,
-      builder: (ctx) => const NewPageCard(),
+      builder: (ctx) => TopUpWalletCard(wallet),
     );
   }
 
@@ -138,7 +139,7 @@ class WalletItem extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          _showNewPage(context, wallet);
+                          _showTopUpWalletPage(context, wallet);
                         },
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(50),
