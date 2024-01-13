@@ -1,5 +1,6 @@
 import "package:app/accounts/transactions.dart";
 import "package:app/ops/update/topUpWallet.dart";
+import "package:app/cards/transfer.dart";
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 import "package:app/ops/update/editWallet.dart";
@@ -42,6 +43,15 @@ class WalletItem extends StatelessWidget {
       context: context,
       isScrollControlled: true,
       builder: (ctx) => TransactionsPage(wallet),
+    );
+  }
+
+  void _showTransferPage(BuildContext context, Wallet wallet) {
+    showModalBottomSheet(
+      showDragHandle: true,
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) => TransferCard(),
     );
   }
 
@@ -113,7 +123,7 @@ class WalletItem extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Color.fromARGB(71, 47, 136, 6),
+                  color: const Color.fromARGB(71, 47, 136, 6),
                 ),
                 borderRadius: BorderRadius.circular(20.0),
               ),
@@ -146,6 +156,23 @@ class WalletItem extends StatelessWidget {
                           color: Color.fromARGB(255, 0, 0, 0),
                         ),
                       ),
+                      GestureDetector(
+                      onTap: () {
+                        _showTransferPage(context, wallet);
+                      },
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Container(
+                              padding: const EdgeInsets.all(7),
+                              color: const Color.fromARGB(135, 255, 174, 0),
+                              child: const Text(
+                                " transfer ",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ))),
+                      ),                      
                     ],
                   ),
 
