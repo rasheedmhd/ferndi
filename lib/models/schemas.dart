@@ -11,7 +11,7 @@ final config = Configuration.local([
 
 final realm = Realm(config);
 
-final Categories = <Category>[
+final onboardCategories = <Category>[
   Category(ObjectId(), "Health"),
   Category(ObjectId(), "Food"),
   Category(ObjectId(), "Electricity"),
@@ -21,7 +21,7 @@ final Categories = <Category>[
 ];
 
 // Create a bunch of Durations when getting onboard
-final Durations = <Duration>[
+final durations = <Duration>[
   Duration(ObjectId(), "month"),
   Duration(ObjectId(), "year"),
   Duration(ObjectId(), "one time"),
