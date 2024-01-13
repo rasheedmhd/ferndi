@@ -86,8 +86,6 @@ class AccountsState extends State<Accounts> {
                       transform: GradientRotation(3.142 / 6),
                       colors: [
                       Color.fromARGB(255, 19, 194, 110),
-                      Color.fromARGB(255, 127, 0, 254),
-                      Color.fromARGB(255, 188, 247, 25),
                       Color.fromARGB(255, 201, 249, 226),
                   ])
                   ),
@@ -97,15 +95,12 @@ class AccountsState extends State<Accounts> {
                     SelectedWallets(wallet: savings),
                     SelectedWallets(wallet: debts),
                     SelectedWallets(wallet: flexible),
-                    SelectedWallets(wallet: income),
                   ]
                 ),
               )),
             ),
-            SliverToBoxAdapter(
-              child: Container(
-                color: const Color.fromARGB(255, 241, 255, 248),
-                child: const Padding(
+            const SliverToBoxAdapter(
+              child: Padding(
                   padding: EdgeInsets.fromLTRB(20, 10.0, 20, 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +123,6 @@ class AccountsState extends State<Accounts> {
                     ],
                   ),
                 )),
-            )
           ],
         )
       )
