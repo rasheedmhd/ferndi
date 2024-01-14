@@ -18,97 +18,114 @@ class SpendItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Slidable(
-      // Specify a key if the Slidable is dismissible.
-      key: ValueKey(key),
-
-      // The start action pane is the one at the left or the top side.
-      startActionPane: ActionPane(
-        // A motion is a widget used to control how the pane animates.
-        motion: const ScrollMotion(),
-
-        // A pane can dismiss the Slidable.
-        dismissible: DismissiblePane(onDismissed: () {
-          deleteSpend(spend);
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            backgroundColor: Color.fromARGB(255, 255, 231, 241),
-            content: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Spend Deleted",
-                  style: TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
-                ),
-              ],
-            ),
-          ));
-        }),
-
-        // All actions are defined in the children parameter.
-        children: [
-          // A SlidableAction can have an icon and/or a label.
-          SlidableAction(
-            onPressed: (context) {
+         return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+    child: Column(
+      children: [
+        Slidable(
+          // Specify a key if the Slidable is dismissible.
+          key: ValueKey(key),
+        
+          // The start action pane is the one at the left or the top side.
+          startActionPane: ActionPane(
+            // A motion is a widget used to control how the pane animates.
+            motion: const ScrollMotion(),
+        
+            // A pane can dismiss the Slidable.
+            dismissible: DismissiblePane(onDismissed: () {
+              deleteSpend(spend);
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                backgroundColor: Color.fromARGB(255, 255, 231, 241),
                 content: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Slide through to delete",
-                      style: TextStyle(color: Color.fromARGB(255, 0, 128, 255)),
+                      "Spend Deleted",
+                      style: TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
                     ),
                   ],
                 ),
               ));
-            },
-            backgroundColor: const Color(0xFFFE4A49), 
-            foregroundColor: Colors.white,
-            icon: Icons.delete,
-            label: 'Delete',
+            }),
+        
+            // All actions are defined in the children parameter.
+            children: [
+              // A SlidableAction can have an icon and/or a label.
+              SlidableAction(
+                onPressed: (context) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                    content: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Slide through to delete",
+                          style: TextStyle(color: Color.fromARGB(255, 0, 128, 255)),
+                        ),
+                      ],
+                    ),
+                  ));
+                },
+                backgroundColor: const Color(0xFFFE4A49), 
+                foregroundColor: Colors.white,
+                icon: Icons.delete,
+                label: 'Delete',
+              ),
+              SlidableAction(
+                onPressed: (context) {
+                  _showSpendEditForm(context, spend);
+                },
+                backgroundColor: const Color.fromARGB(255, 96, 150, 249),
+                foregroundColor: Colors.white,
+                icon: Icons.edit,
+                label: 'Edit',
+              ),
+            ],
           ),
-          SlidableAction(
-            onPressed: (context) {
-              _showSpendEditForm(context, spend);
-            },
-            // onPressed: (context) {
-            //   Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //           builder: (ctx) => EditSpendCard(spend)));
-            // },
-            backgroundColor: const Color.fromARGB(255, 96, 150, 249),
-            foregroundColor: Colors.white,
-            icon: Icons.edit,
-            label: 'Edit',
+        
+        
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 245, 245, 245),
+                borderRadius: BorderRadius.circular(20.0),
+              ),             
+              child: 
+                ListTile(
+                  leading: const CircleAvatar(
+                    backgroundColor: Color.fromARGB(255, 205, 227, 255),
+                    child: FaIcon(
+                      FontAwesomeIcons.featherPointed,
+                      size: 20.0,
+                      color: Color.fromARGB(255, 5, 61, 135),
+                    ),
+                  ),
+                  title: Text(
+                    spend.name,
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                  subtitle: Text("${spend.notes}"),
+                  // For Spend Details Page
+                  // subtitle: Text(
+                  //     "${spend.notes} + ${spend.category?.name.toString()} + ${spend.wallet?.name.toString()}"),
+                  trailing: Text(
+                    spend.getAmount,
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+            ),
           ),
-        ],
-      ),
-
-      child: ListTile(
-        leading: const CircleAvatar(
-          backgroundColor: Color.fromARGB(255, 165, 204, 255),
-          child: FaIcon(
-            FontAwesomeIcons.featherPointed,
-            size: 20.0,
-            color: Color.fromARGB(255, 5, 61, 135),
-          ),
+        const Divider(
+          height: 0,
+          color: Color.fromARGB(255, 227, 226, 226),
         ),
-        title: Text(
-          spend.name,
-          style: const TextStyle(
-            fontSize: 20,
-          ),
-        ),
-        subtitle: Text(
-            "${spend.notes} + ${spend.category?.name.toString()} + ${spend.wallet?.name.toString()}"),
-        trailing: Text(
-          spend.getAmount,
-          style: const TextStyle(
-            fontSize: 16,
-          ),
-        ),
-      ),
+      ],
+    ),
     );
   }
 }
@@ -137,13 +154,19 @@ class SpendList extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-            child: ListView.builder(
-                shrinkWrap: true,
-                physics: const ClampingScrollPhysics(),
-                itemCount: spends.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return SpendItem(spends[index]);
-                }))
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 245, 245, 245),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: const ClampingScrollPhysics(),
+                  itemCount: spends.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return SpendItem(spends[index]);
+                  }),
+            ))
       ],
     );
   }
