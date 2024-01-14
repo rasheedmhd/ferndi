@@ -198,9 +198,9 @@ class WalletItem extends StatelessWidget {
                             child: Container(
                                 padding: const EdgeInsets.all(7),
                                 color: const Color.fromARGB(200, 109, 189, 255),
-                                child: const Text(
-                                  " transactions ",
-                                  style: TextStyle(
+                                child: Text(
+                                  " $totalTransactions transactions ",
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
                                   ),
