@@ -156,23 +156,6 @@ class WalletItem extends StatelessWidget {
                           color: Color.fromARGB(255, 0, 0, 0),
                         ),
                       ),
-                      GestureDetector(
-                      onTap: () {
-                        _showTransferPage(context, wallet);
-                      },
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Container(
-                              padding: const EdgeInsets.all(7),
-                              color: const Color.fromARGB(135, 255, 174, 0),
-                              child: const Text(
-                                " transfer ",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ))),
-                      ),                      
                     ],
                   ),
 
@@ -245,7 +228,7 @@ class WalletItem extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ))),
-                      ),                      
+                      ),
                     ]),
                     const SizedBox(
                       height: 20,

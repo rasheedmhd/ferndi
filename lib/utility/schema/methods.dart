@@ -126,6 +126,13 @@ void addDurations() {
   });
 }
 
+void addWallets() {
+  realm.write(() {
+    realm.addAll(onboardWallets);
+  });
+}
+
+
 void deleteCategory(Category category) {
   realm.write(() {
     realm.delete(category);

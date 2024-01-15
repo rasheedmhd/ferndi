@@ -42,6 +42,13 @@ final onboardCategories = <Category>[
   Category(ObjectId(), "Fuel"),
 ];
 
+final List<Wallet> onboardWallets = [
+  Wallet(ObjectId(), "Savings", 0),
+  Wallet(ObjectId(), "Debts", 0),
+  Wallet(ObjectId(), "Flexible", 0),
+  Wallet(ObjectId(), "Income", 0),
+];
+
 // Create a bunch of Durations when getting onboard
 final durations = <Duration>[
   Duration(ObjectId(), "month"),
