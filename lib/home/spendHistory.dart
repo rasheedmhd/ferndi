@@ -28,42 +28,18 @@ class SpendsPageState extends State<SpendsPage> {
                   color: Color.fromARGB(255, 255, 255, 255)),
             ),
           ),
-          // title: const Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //   children: [
-          //     Row(
-          //       children: [
-          //         FaIcon(FontAwesomeIcons.chevronLeft,
-          //           size: 20, color: Colors.white),
-          //         SizedBox(
-          //           width: 12,
-          //         ),
-          //         Text(
-          //           "This Month",
-          //           style: TextStyle(color: Colors.white),
-          //         ),
-          //         SizedBox(
-          //           width: 12,
-          //         ),
-          //         FaIcon(FontAwesomeIcons.chevronRight,
-          //           size: 20, color: Colors.white),
-          //       ],
-          //     ),
-          //   ],
-          // ),
           backgroundColor: const Color.fromARGB(255, 5, 61, 135),
         ),
         body: ListView(
           padding: const EdgeInsets.all(15),
           children: [
             Container(
-              padding: const EdgeInsets.all(2),
+              padding: const EdgeInsets.all(3),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(50.0),
+                borderRadius: BorderRadius.circular(45.0),
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(50),
@@ -78,9 +54,7 @@ class SpendsPageState extends State<SpendsPage> {
                           fontWeight: FontWeight.w600,
                         ),
                       ))),
-                  const SizedBox(
-                    width: 10,
-                  ),
+                  const Spacer(),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(50),
                     child: Container(
@@ -94,6 +68,7 @@ class SpendsPageState extends State<SpendsPage> {
                           fontWeight: FontWeight.w600,
                         ),
                       ))),
+                  const Spacer(),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(50),
                     child: Container(
