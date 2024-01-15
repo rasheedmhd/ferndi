@@ -62,6 +62,7 @@ class AddWalletCardState extends State<AddWalletCard> {
               Row(
                 children: [
                   FloatingActionButton.extended(
+                    elevation: 1,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50.0)),
                     label: const Icon(Icons.close),
@@ -73,6 +74,7 @@ class AddWalletCardState extends State<AddWalletCard> {
                   ),
                   const Spacer(),
                   FloatingActionButton.extended(
+                    elevation: 1,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50.0)),
                     label: const Text(
