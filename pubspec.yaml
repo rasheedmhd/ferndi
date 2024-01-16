@@ -85,7 +85,7 @@ flutter:
       fonts:
         # - asset: lib/assets/fonts/Gilroy-Black.ttf
         # - asset: lib/assets/fonts/Gilroy-BlackItalic.ttf
-        # - asset: lib/assets/fonts/Gilroy-Bold.ttf
+        - asset: lib/assets/fonts/Gilroy-Bold.ttf
         # - asset: lib/assets/fonts/Gilroy-BoldItalic.ttf
         # - asset: lib/assets/fonts/Gilroy-ExtraBold.ttf
         # - asset: lib/assets/fonts/Gilroy-ExtraBoldItalic.ttf

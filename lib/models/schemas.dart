@@ -11,22 +11,43 @@ final config = Configuration.local([
 
 final realm = Realm(config);
 
-final Categories = <Category>[
+final onboardCategories = <Category>[
   Category(ObjectId(), "Health"),
   Category(ObjectId(), "Food"),
   Category(ObjectId(), "Electricity"),
   Category(ObjectId(), "Groceries"),
   Category(ObjectId(), "Transportation"),
   Category(ObjectId(), "Miscellaneous"),
+  Category(ObjectId(), "Child Care"),
+  Category(ObjectId(), "Lifestyle"),
+  Category(ObjectId(), "Charity"),
+  Category(ObjectId(), "Banking"),
+  Category(ObjectId(), "Clothes"),
+  Category(ObjectId(), "Loan"),
+  Category(ObjectId(), "Entertainment"),
+  Category(ObjectId(), "Drinks"),
+  Category(ObjectId(), "Bills"),
+  Category(ObjectId(), "Home"),
+  Category(ObjectId(), "Insurance"),
+  Category(ObjectId(), "Internet"),
+  Category(ObjectId(), "Maintenance"),
+  Category(ObjectId(), "Rent"),
+  Category(ObjectId(), "Water"),
+  Category(ObjectId(), "Phone"),
+  Category(ObjectId(), "Education"),
+  Category(ObjectId(), "Gift"),
+  Category(ObjectId(), "Pharmacy"),
+  Category(ObjectId(), "Work"),
+  Category(ObjectId(), "Shopping"),
+  Category(ObjectId(), "Fuel"),
 ];
 
 // Create a bunch of Durations when getting onboard
-final Durations = <Duration>[
+final durations = <Duration>[
   Duration(ObjectId(), "month"),
   Duration(ObjectId(), "year"),
   Duration(ObjectId(), "one time"),
 ];
-
 
 @RealmModel()
 class _Duration {
@@ -97,6 +118,22 @@ class _Category {
   late String name;
   late List<_Spend> category;
 }
+
+Wallet getWallet(ObjectId id) {
+  final walletToEdit = realm.query<Wallet>('id == \$0', [id]).first;
+  return walletToEdit;
+}
+
+Spend getSpend(ObjectId id) {
+  final spendToEdit = realm.query<Spend>('id == \$0', [id]).first;
+  return spendToEdit;
+}
+
+Subscription getSubscription(ObjectId id) {
+  final subscriptionToEdit = realm.query<Subscription>('id == \$0', [id]).first;
+  return subscriptionToEdit;
+}
+
 
 //============ TO SUPPORT OLD CODE
 

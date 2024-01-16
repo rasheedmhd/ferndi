@@ -54,6 +54,7 @@ class AddCategoryCardState extends State<AddCategoryCard> {
             Row(
               children: [
                 FloatingActionButton.extended(
+                  elevation: 1,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0)),
                     label: const Icon(Icons.close),
@@ -65,6 +66,7 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                 ),
                 const Spacer(),
                 FloatingActionButton.extended(
+                  elevation: 1,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50.0)),
                   label: const Text(

@@ -13,7 +13,7 @@ class SpendItem extends StatelessWidget {
 
   void _showSpendEditForm(BuildContext context, Spend spend) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (ctx) => EditSpendCard(spend)));
+      .push(MaterialPageRoute(builder: (ctx) => EditSpendCard(spend)));
   }
 
   @override
@@ -71,12 +71,6 @@ class SpendItem extends StatelessWidget {
             onPressed: (context) {
               _showSpendEditForm(context, spend);
             },
-            // onPressed: (context) {
-            //   Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //           builder: (ctx) => EditSpendCard(spend)));
-            // },
             backgroundColor: const Color.fromARGB(255, 96, 150, 249),
             foregroundColor: Colors.white,
             icon: Icons.edit,
