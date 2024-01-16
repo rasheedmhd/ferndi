@@ -18,7 +18,13 @@ class SpendItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Slidable(
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+    child: Column(
+      children: [
+        Slidable(
       // Specify a key if the Slidable is dismissible.
       key: ValueKey(key),
 
@@ -79,30 +85,43 @@ class SpendItem extends StatelessWidget {
         ],
       ),
 
-      child: ListTile(
-        leading: const CircleAvatar(
-          backgroundColor: Color.fromARGB(255, 165, 204, 255),
-          child: FaIcon(
-            FontAwesomeIcons.featherPointed,
-            size: 20.0,
-            color: Color.fromARGB(255, 5, 61, 135),
+        child: Container(
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 245, 245, 245),
+            borderRadius: BorderRadius.circular(20.0),
+          ),             
+          child:  ListTile(
+            leading: const CircleAvatar(
+            backgroundColor: Color.fromARGB(255, 165, 204, 255),
+            child: FaIcon(
+              FontAwesomeIcons.featherPointed,
+              size: 20.0,
+              color: Color.fromARGB(255, 5, 61, 135),
+            ),
+          ),
+          title: Text(
+            spend.name,
+            style: const TextStyle(
+              fontSize: 20,
+            ),
+          ),
+          subtitle: Text(
+              "${spend.notes} + ${spend.category?.name.toString()} + ${spend.wallet?.name.toString()}"),
+          trailing: Text(
+            spend.getAmount,
+            style: const TextStyle(
+              fontSize: 16,
+            ),
           ),
         ),
-        title: Text(
-          spend.name,
-          style: const TextStyle(
-            fontSize: 20,
-          ),
-        ),
-        subtitle: Text(
-            "${spend.notes} + ${spend.category?.name.toString()} + ${spend.wallet?.name.toString()}"),
-        trailing: Text(
-          spend.getAmount,
-          style: const TextStyle(
-            fontSize: 16,
-          ),
-        ),
-      ),
+      )
+    ),
+    const Divider(
+      height: 0,
+      color: Color.fromARGB(255, 227, 226, 226),
+    ),
+    ]
+    )
     );
   }
 }
@@ -131,13 +150,13 @@ class SpendList extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-            child: ListView.builder(
-                shrinkWrap: true,
-                physics: const ClampingScrollPhysics(),
-                itemCount: spends.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return SpendItem(spends[index]);
-                }))
+          child: ListView.builder(
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
+            itemCount: spends.length,
+            itemBuilder: (BuildContext context, int index) {
+              return SpendItem(spends[index]);
+        }))
       ],
     );
   }

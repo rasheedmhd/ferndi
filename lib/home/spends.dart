@@ -18,10 +18,10 @@ class SpendItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-         return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
     child: Column(
       children: [
         Slidable(
