@@ -67,15 +67,15 @@ class TransactionsPageState extends State<TransactionsPage> {
           ),
         ),
       ),
-      const SliverToBoxAdapter(
+      SliverToBoxAdapter(
           child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           SizedBox(
             height: 5600,
-            child: Spends(),
+            child: Transactions(spends),
           ),
         ],
       ))

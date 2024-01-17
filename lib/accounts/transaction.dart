@@ -6,8 +6,8 @@ import "package:flutter_slidable/flutter_slidable.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:realm/realm.dart";
 
-class SpendItem extends StatelessWidget {
-  const SpendItem(this.spend, {super.key});
+class TransactionItem extends StatelessWidget {
+  const TransactionItem(this.spend, {super.key});
 
   final Spend spend;
 
@@ -42,7 +42,7 @@ class SpendItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Spend Deleted",
+                  "Transaction Deleted",
                   style: TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
                 ),
               ],
@@ -126,22 +126,23 @@ class SpendItem extends StatelessWidget {
   }
 }
 
-class Spends extends StatefulWidget {
-  const Spends({super.key});
+class Transactions extends StatefulWidget {
+  final Spend spends;
+  const Transactions(this.spends, {super.key});
 
   @override
-  SpendState createState() => SpendState();
+  TransactionState createState() => TransactionState();
 }
 
-class SpendState extends State<Spends> {
+class TransactionState extends State<Transactions> {
   @override
   Widget build(BuildContext context) {
-    return SpendList(spends: spends);
+    return TransactionList(spends: spends);
   }
 }
 
-class SpendList extends StatelessWidget {
-  const SpendList({super.key, required this.spends});
+class TransactionList extends StatelessWidget {
+  const TransactionList({super.key, required this.spends});
 
   final RealmResults<Spend> spends;
 
@@ -155,7 +156,7 @@ class SpendList extends StatelessWidget {
             physics: const ClampingScrollPhysics(),
             itemCount: spends.length,
             itemBuilder: (BuildContext context, int index) {
-              return SpendItem(spends[index]);
+              return TransactionItem(spends[index]);
         }))
       ],
     );
