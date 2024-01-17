@@ -14,9 +14,6 @@ class TransactionsPage extends StatefulWidget {
 
 class TransactionsPageState extends State<TransactionsPage> {
   late Wallet wallet = getWallet(widget.wallet.id);
-  // late Spend spends = getSpendsByWallet(wallet.name);
-
-  // late String name = wallet.name;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +26,7 @@ class TransactionsPageState extends State<TransactionsPage> {
         // actions: [],
         flexibleSpace: FlexibleSpaceBar(
           background: Container(
-            padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -68,18 +65,15 @@ class TransactionsPageState extends State<TransactionsPage> {
         ),
       ),
       SliverToBoxAdapter(
-          child: Column(
-        children: [
-          const SizedBox(
-            height: 10,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+          child: SizedBox(
+                height: 5600,
+                child: Transactions(wallet),
+              ),
+            
           ),
-          SizedBox(
-            height: 5600,
-            child: Transactions(wallet),
-            // child: Spends(),
-          ),
-        ],
-      ))
+        )
     ]));
   }
 }

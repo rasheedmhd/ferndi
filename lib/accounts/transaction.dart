@@ -19,36 +19,37 @@ class TransactionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        child: Column(children: [
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: Column(
+        children: [
           Slidable(
-              // Specify a key if the Slidable is dismissible.
-              key: ValueKey(key),
+            // Specify a key if the Slidable is dismissible.
+            key: ValueKey(key),
 
-              // The start action pane is the one at the left or the top side.
-              startActionPane: ActionPane(
-                // A motion is a widget used to control how the pane animates.
-                motion: const ScrollMotion(),
+            // The start action pane is the one at the left or the top side.
+            startActionPane: ActionPane(
+              // A motion is a widget used to control how the pane animates.
+              motion: const ScrollMotion(),
 
-                // A pane can dismiss the Slidable.
-                dismissible: DismissiblePane(onDismissed: () {
-                  deleteSpend(spend);
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                    content: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Transaction Deleted",
-                          style:
-                              TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
-                        ),
-                      ],
-                    ),
-                  ));
-                }),
+              // A pane can dismiss the Slidable.
+              dismissible: DismissiblePane(onDismissed: () {
+                deleteSpend(spend);
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                  content: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Transaction Deleted",
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
+                      ),
+                    ],
+                  ),
+                ));
+              }),
 
                 // All actions are defined in the children parameter.
                 children: [
@@ -114,17 +115,19 @@ class TransactionItem extends StatelessWidget {
                     ),
                   ),
                 ),
-              )),
+              )
+            ),
           const Divider(
             height: 0,
             color: Color.fromARGB(255, 227, 226, 226),
           ),
-        ]));
+        ]
+      )
+    );
   }
 }
 
 class Transactions extends StatefulWidget {
-  // final Spend spends;
   final Wallet wallet;
   const Transactions(this.wallet, {super.key});
 
@@ -153,14 +156,19 @@ class TransactionList extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-            child: ListView.builder(
+          child: Container(
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 245, 245, 245),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+            child:  ListView.builder(
                 shrinkWrap: true,
                 physics: const ClampingScrollPhysics(),
                 itemCount: spends.length,
                 itemBuilder: (BuildContext context, int index) {
                   return TransactionItem(spends[index]);
                 }))
-      ],
-    );
+        ),
+      ]);
   }
 }
