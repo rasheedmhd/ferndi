@@ -1,7 +1,7 @@
 // import "package:app/home/spends.dart";
 import "package:app/accounts/transaction.dart";
 import "package:app/models/schemas.dart";
-import "package:app/utility/schema/methods.dart";
+// import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
 
 class TransactionsPage extends StatefulWidget {
@@ -14,7 +14,7 @@ class TransactionsPage extends StatefulWidget {
 
 class TransactionsPageState extends State<TransactionsPage> {
   late Wallet wallet = getWallet(widget.wallet.id);
-  late Spend spends = getSpendsByWallet(wallet.name);
+  // late Spend spends = getSpendsByWallet(wallet.name);
 
   // late String name = wallet.name;
 
@@ -75,7 +75,8 @@ class TransactionsPageState extends State<TransactionsPage> {
           ),
           SizedBox(
             height: 5600,
-            child: Transactions(spends),
+            child: Transactions(wallet),
+            // child: Spends(),
           ),
         ],
       ))
