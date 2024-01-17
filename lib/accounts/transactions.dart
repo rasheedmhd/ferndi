@@ -14,15 +14,17 @@ class TransactionsPage extends StatefulWidget {
 
 class TransactionsPageState extends State<TransactionsPage> {
   late Wallet wallet = getWallet(widget.wallet.id);
-  late String name = wallet.name;
+  late Spend spends = getSpendsByWallet(wallet.name);
+
+  // late String name = wallet.name;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(slivers: [
-        SliverAppBar(
-          pinned: true,
-          floating: true,
+        body: CustomScrollView(slivers: [
+      SliverAppBar(
+        pinned: true,
+        floating: true,
         collapsedHeight: 160,
         // actions: [],
         flexibleSpace: FlexibleSpaceBar(
@@ -34,12 +36,14 @@ class TransactionsPageState extends State<TransactionsPage> {
                 const SizedBox(
                   height: 50,
                 ),
-                Text("$name",
-                style: const TextStyle(
-                  fontSize: 30.0,
-                  color: Color.fromARGB(255, 5, 61, 135),
-                  fontWeight: FontWeight.w700,
-                ),),
+                Text(
+                  "${wallet.name}",
+                  style: const TextStyle(
+                    fontSize: 30.0,
+                    color: Color.fromARGB(255, 5, 61, 135),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
                 const Align(
                   alignment: Alignment.topLeft,
                   child: Text(
@@ -49,22 +53,23 @@ class TransactionsPageState extends State<TransactionsPage> {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                ),                            
-                Text("GHS $balance",
-                style: const TextStyle(
-                  fontSize: 30.0,
-                  color: Color.fromARGB(255, 5, 61, 135),
-                  fontWeight: FontWeight.w700,
-                ),),
+                ),
+                Text(
+                  "GHS ${wallet.balance}",
+                  style: const TextStyle(
+                    fontSize: 30.0,
+                    color: Color.fromARGB(255, 5, 61, 135),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ],
             ),
           ),
         ),
       ),
       const SliverToBoxAdapter(
-        child: Column(
+          child: Column(
         children: [
-  
           SizedBox(
             height: 10,
           ),
