@@ -1,6 +1,5 @@
 import "package:app/accounts/transactions.dart";
 import "package:app/ops/update/topUpWallet.dart";
-import "package:app/cards/transfer.dart";
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 import "package:app/ops/update/editWallet.dart";
@@ -46,17 +45,11 @@ class WalletItem extends StatelessWidget {
     );
   }
 
-  void _showTransferPage(BuildContext context, Wallet wallet) {
-    showModalBottomSheet(
-      showDragHandle: true,
-      context: context,
-      isScrollControlled: true,
-      builder: (ctx) => TransferCard(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+
+  late int spendsCount = getSpendsByWallet(wallet.name).length;
+
     return Slidable(
         // Specify a key if the Slidable is dismissible.
         key: ValueKey(key),
@@ -182,7 +175,7 @@ class WalletItem extends StatelessWidget {
                                 padding: const EdgeInsets.all(7),
                                 color: const Color.fromARGB(200, 109, 189, 255),
                                 child: Text(
-                                  " $totalTransactions transactions ",
+                                  " $spendsCount transactions ",
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
