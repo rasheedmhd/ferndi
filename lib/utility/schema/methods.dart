@@ -139,7 +139,7 @@ void deleteCategory(Category category) {
   });
 }
 
-Wallet getSpendsByWallet(String walletName) {
-  final wallet = realm.query<Wallet>('name == \$0', [walletName]).first;
-  return wallet;
+getSpendsByWallet(String walletName) {
+  final spendsByWallet = realm.query<Spend>("wallet.name == \$0", [walletName]);
+  return spendsByWallet;
 }
