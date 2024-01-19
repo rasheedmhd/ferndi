@@ -67,6 +67,7 @@ void recordSpend(Spend spend) {
   realm.write(() {
     realm.add(spend);
   });
+  // notifyListeners();
 }
 
 void updateSpend(Spend spend) {

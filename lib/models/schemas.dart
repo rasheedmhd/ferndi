@@ -1,3 +1,4 @@
+import "package:flutter/material.dart";
 import "package:realm/realm.dart";
 part "schemas.g.dart";
 
@@ -94,7 +95,7 @@ class _Wallet {
 }
 
 @RealmModel()
-class _Spend {
+class _Spend extends ChangeNotifier {
   @PrimaryKey()
   late ObjectId id;
   // name or description of what you bought
@@ -116,6 +117,15 @@ class _Spend {
   String? get getCategory => category?.name;
   String get getAmount => "GHS ${amount.toStringAsFixed(2)}";
   String? get getWallet => wallet?.name;
+
+  // Create a new spend record and persist to db
+  void recordSpend(Spend spend) {
+    realm.write(() {
+      realm.add(spend);
+    });
+    notifyListeners();
+  }
+
 }
 
 @RealmModel()

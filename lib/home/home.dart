@@ -53,7 +53,30 @@ class HomeState extends State<Home> {
             const SizedBox(
               height: 10,
             ),
-            const AddSpendCard(),
+            // const AddSpendCard(),
+            InkWell(
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(30, 8, 30, 8),
+                decoration: const  BoxDecoration(
+                  color: Color.fromARGB(255, 245, 245, 245),  
+                  borderRadius: BorderRadius.all(Radius.circular(20)
+                ),
+              ),
+            child: const TextField(
+              // controller: _nameController,
+              decoration: InputDecoration(
+                iconColor: Color.fromARGB(255, 151, 151, 151),
+                icon: FaIcon(
+                  FontAwesomeIcons.penToSquare,
+                  size: 24,
+                ),
+                border: InputBorder.none,
+                label: Text("What did spend on ?"),
+                isDense: true,
+              ),
+              ),
+            )
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -89,9 +112,7 @@ class HomeState extends State<Home> {
               height: 10,
             ),
             const SizedBox(
-              //padding: EdgeInsets.fromLTRB(15, 10, 0, 0),
               height: 2800,
-              // height: double.infinity,
               child: Spends(),
             ),
           ],
