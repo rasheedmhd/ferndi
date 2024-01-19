@@ -75,18 +75,18 @@ class TopUpWalletCardState extends State<TopUpWalletCard> {
                 height: 20,
               ),
               Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 240, 240, 240),
-                    borderRadius: BorderRadius.circular(8.0)),
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "The amount you type below will be added to your Wallet's balance.",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 151, 151, 151),
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 240, 240, 240),
+                      borderRadius: BorderRadius.circular(8.0)),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "The amount you type below will be added to your Wallet's balance.",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 151, 151, 151),
+                      ),
                     ),
-                  ),
-                )),
+                  )),
               const SizedBox(
                 height: 20,
               ),
@@ -105,6 +105,7 @@ class TopUpWalletCardState extends State<TopUpWalletCard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   FloatingActionButton.extended(
+                    elevation: 1,
                     heroTag: "save",
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50.0)),
@@ -118,34 +119,31 @@ class TopUpWalletCardState extends State<TopUpWalletCard> {
                     foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                     onPressed: () {
-                      _newBalance(_balanceController.text);
-                      if (balance.toString().isEmpty) {
+                      if (_balanceController.text.isEmpty) {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
-                          backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                          backgroundColor: Color.fromARGB(255, 230, 243, 255),
                           content: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "A Wallet must have a Balance",
+                                "Nothing was added to your wallet",
                                 style: TextStyle(
-                                    color: Color.fromARGB(255, 163, 9, 71)),
-                              ),
-                              Text(
-                                "Please add Balance before saving.",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 163, 9, 71)),
+                                    color: Color.fromARGB(255, 0, 128, 255)),
                               ),
                             ],
                           ),
                         ));
+                        Navigator.of(context).pop();
                         return;
                       }
+                      _newBalance(_balanceController.text);
                       updateWallet(Wallet(
                         walletToEdit.id,
                         name,
                         balance,
                       ));
+                      ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         backgroundColor: Color.fromARGB(255, 231, 255, 245),
                         content: Column(

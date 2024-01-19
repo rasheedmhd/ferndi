@@ -53,8 +53,7 @@ class AddWalletCardState extends State<AddWalletCard> {
                 maxLength: 10,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                    prefix: Text("GHS "),
-                    label: Text("Balance")),
+                    prefix: Text("GHS "), label: Text("Balance")),
               ),
               const SizedBox(
                 height: 40,
@@ -87,8 +86,11 @@ class AddWalletCardState extends State<AddWalletCard> {
                     foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                     onPressed: () {
-                      if (_balanceController.text.isEmpty || _nameController.text.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      if (_balanceController.text.isEmpty ||
+                          _nameController.text.isEmpty) {
+                        ScaffoldMessenger.of(context).clearSnackBars();
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
                           backgroundColor: Color.fromARGB(255, 255, 231, 241),
                           content: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -121,16 +123,19 @@ class AddWalletCardState extends State<AddWalletCard> {
                           children: [
                             Text(
                               "Wallet successfully created.",
-                              style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 9, 163, 99)),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   "Happy tracking your Spends!   ",
-                                  style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 9, 163, 99)),
                                 ),
-                                Icon(Icons.sentiment_very_satisfied, color: Color.fromARGB(255, 9, 163, 9))
+                                Icon(Icons.sentiment_very_satisfied,
+                                    color: Color.fromARGB(255, 9, 163, 9))
                               ],
                             ),
                           ],

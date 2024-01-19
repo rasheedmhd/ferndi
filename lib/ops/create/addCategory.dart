@@ -80,6 +80,7 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                   onPressed: () {
                     if (_nameController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         backgroundColor: Color.fromARGB(255, 255, 231, 241),
                         content: Column(
@@ -105,6 +106,7 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                       _nameController.text,
                     ));
                     _nameController.clear();
+                    ScaffoldMessenger.of(context).clearSnackBars();
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       backgroundColor: Color.fromARGB(255, 231, 255, 245),
                       content: Column(
