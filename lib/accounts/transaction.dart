@@ -56,6 +56,7 @@ class TransactionItem extends StatelessWidget {
                   // A SlidableAction can have an icon and/or a label.
                   SlidableAction(
                     onPressed: (context) {
+                      ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         backgroundColor: Color.fromARGB(255, 230, 243, 255),
                         content: Column(
@@ -106,8 +107,32 @@ class TransactionItem extends StatelessWidget {
                       fontSize: 20,
                     ),
                   ),
-                  subtitle: Text(
-                      "${spend.notes} + ${spend.category?.name.toString()} + ${spend.wallet?.name.toString()}"),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("${spend.notes}"),
+                      Row(
+                        children: [
+                          // const FaIcon(
+                          //     FontAwesomeIcons.featherPointed,
+                          //     size: 14.0,
+                          //     color: Color.fromARGB(255, 5, 61, 135),
+                          //   ),
+                          Text("category:  ${spend.category?.name.toString()}"),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          // const FaIcon(
+                          //     FontAwesomeIcons.featherPointed,
+                          //     size: 14.0,
+                          //     color: Color.fromARGB(255, 5, 61, 135),
+                          //   ),
+                          Text("wallet:  ${spend.wallet?.name.toString()}"),
+                        ],
+                      ),
+                    ],
+                  ),
                   trailing: Text(
                     spend.getAmount,
                     style: const TextStyle(
