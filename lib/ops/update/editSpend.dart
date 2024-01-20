@@ -30,7 +30,6 @@ class EditSpendCardState extends State<EditSpendCard> {
     amount = typedAmount;
   }
 
-  // [[ TO DO ]] see linear issue on creating spends without wallet & categories
   late Category _selectedCategory = spendToEdit.category ??= categories.first;
   late Wallet _selectedWallet = spendToEdit.wallet ??= wallets.first;
 

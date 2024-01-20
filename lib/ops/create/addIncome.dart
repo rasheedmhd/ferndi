@@ -40,7 +40,6 @@ class AddIncomeCardState extends State<AddIncomeCard> {
                 ],
               ),
               const Spacer(),
-              // Text("Income"),
               Expanded(
                 child: TextField(
                   controller: _balanceController,
@@ -61,6 +60,7 @@ class AddIncomeCardState extends State<AddIncomeCard> {
             height: 70,
           ),
           FloatingActionButton.extended(
+            elevation: 1,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0)),
             label: const Text(
@@ -90,7 +90,7 @@ class AddIncomeCardState extends State<AddIncomeCard> {
                           "Income Wallet successfully created. ",
                           style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
                         ),
-                        Icon(Icons.sentiment_very_satisfied, color: Color.fromARGB(255, 9, 163, 9))                      
+                        Icon(Icons.sentiment_very_satisfied, color: Color.fromARGB(255, 9, 163, 9))
                       ],
                     ),
                     Text(
