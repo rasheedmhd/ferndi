@@ -142,6 +142,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                   height: 20,
                 ),
                 FloatingActionButton.extended(
+                  elevation: 1,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50.0)),
                     label: const Text(
@@ -151,7 +152,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    foregroundColor: const Color.fromARGB(255, 5, 61, 135),
+                    foregroundColor: Color.fromARGB(255, 255, 255, 255),
                     backgroundColor: const Color.fromARGB(255, 35, 206, 135),
                     onPressed: () {
                       if (_nameController.text.isEmpty ||

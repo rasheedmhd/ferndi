@@ -155,105 +155,110 @@ class EditSpendCardState extends State<EditSpendCard> {
                     height: 20,
                   ),
                   FloatingActionButton.extended(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50.0)),
-                      label: const Text(
-                        "          save          ",
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w700,
-                        ),
+                    elevation: 1,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0)),
+                    label: const Text(
+                      "          save          ",
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w700,
                       ),
-                      foregroundColor: const Color.fromARGB(255, 5, 61, 135),
-                      backgroundColor: const Color.fromARGB(255, 35, 206, 135),
-                      onPressed: () {
-                        if (name.isEmpty ||
-                            amount.isEmpty ||
-                            _selectedCategory.name.isEmpty ||
-                            _selectedWallet.name.isEmpty) {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                            content: Column(
+                    ),
+                    foregroundColor: Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: const Color.fromARGB(255, 35, 206, 135
+                  ),
+                  onPressed: () {
+                    if (name.isEmpty ||
+                        amount.isEmpty ||
+                        _selectedCategory.name.isEmpty ||
+                        _selectedWallet.name.isEmpty) {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(const SnackBar(
+                        backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                        content: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Spend details incomplete",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 163, 9, 71)),
+                            ),
+                            Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Spend details incomplete",
+                                  "Please add name, amount, wallet and category.",
                                   style: TextStyle(
-                                      color: Color.fromARGB(255, 163, 9, 71)),
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Please add name, amount, wallet and category.",
-                                      style: TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 163, 9, 71)),
-                                    ),
-                                  ],
+                                      color:
+                                          Color.fromARGB(255, 163, 9, 71)),
                                 ),
                               ],
                             ),
-                          ));
-                          return;
-                        }
-                        if (int.parse(amount) > _selectedWallet.balance) {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                            content: Column(
+                          ],
+                        ),
+                      ));
+                      return;
+                    }
+                    if (int.parse(amount) > _selectedWallet.balance) {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(const SnackBar(
+                        backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                        content: Column(
+                          children: [
+                            Text(
+                              "You don't have enough money in the Wallet",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 163, 9, 71)),
+                            ),
+                            Text(
+                              "Go to Accounts and top up first.",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 163, 9, 71)),
+                            ),
+                          ],
+                        ),
+                      ));
+                    } else {
+                      updateSpend(Spend(
+                        spendToEdit.id,
+                        name,
+                        notes,
+                        int.parse(amount.toString()),
+                        category: _selectedCategory,
+                        wallet: _selectedWallet,
+                        DateTime.now()
+                      ));
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(const SnackBar(
+                        backgroundColor: Color.fromARGB(255, 231, 255, 245),
+                        content: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "You don't have enough money in the Wallet",
+                                  "Spend edited and Saved successfully. ",
                                   style: TextStyle(
-                                      color: Color.fromARGB(255, 163, 9, 71)),
+                                      color:
+                                          Color.fromARGB(255, 9, 163, 99)),
                                 ),
-                                Text(
-                                  "Go to Accounts and top up first.",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 163, 9, 71)),
-                                ),
+                                Icon(Icons.sentiment_very_satisfied,
+                                    color: Color.fromARGB(255, 9, 163, 9))
                               ],
                             ),
-                          ));
-                        } else {
-                          updateSpend(Spend(
-                              spendToEdit.id,
-                              name,
-                              notes,
-                              int.parse(amount.toString()),
-                              category: _selectedCategory,
-                              wallet: _selectedWallet,
-                              DateTime.now()));
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            backgroundColor: Color.fromARGB(255, 231, 255, 245),
-                            content: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Spend edited and Saved successfully. ",
-                                      style: TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 9, 163, 99)),
-                                    ),
-                                    Icon(Icons.sentiment_very_satisfied,
-                                        color: Color.fromARGB(255, 9, 163, 9))
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ));
-                        }
-                        ;
-                        Navigator.of(context).pop();
-                      }),
-                ],
-              ))),
+                          ],
+                        ),
+                      ));
+                    }
+                    Navigator.of(context).pop();
+                  }
+                ),
+            ],
+          )
+        )
+      ),
     );
   }
 }
