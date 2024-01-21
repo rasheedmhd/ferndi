@@ -152,7 +152,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    foregroundColor: Color.fromARGB(255, 255, 255, 255),
+                    foregroundColor: const Color.fromARGB(255, 255, 255, 255),
                     backgroundColor: const Color.fromARGB(255, 35, 206, 135),
                     onPressed: () {
                       if (_nameController.text.isEmpty ||

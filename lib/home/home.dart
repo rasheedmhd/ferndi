@@ -1,19 +1,21 @@
 import "package:app/home/spendHistory.dart";
 import "package:app/home/spends.dart";
+import "package:app/providers/spends_provider.dart";
 import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
 import "package:app/cards/balance.dart";
 import "package:app/ops/create/addSpend.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
-class Home extends StatefulWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({super.key});
 
   @override
   HomeState createState() => HomeState();
 }
 
-class HomeState extends State<Home> {
+class HomeState extends ConsumerState<Home> {   
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
