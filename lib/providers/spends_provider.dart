@@ -7,7 +7,7 @@ final spendsProvider = StateProvider((ref) {
   return spends;
 });
 
-final totalTransactionsProvider = Provider((ref) {
+final totalTransactionsProvider = StateProvider((ref) {
   return totalTransactions;
 });
 

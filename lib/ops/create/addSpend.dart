@@ -1,19 +1,19 @@
 import "package:app/models/schemas.dart";
-// import "package:app/providers/spends_provider.dart";
+import "package:app/providers/spends_provider.dart";
 import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
-// import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:realm/realm.dart";
 
-class AddSpendCard extends StatefulWidget {
+class AddSpendCard extends ConsumerStatefulWidget {
   const AddSpendCard({super.key});
 
   @override
   AddSpendCardState createState() => AddSpendCardState();
 }
 
-class AddSpendCardState extends State<AddSpendCard> {
+class AddSpendCardState extends ConsumerState<AddSpendCard> {
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
@@ -246,7 +246,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                           ),
                         ));
                       }
-                      // ref.read(spendsProvider.notifier).state;
+                      ref.read(totalTransactionsProvider.notifier).state++;
                     }
                   ),
               ],

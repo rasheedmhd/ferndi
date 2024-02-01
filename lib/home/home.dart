@@ -25,38 +25,38 @@ class HomeState extends ConsumerState<Home> {
         home: DefaultTabController(
           length: 2,
           child: Scaffold(
-              appBar: TabBarView(
-                children: [
-                  hompage(),
-                ],
-              ),
-              // appBar: 
-              // AppBar(
-              //   title: const Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-              //     children: [
-              //       Row(
-              //         children: [
-              //           FaIcon(FontAwesomeIcons.chevronLeft,
-              //               size: 20, color: Colors.white),
-              //           SizedBox(
-              //             width: 12,
-              //           ),
-              //           Text(
-              //             "This Month",
-              //             style: TextStyle(color: Colors.white),
-              //           ),
-              //           SizedBox(
-              //             width: 12,
-              //           ),
-              //           FaIcon(FontAwesomeIcons.chevronRight,
-              //               size: 20, color: Colors.white),
-              //         ],
-              //       ),
-              //     ],
-              //   ),
-              //   backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+              // appBar: TabBarView(
+              //   children: [
+              //     hompage(),
+              //   ],
               // ),
+              appBar: 
+              AppBar(
+                title: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Row(
+                      children: [
+                        FaIcon(FontAwesomeIcons.chevronLeft,
+                            size: 20, color: Colors.white),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Text(
+                          "This Month",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        FaIcon(FontAwesomeIcons.chevronRight,
+                            size: 20, color: Colors.white),
+                      ],
+                    ),
+                  ],
+                ),
+                backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+              ),
               body: ListView(
                 padding: const EdgeInsets.all(15),
                 children: [

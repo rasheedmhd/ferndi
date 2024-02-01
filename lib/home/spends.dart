@@ -160,8 +160,8 @@ class SpendState extends ConsumerState<Spends> {
   
   @override
   Widget build(BuildContext context) {
-    final spends = ref.watch(spendsProvider);
-    return SpendList(spends: spends);
+    final spends_from_provider = ref.watch(spendsProvider);
+    return SpendList(spends: spends_from_provider);
   }
 }
 
