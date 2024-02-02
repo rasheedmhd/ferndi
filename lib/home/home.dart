@@ -1,7 +1,6 @@
 import "package:app/home/spendHistory.dart";
 import "package:app/home/spends.dart";
 import "package:app/providers/spends_provider.dart";
-// import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
 import "package:app/cards/balance.dart";
 import "package:app/ops/create/addSpend.dart";
@@ -18,7 +17,7 @@ class Home extends ConsumerStatefulWidget {
 class HomeState extends ConsumerState<Home> {
   @override
   Widget build(BuildContext context) {
-    final ts = ref.watch(totalTransactionsProvider);
+    final spendsCount = ref.watch(spendsCountProvider);
     return MaterialApp(
         title: "Home",
         theme: ThemeData(fontFamily: 'Gilroy'),
@@ -89,7 +88,7 @@ class HomeState extends ConsumerState<Home> {
                         const FaIcon(FontAwesomeIcons.arrowRightLong,
                             size: 23, color: Color.fromARGB(255, 151, 151, 151)),
                         Text(
-                          " $ts ",
+                          " $spendsCount ",
                           style: const TextStyle(
                             fontSize: 30.0,
                             color: Color.fromARGB(255, 151, 151, 151),

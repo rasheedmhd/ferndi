@@ -246,9 +246,8 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                           ),
                         ));
                       }
-                      ref.read(totalTransactionsProvider.notifier).state++;
-                    }
-                  ),
+                      ref.read(spendsCountProvider.notifier).state++;
+                    }),
               ],
             )));
   }

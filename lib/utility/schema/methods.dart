@@ -23,7 +23,8 @@ final totalSpend = spends
     .map((spend) => spend.amount)
     .toList()
     .reduce((value, element) => value + element);
-final totalTransactions = spends.map((spend) => spend.amount).toList().length;
+// final totalCategories = categories.map((category) => category).toList().length;
+final spendsCount = spends.length;
 
 // Querying data for Subscriptions balance card
 final num subBalance = subscriptions
@@ -131,7 +132,6 @@ void addWallets() {
     realm.addAll(onboardWallets);
   });
 }
-
 
 void deleteCategory(Category category) {
   realm.write(() {

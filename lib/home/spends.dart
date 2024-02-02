@@ -20,7 +20,7 @@ class SpendItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(spendsProvider);
+    // ref.watch(spendsProvider);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
@@ -52,6 +52,7 @@ class SpendItem extends ConsumerWidget {
                     ],
                   ),
                 ));
+                ref.read(spendsCountProvider.notifier).state--;
               }),
 
               // All actions are defined in the children parameter.
@@ -141,27 +142,11 @@ class Spends extends ConsumerStatefulWidget {
 }
 
 class SpendState extends ConsumerState<Spends> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   ref.read(spendsProvider);
-  // }
-
-  //   Widget build(BuildContext context) {
-  //     Consumer(
-  //       builder: (context, ref, _) {
-  //         final spends = ref.watch(spendsProvider);
-  //         return SpendList(spends: spends);
-  //       },
-  //     );
-  //     return SpendList(spends: spends);
-  //   }
-  // }
   
   @override
   Widget build(BuildContext context) {
-    final spends_from_provider = ref.watch(spendsProvider);
-    return SpendList(spends: spends_from_provider);
+    final spendsFromProvider = ref.watch(spendsProvider);
+    return SpendList(spends: spendsFromProvider);
   }
 }
 

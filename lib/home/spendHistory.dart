@@ -102,7 +102,7 @@ class SpendsPageState extends State<SpendsPage> {
                 const FaIcon(FontAwesomeIcons.arrowRightLong,
                     size: 23, color: Color.fromARGB(255, 151, 151, 151)),
                 Text(
-                  " $totalTransactions ",
+                  " $spendsCount ",
                   style: const TextStyle(
                     fontSize: 30.0,
                     color: Color.fromARGB(255, 151, 151, 151),

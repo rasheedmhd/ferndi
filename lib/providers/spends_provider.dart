@@ -7,8 +7,8 @@ final spendsProvider = StateProvider((ref) {
   return spends;
 });
 
-final totalTransactionsProvider = StateProvider((ref) {
-  return totalTransactions;
+final spendsCountProvider = StateProvider((ref) {
+  return spendsCount;
 });
 
 // class spendsNotifier extends StateNotifier { //<RealmResults<Spend>> {
