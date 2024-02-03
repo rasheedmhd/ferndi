@@ -48,80 +48,35 @@ class HomeState extends ConsumerState<Home> {
           ),
           backgroundColor: const Color.fromARGB(255, 5, 61, 135),
         ),
-        body: ListView(
-          padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-          children: [
-            const TabBar(
+        body: Column(
+          // padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+          children: const [
+             TabBar(
+              dividerColor: Color.fromARGB(255, 255, 255, 255),
+              indicatorColor: Color.fromARGB(255, 5, 61, 135),
+              splashBorderRadius: BorderRadius.all(Radius.circular(50)),
+              labelColor: Color.fromARGB(255, 5, 61, 135),
               tabs: [
                 Tab(
-                icon: Icon( 
-                    Icons.home,
-                    color: Color.fromARGB(255, 5, 61, 135),
-                  ),
+                  text: "Spending",
                 ),
                 Tab(
-                icon: Icon( 
-                    Icons.home,
-                    color: Color.fromARGB(255, 5, 61, 135),
-                  ),
+                  text: "Insights",
                 ),
               ],
             ),
-
-            const SizedBox(
-              height: 10,
-            ),
-            const BalanceCard(),
-            const SizedBox(
-              height: 10,
-            ),
-            const AddSpendCard(),
-            const SizedBox(
-              height: 20,
-            ),
-            GestureDetector(
-              onTap: () => {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SpendsPage()))
-              },
-              child: Row(
+            Expanded(
+              child: TabBarView(
                 children: [
-                  const Text(
-                    "Spend History",
-                    style: TextStyle(
-                      fontSize: 30.0,
-                      color: Color.fromARGB(255, 5, 61, 135),
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const Spacer(),
-                  const FaIcon(FontAwesomeIcons.arrowRightLong,
-                      size: 23, color: Color.fromARGB(255, 151, 151, 151)),
-                  Text(
-                    " $spendsCount ",
-                    style: const TextStyle(
-                      fontSize: 30.0,
-                      color: Color.fromARGB(255, 151, 151, 151),
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const SizedBox(
-              //padding: EdgeInsets.fromLTRB(15, 10, 0, 0),
-              height: 2800,
-              // height: double.infinity,
-              child: Spends(),
-            ),
-          ],
-        )),
-  );
+                  Text("data"),
+                  Text("data"),
+                ]
+                )
+              )
+          ])
+        )
+      );
+        
     //   )
     // );
     // return MaterialApp(
