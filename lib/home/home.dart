@@ -1,24 +1,18 @@
-import "package:app/home/spendHistory.dart";
-import "package:app/home/spends.dart";
-import "package:app/providers/spends_provider.dart";
+import "package:app/home/insights.dart";
+import "package:app/home/spending.dart";
 import "package:flutter/material.dart";
-import "package:app/cards/balance.dart";
-import "package:app/ops/create/addSpend.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
-class Home extends ConsumerStatefulWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
   HomeState createState() => HomeState();
 }
 
-class HomeState extends ConsumerState<Home> {
+class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    final spendsCount = ref.watch(spendsCountProvider);
-
     return DefaultTabController(
       length: 2, 
       child: Scaffold(
@@ -31,14 +25,14 @@ class HomeState extends ConsumerState<Home> {
                   FaIcon(FontAwesomeIcons.chevronLeft,
                       size: 20, color: Colors.white),
                   SizedBox(
-                    width: 12,
+                    width: 15,
                   ),
                   Text(
                     "This Month",
                     style: TextStyle(color: Colors.white),
                   ),
                   SizedBox(
-                    width: 12,
+                    width: 15,
                   ),
                   FaIcon(FontAwesomeIcons.chevronRight,
                       size: 20, color: Colors.white),
@@ -48,17 +42,25 @@ class HomeState extends ConsumerState<Home> {
           ),
           backgroundColor: const Color.fromARGB(255, 5, 61, 135),
         ),
-        body: Column(
-          // padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-          children: const [
-             TabBar(
+        body: const Column(
+          children: [
+            TabBar(
               dividerColor: Color.fromARGB(255, 255, 255, 255),
               indicatorColor: Color.fromARGB(255, 5, 61, 135),
+              indicatorWeight: 4,
               splashBorderRadius: BorderRadius.all(Radius.circular(50)),
               labelColor: Color.fromARGB(255, 5, 61, 135),
               tabs: [
                 Tab(
                   text: "Spending",
+                  // child: Row(
+                  //    mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //   FaIcon(FontAwesomeIcons.barsStaggered,
+                  //       size: 20, color: Color.fromARGB(255, 5, 61, 135),),    
+                  //       Text("   Spending")                 
+                  //     ],
+                  // ),
                 ),
                 Tab(
                   text: "Insights",
@@ -68,108 +70,13 @@ class HomeState extends ConsumerState<Home> {
             Expanded(
               child: TabBarView(
                 children: [
-                  Text("data"),
-                  Text("data"),
+                  Spending(),
+                  Insights(),
                 ]
-                )
               )
+            )
           ])
         )
       );
-        
-    //   )
-    // );
-    // return MaterialApp(
-    //     title: "Home",
-    //     theme: ThemeData(fontFamily: 'Gilroy'),
-    //     home: DefaultTabController(
-    //       length: 2,
-    //       child: Scaffold(
-    //           // appBar: TabBarView(
-    //           //   children: [
-    //           //     hompage(),
-    //           //   ],
-    //           // ),
-    //           appBar:
-    //           AppBar(
-    //             title: const Row(
-    //               mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //               children: [
-    //                 Row(
-    //                   children: [
-    //                     FaIcon(FontAwesomeIcons.chevronLeft,
-    //                         size: 20, color: Colors.white),
-    //                     SizedBox(
-    //                       width: 12,
-    //                     ),
-    //                     Text(
-    //                       "This Month",
-    //                       style: TextStyle(color: Colors.white),
-    //                     ),
-    //                     SizedBox(
-    //                       width: 12,
-    //                     ),
-    //                     FaIcon(FontAwesomeIcons.chevronRight,
-    //                         size: 20, color: Colors.white),
-    //                   ],
-    //                 ),
-    //               ],
-    //             ),
-    //             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-    //           ),
-    //           body: ListView(
-    //             padding: const EdgeInsets.all(15),
-    //             children: [
-    //               const BalanceCard(),
-    //               const SizedBox(
-    //                 height: 10,
-    //               ),
-    //               const AddSpendCard(),
-    //               const SizedBox(
-    //                 height: 20,
-    //               ),
-    //               GestureDetector(
-    //                 onTap: () => {
-    //                   Navigator.push(
-    //                       context,
-    //                       MaterialPageRoute(
-    //                           builder: (context) => const SpendsPage()))
-    //                 },
-    //                 child: Row(
-    //                   children: [
-    //                     const Text(
-    //                       "Spend History",
-    //                       style: TextStyle(
-    //                         fontSize: 30.0,
-    //                         color: Color.fromARGB(255, 5, 61, 135),
-    //                         fontWeight: FontWeight.w700,
-    //                       ),
-    //                     ),
-    //                     const Spacer(),
-    //                     const FaIcon(FontAwesomeIcons.arrowRightLong,
-    //                         size: 23, color: Color.fromARGB(255, 151, 151, 151)),
-    //                     Text(
-    //                       " $spendsCount ",
-    //                       style: const TextStyle(
-    //                         fontSize: 30.0,
-    //                         color: Color.fromARGB(255, 151, 151, 151),
-    //                         fontWeight: FontWeight.w700,
-    //                       ),
-    //                     ),
-    //                   ],
-    //                 ),
-    //               ),
-    //               const SizedBox(
-    //                 height: 10,
-    //               ),
-    //               const SizedBox(
-    //                 //padding: EdgeInsets.fromLTRB(15, 10, 0, 0),
-    //                 height: 2800,
-    //                 // height: double.infinity,
-    //                 child: Spends(),
-    //               ),
-    //             ],
-    //           )),
-    //     ));
   }
 }
