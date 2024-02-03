@@ -1,4 +1,5 @@
 import "package:app/Insights/cards/delightful.dart";
+import "package:app/Insights/cards/spends.dart";
 import "package:app/home/spendHistory.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:flutter/material.dart";
@@ -67,6 +68,19 @@ class HomeState extends ConsumerState<Insights> {
       const DelightfulCard(),
       const SizedBox(
         height: 10,
+      ),
+      const Row(
+       children: [
+          SpendInfoCard(),
+          SizedBox(
+            width: 20,
+          ),        
+          SpendInfoCard(),
+          SizedBox(
+            width: 20,
+          ),        
+          SpendInfoCard(),
+        ], 
       ),
       const SizedBox(
         height: 20,
