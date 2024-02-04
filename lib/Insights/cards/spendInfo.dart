@@ -3,7 +3,7 @@ import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 
 class SpendInfoCard extends StatelessWidget {
-  
+
   const SpendInfoCard({super.key});
 
   @override
@@ -12,7 +12,7 @@ class SpendInfoCard extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color: Color.fromARGB(255, 227, 226, 226),
-        ),        
+        ),
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: const Padding(
@@ -21,18 +21,19 @@ class SpendInfoCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CircleAvatar(
-              backgroundColor: Color.fromARGB(255, 205, 227, 255),
+              backgroundColor: Color.fromARGB(255, 246, 220, 236),
               child: FaIcon(
                 FontAwesomeIcons.featherPointed,
                 size: 20.0,
-                color: Color.fromARGB(255, 5, 61, 135),
+                color: Color.fromARGB(255, 255, 0, 93),
               ),
-            ),            
+            ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("56",
                   style: TextStyle(
-                    // fontSize: 30.0,
+                    fontSize: 25.0,
                     fontWeight: FontWeight.w600,
                     color: Color.fromARGB(255, 12, 12, 12),
                   )
