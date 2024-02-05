@@ -4,9 +4,9 @@ import "package:flutter/material.dart";
 import "package:realm/realm.dart";
 
 class EditCategoryCard extends StatefulWidget {
-  const EditCategoryCard({required this.wallet, super.key});
+  const EditCategoryCard(this.category, {super.key});
 
-  final Wallet wallet;
+  final Category category;
 
   @override
   EditCategoryCardState createState() => EditCategoryCardState();
@@ -54,6 +54,7 @@ class EditCategoryCardState extends State<EditCategoryCard> {
               Row(
                 children: [
                   FloatingActionButton.extended(
+                    heroTag: "close",
                     elevation: 1,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50.0)),
@@ -66,6 +67,7 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                   ),
                   const Spacer(),
                   FloatingActionButton.extended(
+                    heroTag: "save",
                     elevation: 1,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50.0)),

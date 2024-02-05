@@ -1,11 +1,10 @@
 import "package:app/Insights/cards/delightful.dart";
 import 'package:app/Insights/cards/spendInfo.dart';
 import 'package:app/Insights/Categories.dart';
-import "package:app/providers/spends_provider.dart";
 import 'package:app/Insights/cards/spendsInfoCard.dart';
+import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 // Cards
 
@@ -29,7 +28,7 @@ import "package:font_awesome_flutter/font_awesome_flutter.dart";
 // number
 // button to add categories
 
-// category  with the highest number of spends
+// category with the highest number of spends
 // Icon
 // number
 
@@ -64,41 +63,12 @@ class Insights extends ConsumerStatefulWidget {
 class HomeState extends ConsumerState<Insights> {
   @override
   Widget build(BuildContext context) {
-    final spendsCount = ref.watch(spendsCountProvider);
     return ListView(padding: const EdgeInsets.all(15), children: [
       const DelightfulCard(),
       const SizedBox(
         height: 20,
       ),
       const SpendInfoCard2(),
-      const SizedBox(
-        height: 20,
-      ),
-      const Row(
-       children: [
-          SpendInfoCard(),
-          SizedBox(
-            width: 20,
-          ),
-          SpendInfoCard(),
-        ],
-      ),
-      const SizedBox(
-        height: 20,
-      ),
-      const Row(
-       children: [
-          SpendInfoCard(),
-          SizedBox(
-            width: 20,
-          ),
-          SpendInfoCard(),
-          SizedBox(
-            width: 20,
-          ),
-          SpendInfoCard(),
-        ],
-      ),
       const SizedBox(
         height: 20,
       ),
@@ -124,18 +94,14 @@ class HomeState extends ConsumerState<Insights> {
                     style: TextStyle(
                       fontSize: 30.0,
                       color: Color.fromARGB(255, 5, 61, 135),
-                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   const Spacer(),
-                  const FaIcon(FontAwesomeIcons.arrowRightLong,
-                      size: 23, color: Color.fromARGB(255, 151, 151, 151)),
                   Text(
-                    " $spendsCount ",
+                    " $categoriesCount ",
                     style: const TextStyle(
                       fontSize: 30.0,
                       color: Color.fromARGB(255, 151, 151, 151),
-                      fontWeight: FontWeight.w700,
                     ),
                   ),             
                 ],
@@ -143,6 +109,25 @@ class HomeState extends ConsumerState<Insights> {
             ],
           ),
         ),
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      const Row(
+       children: [
+          SpendInfoCard(),
+          SizedBox(
+            width: 20,
+          ),
+          SpendInfoCard(),
+          SizedBox(
+            width: 20,
+          ),
+          SpendInfoCard(),
+        ],
+      ),
+      const SizedBox(
+        height: 20,
       ),
       const SizedBox(
         height: 10,

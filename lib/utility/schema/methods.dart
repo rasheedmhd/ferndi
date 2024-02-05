@@ -25,7 +25,7 @@ final totalSpend = spends
     .reduce((value, element) => value + element);
 // final totalCategories = categories.map((category) => category).toList().length;
 final spendsCount = spends.length;
-
+final categoriesCount = categories.length;
 // Querying data for Subscriptions balance card
 final num subBalance = subscriptions
     .map((subscription) => subscription.amount)
