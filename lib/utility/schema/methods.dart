@@ -82,6 +82,12 @@ void updateWallet(Wallet wallet) {
   });
 }
 
+void updateCategory(Category category) {
+  realm.write(() {
+    realm.add<Category>(category, update: true);
+  });
+}
+
 void updateSubscription(Subscription subscription) {
   realm.write(() {
     realm.add<Subscription>(subscription, update: true);

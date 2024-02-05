@@ -131,6 +131,11 @@ Wallet getWallet(ObjectId id) {
   return walletToEdit;
 }
 
+Category getCategory(ObjectId id) {
+  final categoryToEdit = realm.query<Category>('id == \$0', [id]).first;
+  return categoryToEdit;
+}
+
 Spend getSpend(ObjectId id) {
   final spendToEdit = realm.query<Spend>('id == \$0', [id]).first;
   return spendToEdit;

@@ -4,7 +4,7 @@ import "package:flutter/material.dart";
 import "package:realm/realm.dart";
 
 class EditCategoryCard extends StatefulWidget {
-  const EditCategoryCard(this.category, {super.key});
+  const EditCategoryCard({required this.category, super.key});
 
   final Category category;
 
@@ -13,12 +13,13 @@ class EditCategoryCard extends StatefulWidget {
 }
 
 class EditCategoryCardState extends State<EditCategoryCard> {
-  final _nameController = TextEditingController();
 
-  @override
-  void dispose() {
-    _nameController.dispose();
-    super.dispose();
+  late Category categoryToEdit = getCategory(widget.category.id);
+
+  late String name =  categoryToEdit.name;
+
+  void _newName(String typedName) {
+    name = typedName;
   }
 
   @override
@@ -42,12 +43,13 @@ class EditCategoryCardState extends State<EditCategoryCard> {
               const SizedBox(
                 height: 20,
               ),
-              TextField(
-                controller: _nameController,
+              TextFormField(
+                initialValue: name,
+                onChanged: _newName,
                 maxLength: 50,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(label: Text("Category Name")),
-              ),
+              ),              
               const SizedBox(
                 height: 40,
               ),
@@ -81,7 +83,8 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                     foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                     onPressed: () {
-                      if (_nameController.text.isEmpty) {
+                      if (name.isEmpty) {
+                        ScaffoldMessenger.of(context).clearSnackBars();
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
                           backgroundColor: Color.fromARGB(255, 255, 231, 241),
@@ -89,12 +92,12 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "A Category must have a Name",
+                                "A Category must have a name",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 163, 9, 71)),
                               ),
                               Text(
-                                "Please add a Name before saving.",
+                                "Please add a name before saving.",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 163, 9, 71)),
                               ),
@@ -103,17 +106,17 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                         ));
                         return;
                       }
-                      createCategory(Category(
-                        ObjectId(),
-                        _nameController.text,
+                      updateCategory(Category(
+                        categoryToEdit.id,
+                        name,
                       ));
-                      _nameController.clear();
+                      ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         backgroundColor: Color.fromARGB(255, 231, 255, 245),
                         content: Column(
                           children: [
                             Text(
-                              "Category successfully created.",
+                              "Category successfully updated.",
                               style: TextStyle(
                                   color: Color.fromARGB(255, 9, 163, 99)),
                             ),
@@ -121,7 +124,7 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Happy categorizing your Spends!   ",
+                                  "Enjoy Delightful Spending.",
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 9, 163, 99)),
                                 ),
