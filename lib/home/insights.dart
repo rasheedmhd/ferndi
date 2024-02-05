@@ -23,7 +23,7 @@ import "package:font_awesome_flutter/font_awesome_flutter.dart";
 // 4 in a row
 // - this week
 // - this month
-// - this year
+// - all spends
 // - since you joined
 // Icon
 // number
@@ -68,9 +68,12 @@ class HomeState extends ConsumerState<Insights> {
     return ListView(padding: const EdgeInsets.all(15), children: [
       const DelightfulCard(),
       const SizedBox(
-        height: 10,
+        height: 20,
       ),
-      const spendInfoCard2(),
+      const SpendInfoCard2(),
+      const SizedBox(
+        height: 20,
+      ),
       const Row(
        children: [
           SpendInfoCard(),

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:app/providers/spends_provider.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-class spendInfoCard2 extends StatelessWidget {
-  const spendInfoCard2({super.key});
+class SpendInfoCard2 extends ConsumerWidget {
+  const SpendInfoCard2({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final all_spends = ref.watch(spendsCountProvider);
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
         border: Border.all(
           color: const Color.fromARGB(255, 227, 226, 226),
@@ -23,61 +26,115 @@ class spendInfoCard2 extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 30.0,
                   color: Color.fromARGB(255, 5, 61, 135),
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              Spacer(),
-              FaIcon(FontAwesomeIcons.arrowRightLong,
-                  size: 23, color: Color.fromARGB(255, 151, 151, 151)),
-              Text(
-                " 11 ",
-                style: TextStyle(
-                  fontSize: 30.0,
-                  color: Color.fromARGB(255, 151, 151, 151),
-                  fontWeight: FontWeight.w700,
                 ),
               ),
             ],
           ),
           const Divider(
-            height: 0,
+            height: 10,
             color: Color.fromARGB(255, 227, 226, 226),
           ),
-          const Text("data"),
-          const Text("data"),
-          const Text("data"),
-          const Text("see all"),
+          const SizedBox(
+            height: 10,
+          ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Container(
-                      padding: const EdgeInsets.all(7),
-                      color: const Color.fromARGB(198, 235, 232, 255),
-                      child: const Text(
-                        "   see all   ",
-                        style: TextStyle(
-                          color: Color.fromARGB(199, 71, 34, 255),
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ))),
-              const SizedBox(
-                width: 20,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CircleAvatar(
+                    backgroundColor: Color.fromARGB(255, 246, 220, 236),
+                    child: FaIcon(
+                      FontAwesomeIcons.arrowUp,
+                      size: 20.0,
+                      color: Color.fromARGB(255, 255, 0, 93),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("$all_spends",
+                          style: const TextStyle(
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromARGB(255, 12, 12, 12),
+                          )),
+                      const Text("this week",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 12, 12, 12),
+                          )),
+                    ],
+                  ),
+                ],
               ),
-              ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Container(
-                      padding: const EdgeInsets.all(7),
-                      color: const Color.fromARGB(198, 235, 232, 255),
-                      child: const Text(
-                        "   +   add category   ",
-                        style: TextStyle(
-                          color: Color.fromARGB(199, 71, 34, 255),
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ))),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CircleAvatar(
+                    backgroundColor: Color.fromARGB(255, 246, 220, 236),
+                    child: FaIcon(
+                      FontAwesomeIcons.arrowUp,
+                      size: 20.0,
+                      color: Color.fromARGB(255, 255, 0, 93),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("$all_spends",
+                          style: const TextStyle(
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromARGB(255, 12, 12, 12),
+                          )),
+                      const Text("this month",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 12, 12, 12),
+                          )),
+                    ],
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CircleAvatar(
+                    backgroundColor: Color.fromARGB(255, 246, 220, 236),
+                    child: FaIcon(
+                      FontAwesomeIcons.arrowUp,
+                      size: 20.0,
+                      color: Color.fromARGB(255, 255, 0, 93),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("$all_spends",
+                          style: const TextStyle(
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromARGB(255, 12, 12, 12),
+                          )),
+                      const Text("all spends",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 12, 12, 12),
+                          )),
+                    ],
+                  ),
+                ],
+              ),
             ],
-          )
+          ),
         ],
       ),
     );
