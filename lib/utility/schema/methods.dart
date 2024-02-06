@@ -149,3 +149,7 @@ getSpendsByWallet(String walletName) {
   final spendsByWallet = realm.query<Spend>("wallet.name == \$0", [walletName]);
   return spendsByWallet;
 }
+getSpendsByCategory(String categoryName) {
+  final spendsByCategory = realm.query<Spend>("category.name == \$0", [categoryName]);
+  return spendsByCategory;
+}
