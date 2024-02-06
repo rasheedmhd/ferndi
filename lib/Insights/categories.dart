@@ -50,6 +50,13 @@ class SpendsPageState extends ConsumerState<Categories> {
                     color: Color.fromARGB(255, 5, 61, 135),
                   ),
                 ),
+                // Text(
+                //   "$totalSpendByCategory",
+                //   style: TextStyle(
+                //     fontSize: 30.0,
+                //     color: Color.fromARGB(255, 5, 61, 135),
+                //   ),
+                // ),
                 const Spacer(),
                 const FaIcon(FontAwesomeIcons.arrowRightLong,
                     size: 23, color: Color.fromARGB(255, 151, 151, 151)),

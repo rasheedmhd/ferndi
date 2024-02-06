@@ -20,6 +20,9 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final int spendsPerCategory = getSpendsByCategory(category.name).length;
+    final int totalSpendAmountPerCategory = getSpendsByCategory(category.name)
+        .map((spend) => (spend.amount))
+        .reduce((value, element) => value + element);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
@@ -99,11 +102,13 @@ class CategoryItem extends StatelessWidget {
               ),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: const Color.fromARGB(255, 255, 228, 244),
+                  backgroundColor: Color.fromARGB(255, 255, 239, 249),
                   child: Text(
-                    category.name[0],
+                    category.name,
                     style: const TextStyle(
-                        fontSize: 16, color: Color.fromARGB(255, 255, 0, 60)),
+                        fontSize: 20,
+                        color: Color.fromARGB(255, 255, 0, 60),
+                      ),
                   ),
                 ),
                 subtitle: Text("${spendsPerCategory} Transactions"),
@@ -114,9 +119,10 @@ class CategoryItem extends StatelessWidget {
                   ),
                 ),
                 trailing: Text(
-                  category.name[0],
+                  "- GHS ${totalSpendAmountPerCategory.toString()}",
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 20,
+                    color: Color.fromARGB(255, 255, 0, 60),
                   ),
                 ),
               ),

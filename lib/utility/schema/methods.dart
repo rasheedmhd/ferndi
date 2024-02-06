@@ -23,7 +23,12 @@ final totalSpend = spends
     .map((spend) => spend.amount)
     .toList()
     .reduce((value, element) => value + element);
-// final totalCategories = categories.map((category) => category).toList().length;
+
+// final totalSpendByCategory = categories
+//     .map((category) => category.category
+//     .map((spend) => (spend.amount))
+//     .reduce((value, element) => value + element));
+
 final spendsCount = spends.length;
 final categoriesCount = categories.length;
 // Querying data for Subscriptions balance card
@@ -149,7 +154,9 @@ getSpendsByWallet(String walletName) {
   final spendsByWallet = realm.query<Spend>("wallet.name == \$0", [walletName]);
   return spendsByWallet;
 }
+
 getSpendsByCategory(String categoryName) {
-  final spendsByCategory = realm.query<Spend>("category.name == \$0", [categoryName]);
+  final spendsByCategory =
+      realm.query<Spend>("category.name == \$0", [categoryName]);
   return spendsByCategory;
 }
