@@ -29,19 +29,9 @@ class AddCategoryCardState extends State<AddCategoryCard> {
           padding: const EdgeInsets.all(30),
           child: Column(
             children: [
-              // const Align(
-              //   alignment: Alignment.topLeft,
-              //   child: Text(
-              //     "Add Category",
-              //     style: TextStyle(
-              //       fontSize: 30.0,
-              //       color: Color.fromARGB(255, 5, 61, 135),
-              //     ),
-              //   ),
-              // ),
-              // const SizedBox(
-              //   height: 20,
-              // ),
+              const SizedBox(
+                height: 20,
+              ),
               TextField(
                 controller: _nameController,
                 maxLength: 50,

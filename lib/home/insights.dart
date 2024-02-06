@@ -4,7 +4,7 @@ import 'package:app/Insights/Categories.dart';
 import 'package:app/Insights/cards/spendsInfoCard.dart';
 import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+// import "package:flutter_riverpod/flutter_riverpod.dart";
 
 // Cards
 
@@ -53,14 +53,14 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 // Streak
 
-class Insights extends ConsumerStatefulWidget {
+class Insights extends StatefulWidget {
   const Insights({super.key});
 
   @override
-  HomeState createState() => HomeState();
+  InsightsState createState() => InsightsState();
 }
 
-class HomeState extends ConsumerState<Insights> {
+class InsightsState extends State<Insights> {
   @override
   Widget build(BuildContext context) {
     return ListView(padding: const EdgeInsets.all(15), children: [
@@ -128,9 +128,6 @@ class HomeState extends ConsumerState<Insights> {
       ),
       const SizedBox(
         height: 20,
-      ),
-      const SizedBox(
-        height: 10,
       ),
     ]);
   }

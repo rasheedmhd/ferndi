@@ -17,10 +17,12 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final int spendsPerCategory = getSpendsByCategory(category.name).length;
     final int totalSpendAmountPerCategory = getSpendsByCategory(category.name)
         .map((spend) => (spend.amount))
         .reduce((value, element) => value + element);
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
@@ -99,7 +101,7 @@ class CategoryItem extends StatelessWidget {
               ),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 255, 239, 249),
+                  backgroundColor: const Color.fromARGB(255, 255, 239, 249),
                   child: Text(
                     category.name,
                     style: const TextStyle(
@@ -135,14 +137,9 @@ class CategoryItem extends StatelessWidget {
   }
 }
 
-class CategoryCard extends StatefulWidget {
+class CategoryCard extends StatelessWidget {
   const CategoryCard({super.key});
-
-  @override
-  CategoryState createState() => CategoryState();
-}
-
-class CategoryState extends State<CategoryCard> {
+  
   @override
   Widget build(BuildContext context) {
     return CategoryList(categories: categories);
