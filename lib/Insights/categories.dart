@@ -3,16 +3,15 @@ import "package:app/Insights/category.dart";
 import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 
-class Categories extends ConsumerStatefulWidget {
+class Categories extends StatefulWidget {
   const Categories({super.key});
 
   @override
   SpendsPageState createState() => SpendsPageState();
 }
 
-class SpendsPageState extends ConsumerState<Categories> {
+class SpendsPageState extends State<Categories> {
   void _addCategory() {
     showModalBottomSheet(
       showDragHandle: true,
@@ -24,7 +23,6 @@ class SpendsPageState extends ConsumerState<Categories> {
 
   @override
   Widget build(BuildContext context) {
-    // final spendsCount = ref.watch(spendsCountProvider);
 
     return Scaffold(
         appBar: AppBar(
@@ -34,7 +32,7 @@ class SpendsPageState extends ConsumerState<Categories> {
               icon: const Icon(
                 Icons.add,
                 size: 34,
-                color: Color.fromARGB(255, 255, 0, 128),
+                color: Color.fromARGB(255, 163, 9, 71),
               ))
           ],
         ),
@@ -50,13 +48,6 @@ class SpendsPageState extends ConsumerState<Categories> {
                     color: Color.fromARGB(255, 5, 61, 135),
                   ),
                 ),
-                // Text(
-                //   "$totalSpendByCategory",
-                //   style: TextStyle(
-                //     fontSize: 30.0,
-                //     color: Color.fromARGB(255, 5, 61, 135),
-                //   ),
-                // ),
                 const Spacer(),
                 const FaIcon(FontAwesomeIcons.arrowRightLong,
                     size: 23, color: Color.fromARGB(255, 151, 151, 151)),
@@ -74,7 +65,7 @@ class SpendsPageState extends ConsumerState<Categories> {
             ),
             const SizedBox(
               height: 5600,
-              child: Categorys(),
+              child: CategoryCard(),
             ),
           ],
         ));
