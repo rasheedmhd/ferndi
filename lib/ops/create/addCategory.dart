@@ -14,14 +14,13 @@ class AddCategoryCardState extends State<AddCategoryCard> {
   final _nameController = TextEditingController();
   final _emojiController = TextEditingController();
 
-  late String categoryEmoji = "😍";
-  late Color categoryColor = Color.fromARGB(255, 194, 189, 255);
+  late String categoryEmoji = "💸";
+  late Color categoryColor = const Color.fromARGB(255, 205, 227, 255);
 
   void _newEmoji(String selectedEmoji) {
-    categoryEmoji = selectedEmoji;
-  }
-  void _newColor(Color selectedColor) {
-    categoryColor = selectedColor;
+    setState(() {
+      categoryEmoji = selectedEmoji;
+    });
   }
 
   @override
@@ -57,21 +56,18 @@ class AddCategoryCardState extends State<AddCategoryCard> {
               const SizedBox(
                 height: 10,
               ),
-              // const Text(
-              //     "Appearance",
-              // ),
               Row(
                 children: [
-                  const Row(
+                  Row(
                     children: [
                       CircleAvatar(
-                        backgroundColor: Color.fromARGB(255, 188, 217, 255),
+                        backgroundColor: categoryColor,
                         child: Text(
-                          "😍",
-                          style: TextStyle(fontSize: 27),
+                          categoryEmoji,
+                          style: const TextStyle(fontSize: 27),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 30,
                       ),
                     ],
@@ -95,15 +91,15 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                 child: ListView(scrollDirection: Axis.horizontal, children: [
                   GestureDetector(
                     onTap: () {
-                      print("Color.fromARGB(255, 194, 189, 255)");
-                      // setState(value) {
-                      //   emoji = value;
-                      // }
+                      setState(() {
+                        categoryColor =
+                            const Color.fromARGB(255, 194, 213, 252);
+                      });
                     },
                     child: ClipOval(
                         child: Container(
                       padding: const EdgeInsets.all(20),
-                    
+                      color: const Color.fromARGB(255, 194, 213, 252),
                     )),
                   ),
                   const SizedBox(
@@ -111,13 +107,15 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // _showTopUpWalletPage(context, wallet);
+                      setState(() {
+                        categoryColor =
+                            const Color.fromARGB(255, 255, 250, 163);
+                      });
                     },
                     child: ClipOval(
-                        // borderRadius: BorderRadius.circular(50),
                         child: Container(
                       padding: const EdgeInsets.all(20),
-                      color: Color.fromARGB(255, 255, 250, 163),
+                      color: const Color.fromARGB(255, 255, 250, 163),
                     )),
                   ),
                   const SizedBox(
@@ -125,13 +123,15 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // _showTopUpWalletPage(context, wallet);
+                      setState(() {
+                        categoryColor =
+                      const Color.fromARGB(255, 255, 200, 163);
+                      });
                     },
                     child: ClipOval(
-                        // borderRadius: BorderRadius.circular(50),
                         child: Container(
                       padding: const EdgeInsets.all(20),
-                      color: Color.fromARGB(255, 255, 200, 163),
+                      color:const Color.fromARGB(255, 255, 200, 163),
                     )),
                   ),
                   const SizedBox(
@@ -139,13 +139,31 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // _showTopUpWalletPage(context, wallet);
+                      setState(() {
+                        categoryColor =
+                       const Color.fromARGB(255, 255, 191, 236);
+                      });
                     },
                     child: ClipOval(
-                        // borderRadius: BorderRadius.circular(50),
                         child: Container(
                       padding: const EdgeInsets.all(20),
-                      color: Color.fromARGB(255, 255, 191, 236),
+                      color: const Color.fromARGB(255, 255, 191, 236),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),             
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColor =
+                      const Color.fromARGB(255, 184, 255, 118);
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 184, 255, 118),
                     )),
                   ),
                   const SizedBox(
@@ -153,13 +171,15 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // _showTopUpWalletPage(context, wallet);
+                      setState(() {
+                        categoryColor =
+                      const Color.fromARGB(255, 218, 255, 240);
+                      });
                     },
                     child: ClipOval(
-                        // borderRadius: BorderRadius.circular(50),
                         child: Container(
                       padding: const EdgeInsets.all(20),
-                      color: Color.fromARGB(255, 192, 255, 242),
+                      color: const Color.fromARGB(255, 218, 255, 240),
                     )),
                   ),
                   const SizedBox(
@@ -167,13 +187,15 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // _showTopUpWalletPage(context, wallet);
+                      setState(() {
+                        categoryColor =
+                       const Color.fromARGB(255, 192, 255, 242);
+                      });
                     },
                     child: ClipOval(
-                        // borderRadius: BorderRadius.circular(50),
                         child: Container(
                       padding: const EdgeInsets.all(20),
-                      color: Color.fromARGB(255, 255, 166, 168),
+                      color:const  Color.fromARGB(255, 192, 255, 242),
                     )),
                   ),
                   const SizedBox(
@@ -181,13 +203,15 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // _showTopUpWalletPage(context, wallet);
+                      setState(() {
+                        categoryColor =
+                       const Color.fromARGB(255, 255, 166, 168);
+                      });
                     },
                     child: ClipOval(
-                        // borderRadius: BorderRadius.circular(50),
                         child: Container(
                       padding: const EdgeInsets.all(20),
-                      color: Color.fromARGB(255, 213, 168, 255),
+                      color: const Color.fromARGB(255, 255, 166, 168),
                     )),
                   ),
                   const SizedBox(
@@ -195,13 +219,32 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // _showTopUpWalletPage(context, wallet);
+                      setState(() {
+                        categoryColor =
+                       const Color.fromARGB(255, 213, 168, 255);
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 213, 168, 255),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColor =
+                          const Color.fromARGB(255, 109, 255, 175);
+                      });
                     },
                     child: ClipOval(
                         // borderRadius: BorderRadius.circular(50),
                         child: Container(
                       padding: const EdgeInsets.all(20),
-                      color: Color.fromARGB(255, 109, 255, 175),
+                      color: const Color.fromARGB(255, 109, 255, 175),
                     )),
                   ),
                   const SizedBox(
@@ -210,7 +253,7 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                 ]),
               ),
               const SizedBox(
-                height: 20,
+                height: 40,
               ),
               FloatingActionButton.extended(
                 elevation: 1,
