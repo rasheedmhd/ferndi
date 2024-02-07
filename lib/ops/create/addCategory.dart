@@ -294,6 +294,8 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   createCategory(Category(
                     ObjectId(),
                     _nameController.text,
+                    categoryEmoji,
+                    categoryColor as String
                   ));
                   _nameController.clear();
                   ScaffoldMessenger.of(context).clearSnackBars();

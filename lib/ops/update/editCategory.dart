@@ -17,6 +17,15 @@ class EditCategoryCardState extends State<EditCategoryCard> {
 
   late String name =  categoryToEdit.name;
 
+  late String categoryEmoji = categoryToEdit.emoji;
+  late Color categoryColor = categoryToEdit.color as Color;
+
+  void _newEmoji(String selectedEmoji) {
+    setState(() {
+      categoryEmoji = selectedEmoji;
+    });
+  }
+
   void _newName(String typedName) {
     name = typedName;
   }
@@ -93,6 +102,8 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                 updateCategory(Category(
                   categoryToEdit.id,
                   name,
+                  categoryEmoji,
+                  categoryColor as String,                
                 ));
                 ScaffoldMessenger.of(context).clearSnackBars();
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

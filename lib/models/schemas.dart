@@ -1,5 +1,4 @@
 import "package:realm/realm.dart";
-import "package:flutter/material.dart";
 part "schemas.g.dart";
 
 final config = Configuration.local([
@@ -8,39 +7,42 @@ final config = Configuration.local([
   Subscription.schema,
   Category.schema,
   Duration.schema,
-], schemaVersion: 2, shouldDeleteIfMigrationNeeded: true);
+], schemaVersion: 3, shouldDeleteIfMigrationNeeded: true);
 
 final realm = Realm(config);
 
+const String categoryEmoji = "💸";
+const String categoryColor = "Color.fromARGB(255, 205, 227, 255)";
+
 final onboardCategories = <Category>[
-  Category(ObjectId(), "Health"),
-  Category(ObjectId(), "Food"),
-  Category(ObjectId(), "Electricity"),
-  Category(ObjectId(), "Groceries"),
-  Category(ObjectId(), "Transportation"),
-  Category(ObjectId(), "Miscellaneous"),
-  Category(ObjectId(), "Child Care"),
-  Category(ObjectId(), "Lifestyle"),
-  Category(ObjectId(), "Charity"),
-  Category(ObjectId(), "Banking"),
-  Category(ObjectId(), "Clothes"),
-  Category(ObjectId(), "Loan"),
-  Category(ObjectId(), "Entertainment"),
-  Category(ObjectId(), "Drinks"),
-  Category(ObjectId(), "Bills"),
-  Category(ObjectId(), "Home"),
-  Category(ObjectId(), "Insurance"),
-  Category(ObjectId(), "Internet"),
-  Category(ObjectId(), "Maintenance"),
-  Category(ObjectId(), "Rent"),
-  Category(ObjectId(), "Water"),
-  Category(ObjectId(), "Phone"),
-  Category(ObjectId(), "Education"),
-  Category(ObjectId(), "Gift"),
-  Category(ObjectId(), "Pharmacy"),
-  Category(ObjectId(), "Work"),
-  Category(ObjectId(), "Shopping"),
-  Category(ObjectId(), "Fuel"),
+  Category(ObjectId(), "Health", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Food", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Electricity", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Groceries", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Transportation", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Miscellaneous", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Child Care", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Lifestyle", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Charity", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Banking", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Clothes", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Loan", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Entertainment", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Drinks", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Bills", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Home", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Insurance", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Internet", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Maintenance", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Rent", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Water", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Phone", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Education", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Gift", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Pharmacy", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Work", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Shopping", categoryEmoji, categoryColor),
+  Category(ObjectId(), "Fuel", categoryEmoji, categoryColor),
 ];
 
 final List<Wallet> onboardWallets = [
@@ -124,8 +126,8 @@ class _Category {
   @PrimaryKey()
   late ObjectId id;
   late String name;
-  // late String emoji;
-  // late Color color;
+  late String emoji;
+  late String color;
   late List<_Spend> category;
 }
 

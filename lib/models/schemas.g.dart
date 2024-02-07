@@ -319,11 +319,15 @@ class Category extends _Category
     with RealmEntity, RealmObjectBase, RealmObject {
   Category(
     ObjectId id,
-    String name, {
+    String name,
+    String emoji,
+    String color, {
     Iterable<Spend> category = const [],
   }) {
     RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set(this, 'name', name);
+    RealmObjectBase.set(this, 'emoji', emoji);
+    RealmObjectBase.set(this, 'color', color);
     RealmObjectBase.set<RealmList<Spend>>(
         this, 'category', RealmList<Spend>(category));
   }
@@ -339,6 +343,16 @@ class Category extends _Category
   String get name => RealmObjectBase.get<String>(this, 'name') as String;
   @override
   set name(String value) => RealmObjectBase.set(this, 'name', value);
+
+  @override
+  String get emoji => RealmObjectBase.get<String>(this, 'emoji') as String;
+  @override
+  set emoji(String value) => RealmObjectBase.set(this, 'emoji', value);
+
+  @override
+  String get color => RealmObjectBase.get<String>(this, 'color') as String;
+  @override
+  set color(String value) => RealmObjectBase.set(this, 'color', value);
 
   @override
   RealmList<Spend> get category =>
@@ -361,6 +375,8 @@ class Category extends _Category
     return const SchemaObject(ObjectType.realmObject, Category, 'Category', [
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
+      SchemaProperty('emoji', RealmPropertyType.string),
+      SchemaProperty('color', RealmPropertyType.string),
       SchemaProperty('category', RealmPropertyType.object,
           linkTarget: 'Spend', collectionType: RealmCollectionType.list),
     ]);
