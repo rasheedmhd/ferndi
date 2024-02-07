@@ -12,10 +12,22 @@ class AddCategoryCard extends StatefulWidget {
 
 class AddCategoryCardState extends State<AddCategoryCard> {
   final _nameController = TextEditingController();
+  final _emojiController = TextEditingController();
+
+  late String categoryEmoji = "😍";
+  late Color categoryColor = Color.fromARGB(255, 194, 189, 255);
+
+  void _newEmoji(String selectedEmoji) {
+    categoryEmoji = selectedEmoji;
+  }
+  void _newColor(Color selectedColor) {
+    categoryColor = selectedColor;
+  }
 
   @override
   void dispose() {
     _nameController.dispose();
+    _emojiController.dispose();
     super.dispose();
   }
 
@@ -26,20 +38,179 @@ class AddCategoryCardState extends State<AddCategoryCard> {
           title: const Text("Add Category"),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(30),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 20,
+          padding: const EdgeInsets.all(20),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: const Color.fromARGB(255, 227, 226, 226),
               ),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Column(children: [
               TextField(
                 controller: _nameController,
                 maxLength: 50,
                 keyboardType: TextInputType.text,
-                decoration: const InputDecoration(label: Text("Category Name")),
+                decoration: const InputDecoration(label: Text("Name")),
               ),
               const SizedBox(
+                height: 10,
+              ),
+              // const Text(
+              //     "Appearance",
+              // ),
+              Row(
+                children: [
+                  const Row(
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Color.fromARGB(255, 188, 217, 255),
+                        child: Text(
+                          "😍",
+                          style: TextStyle(fontSize: 27),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      initialValue: categoryEmoji,
+                      onChanged: _newEmoji,
+                      maxLength: 1,
+                      keyboardType: TextInputType.text,
+                      decoration: const InputDecoration(label: Text("Emoji")),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
                 height: 40,
+                child: ListView(scrollDirection: Axis.horizontal, children: [
+                  GestureDetector(
+                    onTap: () {
+                      print("Color.fromARGB(255, 194, 189, 255)");
+                      // setState(value) {
+                      //   emoji = value;
+                      // }
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                    
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      // _showTopUpWalletPage(context, wallet);
+                    },
+                    child: ClipOval(
+                        // borderRadius: BorderRadius.circular(50),
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: Color.fromARGB(255, 255, 250, 163),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      // _showTopUpWalletPage(context, wallet);
+                    },
+                    child: ClipOval(
+                        // borderRadius: BorderRadius.circular(50),
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: Color.fromARGB(255, 255, 200, 163),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      // _showTopUpWalletPage(context, wallet);
+                    },
+                    child: ClipOval(
+                        // borderRadius: BorderRadius.circular(50),
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: Color.fromARGB(255, 255, 191, 236),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      // _showTopUpWalletPage(context, wallet);
+                    },
+                    child: ClipOval(
+                        // borderRadius: BorderRadius.circular(50),
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: Color.fromARGB(255, 192, 255, 242),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      // _showTopUpWalletPage(context, wallet);
+                    },
+                    child: ClipOval(
+                        // borderRadius: BorderRadius.circular(50),
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: Color.fromARGB(255, 255, 166, 168),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      // _showTopUpWalletPage(context, wallet);
+                    },
+                    child: ClipOval(
+                        // borderRadius: BorderRadius.circular(50),
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: Color.fromARGB(255, 213, 168, 255),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      // _showTopUpWalletPage(context, wallet);
+                    },
+                    child: ClipOval(
+                        // borderRadius: BorderRadius.circular(50),
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: Color.fromARGB(255, 109, 255, 175),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                ]),
+              ),
+              const SizedBox(
+                height: 20,
               ),
               FloatingActionButton.extended(
                 elevation: 1,
@@ -110,7 +281,7 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   Navigator.of(context).pop();
                 },
               ),
-            ],
+            ]),
           ),
         ));
   }

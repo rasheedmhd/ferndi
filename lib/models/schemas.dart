@@ -1,4 +1,5 @@
 import "package:realm/realm.dart";
+import "package:flutter/material.dart";
 part "schemas.g.dart";
 
 final config = Configuration.local([
@@ -123,6 +124,8 @@ class _Category {
   @PrimaryKey()
   late ObjectId id;
   late String name;
+  // late String emoji;
+  // late Color color;
   late List<_Spend> category;
 }
 
