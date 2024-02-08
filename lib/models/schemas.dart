@@ -11,40 +11,6 @@ final config = Configuration.local([
 
 final realm = Realm(config);
 
-const String categoryEmoji = "💸";
-const String categoryColor = "Color.fromARGB(255, 205, 227, 255)";
-
-final onboardCategories = <Category>[
-  Category(ObjectId(), "Health", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Food", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Electricity", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Groceries", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Transportation", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Miscellaneous", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Child Care", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Lifestyle", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Charity", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Banking", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Clothes", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Loan", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Entertainment", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Drinks", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Bills", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Home", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Insurance", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Internet", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Maintenance", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Rent", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Water", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Phone", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Education", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Gift", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Pharmacy", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Work", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Shopping", categoryEmoji, categoryColor),
-  Category(ObjectId(), "Fuel", categoryEmoji, categoryColor),
-];
-
 final List<Wallet> onboardWallets = [
   Wallet(ObjectId(), "Savings", 0),
   Wallet(ObjectId(), "Debts", 0),

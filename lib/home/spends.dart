@@ -97,13 +97,9 @@ class SpendItem extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: ListTile(
-                leading: const CircleAvatar(
+                leading: CircleAvatar(
                   backgroundColor: Color.fromARGB(255, 205, 227, 255),
-                  child: FaIcon(
-                    FontAwesomeIcons.featherPointed,
-                    size: 20.0,
-                    color: Color.fromARGB(255, 5, 61, 135),
-                  ),
+                  child: Text(spend.category!.emoji, style: const TextStyle( fontSize: 25),),
                 ),
                 title: Text(
                   spend.name,
@@ -112,9 +108,6 @@ class SpendItem extends ConsumerWidget {
                   ),
                 ),
                 subtitle: Text("${spend.notes}"),
-                // For Spend Details Page
-                // subtitle: Text(
-                //     "${spend.notes} + ${spend.category?.name.toString()} + ${spend.wallet?.name.toString()}"),
                 trailing: Text(
                   spend.getAmount,
                   style: const TextStyle(

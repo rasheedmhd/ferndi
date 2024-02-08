@@ -21,9 +21,8 @@ class AddCategoriesCardState extends State<AddCategoriesCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-      child: Column(
-        children: [
+        padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+        child: Column(children: [
           const ListTile(
             leading: FaIcon(
               FontAwesomeIcons.heartCircleCheck,
@@ -76,7 +75,9 @@ class AddCategoriesCardState extends State<AddCategoriesCard> {
             height: 35,
           ),
           FloatingActionButton.extended(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+            elevation: 1,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0)),
             label: const Text(
               "          add all          ",
               style: TextStyle(
@@ -85,21 +86,25 @@ class AddCategoriesCardState extends State<AddCategoriesCard> {
               ),
             ),
             foregroundColor: Colors.white,
-            backgroundColor:
-                const Color.fromARGB(255, 5, 61, 135),
+            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
             onPressed: () {
               addCategories();
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  backgroundColor: Color.fromARGB(255, 231, 255, 245), 
-                  content: Column(
-                    children: [
-                      Text("Categories successfully created. You can add more later.", style: TextStyle(color:Color.fromARGB(255, 9, 163, 99)),),
-                      Text("Swipe right to Record your first Spend.", style: TextStyle(color:Color.fromARGB(255, 9, 163, 99)),),
-                    ],
-                  ),
-                )
-              );
+              ScaffoldMessenger.of(context).clearSnackBars();
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Color.fromARGB(255, 231, 255, 245),
+                content: Column(
+                  children: [
+                    Text(
+                      "Categories successfully created. You can add more later.",
+                      style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
+                    ),
+                    Text(
+                      "Swipe right to Record your first Spend.",
+                      style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
+                    ),
+                  ],
+                ),
+              ));
             },
           ),
           const SizedBox(
@@ -112,8 +117,6 @@ class AddCategoriesCardState extends State<AddCategoriesCard> {
               Text("    swipe"),
             ],
           ),
-        ]
-      )
-    );
+        ]));
   }
 }
