@@ -62,7 +62,6 @@ class SubscriptionsState extends State<Subscriptions> {
                     style: TextStyle(
                       fontSize: 30.0,
                       color: Color.fromARGB(255, 5, 61, 135),
-                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ],
