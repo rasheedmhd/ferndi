@@ -117,8 +117,8 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                            const Color.fromARGB(255, 255, 250, 163);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 255, 250, 163).value;
                       });
                     },
                     child: ClipOval(
@@ -133,8 +133,8 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                            const Color.fromARGB(255, 255, 200, 163);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 255, 200, 163).value;
                       });
                     },
                     child: ClipOval(
@@ -149,8 +149,8 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                            const Color.fromARGB(255, 255, 191, 236);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 255, 191, 236).value;
                       });
                     },
                     child: ClipOval(
@@ -165,8 +165,8 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                            const Color.fromARGB(255, 184, 255, 118);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 184, 255, 118).value;
                       });
                     },
                     child: ClipOval(
@@ -181,8 +181,8 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                            const Color.fromARGB(255, 218, 255, 240);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 218, 255, 240).value;
                       });
                     },
                     child: ClipOval(
@@ -197,8 +197,8 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                            const Color.fromARGB(255, 192, 255, 242);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 192, 255, 242).value;
                       });
                     },
                     child: ClipOval(
@@ -213,8 +213,8 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                            const Color.fromARGB(255, 255, 166, 168);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 255, 166, 168).value;
                       });
                     },
                     child: ClipOval(
@@ -229,8 +229,8 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                            const Color.fromARGB(255, 213, 168, 255);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 213, 168, 255).value;
                       });
                     },
                     child: ClipOval(
@@ -245,8 +245,8 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                            const Color.fromARGB(255, 109, 255, 175);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 109, 255, 175).value;
                       });
                     },
                     child: ClipOval(
