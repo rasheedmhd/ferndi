@@ -27,25 +27,21 @@ class EditWalletCardState extends State<EditWalletCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 60, 30, 30),
-          child: Column(
-            children: [
-              const Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Edit Wallet",
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    color: Color.fromARGB(255, 5, 61, 135),
-                    fontWeight: FontWeight.w700,
-                  ),
+        appBar: AppBar(
+          title: const Text("Edit Wallet"),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: const Color.fromARGB(255, 227, 226, 226),
                 ),
+                borderRadius: BorderRadius.circular(20.0),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              child: Column(
+            children: [
               TextFormField(
                 initialValue: name,
                 onChanged: _newName,
@@ -142,6 +138,6 @@ class EditWalletCardState extends State<EditWalletCard> {
               ),
             ],
           )),
-    );
+    ));
   }
 }
