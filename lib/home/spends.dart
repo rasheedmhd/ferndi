@@ -98,7 +98,7 @@ class SpendItem extends ConsumerWidget {
               ),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 205, 227, 255),
+                  backgroundColor: Color(int.tryParse(spend.category!.color) ??  4290958844),
                   child: Text(spend.category!.emoji, style: const TextStyle( fontSize: 25),),
                 ),
                 title: Text(

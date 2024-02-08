@@ -22,6 +22,12 @@ class CategoryItem extends StatelessWidget {
     //     .map((spend) => (spend.amount))
     //     .reduce((value, element) => value + element);
 
+    // We are pulling the Category color from the database,
+    // Remember that it was stored as an String so we have to convert it back into an
+    // Integer before we can reconstruct the Color and use in the UI
+    late int categoryColorInt = int.tryParse(category.color) ?? 4290958844;
+    late Color categoryColor = Color(categoryColorInt);
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
@@ -100,7 +106,7 @@ class CategoryItem extends StatelessWidget {
               ),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: Color.fromARGB(50, 57, 154, 1),
+                  backgroundColor: categoryColor,
                   child: Text(
                     category.emoji,
                     style: const TextStyle(
