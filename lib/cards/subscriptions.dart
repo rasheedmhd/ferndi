@@ -70,14 +70,7 @@ class SubscriptionItem extends StatelessWidget {
           ),
 
           SlidableAction(
-            //   onPressed: (context) {
-            //   Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //           builder: (ctx) => EditSubscriptionCard( subscription)));
-            // },
             onPressed: (context) {
-              print("object to edit");
               _showSubscriptionEditForm(context, subscription);
             },
             backgroundColor: const Color.fromARGB(255, 96, 150, 249),
@@ -93,15 +86,16 @@ class SubscriptionItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(20),
             child: Column(children: [
               Row(
                 children: [
                   const CircleAvatar(
-                    child: Icon(
-                      Icons.card_membership,
+                    backgroundColor: Color.fromARGB(255, 215, 237, 253),
+                    child: FaIcon(
+                      FontAwesomeIcons.solidCreditCard,
                       size: 20,
-                      color: Color.fromARGB(255, 165, 64, 243),
+                      color: Color.fromARGB(255, 5, 61, 135),
                     ),
                   ),
                   const SizedBox(
@@ -111,74 +105,70 @@ class SubscriptionItem extends StatelessWidget {
                     subscription.name,
                     style: const TextStyle(
                       fontSize: 20.0,
-                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const Spacer(),
+                  Text(
+                    "- GHS ${subscription.getAmount}",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Color.fromARGB(255, 163, 9, 71),
                     ),
                   ),
                 ],
               ),
+
               const SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  const CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 202, 233, 255),
-                    child: Icon(
-                      Icons.wallet_sharp,
-                      size: 20,
-                      color: Color.fromARGB(255, 5, 61, 135),
-                    ),
+            Row(children: [
+              Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color.fromARGB(255, 227, 226, 226),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "${subscription.from}",
-                    style: const TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: const Text(" From ")
               ),
-              const Divider(
-                color: Color.fromARGB(255, 241, 241, 241),
+              const SizedBox(
+                width: 10,
               ),
-              Row(
-                children: [
-                  const Text("-",
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w700,
-                          color: Color.fromARGB(255, 148, 152, 158))),
-                  const SizedBox(
-                    width: 5,
+              Text(
+                "${subscription.from}",
+                style: const TextStyle(
+                  fontSize: 20.0,
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color.fromARGB(255, 227, 226, 226),
                   ),
-                  const FaIcon(FontAwesomeIcons.cediSign,
-                      size: 17.0, color: Color.fromARGB(255, 148, 152, 158)),
-                  const SizedBox(
-                    width: 3,
-                  ),
-                  Text(
-                    subscription.getAmount,
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 148, 152, 158),
-                      fontSize: 17.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    " / ${subscription.period}",
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 148, 152, 158),
-                      fontSize: 17.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              )
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: const Text(" per ")
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(
+                " ${subscription.period}",
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 148, 152, 158),
+                  fontSize: 17.0,
+                ),
+              ),
+
+            ],),
             ]),
-          )),
+        )
+      ),
     );
   }
 }

@@ -46,14 +46,14 @@ class SubscriptionsState extends State<Subscriptions> {
           backgroundColor: const Color.fromARGB(255, 202, 233, 255),
         ),
         body: Container(
-          color: const Color.fromARGB(255, 202, 233, 255),
+          color: const Color.fromARGB(255, 215, 237, 253),
           child: ListView(
             padding: const EdgeInsets.all(15),
             children: const [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // SubscriptionsBalanceCard(),
+                  SubscriptionsBalanceCard(),
                   SizedBox(
                     height: 12,
                   ),
@@ -65,10 +65,6 @@ class SubscriptionsState extends State<Subscriptions> {
                     ),
                   ),
                 ],
-              ),
-          
-              SizedBox(
-                height: 12,
               ),
           
               SizedBox(
