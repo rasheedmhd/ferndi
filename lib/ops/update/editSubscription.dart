@@ -33,22 +33,21 @@ class EditSubscriptionCardState extends State<EditSubscriptionCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("Add Subscription"),
+      ),
       body: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 60, 30, 30),
+          padding: const EdgeInsets.all(20),
+          child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: const Color.fromARGB(255, 227, 226, 226),
+                ),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
           child: Column(
             children: [
-              const Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Edit Subscription",
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    color: Color.fromARGB(255, 5, 61, 135),
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
               TextFormField(
                 initialValue: name,
                 onChanged: _newName,
@@ -63,14 +62,24 @@ class EditSubscriptionCardState extends State<EditSubscriptionCard> {
                 decoration: const InputDecoration(
                     prefix: Text("GHS "), label: Text("Amount")),
               ),
+              const SizedBox( height: 10,),
               Row(
                 children: [
-                  DropdownButton(
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 227, 226, 226),
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: DropdownButton(
+                    underline: Container(),
                     value: _selectedWallet,
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                     icon: const Icon(
                       Icons.wallet_sharp,
-                      size: 20,
+                      size: 30,
                       color: Color.fromARGB(255, 17, 221, 163),
                     ),
                     items: wallets
@@ -87,14 +96,23 @@ class EditSubscriptionCardState extends State<EditSubscriptionCard> {
                         _selectedWallet = value;
                       });
                     },
-                  ),
+                  ),),
                   const Spacer(),
-                  DropdownButton(
+                  Container(
+                        padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: const Color.fromARGB(255, 227, 226, 226),
+                          ),
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child:  DropdownButton(
+                    underline: Container(),
                     value: _selectedDuration,
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                     icon: const Icon(
                       Icons.av_timer,
-                      size: 20,
+                      size: 30,
                       color: Color.fromARGB(255, 146, 2, 93),
                     ),
                     items: duration
@@ -112,7 +130,7 @@ class EditSubscriptionCardState extends State<EditSubscriptionCard> {
                       });
                     },
                   ),
-                ],
+              )],
               ),
               const SizedBox(
                 height: 35,
@@ -197,6 +215,6 @@ class EditSubscriptionCardState extends State<EditSubscriptionCard> {
               )
             ],
           )),
-    );
+    ));
   }
 }
