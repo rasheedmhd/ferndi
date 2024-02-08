@@ -39,7 +39,9 @@ class AddIncomeCardState extends State<AddIncomeCard> {
                   Text("Income"),
                 ],
               ),
-              const Spacer(),
+              const SizedBox(
+                width: 40,
+              ),
               Expanded(
                 child: TextField(
                   controller: _balanceController,
