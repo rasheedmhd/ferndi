@@ -86,7 +86,7 @@ class SubscriptionItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(15),
             child: Column(children: [
               Row(
                 children: [
@@ -117,7 +117,6 @@ class SubscriptionItem extends StatelessWidget {
                   ),
                 ],
               ),
-
               const SizedBox(
                 height: 10,
               ),
@@ -138,7 +137,7 @@ class SubscriptionItem extends StatelessWidget {
               Text(
                 "${subscription.from}",
                 style: const TextStyle(
-                  fontSize: 20.0,
+                  fontSize: 16.0,
                 ),
               ),
               const SizedBox(

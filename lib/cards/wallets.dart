@@ -157,7 +157,6 @@ class WalletItem extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 20.0,
                       color: Color.fromARGB(255, 48, 136, 6),
-                      fontWeight: FontWeight.w600,
                     ),
                   ),
 
@@ -178,7 +177,6 @@ class WalletItem extends StatelessWidget {
                                   " $spendsCount transactions ",
                                   style: const TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.w600,
                                   ),
                                 ))),
                       ),
@@ -198,7 +196,6 @@ class WalletItem extends StatelessWidget {
                                   " edit ",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.w600,
                                   ),
                                 ))),
                       ),
@@ -212,7 +209,7 @@ class WalletItem extends StatelessWidget {
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(50),
                             child: Container(
-                                padding: const EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(7),
                                 color: const Color.fromARGB(255, 23, 213, 110),
                                 child: const Text(
                                   " top up ",

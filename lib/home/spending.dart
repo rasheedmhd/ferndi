@@ -43,7 +43,6 @@ class HomeState extends ConsumerState<Spending> {
                 style: TextStyle(
                   fontSize: 30.0,
                   color: Color.fromARGB(255, 5, 61, 135),
-                  fontWeight: FontWeight.w700,
                 ),
               ),
               const Spacer(),
@@ -54,7 +53,6 @@ class HomeState extends ConsumerState<Spending> {
                 style: const TextStyle(
                   fontSize: 30.0,
                   color: Color.fromARGB(255, 151, 151, 151),
-                  fontWeight: FontWeight.w700,
                 ),
               ),
             ],
@@ -64,9 +62,7 @@ class HomeState extends ConsumerState<Spending> {
           height: 10,
         ),
         const SizedBox(
-          //padding: EdgeInsets.fromLTRB(15, 10, 0, 0),
           height: 2800,
-          // height: double.infinity,
           child: Spends(),
         ),
       ]);

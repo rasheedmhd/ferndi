@@ -27,14 +27,12 @@ class DelightfulCard extends StatelessWidget {
                 Text("Delightful Spending",
                   style: TextStyle(
                     fontSize: 30.0,
-                    fontWeight: FontWeight.w600,
                     color: Color.fromARGB(255, 255, 255, 255),
                   )
                 ),
                 Text("Starts here!",
                   style: TextStyle(
                     fontSize: 30.0,
-                    fontWeight: FontWeight.w600,
                     color: Color.fromARGB(255, 255, 255, 255),
                   )
                 ),

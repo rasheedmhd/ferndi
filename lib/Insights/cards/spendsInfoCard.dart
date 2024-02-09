@@ -60,7 +60,6 @@ class SpendInfoCard2 extends ConsumerWidget {
                       Text("$all_spends",
                           style: const TextStyle(
                             fontSize: 25.0,
-                            fontWeight: FontWeight.w600,
                             color: Color.fromARGB(255, 12, 12, 12),
                           )),
                       const Text("this week",
@@ -91,7 +90,6 @@ class SpendInfoCard2 extends ConsumerWidget {
                       Text("$all_spends",
                           style: const TextStyle(
                             fontSize: 25.0,
-                            fontWeight: FontWeight.w600,
                             color: Color.fromARGB(255, 12, 12, 12),
                           )),
                       const Text("this month",

@@ -31,10 +31,20 @@ class TopUpWalletCardState extends State<TopUpWalletCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 60, 30, 30),
-          child: Column(
+        appBar: AppBar(
+          title: const Text("Top up Wallet"),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: const Color.fromARGB(255, 227, 226, 226),
+                ),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child:Column(
             children: [
               Align(
                 alignment: Alignment.topLeft,
@@ -43,9 +53,11 @@ class TopUpWalletCardState extends State<TopUpWalletCard> {
                   style: const TextStyle(
                     fontSize: 30.0,
                     color: Color.fromARGB(255, 5, 61, 135),
-                    fontWeight: FontWeight.w700,
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               const Align(
                 alignment: Alignment.topLeft,
@@ -53,7 +65,6 @@ class TopUpWalletCardState extends State<TopUpWalletCard> {
                   "Current Balance",
                   style: TextStyle(
                     color: Color.fromARGB(255, 151, 151, 151),
-                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
@@ -64,12 +75,8 @@ class TopUpWalletCardState extends State<TopUpWalletCard> {
                   style: const TextStyle(
                     fontSize: 30.0,
                     color: Color.fromARGB(255, 5, 61, 135),
-                    fontWeight: FontWeight.w700,
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
               ),
               const SizedBox(
                 height: 20,
@@ -175,6 +182,6 @@ class TopUpWalletCardState extends State<TopUpWalletCard> {
               ),
             ],
           )),
-    );
+    ));
   }
 }

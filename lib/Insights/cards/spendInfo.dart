@@ -11,7 +11,7 @@ class SpendInfoCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color.fromARGB(255, 227, 226, 226),
+          color: const Color.fromARGB(255, 227, 226, 226),
         ),
         borderRadius: BorderRadius.circular(20.0),
       ),
@@ -34,14 +34,11 @@ class SpendInfoCard extends StatelessWidget {
                 Text("56",
                   style: TextStyle(
                     fontSize: 25.0,
-                    fontWeight: FontWeight.w600,
                     color: Color.fromARGB(255, 12, 12, 12),
                   )
                 ),
                 Text("Starts here!",
                   style: TextStyle(
-                    // fontSize: 30.0,
-                    fontWeight: FontWeight.w600,
                     color: Color.fromARGB(255, 12, 12, 12),
                   )
                 ),

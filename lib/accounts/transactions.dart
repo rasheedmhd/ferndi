@@ -17,13 +17,13 @@ class TransactionsPageState extends State<TransactionsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: CustomScrollView(slivers: [
+    return CustomScrollView(slivers: [
       SliverAppBar(
+        backgroundColor: const Color.fromARGB(200, 109, 189, 255),
         pinned: true,
         floating: true,
-        collapsedHeight: 160,
-        // actions: [],
+        collapsedHeight: 170,
+        title: const Text("Transactions"),
         flexibleSpace: FlexibleSpaceBar(
           background: Container(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -38,16 +38,17 @@ class TransactionsPageState extends State<TransactionsPage> {
                   style: const TextStyle(
                     fontSize: 30.0,
                     color: Color.fromARGB(255, 5, 61, 135),
-                    fontWeight: FontWeight.w700,
                   ),
                 ),
+                const SizedBox(
+                  height: 10,
+                ),                
                 const Align(
                   alignment: Alignment.topLeft,
                   child: Text(
                     "Total Amount Spent",
                     style: TextStyle(
-                      color: Color.fromARGB(255, 151, 151, 151),
-                      fontWeight: FontWeight.w700,
+                      color: Color.fromARGB(255, 255, 255, 255),
                     ),
                   ),
                 ),
@@ -56,7 +57,6 @@ class TransactionsPageState extends State<TransactionsPage> {
                   style: const TextStyle(
                     fontSize: 30.0,
                     color: Color.fromARGB(255, 5, 61, 135),
-                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ],
@@ -66,7 +66,7 @@ class TransactionsPageState extends State<TransactionsPage> {
       ),
       SliverToBoxAdapter(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
           child: SizedBox(
                 height: 5600,
                 child: Transactions(wallet),
@@ -74,6 +74,6 @@ class TransactionsPageState extends State<TransactionsPage> {
             
           ),
         )
-    ]));
+    ]);
   }
 }
