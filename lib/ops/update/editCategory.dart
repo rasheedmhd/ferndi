@@ -16,9 +16,16 @@ class EditCategoryCardState extends State<EditCategoryCard> {
   late Category categoryToEdit = getCategory(widget.category.id);
   late String name =  categoryToEdit.name;
   late String categoryEmoji = categoryToEdit.emoji;
-  // late String categoryColor = categoryToEdit.color;
-  late Color categoryColor = const Color.fromARGB(255, 205, 227, 255);
-  // late Color defaultColor = const Color.fromARGB(255, 205, 227, 255);
+    // categoryColorInt stores the int value of the Color
+  // The int is converted into a String and stored in RealmDb
+  // This is a complete Hack because RealmDb doesn't support Flutter 
+  // Color Data Type
+  late int categoryColorInt = int.tryParse(categoryToEdit.color) ?? 4290958844;
+  // By using categoryColorInt above, which is the Value of the color const Color.fromARGB(255, 255, 193, 188), we can reconstruct the Color and displays it in the UI
+  // We then use this reconstructed color to Apply to the Circle depicting the Selected Color 
+  // of the Category, giving real time feedback to the User, letting them know which
+  // color they are saving to the database  
+  late Color categoryColor = Color(categoryColorInt);
 
   void _newEmoji(String selectedEmoji) {
     setState(() {
@@ -63,7 +70,7 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                     Row(
                       children: [
                         CircleAvatar(
-                          backgroundColor: categoryColor,
+                          backgroundColor: Color(categoryColorInt),
                           child: Text(
                             categoryEmoji,
                             style: const TextStyle(fontSize: 27),
@@ -94,8 +101,8 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                            const Color.fromARGB(255, 194, 213, 252);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 194, 213, 252).value;
                       });
                     },
                     child: ClipOval(
@@ -110,8 +117,8 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                            const Color.fromARGB(255, 255, 250, 163);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 255, 250, 163).value;
                       });
                     },
                     child: ClipOval(
@@ -126,14 +133,14 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                      const Color.fromARGB(255, 255, 200, 163);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 255, 200, 163).value;
                       });
                     },
                     child: ClipOval(
                         child: Container(
                       padding: const EdgeInsets.all(20),
-                      color:const Color.fromARGB(255, 255, 200, 163),
+                      color: const Color.fromARGB(255, 255, 200, 163),
                     )),
                   ),
                   const SizedBox(
@@ -142,8 +149,8 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                       const Color.fromARGB(255, 255, 191, 236);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 255, 191, 236).value;
                       });
                     },
                     child: ClipOval(
@@ -154,12 +161,12 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                   ),
                   const SizedBox(
                     width: 10,
-                  ),             
+                  ),
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                      const Color.fromARGB(255, 184, 255, 118);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 184, 255, 118).value;
                       });
                     },
                     child: ClipOval(
@@ -174,8 +181,8 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                      const Color.fromARGB(255, 218, 255, 240);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 218, 255, 240).value;
                       });
                     },
                     child: ClipOval(
@@ -190,14 +197,14 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                       const Color.fromARGB(255, 192, 255, 242);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 192, 255, 242).value;
                       });
                     },
                     child: ClipOval(
                         child: Container(
                       padding: const EdgeInsets.all(20),
-                      color:const  Color.fromARGB(255, 192, 255, 242),
+                      color: const Color.fromARGB(255, 192, 255, 242),
                     )),
                   ),
                   const SizedBox(
@@ -206,8 +213,8 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                       const Color.fromARGB(255, 255, 166, 168);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 255, 166, 168).value;
                       });
                     },
                     child: ClipOval(
@@ -222,8 +229,8 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                       const Color.fromARGB(255, 213, 168, 255);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 213, 168, 255).value;
                       });
                     },
                     child: ClipOval(
@@ -238,12 +245,11 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        categoryColor =
-                          const Color.fromARGB(255, 109, 255, 175);
+                        categoryColorInt =
+                            const Color.fromARGB(255, 109, 255, 175).value;
                       });
                     },
                     child: ClipOval(
-                        // borderRadius: BorderRadius.circular(50),
                         child: Container(
                       padding: const EdgeInsets.all(20),
                       color: const Color.fromARGB(255, 109, 255, 175),
@@ -299,7 +305,7 @@ class EditCategoryCardState extends State<EditCategoryCard> {
                       categoryToEdit.id,
                       name,
                       categoryEmoji,
-                      "Color.fromARGB(255, 205, 227, 255)",             
+                      categoryColorInt.toString(),             
                     ));
                     ScaffoldMessenger.of(context).clearSnackBars();
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
