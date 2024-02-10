@@ -7,21 +7,21 @@ import "package:app/ops/create/addSpend.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
-class Spending extends ConsumerStatefulWidget {
+class Spending extends ConsumerWidget {
   const Spending({super.key});
 
-  @override
-  HomeState createState() => HomeState();
-}
+  // @override
+  // HomeState createState() => HomeState();
+// }
 
-class HomeState extends ConsumerState<Spending> {
+// class HomeState extends ConsumerState<Spending> {
   @override
-  Widget build(BuildContext context) {
-    final spendsCount = ref.watch(spendsCountProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final totalSpend = ref.watch(spendsCountNotifier);
     return ListView(
       padding: const EdgeInsets.all(15),
       children: [
-        const BalanceCard(),
+        // const BalanceCard(),
         const SizedBox(
           height: 10,
         ),
@@ -49,7 +49,7 @@ class HomeState extends ConsumerState<Spending> {
               const FaIcon(FontAwesomeIcons.arrowRightLong,
                   size: 23, color: Color.fromARGB(255, 151, 151, 151)),
               Text(
-                " $spendsCount ",
+                " $totalSpend ",
                 style: const TextStyle(
                   fontSize: 30.0,
                   color: Color.fromARGB(255, 151, 151, 151),

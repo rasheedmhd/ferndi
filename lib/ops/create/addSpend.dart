@@ -209,6 +209,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                             ],
                           ),
                         ));
+                        return;
                       } else {
                         recordSpend(Spend(
                             ObjectId(),
@@ -245,8 +246,8 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                             ],
                           ),
                         ));
+                      ref.read(spendsCountNotifier.notifier).update(spendsCount);
                       }
-                      ref.read(spendsCountProvider.notifier).state++;
                     }),
               ],
             )));
