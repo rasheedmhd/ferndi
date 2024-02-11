@@ -2,7 +2,7 @@ import "package:app/home/spendHistory.dart";
 import "package:app/home/spends.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:flutter/material.dart";
-import "package:app/cards/balance.dart";
+import "package:app/cards/balance.dart"; 
 import "package:app/ops/create/addSpend.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
@@ -10,18 +10,13 @@ import "package:font_awesome_flutter/font_awesome_flutter.dart";
 class Spending extends ConsumerWidget {
   const Spending({super.key});
 
-  // @override
-  // HomeState createState() => HomeState();
-// }
-
-// class HomeState extends ConsumerState<Spending> {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final totalSpend = ref.watch(spendsCountNotifier);
     return ListView(
       padding: const EdgeInsets.all(15),
       children: [
-        // const BalanceCard(),
+        const BalanceCard(),
         const SizedBox(
           height: 10,
         ),

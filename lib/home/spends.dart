@@ -19,7 +19,6 @@ class SpendItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // ref.watch(spendsProvider);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
@@ -38,6 +37,7 @@ class SpendItem extends ConsumerWidget {
               // A pane can dismiss the Slidable.
               dismissible: DismissiblePane(onDismissed: () {
                 deleteSpend(spend);
+                ScaffoldMessenger.of(context).clearSnackBars();
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   backgroundColor: Color.fromARGB(255, 255, 231, 241),
                   content: Column(
@@ -51,7 +51,6 @@ class SpendItem extends ConsumerWidget {
                     ],
                   ),
                 ));
-                ref.read(spendsCountProvider.notifier).state--;
               }),
 
               // All actions are defined in the children parameter.
@@ -59,6 +58,7 @@ class SpendItem extends ConsumerWidget {
                 // A SlidableAction can have an icon and/or a label.
                 SlidableAction(
                   onPressed: (context) {
+                    ScaffoldMessenger.of(context).clearSnackBars();
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       backgroundColor: Color.fromARGB(255, 230, 243, 255),
                       content: Column(
@@ -97,8 +97,12 @@ class SpendItem extends ConsumerWidget {
               ),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: Color(int.tryParse(spend.category!.color) ??  4290958844),
-                  child: Text(spend.category!.emoji, style: const TextStyle( fontSize: 25),),
+                  backgroundColor:
+                      Color(int.tryParse(spend.category!.color) ?? 4290958844),
+                  child: Text(
+                    spend.category!.emoji,
+                    style: const TextStyle(fontSize: 25),
+                  ),
                 ),
                 title: Text(
                   spend.name,
@@ -108,12 +112,12 @@ class SpendItem extends ConsumerWidget {
                 ),
                 subtitle: Text("${spend.notes}"),
                 trailing: Text(
-                    "- ${spend.getAmount}",
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Color.fromARGB(255, 163, 9, 71),
-                    ),
+                  "- ${spend.getAmount}",
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Color.fromARGB(255, 163, 9, 71),
                   ),
+                ),
               ),
             ),
           ),
@@ -135,10 +139,9 @@ class Spends extends ConsumerStatefulWidget {
 }
 
 class SpendState extends ConsumerState<Spends> {
-  
   @override
   Widget build(BuildContext context) {
-    final spendsFromProvider = ref.watch(spendsProvider);
+    final spendsFromProvider = ref.watch(spendsNotifier);
     return SpendList(spends: spendsFromProvider);
   }
 }
@@ -153,18 +156,18 @@ class SpendList extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-            child: Container(
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 245, 245, 245),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          child: ListView.builder(
+          child: Container(
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 245, 245, 245),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: ListView.builder(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
               itemCount: spends.length,
               itemBuilder: (BuildContext context, int index) {
                 return SpendItem(spends[index]);
-              }),
+            }),
         ))
       ],
     );
