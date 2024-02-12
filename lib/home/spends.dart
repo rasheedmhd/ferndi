@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:app/models/schemas.dart";
-import "package:app/utility/schema/methods.dart";
+// import "package:app/utility/schema/methods.dart";
 import "package:app/ops/update/editSpend.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:realm/realm.dart";
@@ -36,7 +36,7 @@ class SpendItem extends ConsumerWidget {
 
               // A pane can dismiss the Slidable.
               dismissible: DismissiblePane(onDismissed: () {
-                deleteSpend(spend);
+                // deleteSpend(spend);
                 ScaffoldMessenger.of(context).clearSnackBars();
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   backgroundColor: Color.fromARGB(255, 255, 231, 241),
@@ -142,14 +142,14 @@ class SpendState extends ConsumerState<Spends> {
   @override
   Widget build(BuildContext context) {
     final spendsFromProvider = ref.watch(spendsNotifier);
-    return SpendList(spends: spendsFromProvider);
+    return SpendList(spendsFromProvider);
   }
 }
 
 class SpendList extends StatelessWidget {
-  const SpendList({super.key, required this.spends});
+  const SpendList(this.spends, {super.key});
 
-  final RealmResults<Spend> spends;
+  final RealmResults<Spend>? spends;
 
   @override
   Widget build(BuildContext context) {
@@ -164,9 +164,9 @@ class SpendList extends StatelessWidget {
             child: ListView.builder(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
-              itemCount: spends.length,
+              itemCount: spends!.length,
               itemBuilder: (BuildContext context, int index) {
-                return SpendItem(spends[index]);
+                return SpendItem(spends![index]);
             }),
         ))
       ],
