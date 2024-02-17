@@ -159,22 +159,26 @@ class SpendList extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (spends.isEmpty)
-          const Center(child: Text("You have no spends yet!"))
+          const Center(
+            child: Text("You have no spends yet!"),
+          )
         else
           Flexible(
-              child: Container(
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 245, 245, 245),
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            child: ListView.builder(
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 245, 245, 245),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: ListView.builder(
                 shrinkWrap: true,
                 physics: const ClampingScrollPhysics(),
                 itemCount: spends.length,
                 itemBuilder: (BuildContext context, int index) {
                   return SpendItem(spends[index]);
-                }),
-          ))
+                },
+              ),
+            ),
+          )
       ],
     );
   }

@@ -56,38 +56,6 @@ final totalOneTimeSubscriptionsBalance = realm
     .toList()
     .fold(0, (value, element) => value + element);
 
-// Create a new wallet and persist to db
-void createWallet(Wallet wallet) {
-  realm.write(() {
-    realm.add(wallet);
-  });
-}
-
-void deleteWallet(Wallet wallet) {
-  realm.write(() {
-    realm.delete(wallet);
-  });
-}
-
-// Create a new spend record and persist to db
-void recordSpend(Spend spend) {
-  realm.write(() {
-    realm.add(spend);
-  });
-}
-
-void updateSpend(Spend spend) {
-  realm.write(() {
-    realm.add<Spend>(spend, update: true);
-  });
-}
-
-void updateWallet(Wallet wallet) {
-  realm.write(() {
-    realm.add<Wallet>(wallet, update: true);
-  });
-}
-
 void updateCategory(Category category) {
   realm.write(() {
     realm.add<Category>(category, update: true);

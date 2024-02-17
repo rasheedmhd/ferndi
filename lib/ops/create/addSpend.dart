@@ -1,5 +1,6 @@
 import "package:app/models/schemas.dart";
 import "package:app/providers/spends_provider.dart";
+import 'package:app/providers/wallets_provider.dart' as P;
 import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
@@ -222,7 +223,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                             DateTime.now(),
                           ),
                         );
-                        updateWallet(
+                        ref.read(P.walletsNotifier.notifier).updateWallet(
                           Wallet(_selectedWallet.id, _selectedWallet.name,
                               newBalance),
                         );

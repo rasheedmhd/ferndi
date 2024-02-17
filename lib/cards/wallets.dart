@@ -6,53 +6,55 @@ import "package:app/ops/update/editWallet.dart";
 import "package:app/utility/schema/methods.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
-import "package:realm/realm.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:app/providers/wallets_provider.dart";
 
-class WalletItem extends StatelessWidget {
+class WalletItem extends ConsumerWidget {
   const WalletItem(this.wallet, {super.key});
 
   final Wallet wallet;
 
-  void _showWalletEditForm(BuildContext context, Wallet wallet) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (ctx) => EditWalletCard(wallet)));
-  }
-
-  void _showTopUpWalletPage(BuildContext context, Wallet wallet) {
-    showModalBottomSheet(
-      showDragHandle: true,
-      context: context,
-      isScrollControlled: true,
-      builder: (ctx) => TopUpWalletCard(wallet),
-    );
-  }
-
-  void _showEditPage(BuildContext context, Wallet wallet) {
-    showModalBottomSheet(
-      showDragHandle: true,
-      context: context,
-      isScrollControlled: true,
-      builder: (ctx) => EditWalletCard(wallet),
-    );
-  }
-
-  void _showTransactionsPage(BuildContext context, Wallet wallet) {
-    showModalBottomSheet(
-      showDragHandle: true,
-      context: context,
-      isScrollControlled: true,
-      builder: (ctx) => TransactionsPage(wallet),
-    );
-  }
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    void showWalletEditForm() {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (ctx) => EditWalletCard(wallet)));
+    }
+
+    void showTopUpWalletPage() {
+      showModalBottomSheet(
+        showDragHandle: true,
+        context: context,
+        isScrollControlled: true,
+        builder: (ctx) => TopUpWalletCard(wallet),
+      );
+    }
+
+    void showEditPage() {
+      showModalBottomSheet(
+        showDragHandle: true,
+        context: context,
+        isScrollControlled: true,
+        builder: (ctx) => EditWalletCard(wallet),
+      );
+    }
+
+    void showTransactionsPage() {
+      showModalBottomSheet(
+        showDragHandle: true,
+        context: context,
+        isScrollControlled: true,
+        builder: (ctx) => TransactionsPage(wallet),
+      );
+    }
+
     late int spendsCount = getSpendsByWallet(wallet.name).length;
 
-    return Column(children: [
-      Slidable(
+    return Column(
+      children: [
+        Slidable(
           // Specify a key if the Slidable is dismissible.
-          key: ValueKey(key),
+          key: ValueKey(wallet.id),
 
           // The start action pane is the one at the left or the top side.
           startActionPane: ActionPane(
@@ -61,7 +63,7 @@ class WalletItem extends StatelessWidget {
 
             // A pane can dismiss the Slidable.
             dismissible: DismissiblePane(onDismissed: () {
-              deleteWallet(wallet);
+              ref.read(walletsNotifier.notifier).deleteWallet(wallet);
               ScaffoldMessenger.of(context).clearSnackBars();
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 backgroundColor: Color.fromARGB(255, 255, 231, 241),
@@ -70,7 +72,9 @@ class WalletItem extends StatelessWidget {
                   children: [
                     Text(
                       "Wallet Deleted",
-                      style: TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 163, 9, 71),
+                      ),
                     ),
                   ],
                 ),
@@ -83,19 +87,22 @@ class WalletItem extends StatelessWidget {
               SlidableAction(
                 onPressed: (context) {
                   ScaffoldMessenger.of(context).clearSnackBars();
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    backgroundColor: Color.fromARGB(255, 230, 243, 255),
-                    content: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Slide through to delete",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 0, 128, 255)),
-                        ),
-                      ],
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                      content: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Slide through to delete",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 128, 255),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ));
+                  );
                 },
                 backgroundColor: const Color(0xFFFE4A49),
                 foregroundColor: Colors.white,
@@ -104,7 +111,7 @@ class WalletItem extends StatelessWidget {
               ),
               SlidableAction(
                 onPressed: (context) {
-                  _showWalletEditForm(context, wallet);
+                  showWalletEditForm();
                 },
                 backgroundColor: const Color.fromARGB(255, 96, 150, 249),
                 foregroundColor: Colors.white,
@@ -158,83 +165,94 @@ class WalletItem extends StatelessWidget {
                   ),
                 ),
                 children: [
-                  Row(children: [
-                    const Padding(padding: EdgeInsets.all(7)),
-                    GestureDetector(
-                      onTap: () {
-                        _showTransactionsPage(context, wallet);
-                      },
-                      child: ClipRRect(
+                  Row(
+                    children: [
+                      const Padding(padding: EdgeInsets.all(7)),
+                      GestureDetector(
+                        onTap: () {
+                          showTransactionsPage();
+                        },
+                        child: ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Container(
-                              padding: const EdgeInsets.all(7),
-                              color: const Color.fromARGB(200, 109, 189, 255),
-                              child: Text(
-                                " $spendsCount transactions ",
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ))),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _showEditPage(context, wallet);
-                      },
-                      child: ClipRRect(
+                            padding: const EdgeInsets.all(7),
+                            color: const Color.fromARGB(200, 109, 189, 255),
+                            child: Text(
+                              " $spendsCount transactions ",
+                              style: const TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          showEditPage();
+                        },
+                        child: ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Container(
-                              padding: const EdgeInsets.all(7),
-                              color: const Color.fromARGB(199, 71, 34, 255),
-                              child: const Text(
-                                " edit ",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ))),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _showTopUpWalletPage(context, wallet);
-                      },
-                      child: ClipRRect(
+                            padding: const EdgeInsets.all(7),
+                            color: const Color.fromARGB(199, 71, 34, 255),
+                            child: const Text(
+                              " edit ",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          showTopUpWalletPage();
+                        },
+                        child: ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Container(
-                              padding: const EdgeInsets.all(7),
-                              color: const Color.fromARGB(255, 23, 213, 110),
-                              child: const Text(
-                                " top up ",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ))),
-                    ),
-                  ]),
+                            padding: const EdgeInsets.all(7),
+                            color: const Color.fromARGB(255, 23, 213, 110),
+                            child: const Text(
+                              " top up ",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(
                     height: 10,
                   ),
                 ],
               ),
             ),
-          )),
-      const SizedBox(
-        height: 12,
-      )
-    ]);
+          ),
+        ),
+        const SizedBox(
+          height: 12,
+        )
+      ],
+    );
   }
 }
 
-class WalletsCard extends StatelessWidget {
+class WalletsCard extends ConsumerWidget {
   const WalletsCard({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final wallets = ref.watch(walletsNotifier);
     return WalletList(
       wallets: wallets,
     );
@@ -244,16 +262,17 @@ class WalletsCard extends StatelessWidget {
 class WalletList extends StatelessWidget {
   const WalletList({super.key, required this.wallets});
 
-  final RealmResults<Wallet> wallets;
+  final List<Wallet> wallets;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        shrinkWrap: true,
-        physics: const ClampingScrollPhysics(),
-        itemCount: wallets.length,
-        itemBuilder: (BuildContext context, int index) {
-          return WalletItem(wallets[index]);
-        });
+      shrinkWrap: true,
+      physics: const ClampingScrollPhysics(),
+      itemCount: wallets.length,
+      itemBuilder: (BuildContext context, int index) {
+        return WalletItem(wallets[index]);
+      },
+    );
   }
 }

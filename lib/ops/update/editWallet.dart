@@ -1,8 +1,9 @@
 import "package:app/models/schemas.dart";
-import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:app/providers/wallets_provider.dart";
 
-class EditWalletCard extends StatefulWidget {
+class EditWalletCard extends ConsumerStatefulWidget {
   final Wallet wallet;
   const EditWalletCard(this.wallet, {super.key});
 
@@ -10,7 +11,7 @@ class EditWalletCard extends StatefulWidget {
   EditWalletCardState createState() => EditWalletCardState();
 }
 
-class EditWalletCardState extends State<EditWalletCard> {
+class EditWalletCardState extends ConsumerState<EditWalletCard> {
   late Wallet walletToEdit = getWallet(widget.wallet.id);
 
   late String name = walletToEdit.name;
@@ -27,20 +28,20 @@ class EditWalletCardState extends State<EditWalletCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Edit Wallet"),
-        ),
-        body: Padding(
+      appBar: AppBar(
+        title: const Text("Edit Wallet"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Container(
           padding: const EdgeInsets.all(20),
-          child: Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color.fromARGB(255, 227, 226, 226),
-                ),
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              child: Column(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: const Color.fromARGB(255, 227, 226, 226),
+            ),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Column(
             children: [
               TextFormField(
                 initialValue: name,
@@ -101,43 +102,49 @@ class EditWalletCardState extends State<EditWalletCard> {
                         ));
                         return;
                       }
-                      updateWallet(Wallet(
-                        walletToEdit.id,
-                        name,
-                        int.parse(balance),
-                      ));
+                      ref.read(walletsNotifier.notifier).updateWallet(
+                            Wallet(
+                              walletToEdit.id,
+                              name,
+                              int.parse(balance),
+                            ),
+                          );
                       ScaffoldMessenger.of(context).clearSnackBars();
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        backgroundColor: Color.fromARGB(255, 231, 255, 245),
-                        content: Column(
-                          children: [
-                            Text(
-                              "Wallet successfully updated.",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 9, 163, 99)),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Happy tracking your Spends!   ",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 9, 163, 99)),
-                                ),
-                                Icon(Icons.sentiment_very_satisfied,
-                                    color: Color.fromARGB(255, 9, 163, 9))
-                              ],
-                            ),
-                          ],
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: Color.fromARGB(255, 231, 255, 245),
+                          content: Column(
+                            children: [
+                              Text(
+                                "Wallet successfully updated.",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 9, 163, 99)),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Happy tracking your Spends!   ",
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 9, 163, 99)),
+                                  ),
+                                  Icon(Icons.sentiment_very_satisfied,
+                                      color: Color.fromARGB(255, 9, 163, 9))
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ));
+                      );
                       Navigator.of(context).pop();
                     },
                   ),
                 ],
               ),
             ],
-          )),
-    ));
+          ),
+        ),
+      ),
+    );
   }
 }
