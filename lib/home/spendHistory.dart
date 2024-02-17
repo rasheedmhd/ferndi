@@ -1,5 +1,5 @@
 import "package:app/home/spends.dart";
-// import "package:app/utility/schema/methods.dart";
+import "package:app/utility/schema/methods.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
@@ -16,7 +16,7 @@ class SpendsPageState extends ConsumerState<SpendsPage> {
   @override
   Widget build(BuildContext context) {
 
-  final spendsCount = ref.watch(spendsCountProvider);
+  // final spendsCount = ref.watch(spendsCountProvider);
   
     return MaterialApp(
         title: "Home",

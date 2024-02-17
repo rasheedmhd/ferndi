@@ -8,7 +8,8 @@ class SpendInfoCard2 extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final all_spends = ref.watch(spendsCountProvider);
+    final all_spends = ref.watch(spendsNotifier);
+    // final all_spends = ref.watch(spendsCountProvider);
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(

@@ -211,16 +211,21 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                         ));
                         return;
                       } else {
-                        ref.watch(spendsNotifier.notifier).recordSpend(Spend(
+                        ref.read(spendsNotifier.notifier).recordSpend(
+                          Spend(
                             ObjectId(),
                             _nameController.text,
                             _notesController.text,
                             int.parse(_amountController.text),
                             category: _selectedCategory,
                             wallet: _selectedWallet,
-                            DateTime.now()));
-                        updateWallet(Wallet(_selectedWallet.id,
-                            _selectedWallet.name, newBalance));
+                            DateTime.now(),
+                          ),
+                        );
+                        updateWallet(
+                          Wallet(_selectedWallet.id, _selectedWallet.name,
+                              newBalance),
+                        );
                         _nameController.clear();
                         _notesController.clear();
                         _amountController.clear();
@@ -246,7 +251,6 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                             ],
                           ),
                         ));
-                      // ref.read(spendsCountNotifier.notifier).update(spendsCount);
                       }
                     }),
               ],

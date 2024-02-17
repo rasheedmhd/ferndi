@@ -1,7 +1,6 @@
 import "package:app/home/spendHistory.dart";
 import "package:app/home/spends.dart";
-// import "package:app/providers/spends_provider.dart";
-import "package:app/utility/schema/methods.dart";
+import "package:app/providers/spends_provider.dart";
 import "package:flutter/material.dart";
 import "package:app/cards/balance.dart"; 
 import "package:app/ops/create/addSpend.dart";
@@ -13,25 +12,23 @@ class Spending extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final totalSpend = ref.watch(spendsCountNotifier);
+    final totalSpend = ref.watch(spendsNotifier).length;
     return ListView(
       padding: const EdgeInsets.all(15),
       children: [
-        const BalanceCard(),
-        const SizedBox(
-          height: 10,
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.0),
+          child: BalanceCard(),
         ),
         const AddSpendCard(),
-        const SizedBox(
-          height: 20,
-        ),
+        const Padding(padding: EdgeInsetsDirectional.only(bottom: 10)),
         GestureDetector(
-          onTap: () => {
+          onTap: () => 
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const SpendsPage()))
-          },
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const SpendsPage())
+              ),
           child: Row(
             children: [
               const Text(
@@ -45,7 +42,7 @@ class Spending extends ConsumerWidget {
               const FaIcon(FontAwesomeIcons.arrowRightLong,
                   size: 23, color: Color.fromARGB(255, 151, 151, 151)),
               Text(
-                " $spendsCount ",
+                " $totalSpend ",
                 style: const TextStyle(
                   fontSize: 30.0,
                   color: Color.fromARGB(255, 151, 151, 151),
