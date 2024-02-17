@@ -21,7 +21,7 @@ class HomeState extends ConsumerState<Spending> {
     return ListView(
       padding: const EdgeInsets.all(15),
       children: [
-        const BalanceCard(),
+        // const BalanceCard(),
         const SizedBox(
           height: 10,
         ),
