@@ -94,10 +94,10 @@ class AccountsState extends State<Accounts> {
                   ),
                 child: PageView(
                   children: [ 
-                    SelectedWallets(wallet: income),
-                    SelectedWallets(wallet: savings),
-                    SelectedWallets(wallet: debts),
-                    SelectedWallets(wallet: flexible),
+                    // SelectedWallets(wallet: income),
+                    // SelectedWallets(wallet: savings),
+                    // SelectedWallets(wallet: debts),
+                    // SelectedWallets(wallet: flexible),
                   ]
                 ),
               )),

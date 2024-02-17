@@ -13,13 +13,13 @@ final subscriptions = realm.all<Subscription>();
 final balance = wallets
     .map((wallet) => wallet.balance)
     .toList()
-    .reduce((value, element) => value + element);
-final income = realm.query<Wallet>('name == \$0', ['Income']).first ;
+    .fold(0, (value, element) => value + element);
+// final income = realm.query<Wallet>('name == \$0', ['Income']).first ;
 
-// Querying data for selected wallets in accounts page wallets card
-final savings = realm.query<Wallet>('name == \$0', ['Savings']).first;
-final debts = realm.query<Wallet>('name == \$0', ['Debts']).first;
-final flexible = realm.query<Wallet>('name == \$0', ['Flexible']).first;
+// // Querying data for selected wallets in accounts page wallets card
+// final savings = realm.query<Wallet>('name == \$0', ['Savings']).first;
+// final debts = realm.query<Wallet>('name == \$0', ['Debts']).first;
+// final flexible = realm.query<Wallet>('name == \$0', ['Flexible']).first;
 final totalSpend = spends
     .map((spend) => spend.amount)
     .toList()

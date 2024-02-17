@@ -17,7 +17,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
-  Category _selectedCategory = categories.isEmpty ? Category(ObjectId(), "Miscellaneous") : categories.first;
+  Category _selectedCategory = categories.isEmpty ? Category(ObjectId(), "Miscellaneous", "💞", "") : categories.first;
   Wallet _selectedWallet = wallets.isEmpty ? Wallet(ObjectId(), "Flexible", 0) : wallets.first;
 
   late int newBalance =

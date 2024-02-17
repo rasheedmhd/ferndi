@@ -62,7 +62,7 @@ class BalanceCard extends StatelessWidget {
                         )
                       ),
                       Text(
-                        "GHS ${income.balance}",
+                        "GHS {income.balance}",
                         style: const TextStyle(
                           fontWeight: FontWeight.w700,
                           color: Color.fromARGB(255, 255, 255, 255),
