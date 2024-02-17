@@ -113,7 +113,6 @@ class AccountsState extends State<Accounts> {
                         style: TextStyle(
                           fontSize: 30.0,
                           color: Color.fromARGB(255, 48, 136, 6),
-                          fontWeight: FontWeight.w700,
                         ),
                       ),
                       SizedBox(

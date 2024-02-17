@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 import "package:app/utility/schema/methods.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
-import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:realm/realm.dart";
 
 class TransactionItem extends StatelessWidget {
@@ -92,13 +91,9 @@ class TransactionItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: ListTile(
-                  leading: const CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 165, 204, 255),
-                    child: FaIcon(
-                      FontAwesomeIcons.featherPointed,
-                      size: 20.0,
-                      color: Color.fromARGB(255, 5, 61, 135),
-                    ),
+                  leading: CircleAvatar(
+                  backgroundColor: Color(int.tryParse(spend.category!.color) ??  4290958844),
+                  child: Text(spend.category!.emoji, style: const TextStyle( fontSize: 25),),
                   ),
                   title: Text(
                     spend.name,
@@ -112,17 +107,11 @@ class TransactionItem extends StatelessWidget {
                       Text("${spend.notes}"),
                       Row(
                         children: [
-                          // const FaIcon(
-                          //     FontAwesomeIcons.featherPointed,
-                          //     size: 14.0,
-                          //     color: Color.fromARGB(255, 5, 61, 135),
-                          //   ),
-                          Text("category:  ${spend.category?.name.toString()}"),
+                          Text("category:  ${spend.category?.name}"),
                         ],
                       ),
                       Row(
                         children: [
-                          // Text("${spend.date.weekday}, "),
                           Text("${spend.date.day} / "),
                           Text("${spend.date.month} / "),
                           Text("${spend.date.year}"),
@@ -130,24 +119,21 @@ class TransactionItem extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          // const FaIcon(
-                          //     FontAwesomeIcons.featherPointed,
-                          //     size: 14.0,
-                          //     color: Color.fromARGB(255, 5, 61, 135),
-                          //   ),
-                          Text("wallet:  ${spend.wallet?.name.toString()}"),
+                          Text("wallet: ${spend.wallet?.name}"),
                         ],
                       ),
                     ],
                   ),
                   trailing: Text(
-                    spend.getAmount,
-                    style: const TextStyle(
-                      fontSize: 16,
+                      "- ${spend.getAmount}",
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Color.fromARGB(255, 163, 9, 71),
+                      ),
                     ),
                   ),
                 ),
-              )),
+              ),
           const Divider(
             height: 0,
             color: Color.fromARGB(255, 227, 226, 226),

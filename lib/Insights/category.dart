@@ -17,11 +17,16 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final int spendsPerCategory = getSpendsByCategory(category.name).length;
-    final int totalSpendAmountPerCategory = getSpendsByCategory(category.name)
-        .map((spend) => (spend.amount))
-        .reduce((value, element) => value + element);
+    // final int totalSpendAmountPerCategory = getSpendsByCategory(category.name)
+    //     .map((spend) => (spend.amount))
+    //     .reduce((value, element) => value + element);
+
+    // We are pulling the Category color from the database,
+    // Remember that it was stored as an String so we have to convert it back into an
+    // Integer before we can reconstruct the Color and use in the UI
+    late int categoryColorInt = int.tryParse(category.color) ?? 4290958844;
+    late Color categoryColor = Color(categoryColorInt);
 
     return Container(
       decoration: BoxDecoration(
@@ -101,13 +106,13 @@ class CategoryItem extends StatelessWidget {
               ),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: const Color.fromARGB(255, 255, 239, 249),
+                  backgroundColor: categoryColor,
                   child: Text(
-                    category.name,
+                    category.emoji,
                     style: const TextStyle(
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 163, 9, 71),
-                      ),
+                      fontSize: 27,
+                      color: Color.fromARGB(255, 153, 152, 153),
+                    ),
                   ),
                 ),
                 subtitle: Text("${spendsPerCategory} Transactions"),
@@ -118,7 +123,8 @@ class CategoryItem extends StatelessWidget {
                   ),
                 ),
                 trailing: Text(
-                  "- GHS ${totalSpendAmountPerCategory.toString()}",
+                  // "- GHS ${totalSpendAmountPerCategory.toString()}",
+                  "-",
                   style: const TextStyle(
                     fontSize: 20,
                     color: Color.fromARGB(255, 163, 9, 71),
@@ -139,7 +145,7 @@ class CategoryItem extends StatelessWidget {
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return CategoryList(categories: categories);

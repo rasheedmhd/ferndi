@@ -7,40 +7,9 @@ final config = Configuration.local([
   Subscription.schema,
   Category.schema,
   Duration.schema,
-], schemaVersion: 2, shouldDeleteIfMigrationNeeded: true);
+], schemaVersion: 3, shouldDeleteIfMigrationNeeded: true);
 
 final realm = Realm(config);
-
-final onboardCategories = <Category>[
-  Category(ObjectId(), "Health"),
-  Category(ObjectId(), "Food"),
-  Category(ObjectId(), "Electricity"),
-  Category(ObjectId(), "Groceries"),
-  Category(ObjectId(), "Transportation"),
-  Category(ObjectId(), "Miscellaneous"),
-  Category(ObjectId(), "Child Care"),
-  Category(ObjectId(), "Lifestyle"),
-  Category(ObjectId(), "Charity"),
-  Category(ObjectId(), "Banking"),
-  Category(ObjectId(), "Clothes"),
-  Category(ObjectId(), "Loan"),
-  Category(ObjectId(), "Entertainment"),
-  Category(ObjectId(), "Drinks"),
-  Category(ObjectId(), "Bills"),
-  Category(ObjectId(), "Home"),
-  Category(ObjectId(), "Insurance"),
-  Category(ObjectId(), "Internet"),
-  Category(ObjectId(), "Maintenance"),
-  Category(ObjectId(), "Rent"),
-  Category(ObjectId(), "Water"),
-  Category(ObjectId(), "Phone"),
-  Category(ObjectId(), "Education"),
-  Category(ObjectId(), "Gift"),
-  Category(ObjectId(), "Pharmacy"),
-  Category(ObjectId(), "Work"),
-  Category(ObjectId(), "Shopping"),
-  Category(ObjectId(), "Fuel"),
-];
 
 final List<Wallet> onboardWallets = [
   Wallet(ObjectId(), "Savings", 0),
@@ -123,6 +92,8 @@ class _Category {
   @PrimaryKey()
   late ObjectId id;
   late String name;
+  late String emoji;
+  late String color;
   late List<_Spend> category;
 }
 

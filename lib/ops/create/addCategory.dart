@@ -12,10 +12,30 @@ class AddCategoryCard extends StatefulWidget {
 
 class AddCategoryCardState extends State<AddCategoryCard> {
   final _nameController = TextEditingController();
+  final _emojiController = TextEditingController();
+
+  late String categoryEmoji = "💸";
+  // categoryColorInt stores the int value of the Color
+  // The int is converted into a String and stored in RealmDb
+  // This is a complete Hack because RealmDb doesn't support Flutter 
+  // Color Data Type
+  late int categoryColorInt = const Color.fromARGB(255, 255, 193, 188).value;
+  // By using categoryColorInt above, which is the Value of the color const Color.fromARGB(255, 255, 193, 188), we can reconstruct the Color and displays it in the UI
+  // We then use this reconstructed color to Apply to the Circle depicting the Selected Color 
+  // of the Category, giving real time feedback to the User, letting them know which
+  // color they are saving to the database  
+  late Color categoryColor = Color(categoryColorInt);
+
+  void _newEmoji(String selectedEmoji) {
+    setState(() {
+      categoryEmoji = selectedEmoji;
+    });
+  }
 
   @override
   void dispose() {
     _nameController.dispose();
+    _emojiController.dispose();
     super.dispose();
   }
 
@@ -26,17 +46,219 @@ class AddCategoryCardState extends State<AddCategoryCard> {
           title: const Text("Add Category"),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(30),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 20,
+          padding: const EdgeInsets.all(20),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: const Color.fromARGB(255, 227, 226, 226),
               ),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Column(children: [
               TextField(
                 controller: _nameController,
                 maxLength: 50,
                 keyboardType: TextInputType.text,
-                decoration: const InputDecoration(label: Text("Category Name")),
+                decoration: const InputDecoration(label: Text("Name")),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Color(categoryColorInt),
+                        child: Text(
+                          categoryEmoji,
+                          style: const TextStyle(fontSize: 27),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 30,
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      initialValue: categoryEmoji,
+                      onChanged: _newEmoji,
+                      maxLength: 1,
+                      keyboardType: TextInputType.text,
+                      decoration: const InputDecoration(label: Text("Emoji")),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: 40,
+                child: ListView(scrollDirection: Axis.horizontal, children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColorInt =
+                            const Color.fromARGB(255, 194, 213, 252).value;
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 194, 213, 252),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColorInt =
+                            const Color.fromARGB(255, 255, 250, 163).value;
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 255, 250, 163),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColorInt =
+                            const Color.fromARGB(255, 255, 200, 163).value;
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 255, 200, 163),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColorInt =
+                            const Color.fromARGB(255, 255, 191, 236).value;
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 255, 191, 236),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColorInt =
+                            const Color.fromARGB(255, 184, 255, 118).value;
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 184, 255, 118),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColorInt =
+                            const Color.fromARGB(255, 218, 255, 240).value;
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 218, 255, 240),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColorInt =
+                            const Color.fromARGB(255, 192, 255, 242).value;
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 192, 255, 242),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColorInt =
+                            const Color.fromARGB(255, 255, 166, 168).value;
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 255, 166, 168),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColorInt =
+                            const Color.fromARGB(255, 213, 168, 255).value;
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 213, 168, 255),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColorInt =
+                            const Color.fromARGB(255, 109, 255, 175).value;
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 109, 255, 175),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                ]),
               ),
               const SizedBox(
                 height: 40,
@@ -77,10 +299,8 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                     ));
                     return;
                   }
-                  createCategory(Category(
-                    ObjectId(),
-                    _nameController.text,
-                  ));
+                  createCategory(Category(ObjectId(), _nameController.text,
+                      categoryEmoji, categoryColorInt.toString()));
                   _nameController.clear();
                   ScaffoldMessenger.of(context).clearSnackBars();
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -110,7 +330,7 @@ class AddCategoryCardState extends State<AddCategoryCard> {
                   Navigator.of(context).pop();
                 },
               ),
-            ],
+            ]),
           ),
         ));
   }

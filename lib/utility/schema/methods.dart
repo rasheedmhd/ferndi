@@ -1,4 +1,5 @@
 import 'package:app/models/schemas.dart';
+import 'package:app/utility/defaults/categories.dart';
 
 final wallets = realm.all<Wallet>();
 final spends = realm.all<Spend>();

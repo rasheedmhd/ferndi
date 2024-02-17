@@ -46,7 +46,7 @@ class SubscriptionsState extends State<Subscriptions> {
           backgroundColor: const Color.fromARGB(255, 202, 233, 255),
         ),
         body: Container(
-          color: const Color.fromARGB(255, 202, 233, 255),
+          color: const Color.fromARGB(255, 215, 237, 253),
           child: ListView(
             padding: const EdgeInsets.all(15),
             children: const [
@@ -62,14 +62,9 @@ class SubscriptionsState extends State<Subscriptions> {
                     style: TextStyle(
                       fontSize: 30.0,
                       color: Color.fromARGB(255, 5, 61, 135),
-                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ],
-              ),
-          
-              SizedBox(
-                height: 12,
               ),
           
               SizedBox(
