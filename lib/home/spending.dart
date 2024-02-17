@@ -18,7 +18,7 @@ class Spending extends ConsumerWidget {
       children: [
         const Padding(
           padding: EdgeInsets.symmetric(vertical: 10.0),
-          child: BalanceCard(),
+          // child: BalanceCard(),
         ),
         const AddSpendCard(),
         const Padding(padding: EdgeInsetsDirectional.only(bottom: 10)),
@@ -51,13 +51,10 @@ class Spending extends ConsumerWidget {
             ],
           ),
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        const SizedBox(
-          height: 2800,
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.0),
           child: Spends(),
-        ),
+        ),       
       ]);
   }
 }

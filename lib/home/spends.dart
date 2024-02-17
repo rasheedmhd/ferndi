@@ -5,7 +5,6 @@ import "package:app/models/schemas.dart";
 import "package:app/ops/update/editSpend.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 
-
 class SpendItem extends ConsumerWidget {
   const SpendItem(this.spend, {super.key});
 
@@ -13,10 +12,9 @@ class SpendItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     void showSpendEditForm() {
       Navigator.of(context)
-        .push(MaterialPageRoute(builder: (ctx) => EditSpendCard(spend)));
+          .push(MaterialPageRoute(builder: (ctx) => EditSpendCard(spend)));
     }
 
     return Container(
@@ -158,21 +156,25 @@ class SpendList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(
-            child: Container(
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 245, 245, 245),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          child: ListView.builder(
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              itemCount: spends.length,
-              itemBuilder: (BuildContext context, int index) {
-                return SpendItem(spends[index]);
-              }),
-        ))
+        if (spends.isEmpty)
+          const Center(child: Text("You have no spends yet!"))
+        else
+          Flexible(
+              child: Container(
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 245, 245, 245),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: ListView.builder(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                itemCount: spends.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return SpendItem(spends[index]);
+                }),
+          ))
       ],
     );
   }
