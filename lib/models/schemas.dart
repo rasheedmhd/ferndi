@@ -11,20 +11,6 @@ final config = Configuration.local([
 
 final realm = Realm(config);
 
-final List<Wallet> onboardWallets = [
-  Wallet(ObjectId(), "Savings", 0),
-  Wallet(ObjectId(), "Debts", 0),
-  Wallet(ObjectId(), "Flexible", 0),
-  Wallet(ObjectId(), "Income", 0),
-];
-
-// Create a bunch of Durations when getting onboard
-final durations = <Duration>[
-  Duration(ObjectId(), "month"),
-  Duration(ObjectId(), "year"),
-  Duration(ObjectId(), "one time"),
-];
-
 @RealmModel()
 class _Duration {
   @PrimaryKey()

@@ -1,5 +1,7 @@
 import 'package:app/models/schemas.dart';
 import 'package:app/utility/defaults/categories.dart';
+import 'package:app/utility/defaults/onb_wallets.dart';
+import 'package:app/utility/defaults/onb_durations.dart';
 
 final wallets = realm.all<Wallet>();
 final spends = realm.all<Spend>();
@@ -14,12 +16,13 @@ final balance = wallets
     .map((wallet) => wallet.balance)
     .toList()
     .fold(0, (value, element) => value + element);
-// final income = realm.query<Wallet>('name == \$0', ['Income']).first ;
+final income = realm.query<Wallet>('name == \$0', ['Income']).first ;
 
 // // Querying data for selected wallets in accounts page wallets card
-// final savings = realm.query<Wallet>('name == \$0', ['Savings']).first;
-// final debts = realm.query<Wallet>('name == \$0', ['Debts']).first;
-// final flexible = realm.query<Wallet>('name == \$0', ['Flexible']).first;
+final savings = realm.query<Wallet>('name == \$0', ['Savings']).first;
+final debts = realm.query<Wallet>('name == \$0', ['Debts']).first;
+final flexible = realm.query<Wallet>('name == \$0', ['Flexible']).first;
+
 final totalSpend = spends
     .map((spend) => spend.amount)
     .toList()
@@ -32,29 +35,7 @@ final totalSpend = spends
 
 final spendsCount = spends.length;
 final categoriesCount = categories.length;
-// Querying data for Subscriptions balance card
-final num subBalance = subscriptions
-    .map((subscription) => subscription.amount)
-    .toList()
-    .fold(0, (value, element) => value + element);
-final totalMonthlySubscriptionsBalance = realm
-    .query<Subscription>('duration.name == \$0', ['month'])
-    .toList()
-    .map((sub) => (sub.amount))
-    .toList()
-    .fold(0, (value, element) => value + element);
-final totalYearlySubscriptionsBalance = realm
-    .query<Subscription>('duration.name == \$0', ['year'])
-    .toList()
-    .map((sub) => (sub.amount))
-    .toList()
-    .fold(0, (value, element) => value + element);
-final totalOneTimeSubscriptionsBalance = realm
-    .query<Subscription>('duration.name == \$0', ['one time'])
-    .toList()
-    .map((sub) => (sub.amount))
-    .toList()
-    .fold(0, (value, element) => value + element);
+
 
 void updateCategory(Category category) {
   realm.write(() {
@@ -62,28 +43,11 @@ void updateCategory(Category category) {
   });
 }
 
-void updateSubscription(Subscription subscription) {
-  realm.write(() {
-    realm.add<Subscription>(subscription, update: true);
-  });
-}
+
 
 void deleteSpend(Spend spend) {
   realm.write(() {
     realm.delete<Spend>(spend);
-  });
-}
-
-// Create a new spend record and persist to db
-void addSubscription(Subscription subscription) {
-  realm.write(() {
-    realm.add(subscription);
-  });
-}
-
-void deleteSubscription(Subscription subscription) {
-  realm.write(() {
-    realm.delete(subscription);
   });
 }
 
@@ -101,6 +65,12 @@ void addCategories() {
   });
 }
 
+void deleteCategory(Category category) {
+  realm.write(() {
+    realm.delete(category);
+  });
+}
+
 void addDurations() {
   realm.write(() {
     realm.addAll(durations);
@@ -113,11 +83,6 @@ void addWallets() {
   });
 }
 
-void deleteCategory(Category category) {
-  realm.write(() {
-    realm.delete(category);
-  });
-}
 
 getSpendsByWallet(String walletName) {
   final spendsByWallet = realm.query<Spend>("wallet.name == \$0", [walletName]);

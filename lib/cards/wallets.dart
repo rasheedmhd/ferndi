@@ -265,14 +265,26 @@ class WalletList extends StatelessWidget {
   final List<Wallet> wallets;
 
   @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const ClampingScrollPhysics(),
-      itemCount: wallets.length,
-      itemBuilder: (BuildContext context, int index) {
-        return WalletItem(wallets[index]);
-      },
+ Widget build(BuildContext context) {
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      if (wallets.isEmpty)
+        const Center(
+          child: Text("You have no Wallets yet!"),
+        )
+      else
+        Flexible(
+          child: ListView.builder(
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
+            itemCount: wallets.length,
+            itemBuilder: (BuildContext context, int index) {
+              return WalletItem(wallets[index]);
+            },
+          ),
+        ),
+      ],
     );
   }
 }

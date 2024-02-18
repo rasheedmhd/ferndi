@@ -12,6 +12,7 @@ class SpendItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     void showSpendEditForm() {
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (ctx) => EditSpendCard(spend)));
@@ -73,7 +74,7 @@ class SpendItem extends ConsumerWidget {
                           ),
                         ],
                       ),
-                    ));
+                    ),);
                   },
                   backgroundColor: const Color(0xFFFE4A49),
                   foregroundColor: Colors.white,
