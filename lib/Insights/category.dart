@@ -10,17 +10,20 @@ class CategoryItem extends StatelessWidget {
 
   final Category category;
 
-  void _showCategoryEditForm(BuildContext context, Category category) {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (ctx) => EditCategoryCard(category: category)));
-  }
-
   @override
   Widget build(BuildContext context) {
+    void showCategoryEditForm() {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (ctx) => EditCategoryCard(category: category),
+        ),
+      );
+    }
+
     final int spendsPerCategory = getSpendsByCategory(category.name).length;
-    // final int totalSpendAmountPerCategory = getSpendsByCategory(category.name)
-    //     .map((spend) => (spend.amount))
-    //     .reduce((value, element) => value + element);
+    final int totalSpendAmountPerCategory = getSpendsByCategory(category.name)
+        .map((spend) => (spend.amount))
+        .fold(0, (value, element) => value + element);
 
     // We are pulling the Category color from the database,
     // Remember that it was stored as an String so we have to convert it back into an
@@ -36,7 +39,7 @@ class CategoryItem extends StatelessWidget {
         children: [
           Slidable(
             // Specify a key if the Slidable is dismissible.
-            key: ValueKey(key),
+            key: ValueKey(category.id),
 
             // The start action pane is the one at the left or the top side.
             startActionPane: ActionPane(
@@ -89,7 +92,7 @@ class CategoryItem extends StatelessWidget {
                 ),
                 SlidableAction(
                   onPressed: (context) {
-                    _showCategoryEditForm(context, category);
+                    showCategoryEditForm();
                   },
                   backgroundColor: const Color.fromARGB(255, 96, 150, 249),
                   foregroundColor: Colors.white,
@@ -123,8 +126,7 @@ class CategoryItem extends StatelessWidget {
                   ),
                 ),
                 trailing: Text(
-                  // "- GHS ${totalSpendAmountPerCategory.toString()}",
-                  "-",
+                  "- GHS ${totalSpendAmountPerCategory.toString()}",
                   style: const TextStyle(
                     fontSize: 20,
                     color: Color.fromARGB(255, 163, 9, 71),
@@ -160,21 +162,29 @@ class CategoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(
+        if (categories.isEmpty)
+          const Center(
+            child: Text("You have no Categories yet!"),
+          )
+        else
+          Flexible(
             child: Container(
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 245, 245, 245),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
-          child: ListView.builder(
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              itemCount: categories.length,
-              itemBuilder: (BuildContext context, int index) {
-                return CategoryItem(categories[index]);
-              }),
-        ))
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 245, 245, 245),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                itemCount: categories.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return CategoryItem(categories[index]);
+                },
+              ),
+            ),
+          )
       ],
     );
   }

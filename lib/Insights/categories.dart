@@ -12,7 +12,7 @@ class Categories extends StatefulWidget {
 }
 
 class SpendsPageState extends State<Categories> {
-  void _addCategory() {
+  void addCategory() {
     showModalBottomSheet(
       showDragHandle: true,
       context: context,
@@ -23,51 +23,50 @@ class SpendsPageState extends State<Categories> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              onPressed: _addCategory,
-              icon: const Icon(
-                Icons.add,
-                size: 34,
-                color: Color.fromARGB(255, 163, 9, 71),
-              ))
-          ],
-        ),
-        body: ListView(
-          padding: const EdgeInsets.all(15),
-          children: [
-            Row(
-              children: [
-                const Text(
-                  "All Categories",
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    color: Color.fromARGB(255, 5, 61, 135),
-                  ),
+      appBar: AppBar(
+        title: const Text("Manage Categories"),
+        actions: [
+          IconButton(
+            onPressed: addCategory,
+            icon: const Icon(
+              Icons.add,
+              size: 34,
+              color: Color.fromARGB(255, 163, 9, 71),
+            ),
+          )
+        ],
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(15),
+        children: [
+          Row(
+            children: [
+              const Text(
+                "All Categories",
+                style: TextStyle(
+                  fontSize: 30.0,
+                  color: Color.fromARGB(255, 5, 61, 135),
                 ),
-                const Spacer(),
-                const FaIcon(FontAwesomeIcons.arrowRightLong,
-                    size: 23, color: Color.fromARGB(255, 151, 151, 151)),
-                Text(
-                  " $categoriesCount ",
-                  style: const TextStyle(
-                    fontSize: 30.0,
-                    color: Color.fromARGB(255, 151, 151, 151),
-                  ),
+              ),
+              const Spacer(),
+              const FaIcon(FontAwesomeIcons.arrowRightLong,
+                  size: 23, color: Color.fromARGB(255, 151, 151, 151)),
+              Text(
+                " $categoriesCount ",
+                style: const TextStyle(
+                  fontSize: 30.0,
+                  color: Color.fromARGB(255, 151, 151, 151),
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const SizedBox(
-              height: 5600,
-              child: CategoryCard(),
-            ),
-          ],
-        ));
+              ),
+            ],
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.0),
+            child: CategoryCard(),
+          ),
+        ],
+      ),
+    );
   }
 }

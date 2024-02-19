@@ -2,7 +2,7 @@ import "package:app/home/spendHistory.dart";
 import "package:app/home/spends.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:flutter/material.dart";
-import "package:app/cards/balance.dart"; 
+import "package:app/cards/balance.dart";
 import "package:app/ops/create/addSpend.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
@@ -20,14 +20,10 @@ class Spending extends ConsumerWidget {
         const Padding(
           padding: EdgeInsets.symmetric(vertical: 10.0),
           child: AddSpendCard(),
-        ),   
+        ),
         GestureDetector(
-          onTap: () => 
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const SpendsPage())
-              ),
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const SpendsPage())),
           child: Row(
             children: [
               const Text(
@@ -53,7 +49,8 @@ class Spending extends ConsumerWidget {
         const Padding(
           padding: EdgeInsets.symmetric(vertical: 10.0),
           child: Spends(),
-        ),       
-      ]);
+        ),
+      ],
+    );
   }
 }

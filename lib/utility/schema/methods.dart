@@ -23,19 +23,12 @@ final savings = realm.query<Wallet>('name == \$0', ['Savings']).first;
 final debts = realm.query<Wallet>('name == \$0', ['Debts']).first;
 final flexible = realm.query<Wallet>('name == \$0', ['Flexible']).first;
 
-final totalSpend = spends
-    .map((spend) => spend.amount)
-    .toList()
-    .fold(0, (value, element) => value + element);
+final totalSpendByCategory = categories
+    .map((category) => category.category
+    .map((spend) => (spend.amount))
+    .fold(0, (value, element) => value + element));
 
-// final totalSpendByCategory = categories
-//     .map((category) => category.category
-//     .map((spend) => (spend.amount))
-//     .reduce((value, element) => value + element));
-
-final spendsCount = spends.length;
 final categoriesCount = categories.length;
-
 
 void updateCategory(Category category) {
   realm.write(() {
@@ -43,13 +36,6 @@ void updateCategory(Category category) {
   });
 }
 
-
-
-void deleteSpend(Spend spend) {
-  realm.write(() {
-    realm.delete<Spend>(spend);
-  });
-}
 
 // Create a new Category record and persist to db
 void createCategory(Category category) {

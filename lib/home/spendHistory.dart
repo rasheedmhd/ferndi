@@ -6,7 +6,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 class SpendsPage extends ConsumerWidget {
   const SpendsPage({super.key});
-
+  
+  @override
   Widget build(BuildContext context, WidgetRef ref) {
     final totalSpend = ref.watch(spendsNotifier).length;
 
@@ -101,11 +102,8 @@ class SpendsPage extends ConsumerWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          const SizedBox(
-            height: 5600,
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10.0),
             child: Spends(),
           ),
         ],
