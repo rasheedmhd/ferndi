@@ -1,23 +1,20 @@
-import 'package:app/utility/schema/methods.dart';
+// import 'package:app/utility/schema/methods.dart';
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
 
-final subscriptions = StreamProvider((ref) => realm.all<Subscription>().changes);
+final subscriptions =
+    StreamProvider((ref) => realm.all<Subscription>().changes);
 
 final subscriptionsNotifier =
-    NotifierProvider<SubscriptionNotifier, List<Subscription>>(SubscriptionNotifier.new);
+    NotifierProvider<SubscriptionNotifier, List<Subscription>>(
+        SubscriptionNotifier.new);
 
 class SubscriptionNotifier extends Notifier<List<Subscription>> {
   @override
   List<Subscription> build() {
     return ref.watch(subscriptions).value?.results.toList() ?? [];
   }
-  
-  // Querying data for Subscriptions balance card
-  // final num subBalance = subscriptions.
-  //     .map((subscription) => subscription.amount)
-  //     .toList()
-  //     .fold(0, (value, element) => value + element);
+
   final totalMonthlySubscriptionsBalance = realm
       .query<Subscription>('duration.name == \$0', ['month'])
       .toList()
@@ -55,5 +52,4 @@ class SubscriptionNotifier extends Notifier<List<Subscription>> {
       realm.delete(subscription);
     });
   }
-
 }

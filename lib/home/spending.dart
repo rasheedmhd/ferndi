@@ -16,12 +16,11 @@ class Spending extends ConsumerWidget {
     return ListView(
       padding: const EdgeInsets.all(15),
       children: [
+        const BalanceCard(),
         const Padding(
           padding: EdgeInsets.symmetric(vertical: 10.0),
-          child: BalanceCard(),
-        ),
-        const AddSpendCard(),
-        const Padding(padding: EdgeInsetsDirectional.only(bottom: 10)),
+          child: AddSpendCard(),
+        ),   
         GestureDetector(
           onTap: () => 
             Navigator.push(

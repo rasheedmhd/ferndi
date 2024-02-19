@@ -9,48 +9,43 @@ class BalanceCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          transform: GradientRotation(3.142 / 6),
-          colors: [
-          Color.fromARGB(255, 19, 194, 110),
-          Color.fromARGB(255, 201, 249, 226),
-          ]
-        ),
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            transform: GradientRotation(3.142 / 6),
+            colors: [
+              Color.fromARGB(255, 19, 194, 110),
+              Color.fromARGB(255, 201, 249, 226),
+            ]),
         borderRadius: BorderRadius.circular(20.0),
       ),
-
       child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Current Balance",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 228, 255, 239),
-                        )
-                      ),
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("Current Balance",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 228, 255, 239),
+                          )),
                       Row(
                         children: [
-                          Text("GHS $balance",
+                          Text(
+                            "GHS $balance",
                             style: const TextStyle(
                               fontSize: 35.0,
                               fontWeight: FontWeight.w600,
                               color: Color.fromARGB(255, 255, 255, 255),
-                            )),
+                            ),
+                          ),
                         ],
                       ),
                     ],
                   )
                 ],
-              ),
-              const SizedBox(
-                height: 15,
               ),
               Row(
                 children: [
@@ -58,11 +53,11 @@ class BalanceCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text("Income",
-                        style: TextStyle(color: Color.fromARGB(255, 228, 255, 239),
-                        )
-                      ),
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 228, 255, 239),
+                          )),
                       Text(
-                        "GHS {income.balance}",
+                        "GHS ${income.balance}",
                         style: const TextStyle(
                           fontWeight: FontWeight.w700,
                           color: Color.fromARGB(255, 255, 255, 255),
@@ -77,9 +72,9 @@ class BalanceCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text("Spend",
-                        style: TextStyle(color: Color.fromARGB(255, 228, 255, 239),
-                        )
-                      ),
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 228, 255, 239),
+                          )),
                       Text(
                         "GHS ${totalSpend}",
                         style: const TextStyle(
@@ -92,8 +87,7 @@ class BalanceCard extends StatelessWidget {
                 ],
               )
             ],
-          )
-        ),
+          ),),
     );
   }
 }

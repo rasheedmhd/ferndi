@@ -8,8 +8,7 @@ class SpendInfoCard2 extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final all_spends = ref.watch(spendsNotifier);
-    // final all_spends = ref.watch(spendsCountProvider);
+    final allSpends = ref.watch(spendsNotifier).length;
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
@@ -58,7 +57,7 @@ class SpendInfoCard2 extends ConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("$all_spends",
+                      Text("$allSpends",
                           style: const TextStyle(
                             fontSize: 25.0,
                             color: Color.fromARGB(255, 12, 12, 12),
@@ -88,7 +87,7 @@ class SpendInfoCard2 extends ConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("$all_spends",
+                      Text("$allSpends",
                           style: const TextStyle(
                             fontSize: 25.0,
                             color: Color.fromARGB(255, 12, 12, 12),
@@ -118,7 +117,7 @@ class SpendInfoCard2 extends ConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("$all_spends",
+                      Text("$allSpends",
                           style: const TextStyle(
                             fontSize: 25.0,
                             fontWeight: FontWeight.w600,

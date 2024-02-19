@@ -7,15 +7,24 @@ class SubscriptionsBalanceCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    
+    final subBalance = ref.watch(subscriptions)
+      .value?.
+      results
+      .toList()
+      .map((subscription) => subscription.amount)
+      .toList()
+      .fold(0, (value, element) => value + element);
+
     final month = ref
         .watch(subscriptionsNotifier.notifier)
-        .totalYearlySubscriptionsBalance;
+        .totalMonthlySubscriptionsBalance;
     final year = ref
         .watch(subscriptionsNotifier.notifier)
         .totalYearlySubscriptionsBalance;
     final onetime = ref
         .watch(subscriptionsNotifier.notifier)
-        .totalYearlySubscriptionsBalance;
+        .totalOneTimeSubscriptionsBalance;
 
     return Container(
       decoration: const BoxDecoration(
@@ -55,7 +64,7 @@ class SubscriptionsBalanceCard extends ConsumerWidget {
               Row(
                 children: [
                   Text(
-                    "  GHS $month",
+                    "  GHS $subBalance",
                     style: const TextStyle(
                       fontSize: 35.0,
                       fontWeight: FontWeight.w600,
@@ -96,10 +105,12 @@ class SubscriptionsBalanceCard extends ConsumerWidget {
                               color: Color.fromARGB(255, 5, 61, 135),
                             ),
                           ),
-                          const Text(".00",
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 202, 233, 255),
-                              ),),
+                          const Text(
+                            ".00",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 202, 233, 255),
+                            ),
+                          ),
                         ],
                       )
                     ],

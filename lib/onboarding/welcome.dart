@@ -188,54 +188,52 @@ class Onboarding extends StatelessWidget {
                 )
               ],
             ),
-            ListView(
-              children: [
-                Container(
-                  color: Colors.white,
-                  child: const Column(
-                    children: [
-                      SizedBox(
-                        height: 12,
+            ListView(children: [
+              Container(
+                color: Colors.white,
+                child: const Column(
+                  children: [
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Text(
+                      "Record your first",
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        color: Color.fromARGB(255, 5, 61, 135),
+                        fontWeight: FontWeight.w700,
                       ),
-                      Text(
-                        "Record your first",
-                        style: TextStyle(
-                          fontSize: 30.0,
-                          color: Color.fromARGB(255, 5, 61, 135),
-                          fontWeight: FontWeight.w700,
-                        ),
+                    ),
+                    Text(
+                      "Spend",
+                      style: TextStyle(
+                        fontSize: 50.0,
+                        color: Color.fromARGB(255, 35, 206, 135),
+                        fontWeight: FontWeight.w700,
                       ),
-                      Text(
-                        "Spend",
-                        style: TextStyle(
-                          fontSize: 50.0,
-                          color: Color.fromARGB(255, 35, 206, 135),
-                          fontWeight: FontWeight.w700,
-                        ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                      child: Column(
+                        children: [
+                          AddSpendCard(),
+                          SizedBox(
+                            height: 70,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.arrow_back),
+                              Text("    swipe"),
+                            ],
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
-                        child: Column(
-                          children: [
-                            AddSpendCard(),
-                            SizedBox(
-                              height: 70,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.arrow_back),
-                                Text("    swipe"),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],),
             Container(
               color: Colors.white,
               child: Column(
