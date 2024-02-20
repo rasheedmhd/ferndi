@@ -1,17 +1,19 @@
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
-import "package:app/utility/schema/methods.dart";
 import "package:app/ops/update/editCategory.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
-import "package:realm/realm.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:app/providers/categories_provider.dart";
+import "package:app/utility/schema/methods.dart";
 
-class CategoryItem extends StatelessWidget {
+
+class CategoryItem extends ConsumerWidget {
   const CategoryItem(this.category, {super.key});
 
   final Category category;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     void showCategoryEditForm() {
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -47,23 +49,29 @@ class CategoryItem extends StatelessWidget {
               motion: const ScrollMotion(),
 
               // A pane can dismiss the Slidable.
-              dismissible: DismissiblePane(onDismissed: () {
-                deleteCategory(category);
-                ScaffoldMessenger.of(context).clearSnackBars();
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                  content: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Category Deleted",
-                        style:
-                            TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
+              dismissible: DismissiblePane(
+                onDismissed: () {
+                  ref
+                      .read(categoriesNotifier.notifier)
+                      .deleteCategory(category);
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                      content: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Category Deleted",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 163, 9, 71)),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ));
-              }),
+                    ),
+                  );
+                },
+              ),
 
               // All actions are defined in the children parameter.
               children: [
@@ -71,19 +79,21 @@ class CategoryItem extends StatelessWidget {
                 SlidableAction(
                   onPressed: (context) {
                     ScaffoldMessenger.of(context).clearSnackBars();
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      backgroundColor: Color.fromARGB(255, 230, 243, 255),
-                      content: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Slide through to delete",
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 0, 128, 255)),
-                          ),
-                        ],
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                        content: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Slide through to delete",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 128, 255)),
+                            ),
+                          ],
+                        ),
                       ),
-                    ));
+                    );
                   },
                   backgroundColor: const Color(0xFFFE4A49),
                   foregroundColor: Colors.white,
@@ -145,11 +155,12 @@ class CategoryItem extends StatelessWidget {
   }
 }
 
-class CategoryCard extends StatelessWidget {
+class CategoryCard extends ConsumerWidget {
   const CategoryCard({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final categories = ref.watch(categoriesNotifier);
     return CategoryList(categories: categories);
   }
 }
@@ -157,7 +168,7 @@ class CategoryCard extends StatelessWidget {
 class CategoryList extends StatelessWidget {
   const CategoryList({super.key, required this.categories});
 
-  final RealmResults<Category> categories;
+  final List<Category> categories;
 
   @override
   Widget build(BuildContext context) {

@@ -1,15 +1,16 @@
-import "package:app/utility/schema/methods.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:app/providers/categories_provider.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:flutter/material.dart";
 
-class AddCategoriesCard extends StatefulWidget {
+class AddCategoriesCard extends ConsumerStatefulWidget {
   const AddCategoriesCard({super.key});
 
   @override
   AddCategoriesCardState createState() => AddCategoriesCardState();
 }
 
-class AddCategoriesCardState extends State<AddCategoriesCard> {
+class AddCategoriesCardState extends ConsumerState<AddCategoriesCard> {
   final _balanceController = TextEditingController();
 
   @override
@@ -21,8 +22,9 @@ class AddCategoriesCardState extends State<AddCategoriesCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-        child: Column(children: [
+      padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+      child: Column(
+        children: [
           const ListTile(
             leading: FaIcon(
               FontAwesomeIcons.heartCircleCheck,
@@ -77,7 +79,8 @@ class AddCategoriesCardState extends State<AddCategoriesCard> {
           FloatingActionButton.extended(
             elevation: 1,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50.0)),
+              borderRadius: BorderRadius.circular(50.0),
+            ),
             label: const Text(
               "          add all          ",
               style: TextStyle(
@@ -88,23 +91,29 @@ class AddCategoriesCardState extends State<AddCategoriesCard> {
             foregroundColor: Colors.white,
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
             onPressed: () {
-              addCategories();
+              ref.read(categoriesNotifier.notifier).addCategories();
               ScaffoldMessenger.of(context).clearSnackBars();
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                backgroundColor: Color.fromARGB(255, 231, 255, 245),
-                content: Column(
-                  children: [
-                    Text(
-                      "Categories successfully created. You can add more later.",
-                      style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
-                    ),
-                    Text(
-                      "Swipe right to Record your first Spend.",
-                      style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
-                    ),
-                  ],
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: Color.fromARGB(255, 231, 255, 245),
+                  content: Column(
+                    children: [
+                      Text(
+                        "Categories successfully created. You can add more later.",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 9, 163, 99),
+                        ),
+                      ),
+                      Text(
+                        "Swipe right to Record your first Spend.",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 9, 163, 99),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ));
+              );
             },
           ),
           const SizedBox(
@@ -117,6 +126,8 @@ class AddCategoriesCardState extends State<AddCategoriesCard> {
               Text("    swipe"),
             ],
           ),
-        ]));
+        ],
+      ),
+    );
   }
 }

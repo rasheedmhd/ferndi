@@ -1,28 +1,31 @@
 import "package:app/ops/create/addCategory.dart";
 import "package:app/Insights/category.dart";
-import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:app/providers/categories_provider.dart";
 
-class Categories extends StatefulWidget {
+class Categories extends ConsumerStatefulWidget {
   const Categories({super.key});
 
   @override
   SpendsPageState createState() => SpendsPageState();
 }
 
-class SpendsPageState extends State<Categories> {
-  void addCategory() {
-    showModalBottomSheet(
-      showDragHandle: true,
-      context: context,
-      isScrollControlled: true,
-      builder: (ctx) => const AddCategoryCard(),
-    );
-  }
-
+class SpendsPageState extends ConsumerState<Categories> {
   @override
   Widget build(BuildContext context) {
+    final categoriesCount = ref.watch(categoriesNotifier).length;
+
+    void addCategory() {
+      showModalBottomSheet(
+        showDragHandle: true,
+        context: context,
+        isScrollControlled: true,
+        builder: (ctx) => const AddCategoryCard(),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Manage Categories"),

@@ -1,6 +1,7 @@
-// import 'package:app/utility/schema/methods.dart';
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
+import 'package:app/utility/defaults/onb_durations.dart';
+
 
 final subscriptions =
     StreamProvider((ref) => realm.all<Subscription>().changes);
@@ -50,6 +51,12 @@ class SubscriptionNotifier extends Notifier<List<Subscription>> {
   void deleteSubscription(Subscription subscription) {
     realm.write(() {
       realm.delete(subscription);
+    });
+  }
+
+  void addDurations() {
+    realm.write(() {
+      realm.addAll(durations);
     });
   }
 }

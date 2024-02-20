@@ -1,5 +1,7 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
+import 'package:app/utility/defaults/onb_wallets.dart';
+
 
 final wallets = StreamProvider((ref) => realm.all<Wallet>().changes);
 
@@ -29,6 +31,12 @@ class WalletNotifier extends Notifier<List<Wallet>> {
   void updateWallet(Wallet wallet) {
     realm.write(() {
       realm.add<Wallet>(wallet, update: true);
+    });
+  }
+
+  void addWallets() {
+    realm.write(() {
+      realm.addAll(onboardWallets);
     });
   }
 

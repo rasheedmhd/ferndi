@@ -12,6 +12,7 @@ class Spending extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    
     final totalSpend = ref.watch(spendsNotifier).length;
     return ListView(
       padding: const EdgeInsets.all(15),

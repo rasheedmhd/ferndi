@@ -2,8 +2,10 @@ import "package:app/Insights/cards/delightful.dart";
 import 'package:app/Insights/cards/spendInfo.dart';
 import 'package:app/Insights/Categories.dart';
 import 'package:app/Insights/cards/spendsInfoCard.dart';
-import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:app/providers/categories_provider.dart";
+
 // import "package:flutter_riverpod/flutter_riverpod.dart";
 
 // Cards
@@ -53,82 +55,82 @@ import "package:flutter/material.dart";
 
 // Streak
 
-class Insights extends StatefulWidget {
+class Insights extends ConsumerStatefulWidget {
   const Insights({super.key});
 
   @override
   InsightsState createState() => InsightsState();
 }
 
-class InsightsState extends State<Insights> {
+class InsightsState extends ConsumerState<Insights> {
   @override
   Widget build(BuildContext context) {
-    return ListView(padding: const EdgeInsets.all(15), children: [
-      const DelightfulCard(),
-      const SizedBox(
-        height: 20,
-      ),
-      const SpendInfoCard2(),
-      const SizedBox(
-        height: 20,
-      ),
-      GestureDetector(
-        onTap: () => {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Categories()))
-        },
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: const Color.fromARGB(255, 227, 226, 226),
+    
+    final categoriesCount = ref.watch(categoriesNotifier).length;
+
+    return ListView(
+      padding: const EdgeInsets.all(15),
+      children: [
+        const DelightfulCard(),
+        const SizedBox(
+          height: 20,
+        ),
+        const SpendInfoCard2(),
+        const SizedBox(
+          height: 20,
+        ),
+        GestureDetector(
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Categories(),
             ),
-            borderRadius: BorderRadius.circular(20.0),
           ),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  const Text(
-                    "All categories",
-                    style: TextStyle(
-                      fontSize: 30.0,
-                      color: Color.fromARGB(255, 5, 61, 135),
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    " $categoriesCount ",
-                    style: const TextStyle(
-                      fontSize: 30.0,
-                      color: Color.fromARGB(255, 151, 151, 151),
-                    ),
-                  ),             
-                ],
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: const Color.fromARGB(255, 227, 226, 226),
               ),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    const Text(
+                      "All categories",
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        color: Color.fromARGB(255, 5, 61, 135),
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      " $categoriesCount ",
+                      style: const TextStyle(
+                        fontSize: 30.0,
+                        color: Color.fromARGB(255, 151, 151, 151),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SpendInfoCard(),
+              SpendInfoCard(),
+              SpendInfoCard(),
             ],
           ),
         ),
-      ),
-      const SizedBox(
-        height: 20,
-      ),
-      const Row(
-       children: [
-          SpendInfoCard(),
-          SizedBox(
-            width: 20,
-          ),
-          SpendInfoCard(),
-          SizedBox(
-            width: 20,
-          ),
-          SpendInfoCard(),
-        ],
-      ),
-      const SizedBox(
-        height: 20,
-      ),
-    ]);
+      ],
+    );
   }
 }
