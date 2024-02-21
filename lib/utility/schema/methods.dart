@@ -1,4 +1,6 @@
 import 'package:app/models/schemas.dart';
+import "package:realm/realm.dart" as R;
+
 
 final wallets = realm.all<Wallet>();
 final spends = realm.all<Spend>();
@@ -13,12 +15,12 @@ final balance = wallets
     .map((wallet) => wallet.balance)
     .toList()
     .fold(0, (value, element) => value + element);
-final income = realm.query<Wallet>('name == \$0', ['Income']).first ;
+final income      = wallets.isEmpty ? Wallet(R.ObjectId(), "Income", 0): realm.query<Wallet>('name == \$0', ['Income']).first;
+final savings     = wallets.isEmpty ? Wallet(R.ObjectId(), "Savings", 0): realm.query<Wallet>('name == \$0', ['Savings']).first;
+final flexible    = wallets.isEmpty ? Wallet(R.ObjectId(), "Flexible", 0): realm.query<Wallet>('name == \$0', ['Flexible']).first;
 
 // // Querying data for selected wallets in accounts page wallets card
-final savings = realm.query<Wallet>('name == \$0', ['Savings']).first;
-final debts = realm.query<Wallet>('name == \$0', ['Debts']).first;
-final flexible = realm.query<Wallet>('name == \$0', ['Flexible']).first;
+
 
 final totalSpendByCategory = categories
     .map((category) => category.category

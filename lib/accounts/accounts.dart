@@ -92,7 +92,7 @@ class AccountsState extends State<Accounts> {
                   children: [
                     SelectedWallets(wallet: income),
                     SelectedWallets(wallet: savings),
-                    SelectedWallets(wallet: debts),
+                    // SelectedWallets(wallet: debts),
                     SelectedWallets(wallet: flexible),
                   ],
                 ),
