@@ -13,7 +13,7 @@ class WalletNotifier extends Notifier<List<Wallet>> {
   List<Wallet> build() {
     return ref.watch(wallets).value?.results.toList() ?? [];
   }
-  
+
   // Create a new wallet and persist to db
   void createWallet(Wallet wallet) {
     realm.write(() {

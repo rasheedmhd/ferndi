@@ -1,4 +1,5 @@
 import 'package:app/models/schemas.dart';
+import "package:app/providers/wallets_provider.dart";
 import "package:app/utility/schema/methods.dart";
 import 'package:app/models/schemas.dart' as subscription;
 import "package:flutter/material.dart";
@@ -14,10 +15,10 @@ class AddSubscriptionCard extends ConsumerStatefulWidget {
 }
 
 class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
-  final _nameController       = TextEditingController();
-  final _amountController     = TextEditingController();
-  Duration _selectedDuration  = duration.isEmpty ? Duration(ObjectId(), "Month")    : duration.first;
-  Wallet _selectedWallet      = wallets.isEmpty ? Wallet(ObjectId(), "Flexible", 0) : wallets.first;
+  final _nameController = TextEditingController();
+  final _amountController = TextEditingController();
+  Duration _selectedDuration =
+   duration.isEmpty ? Duration(ObjectId(), "Month") : duration.first;
 
   @override
   void dispose() {
@@ -28,6 +29,11 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
 
   @override
   Widget build(BuildContext context) {
+
+    final providerWallets = ref.watch(walletsNotifier);
+    Wallet _selectedWallet = 
+      providerWallets .isEmpty ? Wallet(ObjectId(), "Flexible", 0) : providerWallets .first;
+      
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Subscription"),
@@ -75,17 +81,21 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                     child: DropdownButton(
                       underline: Container(),
                       value: _selectedWallet,
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(20),
+                      ),
                       icon: const Icon(
                         Icons.wallet_sharp,
                         size: 30,
                         color: Color.fromARGB(255, 17, 221, 163),
                       ),
-                      items: wallets
-                          .map((wallet) => DropdownMenuItem(
-                                value: wallet,
-                                child: Text(wallet.name),
-                              ))
+                      items: providerWallets
+                          .map(
+                            (wallet) => DropdownMenuItem(
+                              value: wallet,
+                              child: Text(wallet.name),
+                            ),
+                          )
                           .toList(),
                       onChanged: (value) {
                         if (value == null) {
@@ -111,17 +121,21 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                     child: DropdownButton(
                       underline: Container(),
                       value: _selectedDuration,
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(20),
+                      ),
                       icon: const Icon(
                         Icons.av_timer,
                         size: 30,
                         color: Color.fromARGB(255, 146, 2, 93),
                       ),
                       items: duration
-                          .map((duration) => DropdownMenuItem(
-                                value: duration,
-                                child: Text(duration.name),
-                              ))
+                          .map(
+                            (duration) => DropdownMenuItem(
+                              value: duration,
+                              child: Text(duration.name),
+                            ),
+                          )
                           .toList(),
                       onChanged: (value) {
                         if (value == null) {
@@ -143,7 +157,8 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
               FloatingActionButton.extended(
                 elevation: 1,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.0)),
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
                 label: const Text(
                   "          record          ",
                   style: TextStyle(
@@ -167,7 +182,8 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                             Text(
                               "Subscription details incomplete",
                               style: TextStyle(
-                                  color: Color.fromARGB(255, 163, 9, 71)),
+                                color: Color.fromARGB(255, 163, 9, 71),
+                              ),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -175,7 +191,8 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                                 Text(
                                   "Please add a name, amount, wallet and duration.",
                                   style: TextStyle(
-                                      color: Color.fromARGB(255, 163, 9, 71)),
+                                    color: Color.fromARGB(255, 163, 9, 71),
+                                  ),
                                 ),
                               ],
                             ),
@@ -208,10 +225,13 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                               Text(
                                 "Subscription successfully recorded your. yay! ",
                                 style: TextStyle(
-                                    color: Color.fromARGB(255, 9, 163, 99)),
+                                  color: Color.fromARGB(255, 9, 163, 99),
+                                ),
                               ),
-                              Icon(Icons.sentiment_very_satisfied,
-                                  color: Color.fromARGB(255, 9, 163, 9))
+                              Icon(
+                                Icons.sentiment_very_satisfied,
+                                color: Color.fromARGB(255, 9, 163, 9),
+                              )
                             ],
                           ),
                         ],

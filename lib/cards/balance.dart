@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:app/utility/schema/methods.dart";
 import "package:app/providers/spends_provider.dart";
+import "package:app/providers/wallets_provider.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 class BalanceCard extends ConsumerWidget {
@@ -11,6 +12,10 @@ class BalanceCard extends ConsumerWidget {
     
     final totalSpend = ref.watch(spendsNotifier)
         .map((spend) => spend.amount)
+        .toList()
+        .fold(0, (value, element) => value + element);
+    final balance = ref.watch(walletsNotifier)
+        .map((wallet) => wallet.balance)
         .toList()
         .fold(0, (value, element) => value + element);
 
