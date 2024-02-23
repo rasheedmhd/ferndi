@@ -70,7 +70,7 @@ class BalanceCard extends ConsumerWidget {
                           color: Color.fromARGB(255, 228, 255, 239),
                         )),
                     Text(
-                      "GHS ${income.balance}",
+                      "GHS ${income?.balance}",
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color.fromARGB(255, 255, 255, 255),

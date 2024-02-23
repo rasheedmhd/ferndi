@@ -4,7 +4,7 @@ import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 class SelectedWallets extends StatelessWidget {
   const SelectedWallets({required this.wallet, super.key});
-  final Wallet wallet;
+  final Wallet? wallet;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class SelectedWallets extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("${wallet.bal}",
+              Text("${wallet?.bal}",
                 style: const TextStyle(
                   fontSize: 35.0,
                   fontWeight: FontWeight.w700,
@@ -61,7 +61,7 @@ class SelectedWallets extends StatelessWidget {
                 )),
             ],
           ),
-          Text("${wallet.name}",
+          Text("${wallet?.name}",
             style: const TextStyle(
               fontSize: 23.0,
               color: Color.fromARGB(255, 255, 255, 255),

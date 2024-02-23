@@ -5,8 +5,7 @@ import 'package:app/utility/defaults/onb_wallets.dart';
 
 final wallets = StreamProvider((ref) => realm.all<Wallet>().changes);
 
-final walletsNotifier =
-    NotifierProvider<WalletNotifier, List<Wallet>>(WalletNotifier.new);
+final walletsNotifier = NotifierProvider<WalletNotifier, List<Wallet>>(WalletNotifier.new);
 
 class WalletNotifier extends Notifier<List<Wallet>> {
   @override
@@ -26,7 +25,6 @@ class WalletNotifier extends Notifier<List<Wallet>> {
       realm.delete(wallet);
     });
   }
-
 
   void updateWallet(Wallet wallet) {
     realm.write(() {

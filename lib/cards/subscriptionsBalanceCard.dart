@@ -16,6 +16,16 @@ class SubscriptionsBalanceCard extends ConsumerWidget {
       .toList()
       .fold(0, (value, element) => value + element);
 
+    // final totalMonthlySubscriptionsBalance = ref.watch(subscriptions)
+    //     // .query<Subscription>('duration.name == \$0', ['month'])
+    //     // .toList()
+    //     .value?.results.
+    //     map((sub) => (sub.duration!.name == "month"))
+    //     // .toList()
+    //     .map((subByDur) => (subByDur.amount))
+    //     .toList()
+    //     .fold(0, (value, element) => value + element);
+
     final month = ref
         .watch(subscriptionsNotifier.notifier)
         .totalMonthlySubscriptionsBalance;

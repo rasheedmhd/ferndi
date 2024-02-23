@@ -1,5 +1,5 @@
 import 'package:app/models/schemas.dart';
-import "package:realm/realm.dart" as R;
+import "package:realm/realm.dart" as r;
 
 
 final wallets = realm.all<Wallet>();
@@ -10,19 +10,11 @@ final subscriptions = realm.all<Subscription>();
 // for later feature
 // final budgets = realm.all<Budget>;
 
-final income      = wallets.isEmpty ? Wallet(R.ObjectId(), "Income", 0): realm.query<Wallet>('name == \$0', ['Income']).first;
-final savings     = wallets.isEmpty ? Wallet(R.ObjectId(), "Savings", 0): realm.query<Wallet>('name == \$0', ['Savings']).first;
-final flexible    = wallets.isEmpty ? Wallet(R.ObjectId(), "Flexible", 0): realm.query<Wallet>('name == \$0', ['Flexible']).first;
+final income    = wallets.isEmpty ? Wallet(r.ObjectId(), "Income", 0)  : realm.query<Wallet>('name == \$0', ['Income']).firstOrNull;
+final savings   = wallets.isEmpty ? Wallet(r.ObjectId(), "Savings", 0) : realm.query<Wallet>('name == \$0', ['Savings']).firstOrNull;
+final flexible  = wallets.isEmpty ? Wallet(r.ObjectId(), "Flexible", 0): realm.query<Wallet>('name == \$0', ['Flexible']).firstOrNull;
 
 // // Querying data for selected wallets in accounts page wallets card
-
-
-// final totalSpendByCategory = categories
-//     .map((category) => category.category
-//     .map((spend) => (spend.amount))
-//     .fold(0, (value, element) => value + element));
-
-
 
 getSpendsByWallet(String walletName) {
   final spendsByWallet = realm.query<Spend>("wallet.name == \$0", [walletName]);
