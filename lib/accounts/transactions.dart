@@ -2,7 +2,8 @@ import "package:app/accounts/transaction.dart";
 import "package:app/models/schemas.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:app/providers/wallets_provider.dart";
+import "package:app/providers/spends_provider.dart";
+
 
 
 class TransactionsPage extends ConsumerStatefulWidget {

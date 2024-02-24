@@ -1,22 +1,37 @@
 import "package:app/ops/create/addCategory.dart";
 import "package:app/ops/create/addWallet.dart";
 import "package:app/cards/wallets.dart";
-import "package:app/utility/schema/methods.dart";
 import "package:app/cards/savings.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:app/providers/wallets_provider.dart";
+
 
 import "package:avatar_glow/avatar_glow.dart";
 import "package:flutter/material.dart";
 
-class Accounts extends StatefulWidget {
+class Accounts extends ConsumerStatefulWidget {
   const Accounts({super.key});
 
   @override
   AccountsState createState() => AccountsState();
 }
 
-class AccountsState extends State<Accounts> {
+class AccountsState extends ConsumerState<Accounts> {
   @override
   Widget build(BuildContext context) {
+
+    final income = ref.watch(
+      selectedWallet("Income"),
+    );
+    final savings = ref.watch(
+      selectedWallet("Savings"),
+    );
+    final flexible = ref.watch(
+      selectedWallet("Flexible"),
+    );
+    final debts = ref.watch(
+      selectedWallet("Debts"),
+    );
     void addCategory() {
       showModalBottomSheet(
         showDragHandle: true,
@@ -91,9 +106,10 @@ class AccountsState extends State<Accounts> {
                 child: PageView(
                   children: [
                     // [[ TO DO ]]
-                    SelectedWallets(wallet: income),
-                    SelectedWallets(wallet: savings),
-                    SelectedWallets(wallet: flexible),
+                    SelectedWallets(income),
+                    SelectedWallets(savings),
+                    SelectedWallets(flexible),
+                    SelectedWallets(debts),
                   ],
                 ),
               ),

@@ -4,7 +4,6 @@ import "package:app/models/schemas.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/spends_provider.dart";
-import "package:app/providers/wallets_provider.dart";
 
 class TransactionItem extends ConsumerWidget {
   const TransactionItem(this.spend, {super.key});

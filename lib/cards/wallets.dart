@@ -5,8 +5,9 @@ import "package:app/models/schemas.dart";
 import "package:app/ops/update/editWallet.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart"; 
 import "package:app/providers/wallets_provider.dart";
+import "package:app/providers/spends_provider.dart";
 
 class WalletItem extends ConsumerWidget {
   const WalletItem(this.wallet, {super.key});

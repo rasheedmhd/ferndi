@@ -1,7 +1,18 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
-// import "package:app/utility/schema/methods.dart";
 import 'package:app/models/schemas.dart';
-// import "package:realm/realm.dart";
+
+final spendsByWallet = Provider.family<List<Spend>, String>((ref, walletName) {
+  final spendsByWallet = realm.query<Spend>("wallet.name == \$0", [walletName]);
+  return spendsByWallet.toList();
+});
+
+final spendsByWalletTotal = Provider.family<int, String>((ref, walletName) {
+  return ref
+      .watch(spendsByWallet(walletName))
+      .map((spend) => (spend.amount))
+      .fold(0, (value, element) => value + element);
+});
+
 
 final tb = Provider<int>((ref) {
   return ref
