@@ -7,34 +7,12 @@ class SubscriptionsBalanceCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
-    final subBalance = ref.watch(subscriptions)
-      .value?.
-      results
-      .toList()
-      .map((subscription) => subscription.amount)
-      .toList()
-      .fold(0, (value, element) => value + element);
+    final totalSubsAmount = ref.watch(subBalance);
 
-    // final totalMonthlySubscriptionsBalance = ref.watch(subscriptions)
-    //     // .query<Subscription>('duration.name == \$0', ['month'])
-    //     // .toList()
-    //     .value?.results.
-    //     map((sub) => (sub.duration!.name == "month"))
-    //     // .toList()
-    //     .map((subByDur) => (subByDur.amount))
-    //     .toList()
-    //     .fold(0, (value, element) => value + element);
+    final month     = ref.watch(getSub("month"));
+    final year      = ref.watch(getSub("year"));
+    final onetime   = ref.watch(getSub("one time"));
 
-    final month = ref
-        .watch(subscriptionsNotifier.notifier)
-        .totalMonthlySubscriptionsBalance;
-    final year = ref
-        .watch(subscriptionsNotifier.notifier)
-        .totalYearlySubscriptionsBalance;
-    final onetime = ref
-        .watch(subscriptionsNotifier.notifier)
-        .totalOneTimeSubscriptionsBalance;
 
     return Container(
       decoration: const BoxDecoration(
@@ -74,7 +52,7 @@ class SubscriptionsBalanceCard extends ConsumerWidget {
               Row(
                 children: [
                   Text(
-                    "  GHS $subBalance",
+                    "  GHS $totalSubsAmount",
                     style: const TextStyle(
                       fontSize: 35.0,
                       fontWeight: FontWeight.w600,

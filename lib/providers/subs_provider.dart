@@ -3,7 +3,49 @@ import 'package:app/models/schemas.dart';
 import 'package:app/utility/defaults/onb_durations.dart';
 
 
-final subscriptions =
+// final tysb = Provider<int>((ref) {
+//   return realm
+//       .query<Subscription>('duration.name == \$0', ['year'])
+//       .toList()
+//       .map((sub) => (sub.amount))
+//       .toList()
+//       .fold(0, (value, element) => value + element);
+// });
+// final totsb = Provider<int>((ref) {
+//   return realm
+//       .query<Subscription>('duration.name == \$0', ['one time'])
+//       .toList()
+//       .map((sub) => (sub.amount))
+//       .toList()
+//       .fold(0, (value, element) => value + element);
+// });
+
+final subBalance = Provider<int>((ref) {
+  return ref
+      .watch(subscriptionsNotifier)
+      .map((subscription) => subscription.amount)
+      .toList()
+      .fold(0, (value, element) => value + element);
+});
+
+// final tmsb = Provider<int>((ref) {
+//   return ref
+//       .watch(subscriptionsNotifier)
+//       .where((sbs) => sbs.duration?.name == "month")
+//       .map((subscription) => subscription.amount)
+//       .toList()
+//       .fold(0, (value, element) => value + element);
+// });
+final getSub = Provider.family<int, String>((ref, duration) {
+  return ref
+      .watch(subscriptionsNotifier)
+      .where((sbs) => sbs.duration?.name == duration)
+      .map((subscription) => subscription.amount)
+      .toList()
+      .fold(0, (value, element) => value + element);
+});
+
+final _subscriptions =
     StreamProvider((ref) => realm.all<Subscription>().changes);
 
 final subscriptionsNotifier =
@@ -13,27 +55,8 @@ final subscriptionsNotifier =
 class SubscriptionNotifier extends Notifier<List<Subscription>> {
   @override
   List<Subscription> build() {
-    return ref.watch(subscriptions).value?.results.toList() ?? [];
+    return ref.watch(_subscriptions).value?.results.toList() ?? [];
   }
-
-  final totalMonthlySubscriptionsBalance = realm
-      .query<Subscription>('duration.name == \$0', ['month'])
-      .toList()
-      .map((sub) => (sub.amount))
-      .toList()
-      .fold(0, (value, element) => value + element);
-  final totalYearlySubscriptionsBalance = realm
-      .query<Subscription>('duration.name == \$0', ['year'])
-      .toList()
-      .map((sub) => (sub.amount))
-      .toList()
-      .fold(0, (value, element) => value + element);
-  final totalOneTimeSubscriptionsBalance = realm
-      .query<Subscription>('duration.name == \$0', ['one time'])
-      .toList()
-      .map((sub) => (sub.amount))
-      .toList()
-      .fold(0, (value, element) => value + element);
 
   // Create a new spend record and persist to db
   void addSubscription(Subscription subscription) {
