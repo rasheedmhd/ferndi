@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:app/utility/schema/methods.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:app/providers/wallets_provider.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -9,15 +8,9 @@ class BalanceCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
-    final totalSpend = ref.watch(spendsNotifier)
-        .map((spend) => spend.amount)
-        .toList()
-        .fold(0, (value, element) => value + element);
-    final balance = ref.watch(walletsNotifier)
-        .map((wallet) => wallet.balance)
-        .toList()
-        .fold(0, (value, element) => value + element);
+    final totalSpend  = ref.watch(tb);
+    final balance     = ref.watch(wb);
+    final income      = ref.watch(pi);
 
     return Container(
       decoration: BoxDecoration(
@@ -70,7 +63,7 @@ class BalanceCard extends ConsumerWidget {
                           color: Color.fromARGB(255, 228, 255, 239),
                         )),
                     Text(
-                      "GHS ${income?.balance}",
+                      "GHS ${income}",
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color.fromARGB(255, 255, 255, 255),

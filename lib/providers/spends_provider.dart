@@ -3,7 +3,15 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
 // import "package:realm/realm.dart";
 
-final spendsStream = StreamProvider((ref) => realm.all<Spend>().changes);
+final tb = Provider<int>((ref) {
+  return ref
+      .watch(spendsNotifier)
+      .map((spend) => spend.amount)
+      .toList()
+      .fold(0, (value, element) => value + element);
+});
+
+final _spendsStream = StreamProvider((ref) => realm.all<Spend>().changes);
 
 final spendsNotifier =
     NotifierProvider<SpendNotifier, List<Spend>>(SpendNotifier.new);
@@ -11,7 +19,7 @@ final spendsNotifier =
 class SpendNotifier extends Notifier<List<Spend>> {
   @override
   List<Spend> build() {
-    return ref.watch(spendsStream).value?.results.toList() ?? [];
+    return ref.watch(_spendsStream).value?.results.toList() ?? [];
   }
 
   // Create a new spend record and persist to db

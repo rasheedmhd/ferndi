@@ -2,22 +2,22 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
 import 'package:app/utility/defaults/onb_wallets.dart';
 
+final pi = Provider<int>((ref) {
+  return ref
+      .watch(walletsNotifier)
+      .where((w) => w.name == "Income")
+      .map((wallet) => wallet.balance)
+      .toList()
+      .fold(0, (value, element) => value + element);
+});
 
-// final income = wallets.isEmpty
-//     ? Wallet(r.ObjectId(), "Income", 0)
-//     : realm.query<Wallet>('name == \$0', ['Income']).firstOrNull;
-
-// final sWallets = StreamProvider((ref) => realm.query<Wallet>('name == \$0', ['Income']).changes);
-
-// final sWalletsNotifier = NotifierProvider<SWalletNotifier, Wallet>(SWalletNotifier.new);
-
-// class SWalletNotifier extends Notifier<Wallet> {
-//   @override
-//   Wallet build() {
-//     // return ref.watch(s_wallets).value?.results.toList() ?? [];
-//     return ref.watch(sWallets);
-//   }
-// }
+final wb = Provider<int>((ref) {
+  return ref
+      .watch(walletsNotifier)
+      .map((wallet) => wallet.balance)
+      .toList()
+      .fold(0, (value, element) => value + element);
+});
 
 final wallets = StreamProvider((ref) => realm.all<Wallet>().changes);
 
