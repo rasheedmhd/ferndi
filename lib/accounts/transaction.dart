@@ -1,11 +1,10 @@
 import "package:app/ops/update/editSpend.dart";
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
-import "package:app/utility/schema/methods.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
-import "package:realm/realm.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/spends_provider.dart";
+import "package:app/providers/wallets_provider.dart";
 
 class TransactionItem extends ConsumerWidget {
   const TransactionItem(this.spend, {super.key});
@@ -52,7 +51,7 @@ class TransactionItem extends ConsumerWidget {
                       ),
                     ],
                   ),
-                ));
+                ),);
               }),
 
               // All actions are defined in the children parameter.
@@ -69,11 +68,11 @@ class TransactionItem extends ConsumerWidget {
                           Text(
                             "Slide through to delete",
                             style: TextStyle(
-                                color: Color.fromARGB(255, 0, 128, 255)),
+                                color: Color.fromARGB(255, 0, 128, 255),),
                           ),
                         ],
                       ),
-                    ));
+                    ),);
                   },
                   backgroundColor: const Color(0xFFFE4A49),
                   foregroundColor: Colors.white,
@@ -148,11 +147,11 @@ class TransactionItem extends ConsumerWidget {
             height: 0,
             color: Color.fromARGB(255, 227, 226, 226),
           ),
-        ]));
+        ],),);
   }
 }
 
-class Transactions extends StatefulWidget {
+class Transactions extends ConsumerStatefulWidget {
   final Wallet wallet;
   const Transactions(this.wallet, {super.key});
 
@@ -160,10 +159,9 @@ class Transactions extends StatefulWidget {
   TransactionState createState() => TransactionState();
 }
 
-class TransactionState extends State<Transactions> {
-  late Wallet wallet = getWallet(widget.wallet.id);
-
-  late RealmResults<Spend> spends = getSpendsByWallet(wallet.name);
+class TransactionState extends ConsumerState<Transactions> {
+  late Wallet wallet = getWallet(widget.wallet.id); 
+  late List<Spend> spends = ref.watch(spendsByWallet(wallet.name));
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +172,7 @@ class TransactionState extends State<Transactions> {
 class TransactionList extends StatelessWidget {
   const TransactionList({super.key, required this.spends});
 
-  final RealmResults<Spend> spends;
+  final List<Spend> spends;
 
   @override
   Widget build(BuildContext context) {

@@ -23,10 +23,7 @@ final flexible  = flexibleWalletStatus == null ? Wallet(r.ObjectId(), "Flexible"
 
 // // Querying data for selected wallets in accounts page wallets card
 
-getSpendsByWallet(String walletName) {
-  final spendsByWallet = realm.query<Spend>("wallet.name == \$0", [walletName]);
-  return spendsByWallet;
-}
+
 
 getSpendsByCategory(String categoryName) {
   final spendsByCategory =

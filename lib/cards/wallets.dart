@@ -3,7 +3,6 @@ import "package:app/ops/update/topUpWallet.dart";
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 import "package:app/ops/update/editWallet.dart";
-import "package:app/utility/schema/methods.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -48,7 +47,7 @@ class WalletItem extends ConsumerWidget {
       );
     }
 
-    late int spendsCount = getSpendsByWallet(wallet.name).length;
+    final int spendsCount = ref.watch(spendsByWallet(wallet.name)).length;
 
     return Column(
       children: [

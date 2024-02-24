@@ -2,6 +2,11 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
 import 'package:app/utility/defaults/onb_wallets.dart';
 
+final spendsByWallet = Provider.family<List<Spend>, String>((ref, walletName) {
+  final spendsByWallet = realm.query<Spend>("wallet.name == \$0", [walletName]);
+  return spendsByWallet.toList();
+});
+
 final pi = Provider<int>((ref) {
   return ref
       .watch(walletsNotifier)
