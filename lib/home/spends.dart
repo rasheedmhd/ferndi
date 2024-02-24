@@ -134,16 +134,11 @@ class SpendItem extends ConsumerWidget {
   }
 }
 
-class Spends extends ConsumerStatefulWidget {
+class Spends extends ConsumerWidget {
   const Spends({super.key});
 
   @override
-  SpendState createState() => SpendState();
-}
-
-class SpendState extends ConsumerState<Spends> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final spends = ref.watch(spendsNotifier);
     return SpendList(spends);
   }
@@ -171,6 +166,7 @@ class SpendList extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: ListView.builder(
+                reverse: true,
                 shrinkWrap: true,
                 physics: const ClampingScrollPhysics(),
                 itemCount: spends.length,

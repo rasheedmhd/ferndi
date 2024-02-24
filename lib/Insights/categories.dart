@@ -5,16 +5,11 @@ import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/categories_provider.dart";
 
-class Categories extends ConsumerStatefulWidget {
+class Categories extends ConsumerWidget {
   const Categories({super.key});
 
   @override
-  SpendsPageState createState() => SpendsPageState();
-}
-
-class SpendsPageState extends ConsumerState<Categories> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final categoriesCount = ref.watch(categoriesNotifier).length;
 
     void addCategory() {

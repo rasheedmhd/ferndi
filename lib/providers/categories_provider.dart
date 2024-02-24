@@ -1,15 +1,19 @@
+import 'package:app/providers/spends_provider.dart';
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
 import 'package:app/utility/defaults/categories.dart';
 
+// Returns all the spends recorded under a particular category
 final getSpendsByCategory =
     Provider.family<List<Spend>, String>((ref, categoryName) {
-  final spendsByCategory =
-      realm.query<Spend>("category.name == \$0", [categoryName]);
+  final spendsByCategory = ref
+      .watch(spendsNotifier)
+      .where((spend) => spend.category?.name == categoryName);
   return spendsByCategory.toList();
 });
 
-final getTotalSpendAmountPerCategory = Provider.family<int, String>((ref, categoryName) {
+final getTotalSpendAmountPerCategory =
+    Provider.family<int, String>((ref, categoryName) {
   return ref
       .watch(getSpendsByCategory(categoryName))
       .map((spend) => (spend.amount))

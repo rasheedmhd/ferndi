@@ -2,7 +2,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
 
 final spendsByWallet = Provider.family<List<Spend>, String>((ref, walletName) {
-  final spendsByWallet = realm.query<Spend>("wallet.name == \$0", [walletName]);
+  final spendsByWallet = ref.watch(spendsNotifier)
+  .where((wallet) => wallet.name == walletName);
   return spendsByWallet.toList();
 });
 

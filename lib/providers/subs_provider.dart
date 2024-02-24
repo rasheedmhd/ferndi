@@ -2,24 +2,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
 import 'package:app/utility/defaults/onb_durations.dart';
 
-
-// final tysb = Provider<int>((ref) {
-//   return realm
-//       .query<Subscription>('duration.name == \$0', ['year'])
-//       .toList()
-//       .map((sub) => (sub.amount))
-//       .toList()
-//       .fold(0, (value, element) => value + element);
-// });
-// final totsb = Provider<int>((ref) {
-//   return realm
-//       .query<Subscription>('duration.name == \$0', ['one time'])
-//       .toList()
-//       .map((sub) => (sub.amount))
-//       .toList()
-//       .fold(0, (value, element) => value + element);
-// });
-
 final subBalance = Provider<int>((ref) {
   return ref
       .watch(subscriptionsNotifier)
@@ -28,14 +10,6 @@ final subBalance = Provider<int>((ref) {
       .fold(0, (value, element) => value + element);
 });
 
-// final tmsb = Provider<int>((ref) {
-//   return ref
-//       .watch(subscriptionsNotifier)
-//       .where((sbs) => sbs.duration?.name == "month")
-//       .map((subscription) => subscription.amount)
-//       .toList()
-//       .fold(0, (value, element) => value + element);
-// });
 final getSub = Provider.family<int, String>((ref, duration) {
   return ref
       .watch(subscriptionsNotifier)

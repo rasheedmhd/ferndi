@@ -184,6 +184,7 @@ class CategoryList extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: ListView.builder(
+                reverse: true,
                 shrinkWrap: true,
                 physics: const ClampingScrollPhysics(),
                 itemCount: categories.length,

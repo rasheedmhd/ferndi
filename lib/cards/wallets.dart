@@ -276,6 +276,7 @@ class WalletList extends StatelessWidget {
       else
         Flexible(
           child: ListView.builder(
+            reverse: true,
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
             itemCount: wallets.length,

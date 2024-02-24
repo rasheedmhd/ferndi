@@ -13,6 +13,10 @@ final selectedWallet = Provider.family<Wallet?, String>((ref, walletName) {
       .watch(walletsNotifier)
       .where((w) => w.name == walletName).firstOrNull;
 
+  late final getFirstWallet =  ref
+      .watch(walletsNotifier)
+      .where((w) => w.name == walletName).first;
+
   // With the information from above, the selectedWalletStatus, which returns a wallet or null we can
   // first check if we didn't get any wallet in which case we return a dummy Wallet, with the name 
   // that was provided and a 0 balance, but if we found a wallet, 
@@ -21,9 +25,7 @@ final selectedWallet = Provider.family<Wallet?, String>((ref, walletName) {
   // RealmDb won't return a StateError that will crash the app.
   final wallet = selectedWalletStatus == null
       ? Wallet(ObjectId(), walletName, 0)
-      : ref
-      .watch(walletsNotifier)
-      .where((w) => w.name == walletName).first;
+      : getFirstWallet;
 
   return wallet;
   
