@@ -21,12 +21,3 @@ final savings   = savingsWalletStatus == null ? Wallet(r.ObjectId(), "Savings", 
 final flexible  = flexibleWalletStatus == null ? Wallet(r.ObjectId(), "Flexible", 0)
                   : realm.query<Wallet>('name == \$0', ['Flexible']).firstOrNull;
 
-// // Querying data for selected wallets in accounts page wallets card
-
-
-
-getSpendsByCategory(String categoryName) {
-  final spendsByCategory =
-      realm.query<Spend>("category.name == \$0", [categoryName]);
-  return spendsByCategory;
-}

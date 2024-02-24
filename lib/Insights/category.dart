@@ -4,8 +4,6 @@ import "package:app/ops/update/editCategory.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/categories_provider.dart";
-import "package:app/utility/schema/methods.dart";
-
 
 class CategoryItem extends ConsumerWidget {
   const CategoryItem(this.category, {super.key});
@@ -22,10 +20,9 @@ class CategoryItem extends ConsumerWidget {
       );
     }
 
-    final int spendsPerCategory = getSpendsByCategory(category.name).length;
-    final int totalSpendAmountPerCategory = getSpendsByCategory(category.name)
-        .map((spend) => (spend.amount))
-        .fold(0, (value, element) => value + element);
+    final int spendsPerCategory =
+        ref.watch(getSpendsByCategory(category.name)).length;
+    final int totalSpendAmountPerCategory = ref.watch(getTotalSpendAmountPerCategory(category.name));
 
     // We are pulling the Category color from the database,
     // Remember that it was stored as an String so we have to convert it back into an

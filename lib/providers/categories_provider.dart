@@ -2,6 +2,19 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
 import 'package:app/utility/defaults/categories.dart';
 
+final getSpendsByCategory =
+    Provider.family<List<Spend>, String>((ref, categoryName) {
+  final spendsByCategory =
+      realm.query<Spend>("category.name == \$0", [categoryName]);
+  return spendsByCategory.toList();
+});
+
+final getTotalSpendAmountPerCategory = Provider.family<int, String>((ref, categoryName) {
+  return ref
+      .watch(getSpendsByCategory(categoryName))
+      .map((spend) => (spend.amount))
+      .fold(0, (value, element) => value + element);
+});
 
 final categoriesStream = StreamProvider((ref) => realm.all<Category>().changes);
 
@@ -19,7 +32,6 @@ class CategoryNotifier extends Notifier<List<Category>> {
       realm.add<Category>(category, update: true);
     });
   }
-
 
   // Create a new Category record and persist to db
   void createCategory(Category category) {
@@ -40,5 +52,4 @@ class CategoryNotifier extends Notifier<List<Category>> {
       realm.delete(category);
     });
   }
-
 }
