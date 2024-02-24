@@ -7,6 +7,13 @@ final spendsByWallet = Provider.family<List<Spend>, String>((ref, walletName) {
   return spendsByWallet.toList();
 });
 
+final spendsByWalletTotal = Provider.family<int, String>((ref, walletName) {
+  return ref
+      .watch(spendsByWallet(walletName))
+      .map((spend) => (spend.amount))
+      .fold(0, (value, element) => value + element);
+});
+
 final pi = Provider<int>((ref) {
   return ref
       .watch(walletsNotifier)

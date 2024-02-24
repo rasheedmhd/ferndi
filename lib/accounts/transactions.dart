@@ -1,8 +1,11 @@
 import "package:app/accounts/transaction.dart";
 import "package:app/models/schemas.dart";
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:app/providers/wallets_provider.dart";
 
-class TransactionsPage extends StatefulWidget {
+
+class TransactionsPage extends ConsumerStatefulWidget {
   final Wallet wallet;
   const TransactionsPage(this.wallet, {super.key});
 
@@ -10,11 +13,18 @@ class TransactionsPage extends StatefulWidget {
   TransactionsPageState createState() => TransactionsPageState();
 }
 
-class TransactionsPageState extends State<TransactionsPage> {
+class TransactionsPageState extends ConsumerState<TransactionsPage> {
   late Wallet wallet = getWallet(widget.wallet.id);
+
 
   @override
   Widget build(BuildContext context) {
+  // This reads a provider from the wallets_provider.dart file, which depends on
+  // another provider in the same file that returns all spends made under a particular
+  // wallet when give the name of the wallet.
+  // So spendsTotal gives us the total amount of all the money spent from a particular wallet
+  final spendsTotal = ref.watch(spendsByWalletTotal(wallet.name));
+
     return CustomScrollView(
       slivers: [
         SliverAppBar(
@@ -52,7 +62,7 @@ class TransactionsPageState extends State<TransactionsPage> {
                     ),
                   ),
                   Text(
-                    "GHS ${wallet.balance}",
+                    "GHS ${spendsTotal}",
                     style: const TextStyle(
                       fontSize: 30.0,
                       color: Color.fromARGB(255, 5, 61, 135),
