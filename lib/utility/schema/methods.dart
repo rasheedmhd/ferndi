@@ -10,9 +10,16 @@ final subscriptions = realm.all<Subscription>();
 // for later feature
 // final budgets = realm.all<Budget>;
 
-final income    = wallets.isEmpty ? Wallet(r.ObjectId(), "Income", 0)  : realm.query<Wallet>('name == \$0', ['Income']).firstOrNull;
-final savings   = wallets.isEmpty ? Wallet(r.ObjectId(), "Savings", 0) : realm.query<Wallet>('name == \$0', ['Savings']).firstOrNull;
-final flexible  = wallets.isEmpty ? Wallet(r.ObjectId(), "Flexible", 0): realm.query<Wallet>('name == \$0', ['Flexible']).firstOrNull;
+final incomeWalletStatus    = realm.query<Wallet>('name == \$0', ['Income']).firstOrNull;
+final flexibleWalletStatus  = realm.query<Wallet>('name == \$0', ['Flexible']).firstOrNull;
+final savingsWalletStatus   = realm.query<Wallet>('name == \$0', ['Savings']).firstOrNull;
+
+final income    = incomeWalletStatus == null ? Wallet(r.ObjectId(), "Income", 0)  
+                  : realm.query<Wallet>('name == \$0', ['Income']).firstOrNull;
+final savings   = savingsWalletStatus == null ? Wallet(r.ObjectId(), "Savings", 0) 
+                  : realm.query<Wallet>('name == \$0', ['Savings']).firstOrNull;
+final flexible  = flexibleWalletStatus == null ? Wallet(r.ObjectId(), "Flexible", 0)
+                  : realm.query<Wallet>('name == \$0', ['Flexible']).firstOrNull;
 
 // // Querying data for selected wallets in accounts page wallets card
 
