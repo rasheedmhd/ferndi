@@ -72,7 +72,7 @@ class WalletItem extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "You are trying to delete a wallet with spends",
+                          "You can't delete a wallet with spends",
                           style: TextStyle(
                             color: Color.fromARGB(255, 163, 9, 71),
                           ),

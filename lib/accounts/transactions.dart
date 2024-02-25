@@ -27,7 +27,6 @@ class TransactionsPageState extends ConsumerState<TransactionsPage> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          backgroundColor: const Color.fromARGB(200, 109, 189, 255),
           pinned: true,
           floating: true,
           collapsedHeight: 170,
@@ -38,25 +37,22 @@ class TransactionsPageState extends ConsumerState<TransactionsPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Text(
-                    wallet.name,
-                    style: const TextStyle(
-                      fontSize: 30.0,
-                      color: Color.fromARGB(255, 5, 61, 135),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 50, 0, 10),
+                    child: Text(
+                      wallet.name,
+                      style: const TextStyle(
+                        fontSize: 30.0,
+                        color: Color.fromARGB(255, 5, 61, 135),
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
                   ),
                   const Align(
                     alignment: Alignment.topLeft,
                     child: Text(
                       "Total Amount Spent",
                       style: TextStyle(
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color: Color.fromARGB(255, 5, 61, 135),
                       ),
                     ),
                   ),
@@ -74,7 +70,7 @@ class TransactionsPageState extends ConsumerState<TransactionsPage> {
         ),
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            padding: const EdgeInsets.all(15.0),
             child: Transactions(wallet),
           ),
         ),

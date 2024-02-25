@@ -12,10 +12,12 @@ class SpendItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     void showSpendEditForm() {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (ctx) => EditSpendCard(spend)));
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (ctx) => EditSpendCard(spend),
+        ),
+      );
     }
 
     return Container(
@@ -47,7 +49,8 @@ class SpendItem extends ConsumerWidget {
                           Text(
                             "Spend Deleted",
                             style: TextStyle(
-                                color: Color.fromARGB(255, 163, 9, 71)),
+                              color: Color.fromARGB(255, 163, 9, 71),
+                            ),
                           ),
                         ],
                       ),
@@ -62,19 +65,22 @@ class SpendItem extends ConsumerWidget {
                 SlidableAction(
                   onPressed: (context) {
                     ScaffoldMessenger.of(context).clearSnackBars();
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      backgroundColor: Color.fromARGB(255, 230, 243, 255),
-                      content: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Slide through to delete",
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 0, 128, 255)),
-                          ),
-                        ],
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                        content: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Slide through to delete",
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 0, 128, 255),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),);
+                    );
                   },
                   backgroundColor: const Color(0xFFFE4A49),
                   foregroundColor: Colors.white,
@@ -139,7 +145,7 @@ class Spends extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final spends = ref.watch(spendsNotifier);
+    final List<Spend> spends = ref.watch(spendsNotifier);
     return SpendList(spends);
   }
 }

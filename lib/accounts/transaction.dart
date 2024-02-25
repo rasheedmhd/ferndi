@@ -10,10 +10,8 @@ class TransactionItem extends ConsumerWidget {
 
   final Spend spend;
 
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     void showSpendEditForm() {
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -38,24 +36,28 @@ class TransactionItem extends ConsumerWidget {
               motion: const ScrollMotion(),
 
               // A pane can dismiss the Slidable.
-              dismissible: DismissiblePane(onDismissed: () {
-                ref.read(spendsNotifier.notifier).deleteSpend(spend);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                    content: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Transaction Deleted",
-                          style:
-                              TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
-                        ),
-                      ],
+              dismissible: DismissiblePane(
+                onDismissed: () {
+                  ref.read(spendsNotifier.notifier).deleteSpend(spend);
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                      content: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Spend Deleted",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 163, 9, 71),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                },
+              ),
 
               // All actions are defined in the children parameter.
               children: [
@@ -119,7 +121,7 @@ class TransactionItem extends ConsumerWidget {
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("${spend.notes}"),
+                    Text(spend.notes),
                     Row(
                       children: [
                         Text("category:  ${spend.category?.name}"),
@@ -169,16 +171,16 @@ class Transactions extends ConsumerStatefulWidget {
 
 class TransactionState extends ConsumerState<Transactions> {
   late Wallet wallet = getWallet(widget.wallet.id);
-  late List<Spend> spends = ref.watch(spendsByWallet(wallet.name));
 
   @override
   Widget build(BuildContext context) {
-    return TransactionList(spends: spends);
+    final List<Spend> spends = ref.watch(spendsByWallet(wallet.name));
+    return TransactionList(spends);
   }
 }
 
 class TransactionList extends StatelessWidget {
-  const TransactionList({super.key, required this.spends});
+  const TransactionList(this.spends, {super.key});
 
   final List<Spend> spends;
 
@@ -199,6 +201,7 @@ class TransactionList extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: ListView.builder(
+                reverse: true,
                 shrinkWrap: true,
                 physics: const ClampingScrollPhysics(),
                 itemCount: spends.length,
