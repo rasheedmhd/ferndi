@@ -5,7 +5,7 @@ import "package:app/models/schemas.dart";
 import "package:app/ops/update/editWallet.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart"; 
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/wallets_provider.dart";
 import "package:app/providers/spends_provider.dart";
 
@@ -63,22 +63,44 @@ class WalletItem extends ConsumerWidget {
 
             // A pane can dismiss the Slidable.
             dismissible: DismissiblePane(onDismissed: () {
-              ref.read(walletsNotifier.notifier).deleteWallet(wallet);
-              ScaffoldMessenger.of(context).clearSnackBars();
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                content: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Wallet Deleted",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 163, 9, 71),
-                      ),
+              if (spendsCount > 0) {
+                ScaffoldMessenger.of(context).clearSnackBars();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                    content: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "You are trying to delete a wallet with spends",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 163, 9, 71),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ));
+                  ),
+                );
+              } else {
+                ref.read(walletsNotifier.notifier).deleteWallet(wallet);
+                ScaffoldMessenger.of(context).clearSnackBars();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                    content: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Wallet Deleted",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 163, 9, 71),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }
             }),
 
             // All actions are defined in the children parameter.
@@ -265,26 +287,26 @@ class WalletList extends StatelessWidget {
   final List<Wallet> wallets;
 
   @override
- Widget build(BuildContext context) {
-  return Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      if (wallets.isEmpty)
-        const Center(
-          child: Text("You have no Wallets yet!"),
-        )
-      else
-        Flexible(
-          child: ListView.builder(
-            reverse: true,
-            shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            itemCount: wallets.length,
-            itemBuilder: (BuildContext context, int index) {
-              return WalletItem(wallets[index]);
-            },
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (wallets.isEmpty)
+          const Center(
+            child: Text("You have no Wallets yet!"),
+          )
+        else
+          Flexible(
+            child: ListView.builder(
+              reverse: true,
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              itemCount: wallets.length,
+              itemBuilder: (BuildContext context, int index) {
+                return WalletItem(wallets[index]);
+              },
+            ),
           ),
-        ),
       ],
     );
   }

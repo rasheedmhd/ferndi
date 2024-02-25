@@ -3,7 +3,7 @@ import 'package:app/models/schemas.dart';
 
 final spendsByWallet = Provider.family<List<Spend>, String>((ref, walletName) {
   final spendsByWallet = ref.watch(spendsNotifier)
-  .where((wallet) => wallet.name == walletName);
+  .where((spend) => spend.wallet?.name == walletName);
   return spendsByWallet.toList();
 });
 
