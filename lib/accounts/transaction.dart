@@ -82,8 +82,8 @@ class TransactionItem extends ConsumerWidget {
                       ),
                     );
                   },
-                  backgroundColor: const Color(0xFFFE4A49),
-                  foregroundColor: Colors.white,
+                  foregroundColor: const Color(0xFFFE4A49),
+                  backgroundColor: Colors.white,
                   icon: Icons.delete,
                   label: 'Delete',
                 ),
@@ -91,8 +91,8 @@ class TransactionItem extends ConsumerWidget {
                   onPressed: (context) {
                     showSpendEditForm();
                   },
-                  backgroundColor: const Color.fromARGB(255, 96, 150, 249),
-                  foregroundColor: Colors.white,
+                  foregroundColor: const Color.fromARGB(255, 96, 150, 249),
+                  backgroundColor: Colors.white,
                   icon: Icons.edit,
                   label: 'Edit',
                 ),
@@ -129,9 +129,8 @@ class TransactionItem extends ConsumerWidget {
                     ),
                     Row(
                       children: [
-                        Text("${spend.date.day} / "),
-                        Text("${spend.date.month} / "),
-                        Text("${spend.date.year}"),
+                        Text("${spend.date.month} "),
+                        Text("${spend.date.day} "),
                       ],
                     ),
                     Row(

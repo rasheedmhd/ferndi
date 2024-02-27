@@ -50,7 +50,7 @@ class TransactionsPageState extends ConsumerState<TransactionsPage> {
                   const Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Total Amount Spent",
+                      "Total amount spent",
                       style: TextStyle(
                         color: Color.fromARGB(255, 5, 61, 135),
                       ),

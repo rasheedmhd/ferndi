@@ -80,8 +80,8 @@ class SubscriptionItem extends ConsumerWidget {
                     ),
                   );
                 },
-                backgroundColor: const Color(0xFFFE4A49),
-                foregroundColor: Colors.white,
+                foregroundColor: const Color(0xFFFE4A49),
+                backgroundColor: Colors.white,
                 icon: Icons.delete,
                 label: 'Delete',
               ),
@@ -90,8 +90,8 @@ class SubscriptionItem extends ConsumerWidget {
                 onPressed: (context) {
                   showSubscriptionEditForm();
                 },
-                backgroundColor: const Color.fromARGB(255, 96, 150, 249),
-                foregroundColor: Colors.white,
+                foregroundColor: const Color.fromARGB(255, 96, 150, 249),
+                backgroundColor: Colors.white,
                 icon: Icons.edit,
                 label: 'Edit',
               ),
