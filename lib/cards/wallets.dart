@@ -161,10 +161,11 @@ class WalletItem extends ConsumerWidget {
                 ),
                 backgroundColor: Colors.white,
                 leading: const CircleAvatar(
+                  radius: 35,
                   backgroundColor: Color.fromARGB(255, 204, 241, 228),
                   child: FaIcon(
                     FontAwesomeIcons.wallet,
-                    size: 20,
+                    size: 30,
                     color: Color.fromARGB(255, 48, 136, 6),
                   ),
                 ),
@@ -174,7 +175,7 @@ class WalletItem extends ConsumerWidget {
                     Text(
                       wallet.name,
                       style: const TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
+                        color: Color.fromARGB(255, 106, 106, 106),
                       ),
                     ),
                   ],

@@ -98,6 +98,9 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
             const Divider(
               color: Color.fromARGB(255, 227, 226, 226),
             ),
+            const SizedBox(
+              height: 12,
+            ),
             DropdownButton(
               value: _selectedCategory,
               hint: const Text("Category"),
@@ -128,36 +131,36 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                 );
               },
             ),
-            DropdownButton(
-              value: _selectedWallet,
-              hint: const Text("Wallet"),
-              icon: const Icon(
-                Icons.wallet_sharp,
-                color: Color.fromARGB(255, 151, 151, 151),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15.0),
+              child: DropdownButton(
+                value: _selectedWallet,
+                hint: const Text("Wallet"),
+                icon: const Icon(
+                  Icons.wallet_sharp,
+                  color: Color.fromARGB(255, 151, 151, 151),
+                ),
+                isExpanded: true,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(20),
+                ),
+                items: wallets
+                    .map((wallet) => DropdownMenuItem(
+                          value: wallet,
+                          child: Text(wallet.name),
+                        ))
+                    .toList(),
+                onChanged: (value) {
+                  if (value == null) {
+                    return;
+                  }
+                  setState(
+                    () {
+                      _selectedWallet = value;
+                    },
+                  );
+                },
               ),
-              isExpanded: true,
-              borderRadius: const BorderRadius.all(
-                Radius.circular(20),
-              ),
-              items: wallets
-                  .map((wallet) => DropdownMenuItem(
-                        value: wallet,
-                        child: Text(wallet.name),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                if (value == null) {
-                  return;
-                }
-                setState(
-                  () {
-                    _selectedWallet = value;
-                  },
-                );
-              },
-            ),
-            const SizedBox(
-              height: 20,
             ),
             FloatingActionButton.extended(
               elevation: 1,

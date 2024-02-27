@@ -104,6 +104,22 @@ class AddCategoryCardState extends ConsumerState<AddCategoryCard> {
                     onTap: () {
                       setState(() {
                         categoryColorInt =
+                            const Color.fromARGB(255, 248, 250, 255).value;
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 248, 250, 255),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColorInt =
                             const Color.fromARGB(255, 194, 213, 252).value;
                       });
                     },
