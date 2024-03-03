@@ -1,8 +1,8 @@
 import "package:app/home/insights.dart";
 import "package:app/home/spending.dart";
+import "package:app/ops/create/addSpend.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
-
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,6 +12,15 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
+  void addSpend() {
+    showModalBottomSheet(
+      showDragHandle: true,
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) => const AddSpendCard(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -43,13 +52,32 @@ class HomeState extends State<Home> {
           ),
           backgroundColor: const Color.fromARGB(255, 5, 61, 135),
         ),
+        floatingActionButton: CircleAvatar(
+          radius: 25,
+          child: FloatingActionButton(
+            elevation: 1,
+            heroTag: "addSpend",
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0),
+            ),
+            backgroundColor: const Color.fromARGB(255, 35, 206, 135),
+            onPressed: addSpend,
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+              size: 35,
+            ),
+          ),
+        ),
         body: const Column(
           children: [
             TabBar(
               dividerColor: Color.fromARGB(255, 255, 255, 255),
               indicatorColor: Color.fromARGB(255, 5, 61, 135),
               indicatorWeight: 4,
-              splashBorderRadius: BorderRadius.all(Radius.circular(50)),
+              splashBorderRadius: BorderRadius.all(
+                Radius.circular(50),
+              ),
               labelColor: Color.fromARGB(255, 5, 61, 135),
               tabs: [
                 Tab(
@@ -65,11 +93,12 @@ class HomeState extends State<Home> {
                 children: [
                   Spending(),
                   Insights(),
-                ]
-              )
+                ],
+              ),
             )
-          ])
-        )
-      );
+          ],
+        ),
+      ),
+    );
   }
 }
