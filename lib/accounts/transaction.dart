@@ -4,6 +4,8 @@ import "package:app/models/schemas.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/spends_provider.dart";
+import "package:intl/intl.dart";
+
 
 class TransactionItem extends ConsumerWidget {
   const TransactionItem(this.spend, {super.key});
@@ -122,22 +124,8 @@ class TransactionItem extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(spend.notes),
-                    Row(
-                      children: [
-                        Text("category:  ${spend.category?.name}"),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text("${spend.date.month} "),
-                        Text("${spend.date.day} "),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text("wallet: ${spend.wallet?.name}"),
-                      ],
-                    ),
+                    Text(DateFormat("EEEE, dd MMMM").format(spend.date)),
+                    Text("Category:  ${spend.category?.name}"),
                   ],
                 ),
                 trailing: Text(

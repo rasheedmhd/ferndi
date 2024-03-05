@@ -29,6 +29,29 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
   late int newBalance =
       _selectedWallet.balance - int.parse(_amountController.text);
 
+  DateTime date = DateTime.now();
+
+  Future<void> setDatePicker() async {
+    DateTime? setDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+
+    if (setDate != null) {
+      setState(() {
+        date = setDate;
+      });
+    } else {
+      date = DateTime.now();
+    }
+  }
+
+  void newDate(String typedDate) {
+    date = DateTime.parse(typedDate);
+  }
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -39,29 +62,6 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime date = DateTime.now();
-
-    Future<void> setDatePicker() async {
-      DateTime? setDate = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2100),
-      );
-
-      if (setDate != null) {
-        setState(() {
-          date = setDate;
-        });
-      } else {
-        date = DateTime.now();
-      }
-    }
-
-    void newDate(String typedDate) {
-      date = DateTime.parse(typedDate);
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Record Spend"),
@@ -130,8 +130,8 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                     color: Color.fromARGB(255, 227, 226, 226),
                   ),
                   TextFormField(
-                    onChanged: newDate,
                     initialValue: DateFormat("EEEE, dd MMMM").format(date),
+                    onChanged: newDate,
                     readOnly: true,
                     decoration: const InputDecoration(
                       iconColor: Color.fromARGB(255, 151, 151, 151),
@@ -334,8 +334,10 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                               ],
                             ),
                           ),
+                          
                         );
                       }
+                      Navigator.of(context).pop();
                     },
                   ),
                 ],

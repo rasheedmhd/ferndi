@@ -44,9 +44,9 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
         title: const Text("Edit Category"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.fromLTRB(15, 0, 20, 15),
         child: Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           decoration: BoxDecoration(
             border: Border.all(
               color: const Color.fromARGB(255, 227, 226, 226),
@@ -102,22 +102,6 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                     onTap: () {
                       setState(() {
                         categoryColorInt =
-                            const Color.fromARGB(255, 248, 250, 255).value;
-                      });
-                    },
-                    child: ClipOval(
-                        child: Container(
-                      padding: const EdgeInsets.all(20),
-                      color: const Color.fromARGB(255, 248, 250, 255),
-                    )),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        categoryColorInt =
                             const Color.fromARGB(255, 194, 213, 252).value;
                       });
                     },
@@ -146,6 +130,22 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                   const SizedBox(
                     width: 10,
                   ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        categoryColorInt =
+                            const Color.fromARGB(255, 248, 250, 255).value;
+                      });
+                    },
+                    child: ClipOval(
+                        child: Container(
+                      padding: const EdgeInsets.all(20),
+                      color: const Color.fromARGB(255, 248, 250, 255),
+                    )),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),                 
                   GestureDetector(
                     onTap: () {
                       setState(() {
