@@ -103,6 +103,7 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                       setState(() {
                         categoryColorInt =
                             const Color.fromARGB(255, 194, 213, 252).value;
+                        print(categoryColorInt);
                       });
                     },
                     child: ClipOval(
@@ -119,6 +120,8 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                       setState(() {
                         categoryColorInt =
                             const Color.fromARGB(255, 255, 250, 163).value;
+                        print(categoryColorInt);
+
                       });
                     },
                     child: ClipOval(
@@ -135,6 +138,8 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                       setState(() {
                         categoryColorInt =
                             const Color.fromARGB(255, 248, 250, 255).value;
+                        print(categoryColorInt);
+
                       });
                     },
                     child: ClipOval(
@@ -145,12 +150,14 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                   ),
                   const SizedBox(
                     width: 10,
-                  ),                 
+                  ),
                   GestureDetector(
                     onTap: () {
                       setState(() {
                         categoryColorInt =
                             const Color.fromARGB(255, 255, 200, 163).value;
+                        print(categoryColorInt);
+
                       });
                     },
                     child: ClipOval(
@@ -167,6 +174,8 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                       setState(() {
                         categoryColorInt =
                             const Color.fromARGB(255, 255, 191, 236).value;
+                        print(categoryColorInt);
+
                       });
                     },
                     child: ClipOval(
@@ -183,6 +192,8 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                       setState(() {
                         categoryColorInt =
                             const Color.fromARGB(255, 184, 255, 118).value;
+                        print(categoryColorInt);
+
                       });
                     },
                     child: ClipOval(
@@ -199,6 +210,8 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                       setState(() {
                         categoryColorInt =
                             const Color.fromARGB(255, 218, 255, 240).value;
+                        print(categoryColorInt);
+
                       });
                     },
                     child: ClipOval(
@@ -215,6 +228,8 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                       setState(() {
                         categoryColorInt =
                             const Color.fromARGB(255, 192, 255, 242).value;
+                        print(categoryColorInt);
+
                       });
                     },
                     child: ClipOval(
@@ -231,6 +246,8 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                       setState(() {
                         categoryColorInt =
                             const Color.fromARGB(255, 255, 166, 168).value;
+                        print(categoryColorInt);
+
                       });
                     },
                     child: ClipOval(
@@ -247,6 +264,8 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                       setState(() {
                         categoryColorInt =
                             const Color.fromARGB(255, 213, 168, 255).value;
+                        print(categoryColorInt);
+
                       });
                     },
                     child: ClipOval(
@@ -263,6 +282,8 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                       setState(() {
                         categoryColorInt =
                             const Color.fromARGB(255, 109, 255, 175).value;
+                        print(categoryColorInt);
+
                       });
                     },
                     child: ClipOval(
@@ -319,13 +340,13 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                     return;
                   }
                   ref.read(categoriesNotifier.notifier).updateCategory(
-                    Category(
-                      categoryToEdit.id,
-                      name,
-                      categoryEmoji,
-                      categoryColorInt.toString(),
-                    ),
-                  );
+                        Category(
+                          categoryToEdit.id,
+                          name,
+                          categoryEmoji,
+                          categoryColorInt.toString(),
+                        ),
+                      );
                   ScaffoldMessenger.of(context).clearSnackBars();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
