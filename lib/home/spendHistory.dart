@@ -1,108 +1,20 @@
 import "package:app/home/spends.dart";
-import "package:app/providers/spends_provider.dart";
 import "package:flutter/material.dart";
-import "package:font_awesome_flutter/font_awesome_flutter.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 
-class SpendsPage extends ConsumerWidget {
+class SpendsPage extends StatelessWidget {
   const SpendsPage({super.key});
   
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final totalSpend = ref.watch(spendsNotifier).length;
+  Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Filter Spend History"),
+        title: const Text("Spend History"),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(15),
-        children: [
-          Container(
-            padding: const EdgeInsets.all(3),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-              borderRadius: BorderRadius.circular(45.0),
-            ),
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    color: const Color.fromARGB(255, 5, 61, 135),
-                    child: const Text(
-                      " this week ",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    color: const Color.fromARGB(198, 255, 255, 255),
-                    child: const Text(
-                      " this month ",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 5, 61, 135),
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    color: const Color.fromARGB(134, 255, 255, 255),
-                    child: const Text(
-                      " this year ",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 5, 61, 135),
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Row(
-            children: [
-              const Text(
-                "Spend History",
-                style: TextStyle(
-                  fontSize: 30.0,
-                  color: Color.fromARGB(255, 5, 61, 135),
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const Spacer(),
-              const FaIcon(FontAwesomeIcons.arrowRightLong,
-                  size: 23, color: Color.fromARGB(255, 151, 151, 151)),
-              Text(
-                " $totalSpend ",
-                style: const TextStyle(
-                  fontSize: 30.0,
-                  color: Color.fromARGB(255, 151, 151, 151),
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ],
-          ),
-          const Padding(
+        padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+        children: const [
+          Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0),
             child: Spends(),
           ),
