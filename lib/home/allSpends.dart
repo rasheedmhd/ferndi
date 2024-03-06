@@ -140,12 +140,12 @@ class SpendItem extends ConsumerWidget {
   }
 }
 
-class Spends extends ConsumerWidget {
-  const Spends({super.key});
+class allSpends extends ConsumerWidget {
+  const allSpends({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<Spend> spends = ref.watch(filterSpends(DateTime.now()));
+    final List<Spend> spends = ref.watch(spendsNotifier);
     return SpendList(spends);
   }
 }

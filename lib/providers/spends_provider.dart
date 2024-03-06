@@ -10,7 +10,7 @@ final spendsByWallet = Provider.family<List<Spend>, String>((ref, walletName) {
 
 // final filterDate = DateTime.now();
 
-final filterSpendsByMonth =
+final filterSpends =
     Provider.family<List<Spend>, DateTime>((ref, filterDate) {
   final spendsByMonth =
       ref.watch(spendsNotifier)

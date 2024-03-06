@@ -21,30 +21,56 @@ class HomeState extends State<Home> {
     );
   }
 
+    DateTime date = DateTime.now();
+
+  Future<void> setDatePicker() async {
+    DateTime? setDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+
+    if (setDate != null) {
+      setState(() {
+        date = setDate;
+      });
+    } else {
+      date = DateTime.now();
+    }
+  }
+
+  void newDate(String typedDate) {
+    date = DateTime.parse(typedDate);
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Row(
+          title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Row(
                 children: [
-                  FaIcon(FontAwesomeIcons.chevronLeft,
+                  const FaIcon(FontAwesomeIcons.chevronLeft,
                       size: 20, color: Colors.white),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
-                  Text(
-                    "This Month",
-                    style: TextStyle(color: Colors.white),
+                  GestureDetector(
+                    onTap: setDatePicker,
+                    child: const Text(
+                      "This Month",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
-                  FaIcon(FontAwesomeIcons.chevronRight,
+                  const FaIcon(FontAwesomeIcons.chevronRight,
                       size: 20, color: Colors.white),
                 ],
               ),
