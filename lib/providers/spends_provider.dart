@@ -2,9 +2,22 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
 
 final spendsByWallet = Provider.family<List<Spend>, String>((ref, walletName) {
-  final spendsByWallet = ref.watch(spendsNotifier)
-  .where((spend) => spend.wallet?.name == walletName);
+  final spendsByWallet = ref
+      .watch(spendsNotifier)
+      .where((spend) => spend.wallet?.name == walletName);
   return spendsByWallet.toList();
+});
+
+// final filterDate = DateTime.now();
+
+final filterSpendsByMonth =
+    Provider.family<List<Spend>, DateTime>((ref, filterDate) {
+  final spendsByMonth =
+      ref.watch(spendsNotifier)
+      .where(
+        (spend) => spend.date.year == filterDate.year && 
+        spend.date.month == filterDate.month);
+  return spendsByMonth.toList();
 });
 
 final spendsByWalletTotal = Provider.family<int, String>((ref, walletName) {
@@ -13,7 +26,6 @@ final spendsByWalletTotal = Provider.family<int, String>((ref, walletName) {
       .map((spend) => (spend.amount))
       .fold(0, (value, element) => value + element);
 });
-
 
 final tb = Provider<int>((ref) {
   return ref
