@@ -82,6 +82,7 @@ class AddIncomeCardState extends ConsumerState<AddIncomeCard> {
                 ObjectId(),
                 "Income",
                 int.tryParse(_balanceController.text) ?? 0,
+                DateTime.now()
               ));
               _balanceController.clear();
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

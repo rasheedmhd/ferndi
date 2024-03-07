@@ -154,6 +154,7 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
                               walletToEdit.id,
                               name,
                               balance,
+                              DateTime.now()
                             ),
                           );
                       ScaffoldMessenger.of(context).clearSnackBars();

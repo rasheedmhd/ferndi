@@ -107,6 +107,7 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
                               walletToEdit.id,
                               name,
                               int.parse(balance),
+                              DateTime.now()
                             ),
                           );
                       ScaffoldMessenger.of(context).clearSnackBars();

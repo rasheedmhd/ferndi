@@ -105,6 +105,7 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                           ObjectId(),
                           _nameController.text,
                           int.parse(_balanceController.text),
+                          DateTime.now()
                         ),
                       );
                   _nameController.clear();

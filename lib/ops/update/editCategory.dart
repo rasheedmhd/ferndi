@@ -324,6 +324,7 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                       name,
                       categoryEmoji,
                       categoryColorInt.toString(),
+                      DateTime.now()
                     ),
                   );
                   ScaffoldMessenger.of(context).clearSnackBars();

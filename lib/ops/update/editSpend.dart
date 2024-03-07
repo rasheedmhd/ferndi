@@ -19,7 +19,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
 
   late String name   = spendToEdit.name;
   late String notes  = spendToEdit.notes;
-  late DateTime date = spendToEdit.date;
+  late DateTime date = spendToEdit.createdAt;
   late String amount = spendToEdit.amount.toString();
 
   Future<void> setDatePicker() async {

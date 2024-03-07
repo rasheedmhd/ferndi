@@ -21,10 +21,10 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
   final _amountController = TextEditingController();
 
   Category _selectedCategory = categories.isEmpty
-      ? Category(ObjectId(), "Miscellaneous", "💞", "")
+      ? Category(ObjectId(), "Miscellaneous", "💞", "", DateTime.now())
       : categories.first;
   Wallet _selectedWallet =
-      wallets.isEmpty ? Wallet(ObjectId(), "Flexible", 0) : wallets.first;
+      wallets.isEmpty ? Wallet(ObjectId(), "Flexible", 0, DateTime.now()) : wallets.first;
 
   late int newBalance =
       _selectedWallet.balance - int.parse(_amountController.text);
@@ -303,9 +303,13 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                               ),
                             );
                         ref.read(P.walletsNotifier.notifier).updateWallet(
-                              Wallet(_selectedWallet.id, _selectedWallet.name,
-                                  newBalance),
-                            );
+                          Wallet(
+                            _selectedWallet.id, 
+                            _selectedWallet.name,
+                            newBalance, 
+                            DateTime.now()
+                          ),     
+                        );
                         _nameController.clear();
                         _notesController.clear();
                         _amountController.clear();

@@ -8,15 +8,13 @@ final spendsByWallet = Provider.family<List<Spend>, String>((ref, walletName) {
   return spendsByWallet.toList();
 });
 
-// final filterDate = DateTime.now();
-
 final filterSpends =
     Provider.family<List<Spend>, DateTime>((ref, filterDate) {
   final spendsByMonth =
       ref.watch(spendsNotifier)
       .where(
-        (spend) => spend.date.year == filterDate.year && 
-        spend.date.month == filterDate.month);
+        (spend) => spend.createdAt.year == filterDate.year && 
+        spend.createdAt.month == filterDate.month);
   return spendsByMonth.toList();
 });
 
@@ -27,13 +25,24 @@ final spendsByWalletTotal = Provider.family<int, String>((ref, walletName) {
       .fold(0, (value, element) => value + element);
 });
 
-final tb = Provider<int>((ref) {
+final tb = Provider.family<int, DateTime>((ref, filterDate) {
   return ref
       .watch(spendsNotifier)
+      .where(
+        (spend) => spend.createdAt.year == filterDate.year && 
+        spend.createdAt.month == filterDate.month)
       .map((spend) => spend.amount)
       .toList()
       .fold(0, (value, element) => value + element);
 });
+
+// final tb = Provider<int>((ref) {
+//   return ref
+//       .watch(spendsNotifier)
+//       .map((spend) => spend.amount)
+//       .toList()
+//       .fold(0, (value, element) => value + element);
+// });
 
 final _spendsStream = StreamProvider((ref) => realm.all<Spend>().changes);
 

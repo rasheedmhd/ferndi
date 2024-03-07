@@ -6,11 +6,20 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 class SpendsPage extends ConsumerWidget {
   const SpendsPage({super.key});
+
   
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final totalSpend = ref.watch(spendsNotifier).length;
 
+  void showFilters() {
+    showModalBottomSheet(
+      showDragHandle: true,
+      context: context,
+      isScrollControlled: true,
+      builder: (ctx) => const Text("Hello"),
+    );
+  }
+    final totalSpend = ref.watch(spendsNotifier).length;
 
     return Scaffold(
       appBar: AppBar(
@@ -35,14 +44,14 @@ class SpendsPage extends ConsumerWidget {
                   color: Color.fromARGB(255, 5, 61, 135),
                 ),
               ),
-              const Spacer(),
-              GestureDetector(
-                // onTap: setDatePicker,
-                child: const Text(
-                  "Filter",
-                  style: TextStyle(color: Color.fromARGB(255, 31, 80, 255)),
-                ),
-              ),
+              // const Spacer(),
+              // GestureDetector(
+              //   onTap: showFilters,
+              //   child: const Text(
+              //     "Filter",
+              //     style: TextStyle(color: Color.fromARGB(255, 31, 80, 255)),
+              //   ),
+              // ),
             ],
           ),
           const Padding(

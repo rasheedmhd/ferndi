@@ -8,9 +8,9 @@ class BalanceCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final totalSpend  = ref.watch(tb);
-    final balance     = ref.watch(wb);
-    final income      = ref.watch(pi);
+    final totalSpend  = ref.watch(tb(DateTime.now()));
+    final balance     = ref.watch(wb(DateTime.now()));
+    final income      = ref.watch(pi(DateTime.now()));
 
     return Container(
       decoration: BoxDecoration(

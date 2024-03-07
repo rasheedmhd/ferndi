@@ -18,7 +18,7 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
   final _nameController = TextEditingController();
   final _amountController = TextEditingController();
   Duration _selectedDuration =
-   duration.isEmpty ? Duration(ObjectId(), "Month") : duration.first;
+   duration.isEmpty ? Duration(ObjectId(), "Month", DateTime.now()) : duration.first;
 
   @override
   void dispose() {
@@ -32,7 +32,7 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
 
     final providerWallets = ref.watch(walletsNotifier);
     Wallet _selectedWallet = 
-      providerWallets .isEmpty ? Wallet(ObjectId(), "Flexible", 0) : providerWallets .first;
+      providerWallets .isEmpty ? Wallet(ObjectId(), "Flexible", 0, DateTime.now()) : providerWallets .first;
       
     return Scaffold(
       appBar: AppBar(

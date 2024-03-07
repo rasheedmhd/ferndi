@@ -2,7 +2,7 @@ import "package:app/home/insights.dart";
 import "package:app/home/spending.dart";
 import "package:app/ops/create/addSpend.dart";
 import "package:flutter/material.dart";
-import "package:font_awesome_flutter/font_awesome_flutter.dart";
+// import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,6 +12,7 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
+
   void addSpend() {
     showModalBottomSheet(
       showDragHandle: true,
@@ -21,7 +22,7 @@ class HomeState extends State<Home> {
     );
   }
 
-    DateTime date = DateTime.now();
+  DateTime date = DateTime.now();
 
   Future<void> setDatePicker() async {
     DateTime? setDate = await showDatePicker(
@@ -50,32 +51,40 @@ class HomeState extends State<Home> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Row(
-                children: [
-                  const FaIcon(FontAwesomeIcons.chevronLeft,
-                      size: 20, color: Colors.white),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  GestureDetector(
-                    onTap: setDatePicker,
-                    child: const Text(
-                      "This Month",
-                      style: TextStyle(color: Colors.white),
+          title: const Center(
+            child: Text(
+            "Ferndi",
+            style: TextStyle(
+              color: Color.fromARGB(255, 255, 255, 255),
+            ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  const FaIcon(FontAwesomeIcons.chevronRight,
-                      size: 20, color: Colors.white),
-                ],
-              ),
-            ],
           ),
+          // title: Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //   children: [
+          //     Row(
+          //       children: [
+          //         const FaIcon(FontAwesomeIcons.chevronLeft,
+          //             size: 20, color: Colors.white),
+          //         const SizedBox(
+          //           width: 15,
+          //         ),
+          //         GestureDetector(
+          //           onTap: setDatePicker,
+          //           child: const Text(
+          //             "This Month",
+          //             style: TextStyle(color: Colors.white),
+          //           ),
+          //         ),
+          //         const SizedBox(
+          //           width: 15,
+          //         ),
+          //         const FaIcon(FontAwesomeIcons.chevronRight,
+          //             size: 20, color: Colors.white),
+          //       ],
+          //     ),
+          //   ],
+          // ),
           backgroundColor: const Color.fromARGB(255, 5, 61, 135),
         ),
         floatingActionButton: CircleAvatar(

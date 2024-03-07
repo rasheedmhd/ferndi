@@ -12,9 +12,11 @@ class Duration extends _Duration
   Duration(
     ObjectId id,
     String name,
+    DateTime createdAt,
   ) {
     RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set(this, 'name', name);
+    RealmObjectBase.set(this, 'createdAt', createdAt);
   }
 
   Duration._();
@@ -30,6 +32,13 @@ class Duration extends _Duration
   set name(String value) => RealmObjectBase.set(this, 'name', value);
 
   @override
+  DateTime get createdAt =>
+      RealmObjectBase.get<DateTime>(this, 'createdAt') as DateTime;
+  @override
+  set createdAt(DateTime value) =>
+      RealmObjectBase.set(this, 'createdAt', value);
+
+  @override
   Stream<RealmObjectChanges<Duration>> get changes =>
       RealmObjectBase.getChanges<Duration>(this);
 
@@ -43,6 +52,7 @@ class Duration extends _Duration
     return const SchemaObject(ObjectType.realmObject, Duration, 'Duration', [
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
+      SchemaProperty('createdAt', RealmPropertyType.timestamp),
     ]);
   }
 }
@@ -53,14 +63,14 @@ class Subscription extends _Subscription
     ObjectId id,
     String name,
     int amount,
-    DateTime date, {
+    DateTime createdAt, {
     Duration? duration,
     Wallet? wallet,
   }) {
     RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set(this, 'name', name);
     RealmObjectBase.set(this, 'amount', amount);
-    RealmObjectBase.set(this, 'date', date);
+    RealmObjectBase.set(this, 'createdAt', createdAt);
     RealmObjectBase.set(this, 'duration', duration);
     RealmObjectBase.set(this, 'wallet', wallet);
   }
@@ -83,9 +93,11 @@ class Subscription extends _Subscription
   set amount(int value) => RealmObjectBase.set(this, 'amount', value);
 
   @override
-  DateTime get date => RealmObjectBase.get<DateTime>(this, 'date') as DateTime;
+  DateTime get createdAt =>
+      RealmObjectBase.get<DateTime>(this, 'createdAt') as DateTime;
   @override
-  set date(DateTime value) => RealmObjectBase.set(this, 'date', value);
+  set createdAt(DateTime value) =>
+      RealmObjectBase.set(this, 'createdAt', value);
 
   @override
   Duration? get duration =>
@@ -116,7 +128,7 @@ class Subscription extends _Subscription
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
       SchemaProperty('amount', RealmPropertyType.int),
-      SchemaProperty('date', RealmPropertyType.timestamp),
+      SchemaProperty('createdAt', RealmPropertyType.timestamp),
       SchemaProperty('duration', RealmPropertyType.object,
           optional: true, linkTarget: 'Duration'),
       SchemaProperty('wallet', RealmPropertyType.object,
@@ -129,13 +141,15 @@ class Wallet extends _Wallet with RealmEntity, RealmObjectBase, RealmObject {
   Wallet(
     ObjectId id,
     String name,
-    int balance, {
+    int balance,
+    DateTime createdAt, {
     Iterable<Spend> spends = const [],
     Iterable<Subscription> subscriptions = const [],
   }) {
     RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set(this, 'name', name);
     RealmObjectBase.set(this, 'balance', balance);
+    RealmObjectBase.set(this, 'createdAt', createdAt);
     RealmObjectBase.set<RealmList<Spend>>(
         this, 'spends', RealmList<Spend>(spends));
     RealmObjectBase.set<RealmList<Subscription>>(
@@ -158,6 +172,13 @@ class Wallet extends _Wallet with RealmEntity, RealmObjectBase, RealmObject {
   int get balance => RealmObjectBase.get<int>(this, 'balance') as int;
   @override
   set balance(int value) => RealmObjectBase.set(this, 'balance', value);
+
+  @override
+  DateTime get createdAt =>
+      RealmObjectBase.get<DateTime>(this, 'createdAt') as DateTime;
+  @override
+  set createdAt(DateTime value) =>
+      RealmObjectBase.set(this, 'createdAt', value);
 
   @override
   RealmList<Spend> get spends =>
@@ -189,6 +210,7 @@ class Wallet extends _Wallet with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('name', RealmPropertyType.string),
       SchemaProperty('balance', RealmPropertyType.int),
+      SchemaProperty('createdAt', RealmPropertyType.timestamp),
       SchemaProperty('spends', RealmPropertyType.object,
           linkTarget: 'Spend', collectionType: RealmCollectionType.list),
       SchemaProperty('subscriptions', RealmPropertyType.object,
@@ -203,7 +225,7 @@ class Spend extends _Spend with RealmEntity, RealmObjectBase, RealmObject {
     String name,
     String notes,
     int amount,
-    DateTime date, {
+    DateTime createdAt, {
     Wallet? wallet,
     Category? category,
   }) {
@@ -211,7 +233,7 @@ class Spend extends _Spend with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'name', name);
     RealmObjectBase.set(this, 'notes', notes);
     RealmObjectBase.set(this, 'amount', amount);
-    RealmObjectBase.set(this, 'date', date);
+    RealmObjectBase.set(this, 'createdAt', createdAt);
     RealmObjectBase.set(this, 'wallet', wallet);
     RealmObjectBase.set(this, 'category', category);
   }
@@ -239,9 +261,11 @@ class Spend extends _Spend with RealmEntity, RealmObjectBase, RealmObject {
   set amount(int value) => RealmObjectBase.set(this, 'amount', value);
 
   @override
-  DateTime get date => RealmObjectBase.get<DateTime>(this, 'date') as DateTime;
+  DateTime get createdAt =>
+      RealmObjectBase.get<DateTime>(this, 'createdAt') as DateTime;
   @override
-  set date(DateTime value) => RealmObjectBase.set(this, 'date', value);
+  set createdAt(DateTime value) =>
+      RealmObjectBase.set(this, 'createdAt', value);
 
   @override
   Wallet? get wallet => RealmObjectBase.get<Wallet>(this, 'wallet') as Wallet?;
@@ -298,7 +322,7 @@ class Spend extends _Spend with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('name', RealmPropertyType.string),
       SchemaProperty('notes', RealmPropertyType.string),
       SchemaProperty('amount', RealmPropertyType.int),
-      SchemaProperty('date', RealmPropertyType.timestamp),
+      SchemaProperty('createdAt', RealmPropertyType.timestamp),
       SchemaProperty('wallet', RealmPropertyType.object,
           optional: true, linkTarget: 'Wallet'),
       SchemaProperty('category', RealmPropertyType.object,
@@ -321,13 +345,15 @@ class Category extends _Category
     ObjectId id,
     String name,
     String emoji,
-    String color, {
+    String color,
+    DateTime createdAt, {
     Iterable<Spend> category = const [],
   }) {
     RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set(this, 'name', name);
     RealmObjectBase.set(this, 'emoji', emoji);
     RealmObjectBase.set(this, 'color', color);
+    RealmObjectBase.set(this, 'createdAt', createdAt);
     RealmObjectBase.set<RealmList<Spend>>(
         this, 'category', RealmList<Spend>(category));
   }
@@ -355,6 +381,13 @@ class Category extends _Category
   set color(String value) => RealmObjectBase.set(this, 'color', value);
 
   @override
+  DateTime get createdAt =>
+      RealmObjectBase.get<DateTime>(this, 'createdAt') as DateTime;
+  @override
+  set createdAt(DateTime value) =>
+      RealmObjectBase.set(this, 'createdAt', value);
+
+  @override
   RealmList<Spend> get category =>
       RealmObjectBase.get<Spend>(this, 'category') as RealmList<Spend>;
   @override
@@ -377,6 +410,7 @@ class Category extends _Category
       SchemaProperty('name', RealmPropertyType.string),
       SchemaProperty('emoji', RealmPropertyType.string),
       SchemaProperty('color', RealmPropertyType.string),
+      SchemaProperty('createdAt', RealmPropertyType.timestamp),
       SchemaProperty('category', RealmPropertyType.object,
           linkTarget: 'Spend', collectionType: RealmCollectionType.list),
     ]);

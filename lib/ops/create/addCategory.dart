@@ -328,6 +328,7 @@ class AddCategoryCardState extends ConsumerState<AddCategoryCard> {
                           _nameController.text,
                           categoryEmoji,
                           categoryColorInt.toString(),
+                          DateTime.now()
                         ),
                       );
                   _nameController.clear();

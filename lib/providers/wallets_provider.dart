@@ -21,24 +21,47 @@ final selectedWallet = Provider.family<Wallet?, String>((ref, walletName) {
   // querying to return the first wallet that matches the name with confidence that
   // RealmDb won't return a StateError that will crash the app.
   final wallet = selectedWalletStatus == null
-      ? Wallet(ObjectId(), walletName, 0)
+      ? Wallet(ObjectId(), walletName, 0, DateTime.now())
       : getFirstWallet;
 
   return wallet;
 });
 
-final pi = Provider<int>((ref) {
+// final pi = Provider<int>((ref) {
+//   return ref
+//       .watch(walletsNotifier)
+//       .where((w) => w.name == "Income")
+//       .map((wallet) => wallet.balance)
+//       .toList()
+//       .fold(0, (value, element) => value + element);
+// });
+
+// final wb = Provider<int>((ref) {
+//   return ref
+//       .watch(walletsNotifier)
+//       .map((wallet) => wallet.balance)
+//       .toList()
+//       .fold(0, (value, element) => value + element);
+// });
+
+final pi = Provider.family<int, DateTime>((ref, filterDate) {
   return ref
       .watch(walletsNotifier)
       .where((w) => w.name == "Income")
+      .where(
+        (w) => w.createdAt.year == filterDate.year && 
+        w.createdAt.month == filterDate.month)
       .map((wallet) => wallet.balance)
       .toList()
       .fold(0, (value, element) => value + element);
 });
 
-final wb = Provider<int>((ref) {
+final wb = Provider.family<int, DateTime>((ref, filterDate) {
   return ref
       .watch(walletsNotifier)
+      .where(
+        (w) => w.createdAt.year == filterDate.year && 
+        w.createdAt.month == filterDate.month)
       .map((wallet) => wallet.balance)
       .toList()
       .fold(0, (value, element) => value + element);

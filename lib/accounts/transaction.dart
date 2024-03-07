@@ -124,7 +124,7 @@ class TransactionItem extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(spend.notes),
-                    Text(DateFormat("EEEE, dd MMMM").format(spend.date)),
+                    Text(DateFormat("EEEE, dd MMMM").format(spend.createdAt)),
                     Text("Category:  ${spend.category?.name}"),
                   ],
                 ),

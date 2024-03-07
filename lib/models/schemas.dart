@@ -1,13 +1,14 @@
 import "package:realm/realm.dart";
 part "schemas.g.dart";
 
+
 final config = Configuration.local([
   Spend.schema,
   Wallet.schema,
   Subscription.schema,
   Category.schema,
   Duration.schema,
-], schemaVersion: 3, shouldDeleteIfMigrationNeeded: true);
+], schemaVersion: 4, shouldDeleteIfMigrationNeeded: true);
 
 final realm = Realm(config);
 
@@ -16,6 +17,7 @@ class _Duration {
   @PrimaryKey()
   late ObjectId id;
   late String name;
+  late DateTime createdAt;
 }
 
 @RealmModel()
@@ -24,7 +26,7 @@ class _Subscription {
   late ObjectId id;
   late String name;
   late int amount;
-  late DateTime date;
+  late DateTime createdAt;
   // Also in Settings, I will have settings that allows users to set default
   // wallets for subscriptions
   late _Duration? duration;
@@ -42,6 +44,7 @@ class _Wallet {
   late ObjectId id;
   late String name;
   late int balance;
+  late DateTime createdAt;
   late List<_Spend> spends;
   late List<_Subscription> subscriptions;
 
@@ -58,7 +61,7 @@ class _Spend {
   late String notes;
   // amount spent
   late int amount;
-  late DateTime date;
+  late DateTime createdAt;
   // wallet paid from for the spend
   late _Wallet? wallet;
   late _Category? category;
@@ -80,6 +83,7 @@ class _Category {
   late String name;
   late String emoji;
   late String color;
+  late DateTime createdAt;
   late List<_Spend> category;
 }
 
