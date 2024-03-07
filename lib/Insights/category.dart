@@ -22,7 +22,10 @@ class CategoryItem extends ConsumerWidget {
 
     final int spendsPerCategory =
         ref.watch(getSpendsByCategory(category.name)).length;
-    final int totalSpendAmountPerCategory = ref.watch(getTotalSpendAmountPerCategory(category.name));
+    final int totalSpendAmountPerCategory =
+        ref.watch(getTotalSpendAmountPerCategory(category.name));
+
+    final categoriesCount = ref.watch(categoriesNotifier).length;
 
     // We are pulling the Category color from the database,
     // Remember that it was stored as an String so we have to convert it back into an
@@ -46,11 +49,8 @@ class CategoryItem extends ConsumerWidget {
               motion: const ScrollMotion(),
 
               // A pane can dismiss the Slidable.
-              dismissible: DismissiblePane(
-                onDismissed: () {
-                  ref
-                      .read(categoriesNotifier.notifier)
-                      .deleteCategory(category);
+              dismissible: DismissiblePane(onDismissed: () {
+                if (categoriesCount > 0) {
                   ScaffoldMessenger.of(context).clearSnackBars();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
@@ -59,15 +59,37 @@ class CategoryItem extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Category Deleted",
+                            "You can't delete a category with spends",
                             style: TextStyle(
-                                color: Color.fromARGB(255, 163, 9, 71)),
+                              color: Color.fromARGB(255, 163, 9, 71),
+                            ),
                           ),
                         ],
                       ),
                     ),
                   );
-                },
+                } else {
+                    ref
+                        .read(categoriesNotifier.notifier)
+                        .deleteCategory(category);
+                    ScaffoldMessenger.of(context).clearSnackBars();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                        content: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Category Deleted",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 163, 9, 71)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+                }
               ),
 
               // All actions are defined in the children parameter.

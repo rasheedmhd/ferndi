@@ -164,7 +164,7 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
                           content: Column(
                             children: [
                               Text(
-                                "You have successfully topped up your Wallet.",
+                                "Wallet topped up successfully.",
                                 style: TextStyle(
                                   color: Color.fromARGB(255, 9, 163, 99),
                                 ),
@@ -173,7 +173,7 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Happy tracking your Spends!   ",
+                                    "Happy Spend tracking!   ",
                                     style: TextStyle(
                                       color: Color.fromARGB(255, 9, 163, 99),
                                     ),

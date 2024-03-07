@@ -324,7 +324,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "You have successfully recorded your Spend. Yay! ",
+                                      "Spend successfully recorded. ",
                                       style: TextStyle(
                                         color: Color.fromARGB(255, 9, 163, 99),
                                       ),

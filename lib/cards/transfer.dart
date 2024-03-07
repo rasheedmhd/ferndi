@@ -185,7 +185,7 @@ class TransferCardState extends State<TransferCard> {
                     //         mainAxisAlignment: MainAxisAlignment.center,
                     //         children: [
                     //           Text(
-                    //             "Happy tracking your Spends!   ",
+                    //             "Happy Spends tracking!   ",
                     //             style: TextStyle(
                     //                 color: Color.fromARGB(255, 9, 163, 99)),
                     //           ),

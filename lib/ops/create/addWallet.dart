@@ -117,7 +117,7 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                       content: Column(
                         children: [
                           Text(
-                            "Wallet successfully created.",
+                            "Wallet created successfully.",
                             style: TextStyle(
                               color: Color.fromARGB(255, 9, 163, 99),
                             ),
@@ -126,7 +126,7 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Happy tracking your Spends!   ",
+                                "Happy Spend tracking!   ",
                                 style: TextStyle(
                                   color: Color.fromARGB(255, 9, 163, 99),
                                 ),

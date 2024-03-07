@@ -339,7 +339,7 @@ class AddCategoryCardState extends ConsumerState<AddCategoryCard> {
                       content: Column(
                         children: [
                           Text(
-                            "Category successfully created.",
+                            "Category created successfully.",
                             style: TextStyle(
                               color: Color.fromARGB(255, 9, 163, 99),
                             ),
@@ -348,7 +348,7 @@ class AddCategoryCardState extends ConsumerState<AddCategoryCard> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Happy categorizing your Spends!   ",
+                                "Happy Spend tracking!   ",
                                 style: TextStyle(
                                   color: Color.fromARGB(255, 9, 163, 99),
                                 ),
