@@ -8,7 +8,9 @@ class SpendInfoCard2 extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final allSpends = ref.watch(spendsNotifier).length;
+    final weekday   = ref.watch(filterSpendsWeek(DateTime.now())).length;
+    final month   = ref.watch(filterSpends(DateTime.now())).length;
+    final allTime = ref.watch(spendsNotifier).length;
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
@@ -57,12 +59,12 @@ class SpendInfoCard2 extends ConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("$allSpends",
+                      Text("$weekday",
                           style: const TextStyle(
                             fontSize: 25.0,
                             color: Color.fromARGB(255, 12, 12, 12),
                           )),
-                      const Text("this week",
+                      const Text("this week day",
                           style: TextStyle(
                             color: Color.fromARGB(255, 12, 12, 12),
                           )),
@@ -87,7 +89,7 @@ class SpendInfoCard2 extends ConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("$allSpends",
+                      Text("$month",
                           style: const TextStyle(
                             fontSize: 25.0,
                             color: Color.fromARGB(255, 12, 12, 12),
@@ -117,10 +119,9 @@ class SpendInfoCard2 extends ConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("$allSpends",
+                      Text("$allTime",
                           style: const TextStyle(
                             fontSize: 25.0,
-                            fontWeight: FontWeight.w600,
                             color: Color.fromARGB(255, 12, 12, 12),
                           )),
                       const Text("all spends",

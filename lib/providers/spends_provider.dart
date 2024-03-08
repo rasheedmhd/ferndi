@@ -18,6 +18,17 @@ final filterSpends =
   return spendsByMonth.toList();
 });
 
+final filterSpendsWeek =
+    Provider.family<List<Spend>, DateTime>((ref, filterDate) {
+  final spendsByMonth =
+      ref.watch(spendsNotifier)
+      .where(
+        (spend) => spend.createdAt.year == filterDate.year && 
+        spend.createdAt.month == filterDate.month &&
+        spend.createdAt.weekday == filterDate.weekday);
+  return spendsByMonth.toList();
+});
+
 final spendsByWalletTotal = Provider.family<int, String>((ref, walletName) {
   return ref
       .watch(spendsByWallet(walletName))
