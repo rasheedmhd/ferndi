@@ -8,9 +8,18 @@ class SpendInfoCard2 extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final weekday   = ref.watch(filterSpendsWeek(DateTime.now())).length;
-    final month   = ref.watch(filterSpends(DateTime.now())).length;
+    final now          = DateTime.now();
+    final weekday      = ref.watch(filterSpendsWeek(now)).length;
+    final prevWeekday  = ref.watch(filterSpendsWeek(now.subtract(const Duration(days: 7)))).length;
+    final month        = ref.watch(filterSpends(now)).length;
+    DateTime prevMonth = DateTime(now.year, now.month - 1, now.day);
+    // Handle edge case when previous month is in the previous year
+    if (prevMonth.month == 12 && now.month == 1) {
+      prevMonth = DateTime(now.year - 1, 12, now.day);
+    }
+    final previousMonth = ref.watch(filterSpends(prevMonth)).length;
     final allTime = ref.watch(spendsNotifier).length;
+
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
@@ -45,12 +54,22 @@ class SpendInfoCard2 extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  if ( weekday > prevWeekday )
                   const CircleAvatar(
                     backgroundColor: Color.fromARGB(255, 246, 220, 236),
                     child: FaIcon(
                       FontAwesomeIcons.arrowUp,
                       size: 20.0,
                       color: Color.fromARGB(255, 255, 0, 93),
+                    ),
+                  )
+                  else
+                  const CircleAvatar(
+                    backgroundColor: Color.fromARGB(255, 220, 246, 246),
+                    child: FaIcon(
+                      FontAwesomeIcons.arrowDown,
+                      size: 20.0,
+                      color: Color.fromARGB(255, 35, 206, 135),
                     ),
                   ),
                   const SizedBox(
@@ -75,12 +94,22 @@ class SpendInfoCard2 extends ConsumerWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  if (month > previousMonth )
+                    const CircleAvatar(
+                      backgroundColor: Color.fromARGB(255, 246, 220, 236),
+                      child: FaIcon(
+                        FontAwesomeIcons.arrowUp,
+                        size: 20.0,
+                        color: Color.fromARGB(255, 255, 0, 93),
+                      ),
+                    )
+                  else                  
                   const CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 246, 220, 236),
+                    backgroundColor: Color.fromARGB(255, 220, 246, 246),
                     child: FaIcon(
-                      FontAwesomeIcons.arrowUp,
+                      FontAwesomeIcons.arrowDown,
                       size: 20.0,
-                      color: Color.fromARGB(255, 255, 0, 93),
+                      color: Color.fromARGB(255, 35, 206, 135),
                     ),
                   ),
                   const SizedBox(
