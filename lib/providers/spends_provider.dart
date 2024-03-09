@@ -1,5 +1,6 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
+import 'package:intl/intl.dart';
 
 final spendsByWallet = Provider.family<List<Spend>, String>((ref, walletName) {
   final spendsByWallet = ref
@@ -17,6 +18,14 @@ final filterSpends =
         spend.createdAt.month == filterDate.month);
   return spendsByMonth.toList();
 });
+
+int getWeekNumber(DateTime date) {
+  // Create a DateFormat object with week of year pattern
+  DateFormat formatter = DateFormat('w');
+
+  // Format the given date and parse it as an integer
+  return int.parse(formatter.format(date));
+}
 
 final filterSpendsWeek =
     Provider.family<List<Spend>, DateTime>((ref, filterDate) {

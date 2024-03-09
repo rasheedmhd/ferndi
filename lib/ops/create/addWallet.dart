@@ -24,6 +24,13 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
 
   @override
   Widget build(BuildContext context) {
+
+    // TO DO
+    // Doesn't work as desired yet
+    final returnedWallet = ref.watch(
+      selectedWallet(_nameController.text),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Wallet"),
@@ -75,6 +82,27 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                 foregroundColor: Colors.white,
                 backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                 onPressed: () {
+                  print(returnedWallet?.name);
+                  print(_nameController.text);
+                  if ( _nameController.text == returnedWallet?.name) {
+                    ScaffoldMessenger.of(context).clearSnackBars();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                        content: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Wallet exist already!",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 163, 9, 71)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                    return;                   
+                  }
                   if (_balanceController.text.isEmpty ||
                       _nameController.text.isEmpty) {
                     ScaffoldMessenger.of(context).clearSnackBars();

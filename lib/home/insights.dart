@@ -1,5 +1,6 @@
 import "package:app/Insights/cards/delightful.dart";
 import 'package:app/Insights/cards/spendInfo.dart';
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import 'package:app/Insights/Categories.dart';
 import 'package:app/Insights/cards/spendsInfoCard.dart';
 import "package:flutter/material.dart";
@@ -119,12 +120,51 @@ class InsightsState extends ConsumerState<Insights> {
             ),
           ),
         ),
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(vertical: 10.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SpendInfoCard(),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color.fromARGB(255, 227, 226, 226),
+                  ),
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Color.fromARGB(255, 246, 220, 236),
+                        child: FaIcon(
+                          FontAwesomeIcons.featherPointed,
+                          size: 20.0,
+                          color: Color.fromARGB(255, 255, 0, 93),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("56",
+                            style: TextStyle(
+                              fontSize: 25.0,
+                              color: Color.fromARGB(255, 12, 12, 12),
+                            )
+                          ),
+                          Text("Starts here!",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 12, 12, 12),
+                            )
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ),
               SpendInfoCard(),
               SpendInfoCard(),
             ],
