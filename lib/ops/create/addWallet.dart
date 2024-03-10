@@ -25,12 +25,6 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
   @override
   Widget build(BuildContext context) {
 
-    // TO DO
-    // Doesn't work as desired yet
-    final returnedWallet = ref.watch(
-      selectedWallet(_nameController.text),
-    );
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Wallet"),
@@ -82,9 +76,10 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                 foregroundColor: Colors.white,
                 backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                 onPressed: () {
-                  print(returnedWallet?.name);
-                  print(_nameController.text);
-                  if ( _nameController.text == returnedWallet?.name) {
+                  late Wallet? returnedWallet =
+                      getWalletByName(_nameController.text);
+                  if (_nameController.text.toLowerCase() ==
+                      returnedWallet?.name.toLowerCase()) {
                     ScaffoldMessenger.of(context).clearSnackBars();
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
@@ -101,7 +96,7 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                         ),
                       ),
                     );
-                    return;                   
+                    return;
                   }
                   if (_balanceController.text.isEmpty ||
                       _nameController.text.isEmpty) {
@@ -129,12 +124,8 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                     return;
                   }
                   ref.read(walletsNotifier.notifier).createWallet(
-                        Wallet(
-                          ObjectId(),
-                          _nameController.text,
-                          int.parse(_balanceController.text),
-                          DateTime.now()
-                        ),
+                        Wallet(ObjectId(), _nameController.text,
+                            int.parse(_balanceController.text), DateTime.now()),
                       );
                   _nameController.clear();
                   _balanceController.clear();
