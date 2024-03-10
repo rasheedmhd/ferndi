@@ -12,12 +12,13 @@ class TopUpWalletCard extends ConsumerStatefulWidget {
 }
 
 class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
-  late Wallet walletToEdit = getWallet(widget.wallet.id);
+    late Wallet? walletToEdit = ref.watch(getWallet(widget.wallet.id));
+
 
   final _balanceController = TextEditingController();
 
-  late String name = walletToEdit.name;
-  late int balance = walletToEdit.balance;
+  late String name = walletToEdit!.name;
+  late int balance = walletToEdit!.balance;
 
   void _newBalance(String typedBalance) {
     balance += int.parse(_balanceController.text);
@@ -72,7 +73,7 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "GHS ${walletToEdit.balance}",
+                  "GHS ${walletToEdit!.balance}",
                   style: const TextStyle(
                     fontSize: 30.0,
                     color: Color.fromARGB(255, 5, 61, 135),
@@ -151,7 +152,7 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
                       _newBalance(_balanceController.text);
                       ref.read(walletsNotifier.notifier).updateWallet(
                             Wallet(
-                              walletToEdit.id,
+                              walletToEdit!.id,
                               name,
                               balance,
                               DateTime.now()

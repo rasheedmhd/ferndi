@@ -12,10 +12,10 @@ class EditWalletCard extends ConsumerStatefulWidget {
 }
 
 class EditWalletCardState extends ConsumerState<EditWalletCard> {
-  late Wallet walletToEdit = getWallet(widget.wallet.id);
+  late Wallet? walletToEdit = ref.read(getWallet(widget.wallet.id));
 
-  late String name = walletToEdit.name;
-  late String balance = walletToEdit.balance.toString();
+  late String name = walletToEdit!.name;
+  late String balance = walletToEdit!.balance.toString();
 
   void _newName(String typedName) {
     name = typedName;
@@ -104,7 +104,7 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
                       }
                       ref.read(walletsNotifier.notifier).updateWallet(
                             Wallet(
-                              walletToEdit.id,
+                              walletToEdit!.id,
                               name,
                               int.parse(balance),
                               DateTime.now()

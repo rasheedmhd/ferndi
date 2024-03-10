@@ -87,10 +87,7 @@ class _Category {
   late List<_Spend> category;
 }
 
-Wallet getWallet(ObjectId id) {
-  final walletToEdit = realm.query<Wallet>('id == \$0', [id]).first;
-  return walletToEdit;
-}
+
 
 
 Category getCategory(ObjectId id) {

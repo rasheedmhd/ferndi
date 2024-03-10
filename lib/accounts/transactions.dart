@@ -3,6 +3,7 @@ import "package:app/models/schemas.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/spends_provider.dart";
+import "package:app/providers/wallets_provider.dart";
 
 class TransactionsPage extends ConsumerStatefulWidget {
   final Wallet wallet;
@@ -13,7 +14,8 @@ class TransactionsPage extends ConsumerStatefulWidget {
 }
 
 class TransactionsPageState extends ConsumerState<TransactionsPage> {
-  late Wallet wallet = getWallet(widget.wallet.id);
+  // late Wallet wallet = getWallet(widget.wallet.id);
+  late Wallet? wallet = ref.watch(getWallet(widget.wallet.id));
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class TransactionsPageState extends ConsumerState<TransactionsPage> {
     // another provider in the same file that returns all spends made under a particular
     // wallet when give the name of the wallet.
     // So spendsTotal gives us the total amount of all the money spent from a particular wallet
-    final spendsTotal = ref.watch(spendsByWalletTotal(wallet.name));
+    final spendsTotal = ref.watch(spendsByWalletTotal(wallet!.name));
 
     return CustomScrollView(
       slivers: [
@@ -40,7 +42,7 @@ class TransactionsPageState extends ConsumerState<TransactionsPage> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 50, 0, 10),
                     child: Text(
-                      wallet.name,
+                      wallet!.name,
                       style: const TextStyle(
                         fontSize: 30.0,
                         color: Color.fromARGB(255, 5, 61, 135),

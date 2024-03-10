@@ -4,6 +4,7 @@ import "package:app/models/schemas.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/spends_provider.dart";
+import "package:app/providers/wallets_provider.dart";
 import "package:intl/intl.dart";
 
 
@@ -149,7 +150,7 @@ class TransactionItem extends ConsumerWidget {
 }
 
 class Transactions extends ConsumerStatefulWidget {
-  final Wallet wallet;
+  final Wallet? wallet;
   const Transactions(this.wallet, {super.key});
 
   @override
@@ -157,11 +158,12 @@ class Transactions extends ConsumerStatefulWidget {
 }
 
 class TransactionState extends ConsumerState<Transactions> {
-  late Wallet wallet = getWallet(widget.wallet.id);
+    late Wallet? wallet = ref.watch(getWallet(widget.wallet!.id));
+
 
   @override
   Widget build(BuildContext context) {
-    final List<Spend> spends = ref.watch(spendsByWallet(wallet.name));
+    final List<Spend> spends = ref.watch(spendsByWallet(wallet!.name));
     return TransactionList(spends);
   }
 }

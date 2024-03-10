@@ -9,10 +9,25 @@ import 'package:app/utility/defaults/onb_wallets.dart';
 //   return walletToEdit;
 // }
 
+// Used to hack around Realmdb not having native Unique Contraints on other model fields
+// except the PrimaryKey
+// We use this in the UI to enforce Unique Wallet names
 final getWalletByName = Provider.family<Wallet?, String>((ref, name) {
   final wallet = ref
       .watch(walletsNotifier)
       .where((wallet) => wallet.name.toLowerCase() == name.toLowerCase())
+      .firstOrNull;
+  return wallet;
+});
+
+// This is used to get wallets to modify their data.
+// Unlike the above that queries the db using the wallet's name, which is not unique,
+// This uses the ID which is unique. This is more safer and less buggy also we get the 
+// assurance that the wallet returned in always unique and the right wallet we need.
+final getWallet = Provider.family<Wallet?, ObjectId>((ref, id) {
+  final wallet = ref
+      .watch(walletsNotifier)
+      .where((wallet) => wallet.id == id)
       .firstOrNull;
   return wallet;
 });
