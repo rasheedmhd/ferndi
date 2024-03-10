@@ -3,6 +3,20 @@ import 'package:app/models/schemas.dart';
 import "package:realm/realm.dart";
 import 'package:app/utility/defaults/onb_wallets.dart';
 
+// Wallet? getWalletByName(String name) {
+//   final walletToEdit =
+//       realm.query<Wallet>('name CONTAINS[c] \$0', [name]).firstOrNull;
+//   return walletToEdit;
+// }
+
+final getWalletByName = Provider.family<Wallet?, String>((ref, name) {
+  final wallet = ref
+      .watch(walletsNotifier)
+      .where((wallet) => wallet.name.toLowerCase() == name.toLowerCase())
+      .firstOrNull;
+  return wallet;
+});
+
 final selectedWallet = Provider.family<Wallet?, String>((ref, walletName) {
   // Since we already have a stream provider returning all wallets and all changes to the wallets table
   // in the database, we rely on the provider to get updated wallet information any time
@@ -27,30 +41,13 @@ final selectedWallet = Provider.family<Wallet?, String>((ref, walletName) {
   return wallet;
 });
 
-// final pi = Provider<int>((ref) {
-//   return ref
-//       .watch(walletsNotifier)
-//       .where((w) => w.name == "Income")
-//       .map((wallet) => wallet.balance)
-//       .toList()
-//       .fold(0, (value, element) => value + element);
-// });
-
-// final wb = Provider<int>((ref) {
-//   return ref
-//       .watch(walletsNotifier)
-//       .map((wallet) => wallet.balance)
-//       .toList()
-//       .fold(0, (value, element) => value + element);
-// });
-
 // Just get the first wallet with name "Income and return it"
 final pi = Provider.family<int, DateTime>((ref, filterDate) {
   return ref
       .watch(walletsNotifier)
       .where((w) => w.name.toLowerCase() == "Income".toLowerCase())
       // .where(
-      //   (w) => w.createdAt.year == filterDate.year && 
+      //   (w) => w.createdAt.year == filterDate.year &&
       //   w.createdAt.month == filterDate.month)
       .map((wallet) => wallet.balance)
       .toList()
@@ -60,9 +57,9 @@ final pi = Provider.family<int, DateTime>((ref, filterDate) {
 final wb = Provider.family<int, DateTime>((ref, filterDate) {
   return ref
       .watch(walletsNotifier)
-      .where(
-        (w) => w.createdAt.year == filterDate.year && 
-        w.createdAt.month == filterDate.month)
+      .where((w) =>
+          w.createdAt.year == filterDate.year &&
+          w.createdAt.month == filterDate.month)
       .map((wallet) => wallet.balance)
       .toList()
       .fold(0, (value, element) => value + element);

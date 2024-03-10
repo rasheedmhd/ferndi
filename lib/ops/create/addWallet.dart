@@ -24,7 +24,6 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Wallet"),
@@ -46,7 +45,7 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                 maxLength: 50,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
-                  label: Text("Wallet Name"),
+                  label: Text("Name"),
                 ),
               ),
               TextField(
@@ -67,7 +66,7 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                   borderRadius: BorderRadius.circular(50.0),
                 ),
                 label: const Text(
-                  "       save wallet       ",
+                  "       save       ",
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w700,
@@ -76,8 +75,7 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                 foregroundColor: Colors.white,
                 backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                 onPressed: () {
-                  late Wallet? returnedWallet =
-                      getWalletByName(_nameController.text);
+                  final returnedWallet = ref.read(getWalletByName(_nameController.text));
                   if (_nameController.text.toLowerCase() ==
                       returnedWallet?.name.toLowerCase()) {
                     ScaffoldMessenger.of(context).clearSnackBars();

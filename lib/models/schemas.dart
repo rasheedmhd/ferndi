@@ -91,10 +91,7 @@ Wallet getWallet(ObjectId id) {
   final walletToEdit = realm.query<Wallet>('id == \$0', [id]).first;
   return walletToEdit;
 }
-Wallet? getWalletByName(String name) {
-  final walletToEdit = realm.query<Wallet>('name CONTAINS[c] \$0', [name]).firstOrNull;
-  return walletToEdit;
-}
+
 
 Category getCategory(ObjectId id) {
   final categoryToEdit = realm.query<Category>('id == \$0', [id]).first;
