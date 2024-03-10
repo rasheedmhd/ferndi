@@ -79,36 +79,56 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
                     foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                     onPressed: () {
+                      final returnedWallet = ref.read(getWalletByName(name));
+                      if (name.toLowerCase() ==
+                          returnedWallet?.name.toLowerCase()) {
+                        ScaffoldMessenger.of(context).clearSnackBars();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                            content: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Wallet exist already!",
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 163, 9, 71)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                        return;
+                      }                      
                       if (balance.isEmpty || name.isEmpty) {
                         ScaffoldMessenger.of(context).clearSnackBars();
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                          content: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "A Wallet must have a Name and a Balance",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 163, 9, 71)),
-                              ),
-                              Text(
-                                "Please add a Name and Balance before saving.",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 163, 9, 71)),
-                              ),
-                            ],
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                            content: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "A Wallet must have a Name and a Balance",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 163, 9, 71),
+                                  ),
+                                ),
+                                Text(
+                                  "Please add a Name and Balance before saving.",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 163, 9, 71),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ));
+                        );
                         return;
                       }
                       ref.read(walletsNotifier.notifier).updateWallet(
-                            Wallet(
-                              walletToEdit!.id,
-                              name,
-                              int.parse(balance),
-                              DateTime.now()
-                            ),
+                            Wallet(walletToEdit!.id, name, int.parse(balance),
+                                DateTime.now()),
                           );
                       ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(

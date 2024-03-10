@@ -87,9 +87,6 @@ class _Category {
   late List<_Spend> category;
 }
 
-
-
-
 Category getCategory(ObjectId id) {
   final categoryToEdit = realm.query<Category>('id == \$0', [id]).first;
   return categoryToEdit;
