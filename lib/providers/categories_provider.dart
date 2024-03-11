@@ -1,7 +1,14 @@
 import 'package:app/providers/spends_provider.dart';
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
+import "package:realm/realm.dart";
 import 'package:app/utility/defaults/categories.dart';
+
+final getCategory = Provider.family<Category, ObjectId>((ref, id) {
+  final category =
+      ref.watch(categoriesNotifier).where((category) => category.id == id).first;
+      return category;
+});
 
 // Returns all the spends recorded under a particular category
 final getSpendsByCategory =

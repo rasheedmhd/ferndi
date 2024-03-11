@@ -13,7 +13,7 @@ class EditCategoryCard extends ConsumerStatefulWidget {
 }
 
 class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
-  late Category categoryToEdit = getCategory(widget.category.id);
+  late Category categoryToEdit = ref.watch(getCategory(widget.category.id));
   late String name = categoryToEdit.name;
   late String categoryEmoji = categoryToEdit.emoji;
   // categoryColorInt stores the int value of the Color
