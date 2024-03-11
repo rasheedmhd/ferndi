@@ -3,12 +3,6 @@ import 'package:app/models/schemas.dart';
 import "package:realm/realm.dart";
 import 'package:app/utility/defaults/onb_wallets.dart';
 
-// Wallet? getWalletByName(String name) {
-//   final walletToEdit =
-//       realm.query<Wallet>('name CONTAINS[c] \$0', [name]).firstOrNull;
-//   return walletToEdit;
-// }
-
 // Used to hack around Realmdb not having native Unique Contraints on other model fields
 // except the PrimaryKey
 // We use this in the UI to enforce Unique Wallet names
@@ -38,10 +32,10 @@ final selectedWallet = Provider.family<Wallet?, String>((ref, walletName) {
   // By relying on the Wallets provided in real time we can query and get only the wallet we need
   // by matching on its name, returning the wallet or null if such a wallet doesn't exist yet.
   final selectedWalletStatus =
-      ref.watch(walletsNotifier).where((w) => w.name == walletName).firstOrNull;
+      ref.watch(walletsNotifier).where((w) => w.name.toLowerCase() == walletName.toLowerCase()).firstOrNull;
 
   late final getFirstWallet =
-      ref.watch(walletsNotifier).where((w) => w.name == walletName).first;
+      ref.watch(walletsNotifier).where((w) => w.name.toLowerCase() == walletName.toLowerCase()).first;
 
   // With the information from above, the selectedWalletStatus, which returns a wallet or null we can
   // first check if we didn't get any wallet in which case we return a dummy Wallet, with the name
