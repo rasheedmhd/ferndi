@@ -1,14 +1,12 @@
 import "package:app/Insights/cards/delightful.dart";
 import 'package:app/Insights/cards/spendInfo.dart';
-import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import 'package:app/Insights/Categories.dart';
 import 'package:app/Insights/cards/spendsInfoCard.dart';
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/categories_provider.dart";
-
-// import "package:flutter_riverpod/flutter_riverpod.dart";
-
+import "package:app/providers/spends_provider.dart";
+import "package:app/providers/wallets_provider.dart";
 // Cards
 
 // Smart Card
@@ -68,18 +66,21 @@ class InsightsState extends ConsumerState<Insights> {
   Widget build(BuildContext context) {
     
     final categoriesCount = ref.watch(categoriesNotifier).length;
+    final walletsCount = ref.watch(walletsNotifier).length;
+    final totalSpend = ref.watch(spendsNotifier).length;
+
 
     return ListView(
       padding: const EdgeInsets.all(15),
       children: [
+
         const DelightfulCard(),
-        const SizedBox(
-          height: 20,
+
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.0),
+          child: SpendInfoCard2(),
         ),
-        const SpendInfoCard2(),
-        const SizedBox(
-          height: 20,
-        ),
+
         GestureDetector(
           onTap: () => Navigator.push(
             context,
@@ -88,7 +89,7 @@ class InsightsState extends ConsumerState<Insights> {
             ),
           ),
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
               border: Border.all(
                 color: const Color.fromARGB(255, 227, 226, 226),
@@ -121,52 +122,13 @@ class InsightsState extends ConsumerState<Insights> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 10.0),
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromARGB(255, 227, 226, 226),
-                  ),
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Color.fromARGB(255, 246, 220, 236),
-                        child: FaIcon(
-                          FontAwesomeIcons.featherPointed,
-                          size: 20.0,
-                          color: Color.fromARGB(255, 255, 0, 93),
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("56",
-                            style: TextStyle(
-                              fontSize: 25.0,
-                              color: Color.fromARGB(255, 12, 12, 12),
-                            )
-                          ),
-                          Text("Starts here!",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 12, 12, 12),
-                            )
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-              ),
-              SpendInfoCard(),
-              SpendInfoCard(),
+              SpendInfoCard("Categories", categoriesCount),
+              SpendInfoCard("Spends", totalSpend),
+              SpendInfoCard("Wallets", walletsCount),
             ],
           ),
         ),

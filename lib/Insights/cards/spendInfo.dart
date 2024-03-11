@@ -1,10 +1,9 @@
 import "package:flutter/material.dart";
-import "package:font_awesome_flutter/font_awesome_flutter.dart";
-
 
 class SpendInfoCard extends StatelessWidget {
-
-  const SpendInfoCard({super.key});
+  const SpendInfoCard(this.title, this.value, {super.key});
+  final String title;
+  final int value;
 
   @override
   Widget build(BuildContext context) {
@@ -15,38 +14,30 @@ class SpendInfoCard extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(20.0),
       ),
-      child: const Padding(
-        padding: EdgeInsets.all(20),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CircleAvatar(
-              backgroundColor: Color.fromARGB(255, 246, 220, 236),
-              child: FaIcon(
-                FontAwesomeIcons.featherPointed,
-                size: 20.0,
-                color: Color.fromARGB(255, 255, 0, 93),
-              ),
-            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("56",
-                  style: TextStyle(
-                    fontSize: 25.0,
+                Text(value.toString(),
+                    style: const TextStyle(
+                      fontSize: 25.0,
+                      color: Color.fromARGB(255, 12, 12, 12),
+                    )),
+                Text(
+                  title,
+                  style: const TextStyle(
                     color: Color.fromARGB(255, 12, 12, 12),
-                  )
-                ),
-                Text("Starts here!",
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 12, 12, 12),
-                  )
+                  ),
                 ),
               ],
             ),
           ],
         ),
-      )
+      ),
     );
   }
 }
