@@ -15,7 +15,7 @@ class EditSubscriptionCard extends ConsumerStatefulWidget {
 
 class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
   late my.Subscription subscriptionToEdit =
-      getSubscription(widget.subscription.id);
+      ref.watch(getSubscription(widget.subscription.id));
 
   late String name = subscriptionToEdit.name;
   late String amount = subscriptionToEdit.amount.toString();

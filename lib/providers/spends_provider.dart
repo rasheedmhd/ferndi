@@ -1,6 +1,14 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
 import 'package:intl/intl.dart';
+import "package:realm/realm.dart";
+
+
+final getSpend = Provider.family<Spend, ObjectId>((ref, id) {
+  final spend =
+      ref.watch(spendsNotifier).where((spend) => spend.id == id).first;
+      return spend;
+});
 
 final spendsByWallet = Provider.family<List<Spend>, String>((ref, walletName) {
   final spendsByWallet = ref

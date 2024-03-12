@@ -1,6 +1,13 @@
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:app/models/schemas.dart';
+import "package:realm/realm.dart" as my;
 import 'package:app/utility/defaults/onb_durations.dart';
+
+final getSubscription = Provider.family<Subscription, my.ObjectId>((ref, id) {
+  final subscription =
+      ref.watch(subscriptionsNotifier).where((spend) => spend.id == id).first;
+  return subscription;
+});
 
 final subBalance = Provider<int>((ref) {
   return ref

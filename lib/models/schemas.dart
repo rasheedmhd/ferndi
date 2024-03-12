@@ -87,34 +87,3 @@ class _Category {
   late List<_Spend> category;
 }
 
-Spend getSpend(ObjectId id) {
-  final spendToEdit = realm.query<Spend>('id == \$0', [id]).first;
-  return spendToEdit;
-}
-
-Subscription getSubscription(ObjectId id) {
-  final subscriptionToEdit = realm.query<Subscription>('id == \$0', [id]).first;
-  return subscriptionToEdit;
-}
-
-
-//============ TO SUPPORT OLD CODE
-
-// const WalletIcons = {
-//   Wallet.PocketWallet: Icons.add_card,
-//   Wallet.Cash: Icons.wallet_sharp,
-//   Wallet.MobileMoney: Icons.phone_android,
-//   Wallet.AccessDebitCard: Icons.card_giftcard_sharp,
-//   Wallet.Miscellaneous: Icons.online_prediction_sharp,
-// };
-
-// const CategoryIcons = {
-//   // when users create they own categories will
-//   // be able to choose their own categories
-//   Category.Food: Icons.restaurant,
-//   Category.Groceries: Icons.shopping_cart,
-//   Category.Work: Icons.work,
-//   Category.Health: Icons.health_and_safety,
-//   Category.Transportation: Icons.flight_takeoff,
-//   Category.Miscellaneous: Icons.local_mall
-// };

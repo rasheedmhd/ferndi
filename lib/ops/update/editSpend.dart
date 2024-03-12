@@ -15,7 +15,7 @@ class EditSpendCard extends ConsumerStatefulWidget {
 }
 
 class EditSpendCardState extends ConsumerState<EditSpendCard> {
-  late Spend spendToEdit = getSpend(widget.spend.id);
+  late Spend spendToEdit = ref.watch(getSpend(widget.spend.id));
 
   late String name   = spendToEdit.name;
   late String notes  = spendToEdit.notes;
