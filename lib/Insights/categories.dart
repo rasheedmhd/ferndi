@@ -30,7 +30,7 @@ class Categories extends ConsumerWidget {
             icon: const Icon(
               Icons.add,
               size: 34,
-              color: Color.fromARGB(255, 163, 9, 71),
+              color: Color.fromARGB(255, 5, 61, 135),
             ),
           )
         ],

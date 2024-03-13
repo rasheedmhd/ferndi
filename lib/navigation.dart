@@ -55,7 +55,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           ],
           
           selectedItemColor: const Color.fromARGB(255, 5, 61, 135),
-          unselectedItemColor: const Color.fromARGB(255, 26, 114, 255),
+          unselectedItemColor: const Color.fromARGB(255, 128, 183, 255),
           onTap: _selectPage,
           currentIndex: _selectedPageIndex,
         ),

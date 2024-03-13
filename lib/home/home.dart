@@ -95,7 +95,7 @@ class HomeState extends State<Home> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50.0),
             ),
-            backgroundColor: const Color.fromARGB(255, 35, 206, 135),
+            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
             onPressed: addSpend,
             child: const Icon(
               Icons.add,
