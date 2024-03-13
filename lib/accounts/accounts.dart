@@ -4,9 +4,6 @@ import "package:app/cards/wallets.dart";
 import "package:app/cards/savings.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/wallets_provider.dart";
-
-
-import "package:avatar_glow/avatar_glow.dart";
 import "package:flutter/material.dart";
 
 class Accounts extends ConsumerStatefulWidget {
@@ -70,21 +67,23 @@ class AccountsState extends ConsumerState<Accounts> {
         ),
         backgroundColor: const Color.fromARGB(255, 19, 194, 110),
       ),
-      floatingActionButton: AvatarGlow(
-        glowColor: const Color.fromARGB(255, 48, 136, 6),
-        child: FloatingActionButton(
-          heroTag: "AvatarGlow",
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
-          backgroundColor: const Color.fromARGB(255, 48, 136, 6),
-          onPressed: addWallet,
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
-            size: 35,
+      floatingActionButton: CircleAvatar(
+          radius: 25,
+          child: FloatingActionButton(
+            elevation: 1,
+            heroTag: "addSpend",
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0),
+            ),
+            backgroundColor: const Color.fromARGB(255, 19, 194, 110),
+            onPressed: addWallet,
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+              size: 35,
+            ),
           ),
         ),
-      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(

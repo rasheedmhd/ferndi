@@ -166,7 +166,7 @@ class WalletItem extends ConsumerWidget {
                   child: FaIcon(
                     FontAwesomeIcons.wallet,
                     size: 30,
-                    color: Color.fromARGB(255, 48, 136, 6),
+                    color: Color.fromARGB(255, 19, 194, 110),
                   ),
                 ),
                 title: Row(

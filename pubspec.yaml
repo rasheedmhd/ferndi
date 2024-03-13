@@ -32,7 +32,6 @@ dependencies:
     sdk: flutter
   flutter_slidable: 
   shared_preferences:
-  avatar_glow: 
   provider:
   flutter_riverpod: 
   intl:  
