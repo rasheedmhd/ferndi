@@ -11,13 +11,6 @@ class AddCategoriesCard extends ConsumerStatefulWidget {
 }
 
 class AddCategoriesCardState extends ConsumerState<AddCategoriesCard> {
-  final _balanceController = TextEditingController();
-
-  @override
-  void dispose() {
-    _balanceController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
