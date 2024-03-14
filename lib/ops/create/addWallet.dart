@@ -86,7 +86,7 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Wallet exist already!",
+                              "Wallet already exist!",
                               style: TextStyle(
                                   color: Color.fromARGB(255, 163, 9, 71)),
                             ),

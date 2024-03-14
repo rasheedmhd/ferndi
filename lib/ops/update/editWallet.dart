@@ -79,27 +79,29 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
                     foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                     onPressed: () {
-                      final returnedWallet = ref.read(getWalletByName(name));
-                      if (name.toLowerCase() ==
-                          returnedWallet?.name.toLowerCase()) {
-                        ScaffoldMessenger.of(context).clearSnackBars();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                            content: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Wallet exist already!",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 163, 9, 71)),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                        return;
-                      }                      
+                      // final returnedWallet = ref.read(getWalletByName(name));
+                      // if (returnedWallet != null)
+                      // // if (name.toLowerCase() ==
+                      // //     returnedWallet?.name.toLowerCase() && balance == balance) 
+                      //     {
+                      //   ScaffoldMessenger.of(context).clearSnackBars();
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(
+                      //       backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                      //       content: Column(
+                      //         mainAxisAlignment: MainAxisAlignment.center,
+                      //         children: [
+                      //           Text(
+                      //             "Wallet already exist!",
+                      //             style: TextStyle(
+                      //                 color: Color.fromARGB(255, 163, 9, 71)),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   );
+                      //   return;
+                      // }                      
                       if (balance.isEmpty || name.isEmpty) {
                         ScaffoldMessenger.of(context).clearSnackBars();
                         ScaffoldMessenger.of(context).showSnackBar(
