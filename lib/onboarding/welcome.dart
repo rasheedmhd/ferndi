@@ -1,17 +1,20 @@
 import "package:app/ops/create/addIncome.dart";
 import "package:app/ops/create/addCategories.dart";
 import "package:app/navigation.dart";
+import "package:app/providers/wallets_provider.dart";
+import "package:app/providers/categories_provider.dart";
 import "package:app/providers/subs_provider.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:app/providers/wallets_provider.dart";
 
 class Onboarding extends ConsumerWidget {
   const Onboarding({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final categoriesCount = ref.watch(categoriesNotifier).length;
+
     return MaterialApp(
       title: "ferndi",
       theme: ThemeData(fontFamily: 'Gilroy'),
@@ -225,8 +228,15 @@ class Onboarding extends ConsumerWidget {
                                 builder: (_) => const NavigationScreen(),
                               ),
                             );
-                            ref.read(subscriptionsNotifier.notifier).addDurations();
+                            ref
+                                .read(subscriptionsNotifier.notifier)
+                                .addDurations();
                             ref.read(walletsNotifier.notifier).addWallets();
+                            if (categoriesCount == 0) {
+                              ref
+                                  .read(categoriesNotifier.notifier)
+                                  .addCategories();
+                            }
                           },
                         ),
                       ],

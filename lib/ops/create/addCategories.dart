@@ -52,19 +52,19 @@ class AddCategoriesCardState extends ConsumerState<AddCategoriesCard> {
           ),
           const ListTile(
             leading: FaIcon(
-              FontAwesomeIcons.plane,
-              size: 25.0,
-              color: Color.fromARGB(255, 11, 101, 218),
-            ),
-            title: Text("Transportation"),
-          ),
-          const ListTile(
-            leading: FaIcon(
               FontAwesomeIcons.thumbsUp,
               size: 25.0,
               color: Color.fromARGB(255, 0, 0, 0),
             ),
             title: Text("Miscellaneous"),
+          ),
+          const ListTile(
+            leading: FaIcon(
+              FontAwesomeIcons.plus,
+              size: 25.0,
+              color: Color.fromARGB(255, 11, 101, 218),
+            ),
+            title: Text("+ More"),
           ),
           const SizedBox(
             height: 35,
@@ -92,7 +92,7 @@ class AddCategoriesCardState extends ConsumerState<AddCategoriesCard> {
                   content: Column(
                     children: [
                       Text(
-                        "Categories successfully created. You can add more later.",
+                        "Categories successfully created.",
                         style: TextStyle(
                           color: Color.fromARGB(255, 9, 163, 99),
                         ),
