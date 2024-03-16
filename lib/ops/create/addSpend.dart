@@ -3,6 +3,7 @@ import "package:app/providers/spends_provider.dart";
 import 'package:app/providers/wallets_provider.dart' as P;
 import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
+import "package:flutter/widgets.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:realm/realm.dart";
@@ -19,12 +20,14 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
+  final _dateController = TextEditingController();
 
   Category _selectedCategory = categories.isEmpty
       ? Category(ObjectId(), "Miscellaneous", "💞", "", DateTime.now())
       : categories.first;
-  Wallet _selectedWallet =
-      wallets.isEmpty ? Wallet(ObjectId(), "Flexible", 0, DateTime.now()) : wallets.first;
+  Wallet _selectedWallet = wallets.isEmpty
+      ? Wallet(ObjectId(), "Flexible", 0, DateTime.now())
+      : wallets.first;
 
   late int newBalance =
       _selectedWallet.balance - int.parse(_amountController.text);
@@ -41,7 +44,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
 
     if (setDate != null) {
       setState(() {
-        date = setDate;
+        _dateController.text = DateFormat("EEEE, dd MMMM").format(setDate);
       });
     } else {
       date = DateTime.now();
@@ -89,7 +92,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                         size: 24,
                       ),
                       border: InputBorder.none,
-                      label: Text("What did spend on?"),
+                      label: Text("What did spend on ?"),
                       isDense: true,
                     ),
                   ),
@@ -129,8 +132,8 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                   const Divider(
                     color: Color.fromARGB(255, 227, 226, 226),
                   ),
-                  TextFormField(
-                    initialValue: DateFormat("EEEE, dd MMMM").format(date),
+                  TextField(
+                    controller: _dateController,
                     onChanged: newDate,
                     readOnly: true,
                     decoration: const InputDecoration(
@@ -303,13 +306,9 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                               ),
                             );
                         ref.read(P.walletsNotifier.notifier).updateWallet(
-                          Wallet(
-                            _selectedWallet.id, 
-                            _selectedWallet.name,
-                            newBalance, 
-                            DateTime.now()
-                          ),     
-                        );
+                              Wallet(_selectedWallet.id, _selectedWallet.name,
+                                  newBalance, DateTime.now()),
+                            );
                         _nameController.clear();
                         _notesController.clear();
                         _amountController.clear();
@@ -338,7 +337,6 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                               ],
                             ),
                           ),
-                          
                         );
                       }
                       Navigator.of(context).pop();
