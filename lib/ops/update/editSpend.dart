@@ -34,7 +34,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
 
     if (setDate != null) {
       setState(() {
-        _dateController.text = DateFormat("EEEE, dd MMMM").format(setDate);
+        _dateController.text = DateFormat("EEEE, dd MMMM, yyyy").format(setDate);
       });
     } else {
       date = DateTime.now();
@@ -309,7 +309,10 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                                 ),
                                 category: _selectedCategory,
                                 wallet: _selectedWallet,
-                                date,
+                                // DateFormat("EEEE, dd MMMM, yyyy")
+                                //     .tryParse(_dateController.text) ?? DateTime.now(),
+                                DateFormat("EEEE, dd MMMM, yyyy")
+                                    .parse(_dateController.text),
                               ),
                             );
                         ScaffoldMessenger.of(context).showSnackBar(
