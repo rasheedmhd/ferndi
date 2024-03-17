@@ -119,7 +119,8 @@ class SpendItem extends ConsumerWidget {
                     fontSize: 20,
                   ),
                 ),
-                subtitle: Text(spend.notes),
+                // subtitle: Text(spend.notes),
+                subtitle: Text(spend.createdAt.toString()),
                 trailing: Text(
                   "- ${spend.getAmount}",
                   style: const TextStyle(
