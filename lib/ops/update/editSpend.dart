@@ -22,6 +22,8 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
   late DateTime date = spendToEdit.createdAt;
   late String amount = spendToEdit.amount.toString();
 
+  final _dateController = TextEditingController();
+
   Future<void> setDatePicker() async {
     DateTime? setDate = await showDatePicker(
       context: context,
@@ -32,7 +34,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
 
     if (setDate != null) {
       setState(() {
-        date = setDate;
+        _dateController.text = DateFormat("EEEE, dd MMMM").format(setDate);
       });
     } else {
       date = DateTime.now();
@@ -57,6 +59,12 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
 
   late Category _selectedCategory = spendToEdit.category ??= categories.first;
   late Wallet _selectedWallet = spendToEdit.wallet ??= wallets.first;
+
+    @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,8 +144,8 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                   const Divider(
                     color: Color.fromARGB(255, 227, 226, 226),
                   ),
-                  TextFormField(
-                    initialValue: DateFormat("EEEE, dd MMMM").format(date),
+                  TextField(
+                    controller: _dateController,
                     onChanged: newDate,
                     readOnly: true,
                     decoration: const InputDecoration(

@@ -60,6 +60,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
     _nameController.dispose();
     _notesController.dispose();
     _amountController.dispose();
+    _dateController.dispose();
     super.dispose();
   }
 
