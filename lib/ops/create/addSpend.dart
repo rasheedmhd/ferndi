@@ -166,6 +166,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                       hint: const Text("Category"),
                       icon: const FaIcon(
                         FontAwesomeIcons.boxArchive,
+                        size: 21,
                         color: Color.fromARGB(255, 151, 151, 151),
                       ),
                       isExpanded: true,
@@ -199,6 +200,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                       hint: const Text("Wallet"),
                       icon: const Icon(
                         Icons.wallet_sharp,
+                        size: 25,
                         color: Color.fromARGB(255, 151, 151, 151),
                       ),
                       isExpanded: true,

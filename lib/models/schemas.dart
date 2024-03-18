@@ -1,7 +1,6 @@
 import "package:realm/realm.dart";
 part "schemas.g.dart";
 
-
 final config = Configuration.local([
   Spend.schema,
   Wallet.schema,

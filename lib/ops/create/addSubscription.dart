@@ -39,7 +39,7 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
         title: const Text("Add Subscription"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(

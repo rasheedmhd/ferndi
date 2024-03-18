@@ -22,8 +22,8 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
   late DateTime date = spendToEdit.createdAt;
   late String amount = spendToEdit.amount.toString();
 
-  // final _dateController = TextEditingController();
-  TextEditingController _dateController = TextEditingController();
+  final _dateController = TextEditingController();
+  // TextEditingController _dateController = TextEditingController();
 
   Future<void> setDatePicker() async {
     DateTime? setDate = await showDatePicker(
@@ -61,17 +61,12 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
   late Category _selectedCategory = spendToEdit.category ??= categories.first;
   late Wallet _selectedWallet = spendToEdit.wallet ??= wallets.first;
   
-  @override
-  void initState() {
-    super.initState();
-    _dateController = TextEditingController(text: date.toString());
-  }
   
-  @override
-  void dispose() {
-    _dateController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _dateController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -156,14 +151,14 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                     onChanged: newDate,
                     readOnly: true,
                     decoration:  InputDecoration(
-                      iconColor: Color.fromARGB(255, 151, 151, 151),
-                      icon: FaIcon(
+                      iconColor: const Color.fromARGB(255, 151, 151, 151),
+                      icon: const FaIcon(
                         FontAwesomeIcons.calendarDay,
                         size: 24,
                       ),
                       border: InputBorder.none,
                       // label: Text("Date"),
-                      label: Text(date.toString()),
+                      label: Text(DateFormat("EEEE, dd MMMM, yyyy").format(date)),
                       isDense: true,
                     ),
                     onTap: () {
@@ -317,10 +312,8 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                                 ),
                                 category: _selectedCategory,
                                 wallet: _selectedWallet,
-                                // DateFormat("EEEE, dd MMMM, yyyy")
-                                //     .tryParse(_dateController.text) ?? DateTime.now(),
                                 DateFormat("EEEE, dd MMMM, yyyy")
-                                    .parse(_dateController.text),
+                                    .tryParse(_dateController.text) ?? date,
                               ),
                             );
                         ScaffoldMessenger.of(context).showSnackBar(
