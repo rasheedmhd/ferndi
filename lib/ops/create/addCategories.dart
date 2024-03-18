@@ -64,7 +64,7 @@ class AddCategoriesCardState extends ConsumerState<AddCategoriesCard> {
               size: 25.0,
               color: Color.fromARGB(255, 11, 101, 218),
             ),
-            title: Text("+ 23 More"),
+            title: Text("23 More"),
           ),
           const SizedBox(
             height: 35,

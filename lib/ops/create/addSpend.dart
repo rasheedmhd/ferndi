@@ -249,19 +249,19 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                           const SnackBar(
                             backgroundColor: Color.fromARGB(255, 255, 231, 241),
                             content: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Spend details incomplete",
+                                  "Spend details incomplete. Please add",
                                   style: TextStyle(
                                     color: Color.fromARGB(255, 163, 9, 71),
                                   ),
                                 ),
                                 Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  // crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "Please add name, amount, wallet and category.",
+                                      "a Spend Name, Amount, Wallet and Category.",
                                       style: TextStyle(
                                         color: Color.fromARGB(255, 163, 9, 71),
                                       ),
