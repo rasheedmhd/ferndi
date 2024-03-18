@@ -101,7 +101,7 @@ class InsightsState extends ConsumerState<Insights> {
                 Row(
                   children: [
                     const Text(
-                      "All categories",
+                      "All Categories",
                       style: TextStyle(
                         fontSize: 30.0,
                         color: Color.fromARGB(255, 5, 61, 135),

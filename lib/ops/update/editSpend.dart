@@ -22,7 +22,8 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
   late DateTime date = spendToEdit.createdAt;
   late String amount = spendToEdit.amount.toString();
 
-  final _dateController = TextEditingController();
+  // final _dateController = TextEditingController();
+  TextEditingController _dateController = TextEditingController();
 
   Future<void> setDatePicker() async {
     DateTime? setDate = await showDatePicker(
@@ -41,10 +42,6 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
     }
   }
 
-  void newDate(String typedDate) {
-    date = DateTime.parse(typedDate);
-  }
-
   void _newName(String typedName) {
     name = typedName;
   }
@@ -57,10 +54,20 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
     amount = typedAmount;
   }
 
+  void newDate(String typedDate) {
+    date = DateTime.parse(typedDate);
+  }
+
   late Category _selectedCategory = spendToEdit.category ??= categories.first;
   late Wallet _selectedWallet = spendToEdit.wallet ??= wallets.first;
-
-    @override
+  
+  @override
+  void initState() {
+    super.initState();
+    _dateController = TextEditingController(text: date.toString());
+  }
+  
+  @override
   void dispose() {
     _dateController.dispose();
     super.dispose();
@@ -148,14 +155,15 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                     controller: _dateController,
                     onChanged: newDate,
                     readOnly: true,
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                       iconColor: Color.fromARGB(255, 151, 151, 151),
                       icon: FaIcon(
                         FontAwesomeIcons.calendarDay,
                         size: 24,
                       ),
                       border: InputBorder.none,
-                      label: Text("Date"),
+                      // label: Text("Date"),
+                      label: Text(date.toString()),
                       isDense: true,
                     ),
                     onTap: () {

@@ -30,7 +30,7 @@ class DelightfulCard extends StatelessWidget {
                     color: Color.fromARGB(255, 255, 255, 255),
                   )
                 ),
-                Text("Starts here!",
+                Text("Starts Here!",
                   style: TextStyle(
                     fontSize: 30.0,
                     color: Color.fromARGB(255, 255, 255, 255),

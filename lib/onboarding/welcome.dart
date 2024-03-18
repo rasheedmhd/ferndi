@@ -54,12 +54,12 @@ class Onboarding extends ConsumerWidget {
                         ListTile(
                           leading: FaIcon(
                             FontAwesomeIcons.moneyBillTransfer,
-                            size: 30.0,
+                            size: 24.0,
                             color: Color.fromARGB(255, 16, 212, 173),
                           ),
                           title: Text("TRACK YOUR SPENDS"),
                           subtitle: Text(
-                              "Spend from your Wallets and record spends in real time like in real life."),
+                              "Spend from your Wallets and track Spends in real time like in real life."),
                         ),
                         ListTile(
                           leading: Icon(

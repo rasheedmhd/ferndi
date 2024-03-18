@@ -83,7 +83,7 @@ class SpendInfoCard2 extends ConsumerWidget {
                             fontSize: 25.0,
                             color: Color.fromARGB(255, 12, 12, 12),
                           )),
-                      const Text("this week day",
+                      const Text("This Weekday",
                           style: TextStyle(
                             color: Color.fromARGB(255, 12, 12, 12),
                           )),
@@ -123,7 +123,7 @@ class SpendInfoCard2 extends ConsumerWidget {
                             fontSize: 25.0,
                             color: Color.fromARGB(255, 12, 12, 12),
                           )),
-                      const Text("this month",
+                      const Text("This Month",
                           style: TextStyle(
                             color: Color.fromARGB(255, 12, 12, 12),
                           )),
@@ -153,7 +153,7 @@ class SpendInfoCard2 extends ConsumerWidget {
                             fontSize: 25.0,
                             color: Color.fromARGB(255, 12, 12, 12),
                           )),
-                      const Text("all spends",
+                      const Text("All Spends",
                           style: TextStyle(
                             color: Color.fromARGB(255, 12, 12, 12),
                           )),
