@@ -5,6 +5,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/subs_provider.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:intl/intl.dart";
 
 class SubscriptionItem extends ConsumerWidget {
   const SubscriptionItem(this.subscription, {super.key});
@@ -13,6 +14,8 @@ class SubscriptionItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final dueDate =
+        DateFormat("EEEE, dd MMMM, yyyy").format(subscription.createdAt);
     void showSubscriptionEditForm() {
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -137,6 +140,26 @@ class SubscriptionItem extends ConsumerWidget {
                   ),
                   const SizedBox(
                     height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            padding: const EdgeInsets.all(7),
+                            color: const Color.fromARGB(255, 234, 246, 255),
+                            child: Text(
+                              " Due Date:  $dueDate ",
+                              style: const TextStyle(
+                                color: Color.fromARGB(255, 90, 90, 90),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   Row(
                     children: [
