@@ -141,17 +141,18 @@ class SubscriptionItem extends ConsumerWidget {
                   const SizedBox(
                     height: 10,
                   ),
+                  const Text("Due Date: "),
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
+                        padding: const EdgeInsets.fromLTRB(0, 5, 10, 10),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
                             padding: const EdgeInsets.all(7),
                             color: const Color.fromARGB(255, 234, 246, 255),
                             child: Text(
-                              " Due Date:  $dueDate ",
+                              "$dueDate ",
                               style: const TextStyle(
                                 color: Color.fromARGB(255, 90, 90, 90),
                               ),
@@ -159,8 +160,22 @@ class SubscriptionItem extends ConsumerWidget {
                           ),
                         ),
                       ),
+                      ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Container(
+                            padding: const EdgeInsets.all(5),
+                            color: const Color.fromARGB(199, 71, 34, 255),
+                            child: const Text(
+                              " charge ",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
                     ],
                   ),
+                  
                   Row(
                     children: [
                       Container(

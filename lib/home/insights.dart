@@ -12,22 +12,6 @@ import "package:app/providers/wallets_provider.dart";
 // Smart Card
 // First Card gives you useful information
 
-// Buttons
-// total categories
-// Icon
-// number
-// button to see all categories
-// button to add categories
-
-// total spends
-// 4 in a row
-// - this week
-// - this month
-// - all spends
-// - since you joined
-// Icon
-// number
-// button to add categories
 
 // category with the highest number of spends
 // Icon
@@ -47,12 +31,14 @@ import "package:app/providers/wallets_provider.dart";
 // number
 // button to add categories
 
-// total wallets
-// Icon
-// number
-// button to add wallet
-
 // Streak
+
+// [[ TO DO ]]
+// Spends Average Amount
+// Spends Smallest Amount
+// Most Expensive Spends  Amount
+// Most Expensive Spends  Wallet
+// Most Spent from Wallet
 
 class Insights extends ConsumerStatefulWidget {
   const Insights({super.key});
