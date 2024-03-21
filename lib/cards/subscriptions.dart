@@ -166,23 +166,30 @@ class SubscriptionItem extends ConsumerWidget {
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                  Padding(
-                    padding:const EdgeInsets.fromLTRB(0, 5, 10, 10),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: Container(
-                        padding: const EdgeInsets.all(5),
-                        color: const Color.fromARGB(255, 5, 61, 135),
-                        child: const Text(
-                          " charge ",
-                          style: TextStyle(
-                            color: Colors.white,
+                      Padding(
+                        padding:const EdgeInsets.fromLTRB(0, 5, 10, 10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Container(
+                            padding: const EdgeInsets.all(5),
+                            color: const Color.fromARGB(255, 5, 61, 135),
+                            child: const Text(
+                              " charge ",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
+                      ), 
+                      GestureDetector(
+                        child: const FaIcon(
+                            FontAwesomeIcons.circleQuestion,
+                            size: 15,
+                            color: Color.fromARGB(255, 5, 61, 135),
+                          ),
                       ),
-                    ),
+                    ],
                   ),
                   Row(
                     children: [

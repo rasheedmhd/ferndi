@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:app/providers/wallets_provider.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 class BalanceCard extends ConsumerWidget {
   const BalanceCard({super.key});
@@ -34,10 +35,23 @@ class BalanceCard extends ConsumerWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Current Balance",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 228, 255, 239),
-                        )),
+                    Row(
+                      children: [
+                        const Text(
+                          "Current Balance  ",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 228, 255, 239),
+                          ),
+                        ),
+                        GestureDetector(
+                          child: const FaIcon(
+                            FontAwesomeIcons.circleQuestion,
+                            size: 13,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
+                        ),
+                      ],
+                    ),
                     Row(
                       children: [
                         Text(
@@ -64,7 +78,7 @@ class BalanceCard extends ConsumerWidget {
                           color: Color.fromARGB(255, 228, 255, 239),
                         )),
                     Text(
-                      "GHS ${income}",
+                      "GHS $income",
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color.fromARGB(255, 255, 255, 255),
@@ -83,7 +97,7 @@ class BalanceCard extends ConsumerWidget {
                           color: Color.fromARGB(255, 228, 255, 239),
                         )),
                     Text(
-                      "GHS ${totalSpend}",
+                      "GHS $totalSpend",
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color.fromARGB(255, 255, 255, 255),
