@@ -108,6 +108,7 @@ class SubscriptionItem extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.all(15),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
@@ -141,7 +142,12 @@ class SubscriptionItem extends ConsumerWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text("Due Date: "),
+                  const Text(
+                    "Due Date:   ",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 148, 152, 158),
+                    ),
+                  ),
                   Row(
                     children: [
                       Padding(
@@ -160,22 +166,24 @@ class SubscriptionItem extends ConsumerWidget {
                           ),
                         ),
                       ),
-                      ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Container(
-                            padding: const EdgeInsets.all(5),
-                            color: const Color.fromARGB(199, 71, 34, 255),
-                            child: const Text(
-                              " charge ",
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
                     ],
                   ),
-                  
+                  Padding(
+                    padding:const EdgeInsets.fromLTRB(0, 5, 10, 10),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        color: const Color.fromARGB(255, 5, 61, 135),
+                        child: const Text(
+                          " charge ",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   Row(
                     children: [
                       Container(
