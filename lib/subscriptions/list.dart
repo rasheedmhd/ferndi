@@ -21,7 +21,7 @@ class SubscriptionsState extends State<Subscriptions> {
         builder: (ctx) => const AddSubscriptionCard(),
       );
     }
-
+    
     return Scaffold(
       appBar: AppBar(
         actions: [

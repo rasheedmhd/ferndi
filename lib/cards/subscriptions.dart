@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:app/models/schemas.dart' as my;
 import "package:app/ops/update/editSubscription.dart";
+import "package:app/ops/create/charge.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/subs_provider.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
@@ -21,6 +22,13 @@ class SubscriptionItem extends ConsumerWidget {
         MaterialPageRoute(
           builder: (ctx) => EditSubscriptionCard(subscription),
         ),
+      );
+    }
+
+    void showCharge() {
+      showModalBottomSheet(
+        context: context,
+        builder: (ctx) => ChargeCard(subscription),
       );
     }
 
@@ -168,27 +176,31 @@ class SubscriptionItem extends ConsumerWidget {
                       ),
                       Padding(
                         padding:const EdgeInsets.fromLTRB(0, 5, 10, 10),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Container(
-                            padding: const EdgeInsets.all(5),
-                            color: const Color.fromARGB(255, 5, 61, 135),
-                            child: const Text(
-                              " charge ",
-                              style: TextStyle(
-                                color: Colors.white,
+                        child: GestureDetector(
+                          onTap: showCharge,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: Container(
+                              padding: const EdgeInsets.all(5),
+                              color: const Color.fromARGB(255, 5, 61, 135),
+                              child: const Text(
+                                " charge ",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ), 
-                      GestureDetector(
-                        child: const FaIcon(
-                            FontAwesomeIcons.circleQuestion,
-                            size: 15,
-                            color: Color.fromARGB(255, 5, 61, 135),
-                          ),
-                      ),
+                      // GestureDetector(
+                      //   onTap: showChargeInfo,
+                      //   child: const FaIcon(
+                      //       FontAwesomeIcons.circleQuestion,
+                      //       size: 15,
+                      //       color: Color.fromARGB(255, 5, 61, 135),
+                      //     ),
+                      // ),
                     ],
                   ),
                   Row(
