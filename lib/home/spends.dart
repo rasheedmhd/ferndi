@@ -105,25 +105,21 @@ class SpendItem extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: ListTile(
+                // contentPadding: const EdgeInsets.only(top: 0.0),
                 leading: CircleAvatar(
                   backgroundColor:
                       Color(int.tryParse(spend.category!.color) ?? 4290958844),
                   child: Text(
                     spend.category!.emoji,
-                    style: const TextStyle(fontSize: 25),
+                    style: const TextStyle(fontSize: 20),
                   ),
                 ),
-                title: Text(
-                  spend.name,
-                  style: const TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-                subtitle: Text(spend.notes),
+                title: Text(spend.name),
+                subtitle: Text(spend.wallet!.name),
                 trailing: Text(
                   "- ${spend.getAmount}",
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
                     color: Color.fromARGB(255, 163, 9, 71),
                   ),
                 ),
