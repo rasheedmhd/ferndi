@@ -3,6 +3,7 @@ import 'package:app/providers/wallets_provider.dart';
 import "package:flutter/material.dart";
 import "package:realm/realm.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import 'package:flutter/services.dart';
 
 class AddWalletCard extends ConsumerStatefulWidget {
   const AddWalletCard({super.key});
@@ -42,7 +43,9 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
             children: [
               TextField(
                 controller: _nameController,
-                maxLength: 50,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(50), // Limit the number of characters
+                ],
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   label: Text("Name"),
@@ -50,7 +53,9 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
               ),
               TextField(
                 controller: _balanceController,
-                maxLength: 10,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(10), // Limit the number of characters
+                ],
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   prefix: Text("GHS "),

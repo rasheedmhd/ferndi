@@ -7,6 +7,8 @@ import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:realm/realm.dart";
 import "package:intl/intl.dart";
+import 'package:flutter/services.dart';
+
 
 class AddSpendCard extends ConsumerStatefulWidget {
   const AddSpendCard({super.key});
@@ -91,6 +93,9 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                 children: [
                   TextField(
                     controller: _nameController,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(50), // Limit the number of characters
+                    ],
                     decoration: const InputDecoration(
                       iconColor: Color.fromARGB(255, 151, 151, 151),
                       icon: FaIcon(
@@ -107,6 +112,9 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                   ),
                   TextField(
                     controller: _notesController,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(250), // Limit the number of characters
+                    ],                    
                     decoration: const InputDecoration(
                       iconColor: Color.fromARGB(255, 151, 151, 151),
                       icon: FaIcon(
@@ -123,6 +131,9 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                   ),
                   TextField(
                     controller: _amountController,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(10), // Limit the number of characters
+                    ],
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                         iconColor: Color.fromARGB(255, 151, 151, 151),

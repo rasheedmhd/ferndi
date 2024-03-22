@@ -6,6 +6,8 @@ import "package:flutter/material.dart";
 import "package:realm/realm.dart";
 import "package:app/providers/subs_provider.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import 'package:flutter/services.dart';
+
 
 class AddSubscriptionCard extends ConsumerStatefulWidget {
   const AddSubscriptionCard({super.key});
@@ -52,7 +54,9 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
             children: [
               TextField(
                 controller: _nameController,
-                maxLength: 50,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(50), // Limit the number of characters
+                ],
                 decoration: const InputDecoration(
                   label: Text("Name"),
                   isDense: true,
@@ -60,7 +64,9 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
               ),
               TextField(
                 controller: _amountController,
-                maxLength: 5,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(10), // Limit the number of characters
+                ],
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                     isDense: true, prefix: Text("GHS "), label: Text("Amount")),
