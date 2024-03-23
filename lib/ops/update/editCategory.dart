@@ -2,6 +2,8 @@ import "package:app/models/schemas.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/categories_provider.dart";
+import 'package:flutter/services.dart';
+
 
 class EditCategoryCard extends ConsumerStatefulWidget {
   const EditCategoryCard({required this.category, super.key});
@@ -58,7 +60,9 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
               TextFormField(
                 initialValue: name,
                 onChanged: _newName,
-                maxLength: 50,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(50), // Limit the number of characters
+                ],
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(label: Text("Category Name")),
               ),
@@ -85,7 +89,9 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                     child: TextFormField(
                       initialValue: categoryEmoji,
                       onChanged: _newEmoji,
-                      maxLength: 1,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(1), // Limit the number of characters
+                      ],
                       keyboardType: TextInputType.text,
                       decoration: const InputDecoration(label: Text("Emoji")),
                     ),
@@ -93,7 +99,7 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                 ],
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               SizedBox(
                 height: 40,

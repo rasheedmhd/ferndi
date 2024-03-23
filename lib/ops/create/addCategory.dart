@@ -3,6 +3,8 @@ import "package:flutter/material.dart";
 import "package:realm/realm.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/categories_provider.dart";
+import 'package:flutter/services.dart';
+
 
 class AddCategoryCard extends ConsumerStatefulWidget {
   const AddCategoryCard({super.key});
@@ -60,7 +62,9 @@ class AddCategoryCardState extends ConsumerState<AddCategoryCard> {
             children: [
               TextField(
                 controller: _nameController,
-                maxLength: 50,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(50), // Limit the number of characters
+                ],
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(label: Text("Name")),
               ),
@@ -87,7 +91,9 @@ class AddCategoryCardState extends ConsumerState<AddCategoryCard> {
                     child: TextFormField(
                       initialValue: categoryEmoji,
                       onChanged: _newEmoji,
-                      maxLength: 1,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(1), // Limit the number of characters
+                      ],
                       keyboardType: TextInputType.text,
                       decoration: const InputDecoration(label: Text("Emoji")),
                     ),
@@ -95,7 +101,7 @@ class AddCategoryCardState extends ConsumerState<AddCategoryCard> {
                 ],
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               SizedBox(
                 height: 40,

@@ -148,7 +148,7 @@ class CategoryItem extends ConsumerWidget {
                     ),
                   ),
                 ),
-                subtitle: Text("$spendsPerCategory Transactions"),
+                subtitle: Text("$spendsPerCategory Spends"),
                 title: Text(
                   category.name,
                   style: const TextStyle(
@@ -158,7 +158,7 @@ class CategoryItem extends ConsumerWidget {
                 trailing: Text(
                   "- GHS ${totalSpendAmountPerCategory.toString()}",
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 14,
                     color: Color.fromARGB(255, 163, 9, 71),
                   ),
                 ),

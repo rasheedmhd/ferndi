@@ -2,6 +2,8 @@ import "package:app/models/schemas.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/wallets_provider.dart";
+import 'package:flutter/services.dart';
+
 
 class EditWalletCard extends ConsumerStatefulWidget {
   final Wallet wallet;
@@ -34,7 +36,7 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
             border: Border.all(
               color: const Color.fromARGB(255, 227, 226, 226),
@@ -46,14 +48,18 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
               TextFormField(
                 initialValue: name,
                 onChanged: _newName,
-                maxLength: 50,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(50), // Limit the number of characters
+                ],
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(label: Text("Wallet Name")),
               ),
               TextFormField(
                 initialValue: balance,
                 onChanged: _newBalance,
-                maxLength: 10,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(10), // Limit the number of characters
+                ],
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                     prefix: Text("GHS "), label: Text("Balance")),
