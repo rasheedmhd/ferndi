@@ -149,9 +149,7 @@ class WalletItem extends ConsumerWidget {
               ),
               borderRadius: BorderRadius.circular(20.0),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ExpansionTile(
+            child: ExpansionTile(
                 collapsedBackgroundColor: Colors.white,
                 collapsedShape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
@@ -161,7 +159,7 @@ class WalletItem extends ConsumerWidget {
                 ),
                 backgroundColor: Colors.white,
                 leading: const CircleAvatar(
-                  radius: 35,
+                  radius: 30,
                   backgroundColor: Color.fromARGB(255, 204, 241, 228),
                   child: FaIcon(
                     FontAwesomeIcons.wallet,
@@ -169,21 +167,16 @@ class WalletItem extends ConsumerWidget {
                     color: Color.fromARGB(255, 19, 194, 110),
                   ),
                 ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      wallet.name,
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 106, 106, 106),
-                      ),
+                title: Text(
+                    wallet.name,
+                    style: const TextStyle(
+                      color: Color.fromARGB(255, 106, 106, 106),
                     ),
-                  ],
-                ),
+                  ),
                 subtitle: Text(
                   wallet.bal,
                   style: const TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 19.0,
                     color: Color.fromARGB(255, 48, 136, 6),
                   ),
                 ),
@@ -201,7 +194,7 @@ class WalletItem extends ConsumerWidget {
                             padding: const EdgeInsets.all(7),
                             color: const Color.fromARGB(200, 109, 189, 255),
                             child: Text(
-                              " $spendsCount transactions ",
+                              " $spendsCount Spends ",
                               style: const TextStyle(
                                 color: Colors.white,
                               ),
@@ -261,7 +254,7 @@ class WalletItem extends ConsumerWidget {
               ),
             ),
           ),
-        ),
+        // ),
         const SizedBox(
           height: 12,
         )
