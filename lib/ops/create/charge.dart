@@ -26,11 +26,17 @@ class ChargeCardState extends ConsumerState<ChargeCard> {
 
     final dateString = DateFormat("EEEE, dd MMMM, yyyy").format(DateTime.now());
 
-    return SizedBox(
+    return Container(
+      padding: const EdgeInsets.all(20),
       height: 320,
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: const Color.fromARGB(255, 227, 226, 226),
+            ),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+      child: Scaffold(
+        bottomSheet: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             border: Border.all(
