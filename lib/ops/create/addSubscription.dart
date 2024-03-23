@@ -60,7 +60,11 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                 decoration: const InputDecoration(
                   label: Text("Name"),
                   isDense: true,
+                  border: InputBorder.none,
                 ),
+              ),
+              const Divider(
+                color: Color.fromARGB(255, 227, 226, 226),
               ),
               TextField(
                 controller: _amountController,
@@ -69,10 +73,14 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                 ],
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                    isDense: true, prefix: Text("GHS "), label: Text("Amount")),
+                  border: InputBorder.none,
+                  isDense: true, prefix: Text("GHS "), label: Text("Amount")),
+              ),
+              const Divider(
+                color: Color.fromARGB(255, 227, 226, 226),
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               Row(
                 children: [

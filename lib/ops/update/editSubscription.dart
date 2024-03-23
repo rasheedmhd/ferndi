@@ -4,6 +4,8 @@ import 'package:app/models/schemas.dart' as my;
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/subs_provider.dart";
+import 'package:flutter/services.dart';
+
 
 class EditSubscriptionCard extends ConsumerStatefulWidget {
   final my.Subscription subscription;
@@ -36,10 +38,10 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add Subscription"),
+        title: const Text("Edit Subscription"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
@@ -53,23 +55,35 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
               TextFormField(
                 initialValue: name,
                 onChanged: _newName,
-                maxLength: 50,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(50), // Limit the number of characters
+                ],
                 decoration: const InputDecoration(
                   label: Text("Name"),
+                  border: InputBorder.none
                 ),
+              ),
+              const Divider(
+                color: Color.fromARGB(255, 227, 226, 226),
               ),
               TextFormField(
                 initialValue: amount,
                 onChanged: _newAmount,
-                maxLength: 5,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(100), // Limit the number of characters
+                ],
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   prefix: Text("GHS "),
                   label: Text("Amount"),
+                  border: InputBorder.none
                 ),
               ),
+              const Divider(
+                color: Color.fromARGB(255, 227, 226, 226),
+              ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               Row(
                 children: [

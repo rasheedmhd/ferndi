@@ -28,7 +28,7 @@ class ChargeCardState extends ConsumerState<ChargeCard> {
 
     return Container(
       padding: const EdgeInsets.all(20),
-      height: 320,
+      height: 350,
           decoration: BoxDecoration(
             border: Border.all(
               color: const Color.fromARGB(255, 227, 226, 226),
@@ -58,13 +58,12 @@ class ChargeCardState extends ConsumerState<ChargeCard> {
               const Text("Charge is how you pay your Subscriptions."),
               Text(
                   "If you Charge, GHS ${subscriptionToCharge.getAmount} will be deducted from ${subscriptionToCharge.wallet!.name} to pay for ${subscriptionToCharge.name} and Recorded as a Spend"),
-              const SizedBox(
-                height: 10,
+
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 15.0),
+                child: Text("Proceed to Charge."),
               ),
-              const Text("Proceed to Charge"),
-              const SizedBox(
-                height: 10,
-              ),
+
               FloatingActionButton.extended(
                 elevation: 1,
                 shape: RoundedRectangleBorder(
