@@ -137,6 +137,7 @@ class CategoryItem extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: ListTile(
+                titleAlignment: ListTileTitleAlignment.top,
                 leading: CircleAvatar(
                   backgroundColor: categoryColor,
                   child: Text(

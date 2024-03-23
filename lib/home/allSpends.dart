@@ -105,6 +105,7 @@ class SpendItem extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: ListTile(
+                titleAlignment: ListTileTitleAlignment.top,
                 leading: CircleAvatar(
                   backgroundColor:
                       Color(int.tryParse(spend.category!.color) ?? 4290958844),
