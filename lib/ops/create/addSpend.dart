@@ -59,7 +59,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
   @override
   void initState() {
     super.initState();
-    _dateController = TextEditingController(text: 'Today');
+    _dateController = TextEditingController(text: ' Today');
   }
 
   @override
@@ -160,7 +160,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                         size: 24,
                       ),
                       border: InputBorder.none,
-                      label: Text("Date"),
+                      label: Text(" Date"),
                       isDense: true,
                     ),
                     onTap: () {
@@ -170,19 +170,27 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                   const Divider(
                     color: Color.fromARGB(255, 227, 226, 226),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15.0),
-                    child: DropdownButton(
-                      value: _selectedCategory,
-                      hint: const Text("Category"),
-                      icon: const FaIcon(
-                        FontAwesomeIcons.boxArchive,
-                        size: 21,
-                        color: Color.fromARGB(255, 151, 151, 151),
+                  Row(
+                    children: [
+                      const Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.boxArchive,
+                            size: 24,
+                            color: Color.fromARGB(255, 151, 151, 151),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                        ],
                       ),
-                      isExpanded: true,
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(20),
+                      Expanded(
+                        child: DropdownButton(
+                          value: _selectedCategory,
+                          hint: const Text("Category"),
+                          underline: Container(),
+                          isExpanded: true,
+                          borderRadius: const BorderRadius.all(Radius.circular(20),
                       ),
                       items: categories
                           .map(
@@ -193,50 +201,72 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                           )
                           .toList(),
                       onChanged: (value) {
-                        if (value == null) {
-                          return;
-                        }
-                        setState(
-                          () {
-                            _selectedCategory = value;
+                            if (value == null) {
+                              return;
+                            }
+                            setState(
+                              () {
+                                _selectedCategory = value;
+                              },
+                            );
                           },
-                        );
-                      },
-                    ),
+                        ),    
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
-                    child: DropdownButton(
-                      value: _selectedWallet,
-                      hint: const Text("Wallet"),
-                      icon: const Icon(
-                        Icons.wallet_sharp,
-                        size: 25,
-                        color: Color.fromARGB(255, 151, 151, 151),
+                  const Divider(
+                    color: Color.fromARGB(255, 227, 226, 226),
+                  ),
+                  Row(
+                    children: [
+                      const Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.wallet,
+                            size: 24,
+                            color: Color.fromARGB(255, 151, 151, 151),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                        ],
                       ),
-                      isExpanded: true,
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      items: wallets
-                          .map(
-                            (wallet) => DropdownMenuItem(
-                              value: wallet,
-                              child: Text(wallet.name),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (value) {
-                        if (value == null) {
-                          return;
-                        }
-                        setState(
-                          () {
-                            _selectedWallet = value;
+                      Expanded(
+                        child: DropdownButton(
+                          value: _selectedWallet,
+                          hint: const Text("Wallet"),
+                          underline: Container(),
+                          isExpanded: true,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          items: wallets
+                              .map(
+                                (wallet) => DropdownMenuItem(
+                                  value: wallet,
+                                  child: Text(wallet.name),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            if (value == null) {
+                              return;
+                            }
+                            setState(
+                              () {
+                                _selectedWallet = value;
+                              },
+                            );
                           },
-                        );
-                      },
-                    ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Divider(
+                    color: Color.fromARGB(255, 227, 226, 226),
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   FloatingActionButton.extended(
                     elevation: 1,
