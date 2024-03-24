@@ -7,7 +7,6 @@ import "package:app/providers/spends_provider.dart";
 import "package:app/providers/wallets_provider.dart";
 import "package:intl/intl.dart";
 
-
 class TransactionItem extends ConsumerWidget {
   const TransactionItem(this.spend, {super.key});
 
@@ -23,61 +22,43 @@ class TransactionItem extends ConsumerWidget {
       );
     }
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-      child: Column(
-        children: [
-          Slidable(
-            // Specify a key if the Slidable is dismissible.
-            key: ValueKey(spend.id),
+    final date = DateFormat("EEEE, dd MMMM").format(spend.createdAt);
 
-            // The start action pane is the one at the left or the top side.
-            startActionPane: ActionPane(
-              // A motion is a widget used to control how the pane animates.
-              motion: const ScrollMotion(),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: const Color.fromARGB(255, 227, 226, 226),
+          ),
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Column(
+          children: [
+            Slidable(
+              // Specify a key if the Slidable is dismissible.
+              key: ValueKey(spend.id),
 
-              // A pane can dismiss the Slidable.
-              dismissible: DismissiblePane(
-                onDismissed: () {
-                  ref.read(spendsNotifier.notifier).deleteSpend(spend);
-                  ScaffoldMessenger.of(context).clearSnackBars();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                      content: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Spend Deleted",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 163, 9, 71),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
+              // The start action pane is the one at the left or the top side.
+              startActionPane: ActionPane(
+                // A motion is a widget used to control how the pane animates.
+                motion: const ScrollMotion(),
 
-              // All actions are defined in the children parameter.
-              children: [
-                // A SlidableAction can have an icon and/or a label.
-                SlidableAction(
-                  onPressed: (context) {
+                // A pane can dismiss the Slidable.
+                dismissible: DismissiblePane(
+                  onDismissed: () {
+                    ref.read(spendsNotifier.notifier).deleteSpend(spend);
                     ScaffoldMessenger.of(context).clearSnackBars();
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                        backgroundColor: Color.fromARGB(255, 255, 231, 241),
                         content: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Slide through to delete",
+                              "Spend Deleted",
                               style: TextStyle(
-                                color: Color.fromARGB(255, 0, 128, 255),
+                                color: Color.fromARGB(255, 163, 9, 71),
                               ),
                             ),
                           ],
@@ -85,26 +66,46 @@ class TransactionItem extends ConsumerWidget {
                       ),
                     );
                   },
-                  foregroundColor: const Color(0xFFFE4A49),
-                  backgroundColor: Colors.white,
-                  icon: Icons.delete,
-                  label: 'Delete',
                 ),
-                SlidableAction(
-                  onPressed: (context) {
-                    showSpendEditForm();
-                  },
-                  foregroundColor: const Color.fromARGB(255, 96, 150, 249),
-                  backgroundColor: Colors.white,
-                  icon: Icons.edit,
-                  label: 'Edit',
-                ),
-              ],
-            ),
-            child: Container(
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 245, 245, 245),
-                borderRadius: BorderRadius.circular(20.0),
+
+                // All actions are defined in the children parameter.
+                children: [
+                  // A SlidableAction can have an icon and/or a label.
+                  SlidableAction(
+                    onPressed: (context) {
+                      ScaffoldMessenger.of(context).clearSnackBars();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                          content: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Slide through to delete",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 128, 255),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    foregroundColor: const Color(0xFFFE4A49),
+                    backgroundColor: Colors.white,
+                    icon: Icons.delete,
+                    label: 'Delete',
+                  ),
+                  SlidableAction(
+                    onPressed: (context) {
+                      showSpendEditForm();
+                    },
+                    foregroundColor: const Color.fromARGB(255, 96, 150, 249),
+                    backgroundColor: Colors.white,
+                    icon: Icons.edit,
+                    label: 'Edit',
+                  ),
+                ],
               ),
               child: ListTile(
                 titleAlignment: ListTileTitleAlignment.top,
@@ -126,25 +127,25 @@ class TransactionItem extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(spend.notes),
-                    Text(DateFormat("EEEE, dd MMMM").format(spend.createdAt)),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text("On $date, you spent, "),
+                    Text(
+                      spend.getAmount,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Color.fromARGB(255, 163, 9, 71),
+                      ),
+                    ),
+                    Text("paying from your ${spend.wallet!.name} wallet."),
                     Text("Category:  ${spend.category?.name}"),
                   ],
                 ),
-                trailing: Text(
-                  "- ${spend.getAmount}",
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Color.fromARGB(255, 163, 9, 71),
-                  ),
-                ),
               ),
             ),
-          ),
-          const Divider(
-            height: 0,
-            color: Color.fromARGB(255, 227, 226, 226),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -159,8 +160,7 @@ class Transactions extends ConsumerStatefulWidget {
 }
 
 class TransactionState extends ConsumerState<Transactions> {
-    late Wallet? wallet = ref.watch(getWallet(widget.wallet!.id));
-
+  late Wallet? wallet = ref.watch(getWallet(widget.wallet!.id));
 
   @override
   Widget build(BuildContext context) {

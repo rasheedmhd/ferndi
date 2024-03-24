@@ -139,7 +139,7 @@ class SubscriptionItem extends ConsumerWidget {
                       ),
                       const Spacer(),
                       Text(
-                        "- GHS ${subscription.getAmount}",
+                        "GHS ${subscription.getAmount}",
                         style: const TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 163, 9, 71),

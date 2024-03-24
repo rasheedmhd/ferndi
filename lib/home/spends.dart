@@ -105,7 +105,8 @@ class SpendItem extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: ListTile(
-                titleAlignment: ListTileTitleAlignment.top,
+                // contentPadding: EdgeInsets.all(10),
+                // titleAlignment: ListTileTitleAlignment.top,
                 leading: CircleAvatar(
                   backgroundColor:
                       Color(int.tryParse(spend.category!.color) ?? 4290958844),
@@ -114,10 +115,11 @@ class SpendItem extends ConsumerWidget {
                     style: const TextStyle(fontSize: 20),
                   ),
                 ),
+                // title: Text(spend.name.substring(0, 7)),
                 title: Text(spend.name),
                 subtitle: Text(spend.wallet!.name),
                 trailing: Text(
-                  "- ${spend.getAmount}",
+                  "GHS${spend.amount}",
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color.fromARGB(255, 163, 9, 71),
@@ -158,7 +160,7 @@ class SpendList extends StatelessWidget {
       children: [
         if (spends.isEmpty)
           const Center(
-            child: Text("You have no spends yet!"),
+            child: Text("No Spends recorded yet."),
           )
         else
           Flexible(
