@@ -101,7 +101,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                         size: 24,
                       ),
                       border: InputBorder.none,
-                      label: const Text("What did spend on ?"),
+                      label: const Text("You spent on"),
                       hintText: spendToEdit.name,
                       isDense: true,
                     ),
@@ -168,18 +168,32 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                   const Divider(
                     color: Color.fromARGB(255, 227, 226, 226),
                   ),             
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15.0),
-                    child: DropdownButton(
-                      value: _selectedCategory,
-                      hint: const Text("Category"),
-                      icon: const FaIcon(
-                        FontAwesomeIcons.boxArchive,
-                        color: Color.fromARGB(255, 151, 151, 151),
+                  Row(
+                    children: [
+                      const Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.boxArchive,
+                            size: 24,
+                            color: Color.fromARGB(255, 151, 151, 151),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text("Category:  ",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 151, 151, 151),
+                            ),
+                          ),
+                        ],
                       ),
-                      isExpanded: true,
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(20),
+                      Expanded(
+                        child: DropdownButton(
+                          value: _selectedCategory,
+                          hint: const Text("Category"),
+                          underline: Container(),
+                          isExpanded: true,
+                          borderRadius: const BorderRadius.all(Radius.circular(20),
                       ),
                       items: categories
                           .map(
@@ -190,44 +204,71 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                           )
                           .toList(),
                       onChanged: (value) {
-                        if (value == null) {
-                          return;
-                        }
-                        setState(
-                          () {
-                            _selectedCategory = value;
+                            if (value == null) {
+                              return;
+                            }
+                            setState(
+                              () {
+                                _selectedCategory = value;
+                              },
+                            );
                           },
-                        );
-                      },
-                    ),
+                        ),    
+                      ),
+                    ],
                   ),
-                  DropdownButton(
-                    value: _selectedWallet,
-                    hint: const Text("Wallet"),
-                    icon: const Icon(
-                      Icons.wallet_sharp,
-                      color: Color.fromARGB(255, 151, 151, 151),
-                    ),
-                    isExpanded: true,
-                    borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    items: wallets
-                        .map(
-                          (wallet) => DropdownMenuItem(
-                            value: wallet,
-                            child: Text(wallet.name),
+                  const Divider(
+                    color: Color.fromARGB(255, 227, 226, 226),
+                  ),
+                  Row(
+                    children: [
+                      const Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.wallet,
+                            size: 24,
+                            color: Color.fromARGB(255, 151, 151, 151),
                           ),
-                        )
-                        .toList(),
-                    onChanged: (value) {
-                      if (value == null) {
-                        return;
-                      }
-                      setState(
-                        () {
-                          _selectedWallet = value;
-                        },
-                      );
-                    },
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text("Wallet:  ",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 151, 151, 151),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: DropdownButton(
+                          value: _selectedWallet,
+                          hint: const Text("Wallet"),
+                          underline: Container(),
+                          isExpanded: true,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          items: wallets
+                              .map(
+                                (wallet) => DropdownMenuItem(
+                                  value: wallet,
+                                  child: Text(wallet.name),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            if (value == null) {
+                              return;
+                            }
+                            setState(
+                              () {
+                                _selectedWallet = value;
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(
                     height: 20,

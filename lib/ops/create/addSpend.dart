@@ -103,7 +103,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                         size: 24,
                       ),
                       border: InputBorder.none,
-                      label: Text("What did spend on ?"),
+                      label: Text("What did you spend on ?"),
                       isDense: true,
                     ),
                   ),
