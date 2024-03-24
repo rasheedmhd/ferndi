@@ -4,7 +4,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/wallets_provider.dart";
 import 'package:flutter/services.dart';
 
-
 class EditWalletCard extends ConsumerStatefulWidget {
   final Wallet wallet;
   const EditWalletCard(this.wallet, {super.key});
@@ -49,7 +48,8 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
                 initialValue: name,
                 onChanged: _newName,
                 inputFormatters: [
-                  LengthLimitingTextInputFormatter(50), // Limit the number of characters
+                  LengthLimitingTextInputFormatter(
+                      50), // Limit the number of characters
                 ],
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(label: Text("Wallet Name")),
@@ -58,7 +58,8 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
                 initialValue: balance,
                 onChanged: _newBalance,
                 inputFormatters: [
-                  LengthLimitingTextInputFormatter(10), // Limit the number of characters
+                  LengthLimitingTextInputFormatter(
+                      10), // Limit the number of characters
                 ],
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
@@ -88,7 +89,7 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
                       // final returnedWallet = ref.read(getWalletByName(name));
                       // if (returnedWallet != null)
                       // // if (name.toLowerCase() ==
-                      // //     returnedWallet?.name.toLowerCase() && balance == balance) 
+                      // //     returnedWallet?.name.toLowerCase() && balance == balance)
                       //     {
                       //   ScaffoldMessenger.of(context).clearSnackBars();
                       //   ScaffoldMessenger.of(context).showSnackBar(
@@ -107,7 +108,7 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
                       //     ),
                       //   );
                       //   return;
-                      // }                      
+                      // }
                       if (balance.isEmpty || name.isEmpty) {
                         ScaffoldMessenger.of(context).clearSnackBars();
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -135,8 +136,8 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
                         return;
                       }
                       ref.read(walletsNotifier.notifier).updateWallet(
-                            Wallet(walletToEdit!.id, name, int.parse(balance),
-                                DateTime.now()),
+                            Wallet(walletToEdit!.id, name,
+                                double.parse(balance), DateTime.now()),
                           );
                       ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(

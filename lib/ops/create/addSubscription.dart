@@ -220,9 +220,10 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                         subscription.Subscription(
                           ObjectId(),
                           _nameController.text,
-                          int.tryParse(_amountController.text) ?? 0,
+                          double.tryParse(_amountController.text) ?? 0,
                           wallet: _selectedWallet,
                           duration: _selectedDuration,
+                          DateTime.now(),
                           DateTime.now(),
                         ),
                       );

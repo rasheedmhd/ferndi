@@ -9,7 +9,6 @@ import "package:realm/realm.dart";
 import "package:intl/intl.dart";
 import 'package:flutter/services.dart';
 
-
 class AddSpendCard extends ConsumerStatefulWidget {
   const AddSpendCard({super.key});
 
@@ -30,8 +29,8 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
       ? Wallet(ObjectId(), "Flexible", 0, DateTime.now())
       : wallets.first;
 
-  late int newBalance =
-      _selectedWallet.balance - int.parse(_amountController.text);
+  late double newBalance =
+      _selectedWallet.balance - double.parse(_amountController.text);
 
   DateTime date = DateTime.now();
 
@@ -45,7 +44,8 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
 
     if (setDate != null) {
       setState(() {
-        _dateController.text = DateFormat("EEEE, dd MMMM, yyyy").format(setDate);
+        _dateController.text =
+            DateFormat("EEEE, dd MMMM, yyyy").format(setDate);
       });
     } else {
       date = DateTime.now();
@@ -94,7 +94,8 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                   TextField(
                     controller: _nameController,
                     inputFormatters: [
-                      LengthLimitingTextInputFormatter(50), // Limit the number of characters
+                      LengthLimitingTextInputFormatter(
+                          50), // Limit the number of characters
                     ],
                     decoration: const InputDecoration(
                       iconColor: Color.fromARGB(255, 151, 151, 151),
@@ -113,8 +114,9 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                   TextField(
                     controller: _notesController,
                     inputFormatters: [
-                      LengthLimitingTextInputFormatter(250), // Limit the number of characters
-                    ],                    
+                      LengthLimitingTextInputFormatter(
+                          250), // Limit the number of characters
+                    ],
                     decoration: const InputDecoration(
                       iconColor: Color.fromARGB(255, 151, 151, 151),
                       icon: FaIcon(
@@ -132,7 +134,8 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                   TextField(
                     controller: _amountController,
                     inputFormatters: [
-                      LengthLimitingTextInputFormatter(10), // Limit the number of characters
+                      LengthLimitingTextInputFormatter(
+                          10), // Limit the number of characters
                     ],
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
@@ -182,7 +185,8 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                           SizedBox(
                             width: 20,
                           ),
-                          Text("Category:  ",
+                          Text(
+                            "Category:  ",
                             style: TextStyle(
                               color: Color.fromARGB(255, 151, 151, 151),
                             ),
@@ -195,17 +199,18 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                           hint: const Text("Category"),
                           underline: Container(),
                           isExpanded: true,
-                          borderRadius: const BorderRadius.all(Radius.circular(20),
-                      ),
-                      items: categories
-                          .map(
-                            (category) => DropdownMenuItem(
-                              value: category,
-                              child: Text(category.name),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (value) {
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          items: categories
+                              .map(
+                                (category) => DropdownMenuItem(
+                                  value: category,
+                                  child: Text(category.name),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
                             if (value == null) {
                               return;
                             }
@@ -215,7 +220,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                               },
                             );
                           },
-                        ),    
+                        ),
                       ),
                     ],
                   ),
@@ -234,7 +239,8 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                           SizedBox(
                             width: 20,
                           ),
-                          Text("Wallet:  ",
+                          Text(
+                            "Wallet:  ",
                             style: TextStyle(
                               color: Color.fromARGB(255, 151, 151, 151),
                             ),
@@ -327,7 +333,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                         );
                         return;
                       }
-                      if (int.parse(_amountController.text) >
+                      if (double.parse(_amountController.text) >
                           _selectedWallet.balance) {
                         ScaffoldMessenger.of(context).clearSnackBars();
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -358,11 +364,12 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                                 ObjectId(),
                                 _nameController.text,
                                 _notesController.text,
-                                int.parse(_amountController.text),
+                                double.parse(_amountController.text),
                                 category: _selectedCategory,
                                 wallet: _selectedWallet,
                                 DateFormat("EEEE, dd MMMM, yyyy")
-                                    .tryParse(_dateController.text) ?? DateTime.now(),
+                                        .tryParse(_dateController.text) ??
+                                    DateTime.now(),
                               ),
                             );
                         ref.read(P.walletsNotifier.notifier).updateWallet(

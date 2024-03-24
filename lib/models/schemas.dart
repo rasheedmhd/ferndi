@@ -7,7 +7,7 @@ final config = Configuration.local([
   Subscription.schema,
   Category.schema,
   Duration.schema,
-], schemaVersion: 4, shouldDeleteIfMigrationNeeded: true);
+], schemaVersion: 6, shouldDeleteIfMigrationNeeded: true);
 
 final realm = Realm(config);
 
@@ -24,14 +24,13 @@ class _Subscription {
   @PrimaryKey()
   late ObjectId id;
   late String name;
-  late int amount;
+  late double amount;
   late DateTime createdAt;
+  late DateTime chargeAt;
   // Also in Settings, I will have settings that allows users to set default
   // wallets for subscriptions
   late _Duration? duration;
   late _Wallet? wallet;
-  // An enum of whether the subscription is for a month or year.
-
   String get getAmount => amount.toStringAsFixed(2);
   String? get period => duration?.name;
   String? get from => wallet?.name;
@@ -42,7 +41,7 @@ class _Wallet {
   @PrimaryKey()
   late ObjectId id;
   late String name;
-  late int balance;
+  late double balance;
   late DateTime createdAt;
   late List<_Spend> spends;
   late List<_Subscription> subscriptions;
@@ -59,7 +58,7 @@ class _Spend {
   late String name;
   late String notes;
   // amount spent
-  late int amount;
+  late double amount;
   late DateTime createdAt;
   // wallet paid from for the spend
   late _Wallet? wallet;

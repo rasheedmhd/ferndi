@@ -3,11 +3,10 @@ import 'package:app/models/schemas.dart';
 import 'package:intl/intl.dart';
 import "package:realm/realm.dart";
 
-
 final getSpend = Provider.family<Spend, ObjectId>((ref, id) {
   final spend =
       ref.watch(spendsNotifier).where((spend) => spend.id == id).first;
-      return spend;
+  return spend;
 });
 
 final spendsByWallet = Provider.family<List<Spend>, String>((ref, walletName) {
@@ -17,13 +16,10 @@ final spendsByWallet = Provider.family<List<Spend>, String>((ref, walletName) {
   return spendsByWallet.toList();
 });
 
-final filterSpends =
-    Provider.family<List<Spend>, DateTime>((ref, filterDate) {
-  final spendsByMonth =
-      ref.watch(spendsNotifier)
-      .where(
-        (spend) => spend.createdAt.year == filterDate.year && 
-        spend.createdAt.month == filterDate.month);
+final filterSpends = Provider.family<List<Spend>, DateTime>((ref, filterDate) {
+  final spendsByMonth = ref.watch(spendsNotifier).where((spend) =>
+      spend.createdAt.year == filterDate.year &&
+      spend.createdAt.month == filterDate.month);
   return spendsByMonth.toList();
 });
 
@@ -37,28 +33,26 @@ int getWeekNumber(DateTime date) {
 
 final filterSpendsWeek =
     Provider.family<List<Spend>, DateTime>((ref, filterDate) {
-  final spendsByMonth =
-      ref.watch(spendsNotifier)
-      .where(
-        (spend) => spend.createdAt.year == filterDate.year && 
-        spend.createdAt.month == filterDate.month &&
-        spend.createdAt.weekday == filterDate.weekday);
+  final spendsByMonth = ref.watch(spendsNotifier).where((spend) =>
+      spend.createdAt.year == filterDate.year &&
+      spend.createdAt.month == filterDate.month &&
+      spend.createdAt.weekday == filterDate.weekday);
   return spendsByMonth.toList();
 });
 
-final spendsByWalletTotal = Provider.family<int, String>((ref, walletName) {
+final spendsByWalletTotal = Provider.family<double, String>((ref, walletName) {
   return ref
       .watch(spendsByWallet(walletName))
       .map((spend) => (spend.amount))
       .fold(0, (value, element) => value + element);
 });
 
-final tb = Provider.family<int, DateTime>((ref, filterDate) {
+final tb = Provider.family<double, DateTime>((ref, filterDate) {
   return ref
       .watch(spendsNotifier)
-      .where(
-        (spend) => spend.createdAt.year == filterDate.year && 
-        spend.createdAt.month == filterDate.month)
+      .where((spend) =>
+          spend.createdAt.year == filterDate.year &&
+          spend.createdAt.month == filterDate.month)
       .map((spend) => spend.amount)
       .toList()
       .fold(0, (value, element) => value + element);

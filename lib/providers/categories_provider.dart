@@ -20,7 +20,7 @@ final getSpendsByCategory =
 });
 
 final getTotalSpendAmountPerCategory =
-    Provider.family<int, String>((ref, categoryName) {
+    Provider.family<double, String>((ref, categoryName) {
   return ref
       .watch(getSpendsByCategory(categoryName))
       .map((spend) => (spend.amount))

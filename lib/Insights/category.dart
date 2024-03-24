@@ -22,7 +22,7 @@ class CategoryItem extends ConsumerWidget {
 
     final int spendsPerCategory =
         ref.watch(getSpendsByCategory(category.name)).length;
-    final int totalSpendAmountPerCategory =
+    final double totalSpendAmountPerCategory =
         ref.watch(getTotalSpendAmountPerCategory(category.name));
 
     final categoriesCount = ref.watch(categoriesNotifier).length;

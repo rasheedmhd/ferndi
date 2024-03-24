@@ -44,7 +44,8 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
               TextField(
                 controller: _nameController,
                 inputFormatters: [
-                  LengthLimitingTextInputFormatter(50), // Limit the number of characters
+                  LengthLimitingTextInputFormatter(
+                      50), // Limit the number of characters
                 ],
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
@@ -54,7 +55,8 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
               TextField(
                 controller: _balanceController,
                 inputFormatters: [
-                  LengthLimitingTextInputFormatter(10), // Limit the number of characters
+                  LengthLimitingTextInputFormatter(
+                      10), // Limit the number of characters
                 ],
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
@@ -80,7 +82,8 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                 foregroundColor: Colors.white,
                 backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                 onPressed: () {
-                  final returnedWallet = ref.read(getWalletByName(_nameController.text));
+                  final returnedWallet =
+                      ref.read(getWalletByName(_nameController.text));
                   if (_nameController.text.toLowerCase() ==
                       returnedWallet?.name.toLowerCase()) {
                     ScaffoldMessenger.of(context).clearSnackBars();
@@ -127,8 +130,11 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                     return;
                   }
                   ref.read(walletsNotifier.notifier).createWallet(
-                        Wallet(ObjectId(), _nameController.text,
-                            int.parse(_balanceController.text), DateTime.now()),
+                        Wallet(
+                            ObjectId(),
+                            _nameController.text,
+                            double.parse(_balanceController.text),
+                            DateTime.now()),
                       );
                   _nameController.clear();
                   _balanceController.clear();

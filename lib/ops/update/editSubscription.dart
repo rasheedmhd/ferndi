@@ -6,7 +6,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/subs_provider.dart";
 import 'package:flutter/services.dart';
 
-
 class EditSubscriptionCard extends ConsumerStatefulWidget {
   final my.Subscription subscription;
   const EditSubscriptionCard(this.subscription, {super.key});
@@ -56,12 +55,11 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
                 initialValue: name,
                 onChanged: _newName,
                 inputFormatters: [
-                  LengthLimitingTextInputFormatter(50), // Limit the number of characters
+                  LengthLimitingTextInputFormatter(
+                      50), // Limit the number of characters
                 ],
                 decoration: const InputDecoration(
-                  label: Text("Name"),
-                  border: InputBorder.none
-                ),
+                    label: Text("Name"), border: InputBorder.none),
               ),
               const Divider(
                 color: Color.fromARGB(255, 227, 226, 226),
@@ -70,14 +68,14 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
                 initialValue: amount,
                 onChanged: _newAmount,
                 inputFormatters: [
-                  LengthLimitingTextInputFormatter(100), // Limit the number of characters
+                  LengthLimitingTextInputFormatter(
+                      100), // Limit the number of characters
                 ],
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  prefix: Text("GHS "),
-                  label: Text("Amount"),
-                  border: InputBorder.none
-                ),
+                    prefix: Text("GHS "),
+                    label: Text("Amount"),
+                    border: InputBorder.none),
               ),
               const Divider(
                 color: Color.fromARGB(255, 227, 226, 226),
@@ -223,9 +221,10 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
                             my.Subscription(
                               subscriptionToEdit.id,
                               name,
-                              int.parse(amount),
+                              double.parse(amount),
                               wallet: _selectedWallet,
                               duration: _selectedDuration,
+                              DateTime.now(),
                               DateTime.now(),
                             ),
                           );

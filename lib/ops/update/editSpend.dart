@@ -17,8 +17,8 @@ class EditSpendCard extends ConsumerStatefulWidget {
 class EditSpendCardState extends ConsumerState<EditSpendCard> {
   late Spend spendToEdit = ref.watch(getSpend(widget.spend.id));
 
-  late String name   = spendToEdit.name;
-  late String notes  = spendToEdit.notes;
+  late String name = spendToEdit.name;
+  late String notes = spendToEdit.notes;
   late DateTime date = spendToEdit.createdAt;
   late String amount = spendToEdit.amount.toString();
 
@@ -35,7 +35,8 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
 
     if (setDate != null) {
       setState(() {
-        _dateController.text = DateFormat("EEEE, dd MMMM, yyyy").format(setDate);
+        _dateController.text =
+            DateFormat("EEEE, dd MMMM, yyyy").format(setDate);
       });
     } else {
       date = DateTime.now();
@@ -60,8 +61,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
 
   late Category _selectedCategory = spendToEdit.category ??= categories.first;
   late Wallet _selectedWallet = spendToEdit.wallet ??= wallets.first;
-  
-  
+
   // @override
   // void dispose() {
   //   _dateController.dispose();
@@ -71,11 +71,10 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Edit Spend"),
-      ),
-      body: ListView(
-        children: [
+        appBar: AppBar(
+          title: const Text("Edit Spend"),
+        ),
+        body: ListView(children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 0, 15, 20),
             child: Container(
@@ -150,7 +149,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                     controller: _dateController,
                     onChanged: newDate,
                     readOnly: true,
-                    decoration:  InputDecoration(
+                    decoration: InputDecoration(
                       iconColor: const Color.fromARGB(255, 151, 151, 151),
                       icon: const FaIcon(
                         FontAwesomeIcons.calendarDay,
@@ -158,7 +157,8 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                       ),
                       border: InputBorder.none,
                       // label: Text("Date"),
-                      label: Text(DateFormat("EEEE, dd MMMM, yyyy").format(date)),
+                      label:
+                          Text(DateFormat("EEEE, dd MMMM, yyyy").format(date)),
                       isDense: true,
                     ),
                     onTap: () {
@@ -167,7 +167,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                   ),
                   const Divider(
                     color: Color.fromARGB(255, 227, 226, 226),
-                  ),             
+                  ),
                   Row(
                     children: [
                       const Row(
@@ -180,7 +180,8 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                           SizedBox(
                             width: 20,
                           ),
-                          Text("Category:  ",
+                          Text(
+                            "Category:  ",
                             style: TextStyle(
                               color: Color.fromARGB(255, 151, 151, 151),
                             ),
@@ -193,17 +194,18 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                           hint: const Text("Category"),
                           underline: Container(),
                           isExpanded: true,
-                          borderRadius: const BorderRadius.all(Radius.circular(20),
-                      ),
-                      items: categories
-                          .map(
-                            (category) => DropdownMenuItem(
-                              value: category,
-                              child: Text(category.name),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (value) {
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          items: categories
+                              .map(
+                                (category) => DropdownMenuItem(
+                                  value: category,
+                                  child: Text(category.name),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
                             if (value == null) {
                               return;
                             }
@@ -213,7 +215,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                               },
                             );
                           },
-                        ),    
+                        ),
                       ),
                     ],
                   ),
@@ -232,7 +234,8 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                           SizedBox(
                             width: 20,
                           ),
-                          Text("Wallet:  ",
+                          Text(
+                            "Wallet:  ",
                             style: TextStyle(
                               color: Color.fromARGB(255, 151, 151, 151),
                             ),
@@ -310,7 +313,8 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                                     Text(
                                       "Please add name, amount, wallet and category.",
                                       style: TextStyle(
-                                          color: Color.fromARGB(255, 163, 9, 71)),
+                                          color:
+                                              Color.fromARGB(255, 163, 9, 71)),
                                     ),
                                   ],
                                 ),
@@ -320,7 +324,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                         );
                         return;
                       }
-                      if (int.parse(amount) > _selectedWallet.balance) {
+                      if (double.parse(amount) > _selectedWallet.balance) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             backgroundColor: Color.fromARGB(255, 255, 231, 241),
@@ -348,13 +352,14 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                                 spendToEdit.id,
                                 name,
                                 notes,
-                                int.parse(
+                                double.parse(
                                   amount.toString(),
                                 ),
                                 category: _selectedCategory,
                                 wallet: _selectedWallet,
                                 DateFormat("EEEE, dd MMMM, yyyy")
-                                    .tryParse(_dateController.text) ?? date,
+                                        .tryParse(_dateController.text) ??
+                                    date,
                               ),
                             );
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -390,8 +395,6 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
               ),
             ),
           ),
-        ]
-      )
-    );
+        ]));
   }
 }

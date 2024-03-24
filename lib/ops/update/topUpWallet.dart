@@ -12,16 +12,15 @@ class TopUpWalletCard extends ConsumerStatefulWidget {
 }
 
 class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
-    late Wallet? walletToEdit = ref.watch(getWallet(widget.wallet.id));
-
+  late Wallet? walletToEdit = ref.watch(getWallet(widget.wallet.id));
 
   final _balanceController = TextEditingController();
 
   late String name = walletToEdit!.name;
-  late int balance = walletToEdit!.balance;
+  late double balance = walletToEdit!.balance;
 
   void _newBalance(String typedBalance) {
-    balance += int.parse(_balanceController.text);
+    balance += double.parse(_balanceController.text);
   }
 
   @override
@@ -151,12 +150,8 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
                       }
                       _newBalance(_balanceController.text);
                       ref.read(walletsNotifier.notifier).updateWallet(
-                            Wallet(
-                              walletToEdit!.id,
-                              name,
-                              balance,
-                              DateTime.now()
-                            ),
+                            Wallet(walletToEdit!.id, name, balance,
+                                DateTime.now()),
                           );
                       ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(

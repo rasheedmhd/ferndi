@@ -9,7 +9,7 @@ final getSubscription = Provider.family<Subscription, my.ObjectId>((ref, id) {
   return subscription;
 });
 
-final subBalance = Provider<int>((ref) {
+final subBalance = Provider<double>((ref) {
   return ref
       .watch(subscriptionsNotifier)
       .map((subscription) => subscription.amount)
@@ -17,7 +17,7 @@ final subBalance = Provider<int>((ref) {
       .fold(0, (value, element) => value + element);
 });
 
-final getSub = Provider.family<int, String>((ref, duration) {
+final getSub = Provider.family<double, String>((ref, duration) {
   return ref
       .watch(subscriptionsNotifier)
       .where((sbs) => sbs.duration?.name == duration)

@@ -81,7 +81,7 @@ class AddIncomeCardState extends ConsumerState<AddIncomeCard> {
               ref.read(walletsNotifier.notifier).createWallet(Wallet(
                 ObjectId(),
                 "Income",
-                int.tryParse(_balanceController.text) ?? 0,
+                double.tryParse(_balanceController.text) ?? 0,
                 DateTime.now()
               ));
               _balanceController.clear();

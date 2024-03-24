@@ -51,7 +51,7 @@ final selectedWallet = Provider.family<Wallet?, String>((ref, walletName) {
 });
 
 // Just get the first wallet with name "Income and return it"
-final pi = Provider.family<int, DateTime>((ref, filterDate) {
+final pi = Provider.family<double, DateTime>((ref, filterDate) {
   return ref
       .watch(walletsNotifier)
       .where((w) => w.name.toLowerCase() == "Income".toLowerCase())
@@ -63,7 +63,7 @@ final pi = Provider.family<int, DateTime>((ref, filterDate) {
       .fold(0, (value, element) => value + element);
 });
 
-final wb = Provider.family<int, DateTime>((ref, filterDate) {
+final wb = Provider.family<double, DateTime>((ref, filterDate) {
   return ref
       .watch(walletsNotifier)
       .where((w) =>
