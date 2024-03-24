@@ -59,13 +59,6 @@ class SubscriptionsBalanceCard extends ConsumerWidget {
                       color: Color.fromARGB(255, 5, 61, 135),
                     ),
                   ),
-                  const Text(
-                    ".00",
-                    style: TextStyle(
-                      fontSize: 35.0,
-                      color: Color.fromARGB(255, 202, 233, 255),
-                    ),
-                  ),
                 ],
               ),
               const SizedBox(
@@ -93,12 +86,6 @@ class SubscriptionsBalanceCard extends ConsumerWidget {
                               color: Color.fromARGB(255, 5, 61, 135),
                             ),
                           ),
-                          const Text(
-                            ".00",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 202, 233, 255),
-                            ),
-                          ),
                         ],
                       )
                     ],
@@ -122,10 +109,6 @@ class SubscriptionsBalanceCard extends ConsumerWidget {
                               color: Color.fromARGB(255, 5, 61, 135),
                             ),
                           ),
-                          const Text(".00",
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 202, 233, 255),
-                              )),
                         ],
                       )
                     ],
@@ -147,12 +130,6 @@ class SubscriptionsBalanceCard extends ConsumerWidget {
                               fontWeight: FontWeight.w600,
                               fontSize: 17,
                               color: Color.fromARGB(255, 5, 61, 135),
-                            ),
-                          ),
-                          const Text(
-                            ".00",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 202, 233, 255),
                             ),
                           ),
                         ],
