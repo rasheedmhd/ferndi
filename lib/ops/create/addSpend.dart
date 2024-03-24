@@ -182,6 +182,11 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                           SizedBox(
                             width: 20,
                           ),
+                          Text("Category:  ",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 151, 151, 151),
+                            ),
+                          ),
                         ],
                       ),
                       Expanded(
@@ -228,6 +233,11 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                           ),
                           SizedBox(
                             width: 20,
+                          ),
+                          Text("Wallet:  ",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 151, 151, 151),
+                            ),
                           ),
                         ],
                       ),
