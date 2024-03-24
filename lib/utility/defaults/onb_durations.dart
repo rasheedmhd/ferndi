@@ -1,7 +1,7 @@
 import "package:realm/realm.dart";
 import 'package:app/models/schemas.dart';
 
-// Create a bunch of Durations when getting onboard
+// Create  3 Duration items when getting user on board
 final durations = <Duration>[
   Duration(ObjectId(), "month", DateTime.now()),
   Duration(ObjectId(), "year", DateTime.now()),

@@ -33,6 +33,7 @@ final onboardCategories = <Category>[
   Category(ObjectId(), "Work",              "🛠️",  "4294950892", DateTime.now()),
   Category(ObjectId(), "Shopping",          "🛒",  "4292542448", DateTime.now()),
   Category(ObjectId(), "Fuel",              "⛽️",  "4294950892", DateTime.now()),
+  Category(ObjectId(), "Subscriptions",     "💳",  "4294507263", DateTime.now()),
 ];
 
 

@@ -70,7 +70,7 @@ class ChargeCardState extends ConsumerState<ChargeCard> {
                   borderRadius: BorderRadius.circular(50.0),
                 ),
                 label: const Text(
-                  "          Charge         ",
+                  "   +  Charge Now   ",
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                   ),
