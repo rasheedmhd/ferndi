@@ -284,7 +284,7 @@ class SubscriptionList extends StatelessWidget {
       children: [
         if (subscriptions.isEmpty)
           const Center(
-            child: Text("You have no subscriptions yet!"),
+            child: Text("No Subscriptions yet!"),
           )
         else
           Flexible(

@@ -163,7 +163,7 @@ class SpendList extends StatelessWidget {
       children: [
         if (spends.isEmpty)
           const Center(
-            child: Text("You have no spends yet!"),
+            child: Text("No Spends yet!"),
           )
         else
           Flexible(

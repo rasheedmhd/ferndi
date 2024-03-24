@@ -181,7 +181,7 @@ class TransactionList extends StatelessWidget {
       children: [
         if (spends.isEmpty)
           const Center(
-            child: Text("You have no spends paid with this wallet yet!"),
+            child: Text("No Spends paid from this wallet yet!"),
           )
         else
           Flexible(

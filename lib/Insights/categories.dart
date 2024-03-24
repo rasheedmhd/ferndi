@@ -1,7 +1,6 @@
 import "package:app/ops/create/addCategory.dart";
 import "package:app/Insights/category.dart";
 import "package:flutter/material.dart";
-import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/categories_provider.dart";
 
@@ -48,8 +47,6 @@ class Categories extends ConsumerWidget {
                 ),
               ),
               const Spacer(),
-              const FaIcon(FontAwesomeIcons.arrowRightLong,
-                  size: 23, color: Color.fromARGB(255, 151, 151, 151)),
               Text(
                 " $categoriesCount ",
                 style: const TextStyle(

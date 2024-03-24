@@ -287,7 +287,7 @@ class WalletList extends StatelessWidget {
       children: [
         if (wallets.isEmpty)
           const Center(
-            child: Text("You have no Wallets yet!"),
+            child: Text("No Wallets yet!"),
           )
         else
           Flexible(

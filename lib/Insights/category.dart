@@ -197,7 +197,7 @@ class CategoryList extends StatelessWidget {
       children: [
         if (categories.isEmpty)
           const Center(
-            child: Text("You have no Categories yet!"),
+            child: Text("No Categories yet!"),
           )
         else
           Flexible(

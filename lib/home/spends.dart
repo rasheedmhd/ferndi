@@ -20,6 +20,27 @@ class SpendItem extends ConsumerWidget {
       );
     }
 
+    String getSubString(String string, int start, int end) {
+      // Ensure end index is within bounds
+      if (end > string.length) {
+        end = string.length;
+        return string.substring(start, end);
+      }
+
+      // Return the slice of the string
+      final slicedString = string.substring(start, end);
+      return "$slicedString...";
+    }
+
+    // void main() {
+    //   String originalString = "Hello, world!";
+    //   int startIndex = 2;
+    //   int endIndex = 7;
+
+    //   String slicedString = getSliceOfString(originalString, startIndex, endIndex);
+    //   print(slicedString); // Output: "llo, w"
+    // }
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
@@ -105,8 +126,7 @@ class SpendItem extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: ListTile(
-                // contentPadding: EdgeInsets.all(10),
-                // titleAlignment: ListTileTitleAlignment.top,
+                titleAlignment: ListTileTitleAlignment.top,
                 leading: CircleAvatar(
                   backgroundColor:
                       Color(int.tryParse(spend.category!.color) ?? 4290958844),
@@ -115,11 +135,10 @@ class SpendItem extends ConsumerWidget {
                     style: const TextStyle(fontSize: 20),
                   ),
                 ),
-                // title: Text(spend.name.substring(0, 7)),
-                title: Text(spend.name),
+                title: Text(getSubString(spend.name, 0, 35)),
                 subtitle: Text(spend.wallet!.name),
                 trailing: Text(
-                  "GHS${spend.amount}",
+                  "GHS ${spend.amount}",
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color.fromARGB(255, 163, 9, 71),
