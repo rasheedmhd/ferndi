@@ -7,6 +7,8 @@ import "package:realm/realm.dart";
 import "package:app/providers/subs_provider.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:flutter/services.dart';
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
+
 
 
 class AddSubscriptionCard extends ConsumerStatefulWidget {
@@ -98,8 +100,8 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                       borderRadius: const BorderRadius.all(
                         Radius.circular(20),
                       ),
-                      icon: const Icon(
-                        Icons.wallet_sharp,
+                      icon: const FaIcon(
+                        FontAwesomeIcons.wallet,
                         size: 30,
                         color: Color.fromARGB(255, 17, 221, 163),
                       ),
@@ -139,7 +141,7 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                         Radius.circular(20),
                       ),
                       icon: const Icon(
-                        Icons.av_timer,
+                        Icons.timer,
                         size: 30,
                         color: Color.fromARGB(255, 146, 2, 93),
                       ),

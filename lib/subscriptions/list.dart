@@ -1,5 +1,5 @@
 import "package:app/cards/subscriptions.dart";
-import "package:app/cards/subscriptionsBalanceCard.dart";
+import "package:app/cards/subsBalanceCard.dart";
 import "package:flutter/material.dart";
 import "package:app/ops/create/addSubscription.dart";
 

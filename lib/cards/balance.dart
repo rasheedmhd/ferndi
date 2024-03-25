@@ -55,7 +55,7 @@ class BalanceCard extends ConsumerWidget {
                     Row(
                       children: [
                         Text(
-                          "GHS $balance",
+                          "GHS ${balance.toStringAsFixed(2)}",
                           style: const TextStyle(
                             fontSize: 35.0,
                             fontWeight: FontWeight.w600,
@@ -78,7 +78,7 @@ class BalanceCard extends ConsumerWidget {
                           color: Color.fromARGB(255, 228, 255, 239),
                         )),
                     Text(
-                      "GHS $income",
+                      "GHS ${income.toStringAsFixed(2)}",
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color.fromARGB(255, 255, 255, 255),
@@ -97,7 +97,7 @@ class BalanceCard extends ConsumerWidget {
                           color: Color.fromARGB(255, 228, 255, 239),
                         )),
                     Text(
-                      "GHS $totalSpend",
+                      "GHS ${totalSpend.toStringAsFixed(2)}",
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Color.fromARGB(255, 255, 255, 255),
