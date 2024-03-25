@@ -2,6 +2,8 @@ import "package:app/models/schemas.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/wallets_provider.dart";
+import 'package:flutter/services.dart';
+
 
 class TopUpWalletCard extends ConsumerStatefulWidget {
   final Wallet wallet;
@@ -36,7 +38,7 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
         title: const Text("Top up Wallet"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
@@ -72,7 +74,7 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "GHS ${walletToEdit!.balance}",
+                  "GHS ${walletToEdit!.balance.toStringAsFixed(2)}",
                   style: const TextStyle(
                     fontSize: 30.0,
                     color: Color.fromARGB(255, 5, 61, 135),
@@ -101,12 +103,18 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
               ),
               TextField(
                 controller: _balanceController,
-                maxLength: 10,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(1), // Limit the number of characters
+                ],
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   prefix: Text("GHS "),
+                  border: InputBorder.none
                 ),
               ),
+              const Divider(
+                color: Color.fromARGB(255, 227, 226, 226),
+              ),              
               const SizedBox(
                 height: 40,
               ),

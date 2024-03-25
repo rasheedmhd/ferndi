@@ -64,8 +64,13 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                   LengthLimitingTextInputFormatter(50), // Limit the number of characters
                 ],
                 keyboardType: TextInputType.text,
-                decoration: const InputDecoration(label: Text("Category Name")),
+                decoration: const InputDecoration(label: Text("Category Name"),
+                border: InputBorder.none
+                ),
               ),
+              const Divider(
+                  color: Color.fromARGB(255, 227, 226, 226),
+                ),              
               const SizedBox(
                 height: 10,
               ),
@@ -93,11 +98,16 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                         LengthLimitingTextInputFormatter(1), // Limit the number of characters
                       ],
                       keyboardType: TextInputType.text,
-                      decoration: const InputDecoration(label: Text("Emoji")),
+                      decoration: const InputDecoration(label: Text("Emoji"),
+                      border: InputBorder.none
+                      ),
                     ),
                   ),
                 ],
               ),
+              const Divider(
+                color: Color.fromARGB(255, 227, 226, 226),
+              ),             
               const SizedBox(
                 height: 20,
               ),

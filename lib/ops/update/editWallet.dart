@@ -33,7 +33,7 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
         title: const Text("Edit Wallet"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
@@ -52,8 +52,14 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
                       50), // Limit the number of characters
                 ],
                 keyboardType: TextInputType.text,
-                decoration: const InputDecoration(label: Text("Wallet Name")),
+                decoration: const InputDecoration(
+                  label: Text("Wallet Name"),
+                  border: InputBorder.none
+                ),
               ),
+              const Divider(
+                color: Color.fromARGB(255, 227, 226, 226),
+              ),              
               TextFormField(
                 initialValue: balance,
                 onChanged: _newBalance,
@@ -63,8 +69,13 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
                 ],
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                    prefix: Text("GHS "), label: Text("Balance")),
+                    prefix: Text("GHS "), label: Text("Balance"),
+                    border: InputBorder.none
+                  ),
               ),
+              const Divider(
+                color: Color.fromARGB(255, 227, 226, 226),
+              ),              
               const SizedBox(
                 height: 40,
               ),

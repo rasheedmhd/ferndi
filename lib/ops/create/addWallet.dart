@@ -1,6 +1,7 @@
 import "package:app/models/schemas.dart";
 import 'package:app/providers/wallets_provider.dart';
 import "package:flutter/material.dart";
+import "package:flutter/widgets.dart";
 import "package:realm/realm.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:flutter/services.dart';
@@ -50,7 +51,11 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   label: Text("Name"),
+                  border: InputBorder.none,
                 ),
+              ),
+              const Divider(
+                color: Color.fromARGB(255, 227, 226, 226),
               ),
               TextField(
                 controller: _balanceController,
@@ -62,7 +67,11 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
                 decoration: const InputDecoration(
                   prefix: Text("GHS "),
                   label: Text("Balance"),
+                  border: InputBorder.none,
                 ),
+              ),
+              const Divider(
+                color: Color.fromARGB(255, 227, 226, 226),
               ),
               const SizedBox(
                 height: 40,
