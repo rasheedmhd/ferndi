@@ -316,7 +316,6 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                                   ),
                                 ),
                                 Row(
-                                  // crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(

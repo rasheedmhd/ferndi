@@ -46,7 +46,7 @@ class _Wallet {
   late List<_Spend> spends;
   late List<_Subscription> subscriptions;
 
-  String get bal => "GHS ${balance.toStringAsFixed(2)}";
+  String get bal => balance.toStringAsFixed(2);
 }
 
 @RealmModel()
@@ -70,7 +70,7 @@ class _Spend {
   late Iterable<_Category> linkedCategory;
 
   String? get getCategory => category?.name;
-  String get getAmount => "GHS ${amount.toStringAsFixed(2)}";
+  String get getAmount => amount.toStringAsFixed(2);
   String? get getWallet => wallet?.name;
 }
 

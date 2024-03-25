@@ -15,8 +15,8 @@ class SubscriptionItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final dueDate =
-        DateFormat("EEEE, dd MMMM, yyyy").format(subscription.createdAt);
+    final chargeDate =
+        DateFormat("EEEE, dd MMMM, yyyy").format(subscription.chargeAt);
     void showSubscriptionEditForm() {
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -151,7 +151,7 @@ class SubscriptionItem extends ConsumerWidget {
                     height: 10,
                   ),
                   const Text(
-                    "Due Date:   ",
+                    "Charge Date:   ",
                     style: TextStyle(
                       color: Color.fromARGB(255, 148, 152, 158),
                     ),
@@ -166,7 +166,7 @@ class SubscriptionItem extends ConsumerWidget {
                             padding: const EdgeInsets.all(7),
                             color: const Color.fromARGB(255, 234, 246, 255),
                             child: Text(
-                              "$dueDate ",
+                              "$chargeDate ",
                               style: const TextStyle(
                                 color: Color.fromARGB(255, 90, 90, 90),
                               ),
@@ -193,14 +193,6 @@ class SubscriptionItem extends ConsumerWidget {
                           ),
                         ),
                       ), 
-                      // GestureDetector(
-                      //   onTap: showChargeInfo,
-                      //   child: const FaIcon(
-                      //       FontAwesomeIcons.circleQuestion,
-                      //       size: 15,
-                      //       color: Color.fromARGB(255, 5, 61, 135),
-                      //     ),
-                      // ),
                     ],
                   ),
                   Row(

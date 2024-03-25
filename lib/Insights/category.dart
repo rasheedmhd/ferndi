@@ -156,7 +156,7 @@ class CategoryItem extends ConsumerWidget {
                   ),
                 ),
                 trailing: Text(
-                  "GHS ${totalSpendAmountPerCategory.toString()}",
+                  "GHS ${totalSpendAmountPerCategory.toStringAsFixed(2)}",
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color.fromARGB(255, 163, 9, 71),

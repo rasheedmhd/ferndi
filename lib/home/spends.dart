@@ -138,7 +138,7 @@ class SpendItem extends ConsumerWidget {
                 title: Text(getSubString(spend.name, 0, 35)),
                 subtitle: Text(spend.wallet!.name),
                 trailing: Text(
-                  "GHS ${spend.amount}",
+                  "GHS ${spend.getAmount}",
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color.fromARGB(255, 163, 9, 71),

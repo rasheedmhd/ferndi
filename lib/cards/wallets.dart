@@ -174,7 +174,7 @@ class WalletItem extends ConsumerWidget {
                     ),
                   ),
                 subtitle: Text(
-                  wallet.bal,
+                  "GHS ${wallet.bal}",
                   style: const TextStyle(
                     fontSize: 19.0,
                     color: Color.fromARGB(255, 48, 136, 6),
@@ -254,7 +254,6 @@ class WalletItem extends ConsumerWidget {
               ),
             ),
           ),
-        // ),
         const SizedBox(
           height: 12,
         )
