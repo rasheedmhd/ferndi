@@ -5,8 +5,6 @@ import "package:app/providers/wallets_provider.dart";
 import 'package:flutter/services.dart';
 import "package:app/utility/util/subString.dart";
 
-
-
 class TopUpWalletCard extends ConsumerStatefulWidget {
   final Wallet wallet;
   const TopUpWalletCard(this.wallet, {super.key});

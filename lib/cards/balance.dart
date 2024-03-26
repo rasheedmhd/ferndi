@@ -1,3 +1,4 @@
+import "package:app/cards/info.dart";
 import "package:flutter/material.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:app/providers/wallets_provider.dart";
@@ -12,6 +13,13 @@ class BalanceCard extends ConsumerWidget {
     final totalSpend = ref.watch(tb(DateTime.now()));
     final balance = ref.watch(wb(DateTime.now()));
     final income = ref.watch(pi(DateTime.now()));
+
+    void showInfo() {
+      showModalBottomSheet(
+        context: context,
+        builder: (ctx) => InfoCard(),
+      );
+    }
 
     return Container(
       decoration: BoxDecoration(
@@ -44,6 +52,7 @@ class BalanceCard extends ConsumerWidget {
                           ),
                         ),
                         GestureDetector(
+                          onTap: showInfo,
                           child: const FaIcon(
                             FontAwesomeIcons.circleQuestion,
                             size: 13,
