@@ -1,4 +1,4 @@
-import "package:app/cards/info.dart";
+import "package:app/cards/info/info.dart";
 import "package:flutter/material.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:app/providers/wallets_provider.dart";

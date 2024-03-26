@@ -1,3 +1,4 @@
+import "package:app/cards/info/historyInfo.dart";
 import "package:app/home/spendHistory.dart";
 import "package:app/home/spends.dart";
 import "package:flutter/material.dart";
@@ -11,6 +12,14 @@ class Spending extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+  void showInfo() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => HistoryInfoCard(),
+    );
+  }
+
     return ListView(
       padding: const EdgeInsets.all(15),
       children: [
@@ -36,6 +45,7 @@ class Spending extends ConsumerWidget {
                 ),
               ),
               GestureDetector(
+                onTap: showInfo,
                 child: const FaIcon(
                   FontAwesomeIcons.circleQuestion,
                   size: 15,
