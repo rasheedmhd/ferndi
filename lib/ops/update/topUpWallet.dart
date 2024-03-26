@@ -3,6 +3,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/wallets_provider.dart";
 import 'package:flutter/services.dart';
+import "package:app/utility/util/subString.dart";
+
 
 
 class TopUpWalletCard extends ConsumerStatefulWidget {
@@ -52,7 +54,7 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Top up $name",
+                  "Top up ${getSubString(name, 0, 50)}",
                   style: const TextStyle(
                     fontSize: 30.0,
                     color: Color.fromARGB(255, 5, 61, 135),
@@ -82,7 +84,7 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Container(
                 decoration: BoxDecoration(
@@ -99,7 +101,7 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               TextField(
                 controller: _balanceController,
@@ -116,7 +118,7 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
                 color: Color.fromARGB(255, 227, 226, 226),
               ),              
               const SizedBox(
-                height: 40,
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

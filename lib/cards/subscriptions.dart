@@ -6,6 +6,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/subs_provider.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:app/utility/util/subString.dart";
 import "package:intl/intl.dart";
 
 class SubscriptionItem extends ConsumerWidget {
@@ -132,7 +133,7 @@ class SubscriptionItem extends ConsumerWidget {
                         width: 10,
                       ),
                       Text(
-                        subscription.name,
+                        getSubString(subscription.name, 0, 15),
                         style: const TextStyle(
                           fontSize: 20.0,
                         ),
@@ -210,7 +211,7 @@ class SubscriptionItem extends ConsumerWidget {
                         width: 10,
                       ),
                       Text(
-                        "${subscription.from}",
+                        getSubString(subscription.from.toString(), 0, 20),
                         style: const TextStyle(
                           fontSize: 16.0,
                         ),
@@ -218,18 +219,7 @@ class SubscriptionItem extends ConsumerWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: const Color.fromARGB(255, 227, 226, 226),
-                            ),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: const Text(" per ")),
-                      const SizedBox(
-                        width: 10,
-                      ),
+                      const Text("/"),
                       Text(
                         " ${subscription.period}",
                         style: const TextStyle(

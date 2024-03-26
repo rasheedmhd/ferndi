@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:app/models/schemas.dart";
+import "package:app/utility/util/subString.dart";
 import "package:app/ops/update/editSpend.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 
@@ -19,27 +20,6 @@ class SpendItem extends ConsumerWidget {
         ),
       );
     }
-
-    String getSubString(String string, int start, int end) {
-      // Ensure end index is within bounds
-      if (end > string.length) {
-        end = string.length;
-        return string.substring(start, end);
-      }
-
-      // Return the slice of the string
-      final slicedString = string.substring(start, end);
-      return "$slicedString...";
-    }
-
-    // void main() {
-    //   String originalString = "Hello, world!";
-    //   int startIndex = 2;
-    //   int endIndex = 7;
-
-    //   String slicedString = getSliceOfString(originalString, startIndex, endIndex);
-    //   print(slicedString); // Output: "llo, w"
-    // }
 
     return Container(
       decoration: BoxDecoration(
