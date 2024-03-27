@@ -3,6 +3,7 @@ import "package:app/providers/wallets_provider.dart";
 import "package:app/utility/schema/methods.dart";
 import 'package:app/models/schemas.dart' as subscription;
 import "package:flutter/material.dart";
+import "package:flutter/widgets.dart";
 import "package:realm/realm.dart";
 import "package:app/providers/subs_provider.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -23,16 +24,9 @@ class AddSubscriptionCard extends ConsumerStatefulWidget {
 class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
   final _nameController = TextEditingController();
   final _amountController = TextEditingController();
-  final _dateController = TextEditingController();
+  TextEditingController _dateController = TextEditingController();
   Duration _selectedDuration =
    duration.isEmpty ? Duration(ObjectId(), "Month", DateTime.now()) : duration.first;
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _amountController.dispose();
-    super.dispose();
-  }
 
   DateTime date = DateTime.now();
 
@@ -58,6 +52,18 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
     date = DateTime.parse(typedDate);
   }
 
+  @override
+  void initState() {
+    super.initState();
+    _dateController = TextEditingController(text: ' Today');
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _amountController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -17,13 +17,12 @@ class EditSpendCard extends ConsumerStatefulWidget {
 class EditSpendCardState extends ConsumerState<EditSpendCard> {
   late Spend spendToEdit = ref.watch(getSpend(widget.spend.id));
 
-  late String name = spendToEdit.name;
-  late String notes = spendToEdit.notes;
-  late DateTime date = spendToEdit.createdAt;
-  late String amount = spendToEdit.amount.toString();
+  late String name      = spendToEdit.name;
+  late String notes     = spendToEdit.notes;
+  late DateTime date    = spendToEdit.createdAt;
+  late String amount    = spendToEdit.amount.toString();
 
   final _dateController = TextEditingController();
-  // TextEditingController _dateController = TextEditingController();
 
   Future<void> setDatePicker() async {
     DateTime? setDate = await showDatePicker(
@@ -60,13 +59,13 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
   }
 
   late Category _selectedCategory = spendToEdit.category ??= categories.first;
-  late Wallet _selectedWallet = spendToEdit.wallet ??= wallets.first;
+  late Wallet _selectedWallet     = spendToEdit.wallet   ??= wallets.first;
 
-  // @override
-  // void dispose() {
-  //   _dateController.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -131,16 +130,17 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                     onChanged: _newAmount,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                        iconColor: const Color.fromARGB(255, 151, 151, 151),
-                        icon: const FaIcon(
-                          FontAwesomeIcons.tags,
-                          size: 24,
-                        ),
-                        border: InputBorder.none,
-                        prefix: const Text("GHS "),
-                        label: const Text("Amount"),
-                        hintText: "${spendToEdit.amount}",
-                        isDense: true),
+                      iconColor: const Color.fromARGB(255, 151, 151, 151),
+                      icon: const FaIcon(
+                        FontAwesomeIcons.tags,
+                        size: 24,
+                      ),
+                      border: InputBorder.none,
+                      prefix: const Text("GHS "),
+                      label: const Text("Amount"),
+                      hintText: "${spendToEdit.amount}",
+                      isDense: true
+                    ),
                   ),
                   const Divider(
                     color: Color.fromARGB(255, 227, 226, 226),
@@ -156,9 +156,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                         size: 24,
                       ),
                       border: InputBorder.none,
-                      // label: Text("Date"),
-                      label:
-                          Text(DateFormat("EEEE, dd MMMM, yyyy").format(date)),
+                      label: Text(DateFormat("EEEE, dd MMMM, yyyy").format(date)),
                       isDense: true,
                     ),
                     onTap: () {

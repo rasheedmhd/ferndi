@@ -3,8 +3,10 @@ import "package:app/utility/schema/methods.dart";
 import 'package:app/models/schemas.dart' as my;
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:app/providers/subs_provider.dart";
 import 'package:flutter/services.dart';
+import "package:intl/intl.dart";
 
 class EditSubscriptionCard extends ConsumerStatefulWidget {
   final my.Subscription subscription;
@@ -18,8 +20,10 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
   late my.Subscription subscriptionToEdit =
       ref.watch(getSubscription(widget.subscription.id));
 
-  late String name = subscriptionToEdit.name;
-  late String amount = subscriptionToEdit.amount.toString();
+  late String name        = subscriptionToEdit.name;
+  late String amount      = subscriptionToEdit.amount.toString();
+  late DateTime date      = subscriptionToEdit.chargeAt;
+  final _dateController   = TextEditingController();
 
   void _newName(String typedName) {
     name = typedName;
@@ -33,6 +37,34 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
       subscriptionToEdit.duration ??= duration.first;
   late Wallet _selectedWallet = subscriptionToEdit.wallet ??= wallets.first;
 
+  Future<void> setDatePicker() async {
+    DateTime? setDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+
+    if (setDate != null) {
+      setState(() {
+        _dateController.text =
+            DateFormat("EEEE, dd MMMM, yyyy").format(setDate);
+      });
+    } else {
+      date = DateTime.now();
+    }
+  }
+
+  void newDate(String typedDate) {
+    date = DateTime.parse(typedDate);
+  }
+
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +74,7 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
           decoration: BoxDecoration(
             border: Border.all(
               color: const Color.fromARGB(255, 227, 226, 226),
@@ -78,6 +110,28 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
               const Divider(
                 color: Color.fromARGB(255, 227, 226, 226),
               ),
+              TextField(
+                controller: _dateController,
+                onChanged: newDate,
+                readOnly: true,
+                decoration: InputDecoration(
+                  iconColor: const Color.fromARGB(255, 151, 151, 151),
+                  icon: const FaIcon(
+                    FontAwesomeIcons.calendarDay,
+                    size: 24,
+                  ),
+                  border: InputBorder.none,
+                  label:Text(DateFormat("EEEE, dd MMMM, yyyy").format(date)),
+                  isDense: true,
+                  
+                ),
+                onTap: () {
+                  setDatePicker();
+                },
+              ),
+              const Divider(
+                color: Color.fromARGB(255, 227, 226, 226),
+              ),  
               const SizedBox(
                 height: 20,
               ),
@@ -222,8 +276,12 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
                               double.parse(amount),
                               wallet: _selectedWallet,
                               duration: _selectedDuration,
+                              // CreatedAt
                               DateTime.now(),
-                              DateTime.now(),
+                              // ChargeAt
+                              DateFormat("EEEE, dd MMMM, yyyy")
+                                  .tryParse(_dateController.text) ??
+                              date,
                             ),
                           );
                       ScaffoldMessenger.of(context).showSnackBar(
