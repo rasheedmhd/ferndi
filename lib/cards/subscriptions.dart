@@ -109,9 +109,9 @@ class SubscriptionItem extends ConsumerWidget {
               ),
             ],
           ),
-          child: Card(
-            elevation: 0,
-            shape: RoundedRectangleBorder(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
               borderRadius: BorderRadius.circular(20.0),
             ),
             child: Padding(
@@ -119,9 +119,10 @@ class SubscriptionItem extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      const CircleAvatar(
+                  ListTile(
+                    titleAlignment: ListTileTitleAlignment.top,
+                    contentPadding: const EdgeInsets.all(0),
+                    leading: const CircleAvatar(
                         backgroundColor: Color.fromARGB(255, 215, 237, 253),
                         child: FaIcon(
                           FontAwesomeIcons.solidCreditCard,
@@ -129,73 +130,58 @@ class SubscriptionItem extends ConsumerWidget {
                           color: Color.fromARGB(255, 5, 61, 135),
                         ),
                       ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        getSubString(subscription.name, 0, 15),
+                    title: Text(
+                        getSubString(subscription.name, 0, 35),
                         style: const TextStyle(
                           fontSize: 20.0,
                         ),
                       ),
-                      const Spacer(),
-                      Text(
+                    trailing: Text(
                         "GHS ${subscription.getAmount}",
                         style: const TextStyle(
                           fontSize: 16,
                           color: Color.fromARGB(255, 163, 9, 71),
                         ),
                       ),
-                    ],
-                  ),
+                  ),                 
                   const SizedBox(
                     height: 10,
-                  ),
-                  const Text(
-                    "Charge Date:   ",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 148, 152, 158),
-                    ),
-                  ),
+                  ),                 
                   Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 5, 10, 10),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Container(
-                            padding: const EdgeInsets.all(7),
-                            color: const Color.fromARGB(255, 234, 246, 255),
-                            child: Text(
-                              "$chargeDate ",
-                              style: const TextStyle(
-                                color: Color.fromARGB(255, 90, 90, 90),
-                              ),
+                    const Text(
+                      "Charge Date:   ",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 148, 152, 158),
+                      ),
+                    ),
+                    Text(
+                      "$chargeDate ",
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 90, 90, 90),
+                      ),
+                    ),
+                    ],
+                  ),
+                  Padding(
+                    padding:const EdgeInsets.symmetric(vertical: 15),
+                    child: GestureDetector(
+                      onTap: showCharge,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Container(
+                          padding: const EdgeInsets.all(5),
+                          color: const Color.fromARGB(255, 5, 61, 135),
+                          child: const Text(
+                            " charge ",
+                            style: TextStyle(
+                              color: Colors.white,
                             ),
                           ),
                         ),
                       ),
-                      Padding(
-                        padding:const EdgeInsets.fromLTRB(0, 5, 10, 10),
-                        child: GestureDetector(
-                          onTap: showCharge,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(50),
-                            child: Container(
-                              padding: const EdgeInsets.all(5),
-                              color: const Color.fromARGB(255, 5, 61, 135),
-                              child: const Text(
-                                " charge ",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ), 
-                    ],
-                  ),
+                    ),
+                  ),                    
                   Row(
                     children: [
                       Container(
@@ -235,7 +221,7 @@ class SubscriptionItem extends ConsumerWidget {
           ),
         ),
         const SizedBox(
-          height: 5,
+          height: 15,
         ),
       ],
     );

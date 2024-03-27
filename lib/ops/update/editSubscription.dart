@@ -55,8 +55,7 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
                 initialValue: name,
                 onChanged: _newName,
                 inputFormatters: [
-                  LengthLimitingTextInputFormatter(
-                      50), // Limit the number of characters
+                  LengthLimitingTextInputFormatter(50), // Limit the number of characters
                 ],
                 decoration: const InputDecoration(
                     label: Text("Name"), border: InputBorder.none),
@@ -68,8 +67,7 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
                 initialValue: amount,
                 onChanged: _newAmount,
                 inputFormatters: [
-                  LengthLimitingTextInputFormatter(
-                      100), // Limit the number of characters
+                  LengthLimitingTextInputFormatter(10), // Limit the number of characters
                 ],
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(

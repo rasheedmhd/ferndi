@@ -7,6 +7,8 @@ import "package:realm/realm.dart";
 import "package:app/providers/subs_provider.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:flutter/services.dart';
+import "package:intl/intl.dart";
+
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 
@@ -21,6 +23,7 @@ class AddSubscriptionCard extends ConsumerStatefulWidget {
 class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
   final _nameController = TextEditingController();
   final _amountController = TextEditingController();
+  final _dateController = TextEditingController();
   Duration _selectedDuration =
    duration.isEmpty ? Duration(ObjectId(), "Month", DateTime.now()) : duration.first;
 
@@ -31,11 +34,36 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
     super.dispose();
   }
 
+  DateTime date = DateTime.now();
+
+  Future<void> setDatePicker() async {
+    DateTime? setDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+
+    if (setDate != null) {
+      setState(() {
+        _dateController.text =
+            DateFormat("EEEE, dd MMMM, yyyy").format(setDate);
+      });
+    } else {
+      date = DateTime.now();
+    }
+  }
+
+  void newDate(String typedDate) {
+    date = DateTime.parse(typedDate);
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
     final providerWallets = ref.watch(walletsNotifier);
-    Wallet _selectedWallet = 
+    Wallet selectedWallet = 
       providerWallets .isEmpty ? Wallet(ObjectId(), "Flexible", 0, DateTime.now()) : providerWallets .first;
       
     return Scaffold(
@@ -45,7 +73,7 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
           decoration: BoxDecoration(
             border: Border.all(
               color: const Color.fromARGB(255, 227, 226, 226),
@@ -76,14 +104,39 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
-                  isDense: true, prefix: Text("GHS "), label: Text("Amount")),
+                  isDense: true, 
+                  prefix: Text("GHS "), 
+                  label: Text("Amount"),
+                ),
               ),
               const Divider(
                 color: Color.fromARGB(255, 227, 226, 226),
               ),
+              TextField(
+                controller: _dateController,
+                onChanged: newDate,
+                readOnly: true,
+                decoration: const InputDecoration(
+                  iconColor: Color.fromARGB(255, 151, 151, 151),
+                  icon: FaIcon(
+                    FontAwesomeIcons.calendarDay,
+                    size: 24,
+                  ),
+                  border: InputBorder.none,
+                  label: Text("Charge Date"),
+                  isDense: true,
+                  
+                ),
+                onTap: () {
+                  setDatePicker();
+                },
+              ),
+              const Divider(
+                color: Color.fromARGB(255, 227, 226, 226),
+              ),  
               const SizedBox(
                 height: 20,
-              ),
+              ),                          
               Row(
                 children: [
                   Container(
@@ -96,7 +149,7 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                     ),
                     child: DropdownButton(
                       underline: Container(),
-                      value: _selectedWallet,
+                      value: selectedWallet,
                       borderRadius: const BorderRadius.all(
                         Radius.circular(20),
                       ),
@@ -119,7 +172,7 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                         }
                         setState(
                           () {
-                            _selectedWallet = value;
+                            selectedWallet = value;
                           },
                         );
                       },
@@ -188,7 +241,7 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                   if (_nameController.text.isEmpty ||
                       _amountController.text.isEmpty ||
                       _selectedDuration.name.isEmpty ||
-                      _selectedWallet.name.isEmpty) {
+                      selectedWallet.name.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         backgroundColor: Color.fromARGB(255, 255, 231, 241),
@@ -223,9 +276,13 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                           ObjectId(),
                           _nameController.text,
                           double.tryParse(_amountController.text) ?? 0,
-                          wallet: _selectedWallet,
+                          wallet: selectedWallet,
                           duration: _selectedDuration,
+                          // CreatedAt
                           DateTime.now(),
+                          // ChargeAt
+                          DateFormat("EEEE, dd MMMM, yyyy")
+                              .tryParse(_dateController.text) ??
                           DateTime.now(),
                         ),
                       );
