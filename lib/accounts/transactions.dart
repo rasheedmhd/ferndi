@@ -4,6 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:app/providers/wallets_provider.dart";
+import "package:app/utility/util/subString.dart";
 
 class TransactionsPage extends ConsumerStatefulWidget {
   final Wallet wallet;
@@ -14,12 +15,10 @@ class TransactionsPage extends ConsumerStatefulWidget {
 }
 
 class TransactionsPageState extends ConsumerState<TransactionsPage> {
-  // late Wallet wallet = getWallet(widget.wallet.id);
   late Wallet? wallet = ref.watch(getWallet(widget.wallet.id));
 
   @override
   Widget build(BuildContext context) {
-    
     // This reads a provider from the wallets_provider.dart file, which depends on
     // another provider in the same file that returns all spends made under a particular
     // wallet when give the name of the wallet.
@@ -42,7 +41,7 @@ class TransactionsPageState extends ConsumerState<TransactionsPage> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 50, 0, 10),
                     child: Text(
-                      wallet!.name,
+                      getSubString(wallet!.name, 0, 20),
                       style: const TextStyle(
                         fontSize: 30.0,
                         color: Color.fromARGB(255, 5, 61, 135),

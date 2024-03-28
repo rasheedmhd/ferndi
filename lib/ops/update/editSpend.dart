@@ -271,8 +271,11 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                       ),
                     ],
                   ),
+                  const Divider(
+                    color: Color.fromARGB(255, 227, 226, 226),
+                  ),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   FloatingActionButton.extended(
                     elevation: 1,

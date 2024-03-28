@@ -11,14 +11,15 @@ class SpendsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-  void showFilters() {
-    showModalBottomSheet(
-      showDragHandle: true,
-      context: context,
-      isScrollControlled: true,
-      builder: (ctx) => const Text("Hello"),
-    );
-  }
+    // void showFilters() {
+    //   showModalBottomSheet(
+    //     showDragHandle: true,
+    //     context: context,
+    //     isScrollControlled: true,
+    //     builder: (ctx) => const Text("Hello"),
+    //   );
+    // }
+
     final totalSpend = ref.watch(spendsNotifier).length;
 
     return Scaffold(
@@ -56,7 +57,7 @@ class SpendsPage extends ConsumerWidget {
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0),
-            child: allSpends(),
+            child: AllSpends(),
           ),
         ],
       ),

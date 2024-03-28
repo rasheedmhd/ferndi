@@ -48,11 +48,12 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Top up ${getSubString(name, 0, 50)}",
+                  "Top up ${getSubString(name, 0, 47)}",
                   style: const TextStyle(
                     fontSize: 30.0,
                     color: Color.fromARGB(255, 5, 61, 135),
@@ -115,87 +116,87 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
               const Divider(
                 color: Color.fromARGB(255, 227, 226, 226),
               ),              
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FloatingActionButton.extended(
-                    elevation: 1,
-                    heroTag: "save",
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0)),
-                    label: const Text(
-                      "       save      ",
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w700,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FloatingActionButton.extended(
+                      elevation: 1,
+                      heroTag: "save",
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0)),
+                      label: const Text(
+                        "       save      ",
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                    ),
-                    foregroundColor: Colors.white,
-                    backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-                    onPressed: () {
-                      if (_balanceController.text.isEmpty) {
+                      foregroundColor: Colors.white,
+                      backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+                      onPressed: () {
+                        if (_balanceController.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                              content: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Nothing was added to your wallet",
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 0, 128, 255),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                          Navigator.of(context).pop();
+                          return;
+                        }
+                        _newBalance(_balanceController.text);
+                        ref.read(walletsNotifier.notifier).updateWallet(
+                              Wallet(walletToEdit!.id, name, balance,
+                                  DateTime.now()),
+                            );
+                        ScaffoldMessenger.of(context).clearSnackBars();
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                            backgroundColor: Color.fromARGB(255, 231, 255, 245),
                             content: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Nothing was added to your wallet",
+                                  "Wallet topped up successfully.",
                                   style: TextStyle(
-                                    color: Color.fromARGB(255, 0, 128, 255),
+                                    color: Color.fromARGB(255, 9, 163, 99),
                                   ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Happy Spend tracking!   ",
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255, 9, 163, 99),
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.sentiment_very_satisfied,
+                                      color: Color.fromARGB(255, 9, 163, 9),
+                                    )
+                                  ],
                                 ),
                               ],
                             ),
                           ),
                         );
                         Navigator.of(context).pop();
-                        return;
-                      }
-                      _newBalance(_balanceController.text);
-                      ref.read(walletsNotifier.notifier).updateWallet(
-                            Wallet(walletToEdit!.id, name, balance,
-                                DateTime.now()),
-                          );
-                      ScaffoldMessenger.of(context).clearSnackBars();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          backgroundColor: Color.fromARGB(255, 231, 255, 245),
-                          content: Column(
-                            children: [
-                              Text(
-                                "Wallet topped up successfully.",
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 9, 163, 99),
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Happy Spend tracking!   ",
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 9, 163, 99),
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.sentiment_very_satisfied,
-                                    color: Color.fromARGB(255, 9, 163, 9),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
+                      },
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

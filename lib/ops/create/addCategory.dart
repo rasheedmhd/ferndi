@@ -59,6 +59,7 @@ class AddCategoryCardState extends ConsumerState<AddCategoryCard> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: _nameController,
@@ -296,93 +297,93 @@ class AddCategoryCardState extends ConsumerState<AddCategoryCard> {
                   ),
                 ]),
               ),
-              const SizedBox(
-                height: 40,
-              ),
-              FloatingActionButton.extended(
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-                label: const Text(
-                  "          save          ",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w700,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 40.0),
+                child: FloatingActionButton.extended(
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
-                ),
-                foregroundColor: Colors.white,
-                backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-                onPressed: () {
-                  if (_nameController.text.isEmpty) {
+                  label: const Text(
+                    "          save          ",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  foregroundColor: Colors.white,
+                  backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+                  onPressed: () {
+                    if (_nameController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).clearSnackBars();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                          content: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "A Category must have a Name",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 163, 9, 71),
+                                ),
+                              ),
+                              Text(
+                                "Please add a Name before saving.",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 163, 9, 71),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                      return;
+                    }
+                    ref.read(categoriesNotifier.notifier).createCategory(
+                          Category(
+                            ObjectId(),
+                            _nameController.text,
+                            categoryEmoji,
+                            categoryColorInt.toString(),
+                            DateTime.now()
+                          ),
+                        );
+                    _nameController.clear();
                     ScaffoldMessenger.of(context).clearSnackBars();
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                        backgroundColor: Color.fromARGB(255, 231, 255, 245),
                         content: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "A Category must have a Name",
+                              "Category created successfully.",
                               style: TextStyle(
-                                color: Color.fromARGB(255, 163, 9, 71),
+                                color: Color.fromARGB(255, 9, 163, 99),
                               ),
                             ),
-                            Text(
-                              "Please add a Name before saving.",
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 163, 9, 71),
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Happy Spend tracking!   ",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 9, 163, 99),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.sentiment_very_satisfied,
+                                  color: Color.fromARGB(255, 9, 163, 9),
+                                )
+                              ],
                             ),
                           ],
                         ),
                       ),
                     );
-                    return;
-                  }
-                  ref.read(categoriesNotifier.notifier).createCategory(
-                        Category(
-                          ObjectId(),
-                          _nameController.text,
-                          categoryEmoji,
-                          categoryColorInt.toString(),
-                          DateTime.now()
-                        ),
-                      );
-                  _nameController.clear();
-                  ScaffoldMessenger.of(context).clearSnackBars();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      backgroundColor: Color.fromARGB(255, 231, 255, 245),
-                      content: Column(
-                        children: [
-                          Text(
-                            "Category created successfully.",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 9, 163, 99),
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Happy Spend tracking!   ",
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 9, 163, 99),
-                                ),
-                              ),
-                              Icon(
-                                Icons.sentiment_very_satisfied,
-                                color: Color.fromARGB(255, 9, 163, 9),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                  Navigator.of(context).pop();
-                },
+                    Navigator.of(context).pop();
+                  },
+                ),
               ),
             ],
           ),

@@ -3,7 +3,6 @@ import "package:app/providers/wallets_provider.dart";
 import "package:app/utility/schema/methods.dart";
 import 'package:app/models/schemas.dart' as subscription;
 import "package:flutter/material.dart";
-import "package:flutter/widgets.dart";
 import "package:realm/realm.dart";
 import "package:app/providers/subs_provider.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -87,6 +86,7 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: _nameController,
@@ -227,7 +227,7 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                 ],
               ),
               const SizedBox(
-                height: 35,
+                height: 20,
               ),
               FloatingActionButton.extended(
                 elevation: 1,

@@ -43,6 +43,7 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               TextFormField(
                 initialValue: name,
@@ -76,111 +77,111 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
               const Divider(
                 color: Color.fromARGB(255, 227, 226, 226),
               ),              
-              const SizedBox(
-                height: 40,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FloatingActionButton.extended(
-                    elevation: 1,
-                    heroTag: "save",
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0)),
-                    label: const Text(
-                      "       save      ",
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w700,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FloatingActionButton.extended(
+                      elevation: 1,
+                      heroTag: "save",
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0)),
+                      label: const Text(
+                        "       save      ",
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                    ),
-                    foregroundColor: Colors.white,
-                    backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-                    onPressed: () {
-                      // final returnedWallet = ref.read(getWalletByName(name));
-                      // if (returnedWallet != null)
-                      // // if (name.toLowerCase() ==
-                      // //     returnedWallet?.name.toLowerCase() && balance == balance)
-                      //     {
-                      //   ScaffoldMessenger.of(context).clearSnackBars();
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     const SnackBar(
-                      //       backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                      //       content: Column(
-                      //         mainAxisAlignment: MainAxisAlignment.center,
-                      //         children: [
-                      //           Text(
-                      //             "Wallet already exist!",
-                      //             style: TextStyle(
-                      //                 color: Color.fromARGB(255, 163, 9, 71)),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   );
-                      //   return;
-                      // }
-                      if (balance.isEmpty || name.isEmpty) {
+                      foregroundColor: Colors.white,
+                      backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+                      onPressed: () {
+                        // final returnedWallet = ref.read(getWalletByName(name));
+                        // if (returnedWallet != null)
+                        // // if (name.toLowerCase() ==
+                        // //     returnedWallet?.name.toLowerCase() && balance == balance)
+                        //     {
+                        //   ScaffoldMessenger.of(context).clearSnackBars();
+                        //   ScaffoldMessenger.of(context).showSnackBar(
+                        //     const SnackBar(
+                        //       backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                        //       content: Column(
+                        //         mainAxisAlignment: MainAxisAlignment.center,
+                        //         children: [
+                        //           Text(
+                        //             "Wallet already exist!",
+                        //             style: TextStyle(
+                        //                 color: Color.fromARGB(255, 163, 9, 71)),
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   );
+                        //   return;
+                        // }
+                        if (balance.isEmpty || name.isEmpty) {
+                          ScaffoldMessenger.of(context).clearSnackBars();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                              content: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "A Wallet must have a Name and a Balance",
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 163, 9, 71),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Please add a Name and Balance before saving.",
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 163, 9, 71),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                          return;
+                        }
+                        ref.read(walletsNotifier.notifier).updateWallet(
+                              Wallet(walletToEdit!.id, name,
+                                  double.parse(balance), DateTime.now()),
+                            );
                         ScaffoldMessenger.of(context).clearSnackBars();
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                            backgroundColor: Color.fromARGB(255, 231, 255, 245),
                             content: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "A Wallet must have a Name and a Balance",
+                                  "Wallet updated successfully.",
                                   style: TextStyle(
-                                    color: Color.fromARGB(255, 163, 9, 71),
-                                  ),
+                                      color: Color.fromARGB(255, 9, 163, 99)),
                                 ),
-                                Text(
-                                  "Please add a Name and Balance before saving.",
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 163, 9, 71),
-                                  ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Happy Spend tracking!   ",
+                                      style: TextStyle(
+                                          color: Color.fromARGB(255, 9, 163, 99)),
+                                    ),
+                                    Icon(Icons.sentiment_very_satisfied,
+                                        color: Color.fromARGB(255, 9, 163, 9))
+                                  ],
                                 ),
                               ],
                             ),
                           ),
                         );
-                        return;
-                      }
-                      ref.read(walletsNotifier.notifier).updateWallet(
-                            Wallet(walletToEdit!.id, name,
-                                double.parse(balance), DateTime.now()),
-                          );
-                      ScaffoldMessenger.of(context).clearSnackBars();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          backgroundColor: Color.fromARGB(255, 231, 255, 245),
-                          content: Column(
-                            children: [
-                              Text(
-                                "Wallet updated successfully.",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 9, 163, 99)),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Happy Spend tracking!   ",
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 9, 163, 99)),
-                                  ),
-                                  Icon(Icons.sentiment_very_satisfied,
-                                      color: Color.fromARGB(255, 9, 163, 9))
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

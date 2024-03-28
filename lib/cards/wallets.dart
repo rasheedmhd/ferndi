@@ -215,7 +215,7 @@ class WalletItem extends ConsumerWidget {
                             padding: const EdgeInsets.all(7),
                             color: const Color.fromARGB(199, 71, 34, 255),
                             child: const Text(
-                              " edit ",
+                              " Edit ",
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -236,7 +236,7 @@ class WalletItem extends ConsumerWidget {
                             padding: const EdgeInsets.all(7),
                             color: const Color.fromARGB(255, 23, 213, 110),
                             child: const Text(
-                              " top up ",
+                              " Top up ",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,

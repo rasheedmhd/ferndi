@@ -82,6 +82,7 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               TextFormField(
                 initialValue: name,
@@ -215,7 +216,7 @@ class EditSubscriptionCardState extends ConsumerState<EditSubscriptionCard> {
                 ],
               ),
               const SizedBox(
-                height: 35,
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

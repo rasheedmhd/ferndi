@@ -122,7 +122,7 @@ class SpendItem extends ConsumerWidget {
                 ),
                 subtitle: Text(spend.notes),
                 trailing: Text(
-                  "- ${spend.getAmount}",
+                  "GHS ${spend.getAmount}",
                   style: const TextStyle(
                     fontSize: 16,
                     color: Color.fromARGB(255, 163, 9, 71),
@@ -141,8 +141,8 @@ class SpendItem extends ConsumerWidget {
   }
 }
 
-class allSpends extends ConsumerWidget {
-  const allSpends({super.key});
+class AllSpends extends ConsumerWidget {
+  const AllSpends({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -33,7 +33,7 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
             border: Border.all(
               color: const Color.fromARGB(255, 227, 226, 226),
@@ -41,6 +41,7 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: _nameController,
@@ -73,113 +74,113 @@ class AddWalletCardState extends ConsumerState<AddWalletCard> {
               const Divider(
                 color: Color.fromARGB(255, 227, 226, 226),
               ),
-              const SizedBox(
-                height: 40,
-              ),
-              FloatingActionButton.extended(
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-                label: const Text(
-                  "       save       ",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w700,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                child: FloatingActionButton.extended(
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
-                ),
-                foregroundColor: Colors.white,
-                backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-                onPressed: () {
-                  final returnedWallet =
-                      ref.read(getWalletByName(_nameController.text));
-                  if (_nameController.text.toLowerCase() ==
-                      returnedWallet?.name.toLowerCase()) {
-                    ScaffoldMessenger.of(context).clearSnackBars();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                        content: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Wallet already exist!",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 163, 9, 71)),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                    return;
-                  }
-                  if (_balanceController.text.isEmpty ||
-                      _nameController.text.isEmpty) {
-                    ScaffoldMessenger.of(context).clearSnackBars();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        backgroundColor: Color.fromARGB(255, 255, 231, 241),
-                        content: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "A Wallet must have a Name and a Balance",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 163, 9, 71)),
-                            ),
-                            Text(
-                              "Please add a Name and Balance before saving.",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 163, 9, 71)),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                    return;
-                  }
-                  ref.read(walletsNotifier.notifier).createWallet(
-                        Wallet(
-                            ObjectId(),
-                            _nameController.text,
-                            double.parse(_balanceController.text),
-                            DateTime.now()),
-                      );
-                  _nameController.clear();
-                  _balanceController.clear();
-                  ScaffoldMessenger.of(context).clearSnackBars();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      backgroundColor: Color.fromARGB(255, 231, 255, 245),
-                      content: Column(
-                        children: [
-                          Text(
-                            "Wallet created successfully.",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 9, 163, 99),
-                            ),
-                          ),
-                          Row(
+                  label: const Text(
+                    "       save       ",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  foregroundColor: Colors.white,
+                  backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+                  onPressed: () {
+                    final returnedWallet =
+                        ref.read(getWalletByName(_nameController.text));
+                    if (_nameController.text.toLowerCase() ==
+                        returnedWallet?.name.toLowerCase()) {
+                      ScaffoldMessenger.of(context).clearSnackBars();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                          content: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Happy Spend tracking!   ",
+                                "Wallet already exist!",
                                 style: TextStyle(
-                                  color: Color.fromARGB(255, 9, 163, 99),
-                                ),
+                                    color: Color.fromARGB(255, 163, 9, 71)),
                               ),
-                              Icon(
-                                Icons.sentiment_very_satisfied,
-                                color: Color.fromARGB(255, 9, 163, 9),
-                              )
                             ],
                           ),
-                        ],
+                        ),
+                      );
+                      return;
+                    }
+                    if (_balanceController.text.isEmpty ||
+                        _nameController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).clearSnackBars();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                          content: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "A Wallet must have a Name and a Balance",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 163, 9, 71)),
+                              ),
+                              Text(
+                                "Please add a Name and Balance before saving.",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 163, 9, 71)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                      return;
+                    }
+                    ref.read(walletsNotifier.notifier).createWallet(
+                          Wallet(
+                              ObjectId(),
+                              _nameController.text,
+                              double.parse(_balanceController.text),
+                              DateTime.now()),
+                        );
+                    _nameController.clear();
+                    _balanceController.clear();
+                    ScaffoldMessenger.of(context).clearSnackBars();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: Color.fromARGB(255, 231, 255, 245),
+                        content: Column(
+                          children: [
+                            Text(
+                              "Wallet created successfully.",
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 9, 163, 99),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Happy Spend tracking!   ",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 9, 163, 99),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.sentiment_very_satisfied,
+                                  color: Color.fromARGB(255, 9, 163, 9),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                  Navigator.of(context).pop();
-                },
+                    );
+                    Navigator.of(context).pop();
+                  },
+                ),
               ),
             ],
           ),

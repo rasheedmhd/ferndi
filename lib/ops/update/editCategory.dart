@@ -4,7 +4,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/categories_provider.dart";
 import 'package:flutter/services.dart';
 
-
 class EditCategoryCard extends ConsumerStatefulWidget {
   const EditCategoryCard({required this.category, super.key});
 
@@ -56,21 +55,22 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               TextFormField(
                 initialValue: name,
                 onChanged: _newName,
                 inputFormatters: [
-                  LengthLimitingTextInputFormatter(50), // Limit the number of characters
+                  LengthLimitingTextInputFormatter(
+                      50), // Limit the number of characters
                 ],
                 keyboardType: TextInputType.text,
-                decoration: const InputDecoration(label: Text("Category Name"),
-                border: InputBorder.none
-                ),
+                decoration: const InputDecoration(
+                    label: Text("Category Name"), border: InputBorder.none),
               ),
               const Divider(
-                  color: Color.fromARGB(255, 227, 226, 226),
-                ),              
+                color: Color.fromARGB(255, 227, 226, 226),
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -95,19 +95,19 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                       initialValue: categoryEmoji,
                       onChanged: _newEmoji,
                       inputFormatters: [
-                        LengthLimitingTextInputFormatter(1), // Limit the number of characters
+                        LengthLimitingTextInputFormatter(
+                            1), // Limit the number of characters
                       ],
                       keyboardType: TextInputType.text,
-                      decoration: const InputDecoration(label: Text("Emoji"),
-                      border: InputBorder.none
-                      ),
+                      decoration: const InputDecoration(
+                          label: Text("Emoji"), border: InputBorder.none),
                     ),
                   ),
                 ],
               ),
               const Divider(
                 color: Color.fromARGB(255, 227, 226, 226),
-              ),             
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -161,7 +161,7 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                   ),
                   const SizedBox(
                     width: 10,
-                  ),                 
+                  ),
                   GestureDetector(
                     onTap: () {
                       setState(() {
@@ -292,90 +292,85 @@ class EditCategoryCardState extends ConsumerState<EditCategoryCard> {
                   ),
                 ]),
               ),
-              const SizedBox(
-                height: 40,
-              ),
-              FloatingActionButton.extended(
-                heroTag: "save",
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.0)),
-                label: const Text(
-                  "          save          ",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w700,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 40.0),
+                child: FloatingActionButton.extended(
+                  heroTag: "save",
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0)),
+                  label: const Text(
+                    "          save          ",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
-                ),
-                foregroundColor: Colors.white,
-                backgroundColor: const Color.fromARGB(255, 5, 61, 135),
-                onPressed: () {
-                  if (name.isEmpty) {
+                  foregroundColor: Colors.white,
+                  backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+                  onPressed: () {
+                    if (name.isEmpty) {
+                      ScaffoldMessenger.of(context).clearSnackBars();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                          content: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "A Category must have a name",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 163, 9, 71)),
+                              ),
+                              Text(
+                                "Please add a name before saving.",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 163, 9, 71)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                      return;
+                    }
+                    ref.read(categoriesNotifier.notifier).updateCategory(
+                          Category(categoryToEdit.id, name, categoryEmoji,
+                              categoryColorInt.toString(), DateTime.now()),
+                        );
                     ScaffoldMessenger.of(context).clearSnackBars();
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                        backgroundColor: Color.fromARGB(255, 231, 255, 245),
                         content: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "A Category must have a name",
+                              "Category successfully updated.",
                               style: TextStyle(
-                                  color: Color.fromARGB(255, 163, 9, 71)),
+                                color: Color.fromARGB(255, 9, 163, 99),
+                              ),
                             ),
-                            Text(
-                              "Please add a name before saving.",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 163, 9, 71)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Enjoy Delightful Spending.",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 9, 163, 99),
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.sentiment_very_satisfied,
+                                  color: Color.fromARGB(255, 9, 163, 9),
+                                )
+                              ],
                             ),
                           ],
                         ),
                       ),
                     );
-                    return;
-                  }
-                  ref.read(categoriesNotifier.notifier).updateCategory(
-                    Category(
-                      categoryToEdit.id,
-                      name,
-                      categoryEmoji,
-                      categoryColorInt.toString(),
-                      DateTime.now()
-                    ),
-                  );
-                  ScaffoldMessenger.of(context).clearSnackBars();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      backgroundColor: Color.fromARGB(255, 231, 255, 245),
-                      content: Column(
-                        children: [
-                          Text(
-                            "Category successfully updated.",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 9, 163, 99),
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Enjoy Delightful Spending.",
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 9, 163, 99),
-                                ),
-                              ),
-                              Icon(
-                                Icons.sentiment_very_satisfied,
-                                color: Color.fromARGB(255, 9, 163, 9),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                  Navigator.of(context).pop();
-                },
+                    Navigator.of(context).pop();
+                  },
+                ),
               ),
             ],
           ),
