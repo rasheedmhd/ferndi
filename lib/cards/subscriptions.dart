@@ -163,25 +163,49 @@ class SubscriptionItem extends ConsumerWidget {
                     ),
                     ],
                   ),
-                  Padding(
-                    padding:const EdgeInsets.symmetric(vertical: 15),
-                    child: GestureDetector(
-                      onTap: showCharge,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: Container(
-                          padding: const EdgeInsets.all(5),
-                          color: const Color.fromARGB(255, 5, 61, 135),
-                          child: const Text(
-                            " charge ",
-                            style: TextStyle(
-                              color: Colors.white,
+                  // if ( chargeDate == DateTime.now())                   
+                  // else 
+                    Row(
+                      children: [
+                        Padding(padding:const EdgeInsets.fromLTRB(0, 15, 15, 15),
+                          child: GestureDetector(
+                            onTap: showCharge,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Container(
+                                padding: const EdgeInsets.all(5),
+                                color: Color.fromARGB(255, 135, 5, 63),
+                                child: const Text(
+                                  " Due ",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),  
+                        Padding(
+                          padding:const EdgeInsets.symmetric(vertical: 15),
+                          child: GestureDetector(
+                            onTap: showCharge,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Container(
+                                padding: const EdgeInsets.all(5),
+                                color: const Color.fromARGB(255, 5, 61, 135),
+                                child: const Text(
+                                  " charge ",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),                    
+                      ],
+                    ),                    
                   Row(
                     children: [
                       Container(
