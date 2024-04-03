@@ -110,10 +110,11 @@ class InsightsState extends ConsumerState<Insights> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SpendInfoCard("Categories", categoriesCount),
               SpendInfoCard("Spends", totalSpend),
+              const Spacer(),
+              SpendInfoCard("Categories", categoriesCount),
+              const Spacer(),
               SpendInfoCard("Wallets", walletsCount),
             ],
           ),

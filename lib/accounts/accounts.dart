@@ -23,9 +23,9 @@ class AccountsState extends ConsumerState<Accounts> {
     final savings = ref.watch(
       selectedWallet("Savings"),
     );
-    final flexible = ref.watch(
-      selectedWallet("Flexible"),
-    );
+    // final flexible = ref.watch(
+    //   selectedWallet("Flexible"),
+    // );
     final debts = ref.watch(
       selectedWallet("Debts"),
     );
@@ -88,7 +88,7 @@ class AccountsState extends ConsumerState<Accounts> {
         slivers: [
           SliverAppBar(
             backgroundColor: const Color.fromARGB(255, 19, 194, 110),
-            expandedHeight: 200,
+            expandedHeight: 170,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
                 decoration: const BoxDecoration(
@@ -107,7 +107,7 @@ class AccountsState extends ConsumerState<Accounts> {
                     // [[ TO DO ]]
                     SelectedWallets(income),
                     SelectedWallets(savings),
-                    SelectedWallets(flexible),
+                    // SelectedWallets(flexible),
                     SelectedWallets(debts),
                   ],
                 ),

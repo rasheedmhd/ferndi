@@ -22,11 +22,13 @@ class SpendInfoCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(value.toString(),
-                    style: const TextStyle(
-                      fontSize: 25.0,
-                      color: Color.fromARGB(255, 12, 12, 12),
-                    )),
+                Text(
+                  value.toString(),
+                  style: const TextStyle(
+                    fontSize: 25.0,
+                    color: Color.fromARGB(255, 12, 12, 12),
+                  ),
+                ),
                 Text(
                   title,
                   style: const TextStyle(

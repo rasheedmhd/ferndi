@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:font_awesome_flutter/font_awesome_flutter.dart";
+// import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 class SelectedWallets extends ConsumerWidget {
   const SelectedWallets(this.wallet, {super.key});
@@ -14,43 +14,44 @@ class SelectedWallets extends ConsumerWidget {
       padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
       child: Column(
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              FloatingActionButton(
-                heroTag: "add",
-                mini: true,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50)),
-                elevation: 0,
-                onPressed: () {},
-                backgroundColor: const Color.fromARGB(255, 204, 241, 228),
-                child: const Icon(
-                  Icons.add,
-                  size: 25,
-                  color: Color.fromARGB(255, 48, 136, 6),
-                ),
+              // FloatingActionButton(
+              //   heroTag: "add",
+              //   mini: true,
+              //   shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(50)),
+              //   elevation: 0,
+              //   onPressed: () {},
+              //   backgroundColor: const Color.fromARGB(255, 204, 241, 228),
+              //   child: const Icon(
+              //     Icons.add,
+              //     size: 25,
+              //     color: Color.fromARGB(255, 48, 136, 6),
+              //   ),
+              // ),
+              Text("Wallets",
+                style: TextStyle(
+                  fontSize: 25.0,
+                  color: Color.fromARGB(255, 255, 255, 255),
+                )
               ),
-              const Text("Wallets",
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                  )),
-              FloatingActionButton(
-                heroTag: "edit",
-                mini: true,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                elevation: 0,
-                onPressed: () {},
-                backgroundColor: const Color.fromARGB(255, 204, 241, 228),
-                child: const FaIcon(
-                  FontAwesomeIcons.penToSquare,
-                  size: 20,
-                  color: Color.fromARGB(255, 48, 136, 6),
-                ),
-              ),
+              // FloatingActionButton(
+              //   heroTag: "edit",
+              //   mini: true,
+              //   shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(50),
+              //   ),
+              //   elevation: 0,
+              //   onPressed: () {},
+              //   backgroundColor: const Color.fromARGB(255, 204, 241, 228),
+              //   child: const FaIcon(
+              //     FontAwesomeIcons.penToSquare,
+              //     size: 20,
+              //     color: Color.fromARGB(255, 48, 136, 6),
+              //   ),
+              // ),
             ],
           ),
           const SizedBox(

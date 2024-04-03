@@ -98,7 +98,7 @@ class AddCategoriesCardState extends ConsumerState<AddCategoriesCard> {
                         ),
                       ),
                       Text(
-                        "Swipe right to Record your first Spend.",
+                        "Swipe right to get started.",
                         style: TextStyle(
                           color: Color.fromARGB(255, 9, 163, 99),
                         ),

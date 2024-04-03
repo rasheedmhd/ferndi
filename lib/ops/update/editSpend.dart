@@ -6,6 +6,53 @@ import "package:intl/intl.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+// algo
+// we have the current amount
+// if we save without touching it, it goes to the db
+// - no deductions
+// cases
+// - amount greater current amount
+// - no problem
+// - get the difference
+// - check if the amount is > the selected wallet's balance
+// - if it is < no problem saved to db
+// - is it less than 
+
+// What we want is
+// on save,
+// get the new amount
+// it can be 3 things 
+// 1. > the old amount
+// 2. < the old amount
+// = the old amount 
+//   (in this case it means we didn't touch the amount value)
+//   so we save to db
+
+// Work needs to be done in 1 and 2 above
+// 1. get the new amount 
+// - is it less than(<) the selected wallet's balance?
+// if yes 
+//   proceed to deduct from the selected wallet's balance
+//   - save to db
+
+// if no
+//   go to 2 
+//   or save to db
+
+// 2. get the new amount 
+// - is it greater than(>) the selected wallet's balance?
+// if yes 
+//   warn user of insufficient balance and return
+//   - save to db
+
+
+
+// get old amount
+// get new amount
+
+// -- topup() /reimburse old wallet with old amount
+// -- deduct new amount from new wallet just like in addSpendd
+
 class EditSpendCard extends ConsumerStatefulWidget {
   final Spend spend;
   const EditSpendCard(this.spend, {super.key});
@@ -17,10 +64,14 @@ class EditSpendCard extends ConsumerStatefulWidget {
 class EditSpendCardState extends ConsumerState<EditSpendCard> {
   late Spend spendToEdit = ref.watch(getSpend(widget.spend.id));
 
-  late String name      = spendToEdit.name;
-  late String notes     = spendToEdit.notes;
-  late DateTime date    = spendToEdit.createdAt;
-  late String amount    = spendToEdit.amount.toString();
+  late String name = spendToEdit.name;
+  late String notes = spendToEdit.notes;
+  late DateTime date = spendToEdit.createdAt;
+  late String amount = spendToEdit.amount.toString();
+  late String spendAmount;
+  late double balance = spendToEdit.wallet!.balance;
+    late double newBalance =
+      _selectedWallet.balance - double.parse(spendAmount);
 
   final _dateController = TextEditingController();
 
@@ -51,7 +102,18 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
   }
 
   void _newAmount(String typedAmount) {
-    amount = typedAmount;
+    // final double spendAmount = double.parse(typedAmount);
+    // final double initAmount = double.parse(amount);
+    // switch (spendAmount) {
+    //   case (spendAmount > double.parse(amount)):
+    // }
+
+    // if (spendAmount > initAmount) {
+    //   //  && spendAmount > balance
+    //   // leave this at the widget level so you can throw a warning to the user
+    //   amount = typedAmount;
+    // }
+    spendAmount = typedAmount;
   }
 
   void newDate(String typedDate) {
@@ -59,7 +121,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
   }
 
   late Category _selectedCategory = spendToEdit.category ??= categories.first;
-  late Wallet _selectedWallet     = spendToEdit.wallet   ??= wallets.first;
+  late Wallet _selectedWallet = spendToEdit.wallet ??= wallets.first;
 
   @override
   void dispose() {
@@ -70,10 +132,11 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Edit Spend"),
-        ),
-        body: ListView(children: [
+      appBar: AppBar(
+        title: const Text("Edit Spend"),
+      ),
+      body: ListView(
+        children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 0, 15, 20),
             child: Container(
@@ -130,17 +193,16 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                     onChanged: _newAmount,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      iconColor: const Color.fromARGB(255, 151, 151, 151),
-                      icon: const FaIcon(
-                        FontAwesomeIcons.tags,
-                        size: 24,
-                      ),
-                      border: InputBorder.none,
-                      prefix: const Text("GHS "),
-                      label: const Text("Amount"),
-                      hintText: "${spendToEdit.amount}",
-                      isDense: true
-                    ),
+                        iconColor: const Color.fromARGB(255, 151, 151, 151),
+                        icon: const FaIcon(
+                          FontAwesomeIcons.tags,
+                          size: 24,
+                        ),
+                        border: InputBorder.none,
+                        prefix: const Text("GHS "),
+                        label: const Text("Amount"),
+                        hintText: "${spendToEdit.amount}",
+                        isDense: true),
                   ),
                   const Divider(
                     color: Color.fromARGB(255, 227, 226, 226),
@@ -156,7 +218,8 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                         size: 24,
                       ),
                       border: InputBorder.none,
-                      label: Text(DateFormat("EEEE, dd MMMM, yyyy").format(date)),
+                      label:
+                          Text(DateFormat("EEEE, dd MMMM, yyyy").format(date)),
                       isDense: true,
                     ),
                     onTap: () {
@@ -325,6 +388,25 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                         );
                         return;
                       }
+                      // if (double.parse(spendAmount) < _selectedWallet.balance) {
+                      //   ref.read(P.walletsNotifier.notifier).updateWallet(
+                      //         Wallet(_selectedWallet.id, _selectedWallet.name,
+                      //             newBalance, DateTime.now()),
+                      //       );
+                      //   // balance to add to amount
+                      //   // before saving amount to db
+                      //   final amountToAdd =
+                      //       double.parse(spendAmount) - double.parse(amount);
+                      //   // amount += amountToAdd;
+                      //   // if (double.parse(spendAmount) > balance) {
+                      //   // }
+                      // } else if (double.parse(spendAmount) <
+                      //     double.parse(amount)) {
+                      //   // balance to subtract from amount
+                      //   // before saving amount to db
+                      //   final amountToSubtract =
+                      //       double.parse(amount) - double.parse(spendAmount);
+                      // }
                       if (double.parse(amount) > _selectedWallet.balance) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -396,6 +478,8 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
               ),
             ),
           ),
-        ]));
+        ],
+      ),
+    );
   }
 }
