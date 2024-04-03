@@ -7,26 +7,23 @@ final config = Configuration.local([
   Subscription.schema,
   Category.schema,
   Duration.schema,
-], schemaVersion: 2, shouldDeleteIfMigrationNeeded: true);
+], schemaVersion: 3, shouldDeleteIfMigrationNeeded: true);
 
 final realm = Realm(config);
 
-final Categories = <Category>[
-  Category(ObjectId(), "Health"),
-  Category(ObjectId(), "Food"),
-  Category(ObjectId(), "Electricity"),
-  Category(ObjectId(), "Groceries"),
-  Category(ObjectId(), "Transportation"),
-  Category(ObjectId(), "Miscellaneous"),
+final List<Wallet> onboardWallets = [
+  Wallet(ObjectId(), "Savings", 0),
+  Wallet(ObjectId(), "Debts", 0),
+  Wallet(ObjectId(), "Flexible", 0),
+  Wallet(ObjectId(), "Income", 0),
 ];
 
 // Create a bunch of Durations when getting onboard
-final Durations = <Duration>[
+final durations = <Duration>[
   Duration(ObjectId(), "month"),
   Duration(ObjectId(), "year"),
   Duration(ObjectId(), "one time"),
 ];
-
 
 @RealmModel()
 class _Duration {
@@ -95,8 +92,31 @@ class _Category {
   @PrimaryKey()
   late ObjectId id;
   late String name;
+  late String emoji;
+  late String color;
   late List<_Spend> category;
 }
+
+Wallet getWallet(ObjectId id) {
+  final walletToEdit = realm.query<Wallet>('id == \$0', [id]).first;
+  return walletToEdit;
+}
+
+Category getCategory(ObjectId id) {
+  final categoryToEdit = realm.query<Category>('id == \$0', [id]).first;
+  return categoryToEdit;
+}
+
+Spend getSpend(ObjectId id) {
+  final spendToEdit = realm.query<Spend>('id == \$0', [id]).first;
+  return spendToEdit;
+}
+
+Subscription getSubscription(ObjectId id) {
+  final subscriptionToEdit = realm.query<Subscription>('id == \$0', [id]).first;
+  return subscriptionToEdit;
+}
+
 
 //============ TO SUPPORT OLD CODE
 

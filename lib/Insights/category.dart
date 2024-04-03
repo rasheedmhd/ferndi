@@ -1,26 +1,27 @@
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:app/providers/spends_provider.dart";
 import "package:app/models/schemas.dart";
 import "package:app/utility/schema/methods.dart";
-import "package:app/ops/update/editSpend.dart";
+import "package:app/ops/update/editCategory.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
-import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:realm/realm.dart";
 
-class SpendItem extends ConsumerWidget {
-  const SpendItem(this.spend, {super.key});
+class CategoryItem extends StatelessWidget {
+  const CategoryItem(this.category, {super.key});
 
-  final Spend spend;
+  final Category category;
 
-  void _showSpendEditForm(BuildContext context, Spend spend) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (ctx) => EditSpendCard(spend)));
+  void _showCategoryEditForm(BuildContext context, Category category) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (ctx) => EditCategoryCard(category: category)));
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // ref.watch(spendsProvider);
+  Widget build(BuildContext context) {
+    final int spendsPerCategory = getSpendsByCategory(category.name).length;
+    // final int totalSpendAmountPerCategory = getSpendsByCategory(category.name)
+    //     .map((spend) => (spend.amount))
+    //     .reduce((value, element) => value + element);
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
@@ -38,21 +39,21 @@ class SpendItem extends ConsumerWidget {
 
               // A pane can dismiss the Slidable.
               dismissible: DismissiblePane(onDismissed: () {
-                deleteSpend(spend);
+                deleteCategory(category);
+                ScaffoldMessenger.of(context).clearSnackBars();
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   backgroundColor: Color.fromARGB(255, 255, 231, 241),
                   content: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Spend Deleted",
+                        "Category Deleted",
                         style:
                             TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
                       ),
                     ],
                   ),
                 ));
-                ref.read(spendsCountProvider.notifier).state--;
               }),
 
               // All actions are defined in the children parameter.
@@ -60,6 +61,7 @@ class SpendItem extends ConsumerWidget {
                 // A SlidableAction can have an icon and/or a label.
                 SlidableAction(
                   onPressed: (context) {
+                    ScaffoldMessenger.of(context).clearSnackBars();
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       backgroundColor: Color.fromARGB(255, 230, 243, 255),
                       content: Column(
@@ -81,7 +83,7 @@ class SpendItem extends ConsumerWidget {
                 ),
                 SlidableAction(
                   onPressed: (context) {
-                    _showSpendEditForm(context, spend);
+                    _showCategoryEditForm(context, category);
                   },
                   backgroundColor: const Color.fromARGB(255, 96, 150, 249),
                   foregroundColor: Colors.white,
@@ -98,20 +100,28 @@ class SpendItem extends ConsumerWidget {
               ),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: Color.fromARGB(255, 205, 227, 255),
-                  child: Text(spend.category!.emoji, style: const TextStyle( fontSize: 25),),
+                  backgroundColor: Color.fromARGB(50, 57, 154, 1),
+                  child: Text(
+                    category.emoji,
+                    style: const TextStyle(
+                      fontSize: 27,
+                      color: Color.fromARGB(255, 153, 152, 153),
+                    ),
+                  ),
                 ),
+                subtitle: Text("${spendsPerCategory} Transactions"),
                 title: Text(
-                  spend.name,
+                  category.name,
                   style: const TextStyle(
                     fontSize: 20,
                   ),
                 ),
-                subtitle: Text("${spend.notes}"),
                 trailing: Text(
-                  spend.getAmount,
+                  // "- GHS ${totalSpendAmountPerCategory.toString()}",
+                  "-",
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 20,
+                    color: Color.fromARGB(255, 163, 9, 71),
                   ),
                 ),
               ),
@@ -127,26 +137,19 @@ class SpendItem extends ConsumerWidget {
   }
 }
 
-class Spends extends ConsumerStatefulWidget {
-  const Spends({super.key});
+class CategoryCard extends StatelessWidget {
+  const CategoryCard({super.key});
 
-  @override
-  SpendState createState() => SpendState();
-}
-
-class SpendState extends ConsumerState<Spends> {
-  
   @override
   Widget build(BuildContext context) {
-    final spendsFromProvider = ref.watch(spendsProvider);
-    return SpendList(spends: spendsFromProvider);
+    return CategoryList(categories: categories);
   }
 }
 
-class SpendList extends StatelessWidget {
-  const SpendList({super.key, required this.spends});
+class CategoryList extends StatelessWidget {
+  const CategoryList({super.key, required this.categories});
 
-  final RealmResults<Spend> spends;
+  final RealmResults<Category> categories;
 
   @override
   Widget build(BuildContext context) {
@@ -161,9 +164,9 @@ class SpendList extends StatelessWidget {
           child: ListView.builder(
               shrinkWrap: true,
               physics: const ClampingScrollPhysics(),
-              itemCount: spends.length,
+              itemCount: categories.length,
               itemBuilder: (BuildContext context, int index) {
-                return SpendItem(spends[index]);
+                return CategoryItem(categories[index]);
               }),
         ))
       ],

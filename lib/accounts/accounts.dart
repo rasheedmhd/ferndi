@@ -1,7 +1,12 @@
-import "package:app/cards/addCategory.dart";
-import "package:app/cards/addWallet.dart";
+import "package:app/ops/create/addCategory.dart";
+import "package:app/ops/create/addWallet.dart";
+
 import "package:app/cards/wallets.dart";
 import "package:app/cards/savings.dart";
+
+import "package:app/utility/schema/methods.dart";
+
+import "package:avatar_glow/avatar_glow.dart";
 import "package:flutter/material.dart";
 
 
@@ -16,15 +21,16 @@ class AccountsState extends State<Accounts> {
   void _addCategory() {
     showModalBottomSheet(
       showDragHandle: true,
-      context: context, 
+      context: context,
       isScrollControlled: true,
       builder: (ctx) => const AddCategoryCard(),
     );
   }
+
   void _addWallet() {
     showModalBottomSheet(
       showDragHandle: true,
-      context: context, 
+      context: context,
       isScrollControlled: true,
       builder: (ctx) => const AddWalletCard(),
     );
@@ -35,95 +41,94 @@ class AccountsState extends State<Accounts> {
     return MaterialApp(
       title: "Accounts",
       theme: ThemeData(fontFamily: 'Gilroy'),
-        home: Scaffold(
-          appBar: AppBar(
-            actions: [
-              IconButton(onPressed: _addCategory, icon: const Icon(Icons.add, color: Colors.white,))
-            ],
-            title: const Text(
-              "Accounts", 
-              style: TextStyle(
-                color: Colors.white
-            ),),
-            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+      home: Scaffold(
+        appBar: AppBar(
+          actions: [
+            IconButton(
+              onPressed: _addCategory,
+              icon: const Icon(
+                Icons.add,
+                size: 34,
+                color: Color.fromARGB(255, 255, 255, 255),
+              ))
+          ],
+          title: const Text(
+            "Accounts",
+            style: TextStyle(
+              color: Color.fromARGB(255, 255, 255, 255),
+            ),
           ),
-          floatingActionButton: FloatingActionButton(
+          backgroundColor: const Color.fromARGB(255, 19, 194, 110),
+        ),
+        floatingActionButton: AvatarGlow(
+          glowColor: const Color.fromARGB(255, 48, 136, 6),
+          child: FloatingActionButton(
+            heroTag: "AvatarGlow",
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50.0)
-            ),
-            backgroundColor: const Color.fromARGB(255, 5, 61, 135),
+                borderRadius: BorderRadius.circular(50.0)),
+            backgroundColor: const Color.fromARGB(255, 48, 136, 6),
             onPressed: _addWallet,
-            child: const Icon(Icons.add, color: Colors.white),
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+              size: 35,
             ),
-          body:  CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                expandedHeight: 300,
-                backgroundColor: Color.fromARGB(255, 5, 61, 135),
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        savingsCard(),
-                        savingsCard(),
-                        savingsCard(),
-                        savingsCard(),
-                        savingsCard(),
-
-                      ],
-                    )
-                      // savingsCard(),
-                  ),
-                ),
-              ),
-
-            SliverToBoxAdapter(
-              child: Column(
-                // padding: const EdgeInsets.all(15),
-                children: [
-                  // Text(
-                  //   "Savings",
-                  //   style: TextStyle(
-                  //     fontSize: 30.0,
-                  //     color: Color.fromARGB(255, 5, 61, 135),
-                  //     fontWeight: FontWeight.w700,
-                  //     // fontFamily: "WorkSans"
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 12,
-                  // ),
-                  // savingsCard(),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    "Wallets",
-                    style: TextStyle(
-                      fontSize: 30.0,
-                      color: Color.fromARGB(255, 5, 61, 135),
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-              
-                  SizedBox(
-                    height: 12,
-                  ),
-              
-                  Divider(), 
-              
-                  SizedBox(
-                    height: 700,
-                    child: WalletsCard(),
-                  )
-                ],
-              ),
-            ),
-            ],
-
           ),
-        ));
+        ),
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              backgroundColor: const Color.fromARGB(255, 19, 194, 110),
+              expandedHeight: 200,
+              flexibleSpace: FlexibleSpaceBar(
+                  background: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      transform: GradientRotation(3.142 / 6),
+                      colors: [
+                      Color.fromARGB(255, 19, 194, 110),
+                      Color.fromARGB(255, 201, 249, 226),
+                  ])
+                  ),
+                child: PageView(
+                  children: [ 
+                    SelectedWallets(wallet: income),
+                    SelectedWallets(wallet: savings),
+                    SelectedWallets(wallet: debts),
+                    SelectedWallets(wallet: flexible),
+                  ]
+                ),
+              )),
+            ),
+            const SliverToBoxAdapter(
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(20, 10.0, 20, 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Your Wallets",
+                        style: TextStyle(
+                          fontSize: 30.0,
+                          color: Color.fromARGB(255, 48, 136, 6),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        height: 2800,
+                        child: WalletsCard(),
+                      ),
+                    ],
+                  ),
+                )),
+          ],
+        )
+      )
+    );
   }
 }

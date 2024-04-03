@@ -1,22 +1,27 @@
 import "package:app/models/schemas.dart";
+import "package:app/providers/spends_provider.dart";
 import "package:app/utility/schema/methods.dart";
 import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:realm/realm.dart";
 
-class AddSpendCard extends StatefulWidget {
+class AddSpendCard extends ConsumerStatefulWidget {
   const AddSpendCard({super.key});
 
   @override
   AddSpendCardState createState() => AddSpendCardState();
 }
 
-class AddSpendCardState extends State<AddSpendCard> {
+class AddSpendCardState extends ConsumerState<AddSpendCard> {
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   final _amountController = TextEditingController();
   Category _selectedCategory = categories.first;
   Wallet _selectedWallet = wallets.first;
+
+  late int newBalance =
+      _selectedWallet.balance - int.parse(_amountController.text);
 
   @override
   void dispose() {
@@ -35,31 +40,65 @@ class AddSpendCardState extends State<AddSpendCard> {
             padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
             child: Column(
               children: [
+                const SizedBox(
+                  height: 12,
+                ),
                 TextField(
                   controller: _nameController,
                   decoration: const InputDecoration(
-                    label: Text("What did you buy?"),
+                    iconColor: Color.fromARGB(255, 151, 151, 151),
+                    icon: FaIcon(
+                      FontAwesomeIcons.penToSquare,
+                      size: 24,
+                    ),
+                    border: InputBorder.none,
+                    label: Text("What did spend on ?"),
                     isDense: true,
                   ),
+                ),
+                const Divider(
+                  color: Color.fromARGB(255, 227, 226, 226),
                 ),
                 TextField(
                   controller: _notesController,
                   decoration: const InputDecoration(
+                    iconColor: Color.fromARGB(255, 151, 151, 151),
+                    icon: FaIcon(
+                      FontAwesomeIcons.noteSticky,
+                      size: 24,
+                    ),
+                    border: InputBorder.none,
                     label: Text("Notes"),
                     isDense: true,
                   ),
+                ),
+                const Divider(
+                  color: Color.fromARGB(255, 227, 226, 226),
                 ),
                 TextField(
                   controller: _amountController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
+                      iconColor: Color.fromARGB(255, 151, 151, 151),
+                      icon: FaIcon(
+                        FontAwesomeIcons.tags,
+                        size: 24,
+                      ),
+                      border: InputBorder.none,
                       prefix: Text("GHS "),
                       label: Text("Amount"),
                       isDense: true),
                 ),
+                const Divider(
+                  color: Color.fromARGB(255, 227, 226, 226),
+                ),
                 DropdownButton(
                   value: _selectedCategory,
-                  icon: const FaIcon(FontAwesomeIcons.boxOpen),
+                  hint: const Text("Category"),
+                  icon: const FaIcon(
+                    FontAwesomeIcons.boxArchive,
+                    color: Color.fromARGB(255, 151, 151, 151),
+                  ),
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   items: categories
@@ -79,7 +118,11 @@ class AddSpendCardState extends State<AddSpendCard> {
                 ),
                 DropdownButton(
                   value: _selectedWallet,
-                  icon: const Icon(Icons.wallet_sharp),
+                  hint: const Text("Wallet"),
+                  icon: const Icon(
+                    Icons.wallet_sharp,
+                    color: Color.fromARGB(255, 151, 151, 151),
+                  ),
                   isExpanded: true,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   items: wallets
@@ -98,9 +141,10 @@ class AddSpendCardState extends State<AddSpendCard> {
                   },
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 FloatingActionButton.extended(
+                    elevation: 1,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50.0)),
                     label: const Text(
@@ -110,12 +154,16 @@ class AddSpendCardState extends State<AddSpendCard> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    foregroundColor: const Color.fromARGB(255, 5, 61, 135),
+                    foregroundColor: const Color.fromARGB(255, 255, 255, 255),
                     backgroundColor: const Color.fromARGB(255, 35, 206, 135),
                     onPressed: () {
-                      if (_nameController.text.isEmpty || _amountController.text.isEmpty || _selectedCategory.name.isEmpty || _selectedWallet.name.isEmpty ) {
+                      if (_nameController.text.isEmpty ||
+                          _amountController.text.isEmpty ||
+                          _selectedCategory.name.isEmpty ||
+                          _selectedWallet.name.isEmpty) {
+                        ScaffoldMessenger.of(context).clearSnackBars();
                         ScaffoldMessenger.of(context)
-                          .showSnackBar(const SnackBar(
+                            .showSnackBar(const SnackBar(
                           backgroundColor: Color.fromARGB(255, 255, 231, 241),
                           content: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -139,9 +187,10 @@ class AddSpendCardState extends State<AddSpendCard> {
                           ),
                         ));
                         return;
-                      }                      
+                      }
                       if (int.parse(_amountController.text) >
                           _selectedWallet.balance) {
+                        ScaffoldMessenger.of(context).clearSnackBars();
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
                           backgroundColor: Color.fromARGB(255, 255, 231, 241),
@@ -153,7 +202,7 @@ class AddSpendCardState extends State<AddSpendCard> {
                                     color: Color.fromARGB(255, 163, 9, 71)),
                               ),
                               Text(
-                                "Go to Accounts and add money first.",
+                                "Go to Accounts and top up first.",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 163, 9, 71)),
                               ),
@@ -166,30 +215,38 @@ class AddSpendCardState extends State<AddSpendCard> {
                             _nameController.text,
                             _notesController.text,
                             int.parse(_amountController.text),
+                            category: _selectedCategory,
+                            wallet: _selectedWallet,
                             DateTime.now()));
-                        // print(_selectedWallet.balance - int.parse(_amountController.text));
+                        updateWallet(Wallet(_selectedWallet.id,
+                            _selectedWallet.name, newBalance));
                         _nameController.clear();
                         _notesController.clear();
                         _amountController.clear();
+                        ScaffoldMessenger.of(context).clearSnackBars();
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
                           backgroundColor: Color.fromARGB(255, 231, 255, 245),
                           content: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     "You have successfully recorded your Spend. Yay! ",
                                     style: TextStyle(
-                                      color: Color.fromARGB(255, 9, 163, 99)),
+                                        color: Color.fromARGB(255, 9, 163, 99)),
                                   ),
-                                  Icon(Icons.sentiment_very_satisfied, color: Color.fromARGB(255, 9, 163, 9))                      
+                                  Icon(Icons.sentiment_very_satisfied,
+                                      color: Color.fromARGB(255, 9, 163, 9))
                                 ],
                               ),
                             ],
                           ),
                         ));
                       }
+                      ref.read(spendsCountProvider.notifier).state++;
                     }),
               ],
             )));

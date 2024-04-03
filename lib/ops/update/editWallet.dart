@@ -1,86 +1,75 @@
 import "package:app/models/schemas.dart";
 import "package:app/utility/schema/methods.dart";
-import "package:font_awesome_flutter/font_awesome_flutter.dart";
 import "package:flutter/material.dart";
-import "package:realm/realm.dart";
 
-class AddWalletCard extends StatefulWidget {
-  const AddWalletCard({super.key});
+class EditWalletCard extends StatefulWidget {
+  final Wallet wallet;
+  const EditWalletCard(this.wallet, {super.key});
 
   @override
-  AddWalletCardState createState() => AddWalletCardState();
+  EditWalletCardState createState() => EditWalletCardState();
 }
 
-class AddWalletCardState extends State<AddWalletCard> {
-  final _nameController = TextEditingController();
-  final _balanceController = TextEditingController();
+class EditWalletCardState extends State<EditWalletCard> {
+  late Wallet walletToEdit = getWallet(widget.wallet.id);
 
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _balanceController.dispose();
-    super.dispose();
+  late String name = walletToEdit.name;
+  late String balance = walletToEdit.balance.toString();
+
+  void _newName(String typedName) {
+    name = typedName;
+  }
+
+  void _newBalance(String typedBalance) {
+    balance = typedBalance;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-          padding: const EdgeInsets.fromLTRB(30, 60, 30, 30),
-          child: Column(
-            children: [
-              const Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Add Wallet",
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    color: Color.fromARGB(255, 5, 61, 135),
-                    fontWeight: FontWeight.w700,
-                  ),
+        appBar: AppBar(
+          title: const Text("Edit Wallet"),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: const Color.fromARGB(255, 227, 226, 226),
                 ),
+                borderRadius: BorderRadius.circular(20.0),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextField(
-                controller: _nameController,
+              child: Column(
+            children: [
+              TextFormField(
+                initialValue: name,
+                onChanged: _newName,
                 maxLength: 50,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(label: Text("Wallet Name")),
               ),
-              TextField(
-                controller: _balanceController,
+              TextFormField(
+                initialValue: balance,
+                onChanged: _newBalance,
                 maxLength: 10,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                    prefix: FaIcon(
-                      FontAwesomeIcons.cediSign,
-                      size: 14.0,
-                    ),
-                    label: Text("Balance")),
+                    prefix: Text("GHS "), label: Text("Balance")),
               ),
               const SizedBox(
                 height: 40,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   FloatingActionButton.extended(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0)),
-                    label: const Icon(Icons.close),
-                    backgroundColor: const Color.fromARGB(255, 255, 231, 241),
-                    foregroundColor: const Color.fromARGB(255, 163, 9, 71),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  const Spacer(),
-                  FloatingActionButton.extended(
+                    elevation: 1,
+                    heroTag: "save",
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50.0)),
                     label: const Text(
-                      "       save wallet       ",
+                      "       save      ",
                       style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w700,
@@ -89,8 +78,10 @@ class AddWalletCardState extends State<AddWalletCard> {
                     foregroundColor: Colors.white,
                     backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                     onPressed: () {
-                      if (_balanceController.text.isEmpty || _nameController.text.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      if (balance.isEmpty || name.isEmpty) {
+                        ScaffoldMessenger.of(context).clearSnackBars();
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
                           backgroundColor: Color.fromARGB(255, 255, 231, 241),
                           content: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -110,40 +101,43 @@ class AddWalletCardState extends State<AddWalletCard> {
                         ));
                         return;
                       }
-                      createWallet(Wallet(
-                        ObjectId(),
-                        _nameController.text,
-                        int.parse(_balanceController.text),
+                      updateWallet(Wallet(
+                        walletToEdit.id,
+                        name,
+                        int.parse(balance),
                       ));
-                      _nameController.clear();
-                      _balanceController.clear();
+                      ScaffoldMessenger.of(context).clearSnackBars();
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         backgroundColor: Color.fromARGB(255, 231, 255, 245),
                         content: Column(
                           children: [
                             Text(
-                              "Wallet successfully created.",
-                              style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
+                              "Wallet successfully updated.",
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 9, 163, 99)),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   "Happy tracking your Spends!   ",
-                                  style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 9, 163, 99)),
                                 ),
-                                Icon(Icons.sentiment_very_satisfied, color: Color.fromARGB(255, 9, 163, 9))
+                                Icon(Icons.sentiment_very_satisfied,
+                                    color: Color.fromARGB(255, 9, 163, 9))
                               ],
                             ),
                           ],
                         ),
                       ));
+                      Navigator.of(context).pop();
                     },
                   ),
                 ],
               ),
             ],
           )),
-    );
+    ));
   }
 }
