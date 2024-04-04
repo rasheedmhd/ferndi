@@ -3,6 +3,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:app/models/schemas.dart";
 import "package:app/ops/update/editSpend.dart";
+import "package:app/utility/util/subString.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 
 class SpendItem extends ConsumerWidget {
@@ -111,20 +112,15 @@ class SpendItem extends ConsumerWidget {
                       Color(int.tryParse(spend.category!.color) ?? 4290958844),
                   child: Text(
                     spend.category!.emoji,
-                    style: const TextStyle(fontSize: 25),
+                    style: const TextStyle(fontSize: 20),
                   ),
                 ),
-                title: Text(
-                  spend.name,
-                  style: const TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-                subtitle: Text(spend.notes),
+                title: Text(getSubString(spend.name, 0, 35)),
+                subtitle: Text(spend.wallet!.name),
                 trailing: Text(
                   "GHS ${spend.getAmount}",
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
                     color: Color.fromARGB(255, 163, 9, 71),
                   ),
                 ),

@@ -26,6 +26,7 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
   TextEditingController _dateController = TextEditingController();
   Duration _selectedDuration =
    duration.isEmpty ? Duration(ObjectId(), "Month", DateTime.now()) : duration.first;
+  
 
   DateTime date = DateTime.now();
 
@@ -69,7 +70,7 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
 
     final providerWallets = ref.watch(walletsNotifier);
     Wallet selectedWallet = 
-      providerWallets .isEmpty ? Wallet(ObjectId(), "Flexible", 0, DateTime.now()) : providerWallets .first;
+      providerWallets.isEmpty ? Wallet(ObjectId(), "Flexible", 0, DateTime.now()) : providerWallets.first;
       
     return Scaffold(
       appBar: AppBar(
