@@ -105,17 +105,16 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
               TextField(
                 controller: _balanceController,
                 inputFormatters: [
-                  LengthLimitingTextInputFormatter(1), // Limit the number of characters
+                  LengthLimitingTextInputFormatter(
+                      10), // Limit the number of characters
                 ],
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  prefix: Text("GHS "),
-                  border: InputBorder.none
-                ),
+                    prefix: Text("GHS "), border: InputBorder.none),
               ),
               const Divider(
                 color: Color.fromARGB(255, 227, 226, 226),
-              ),              
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Row(
@@ -139,7 +138,8 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
                         if (_balanceController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                              backgroundColor:
+                                  Color.fromARGB(255, 230, 243, 255),
                               content: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [

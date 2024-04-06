@@ -10,6 +10,60 @@ class Subscriptions extends StatefulWidget {
   SubscriptionsState createState() => SubscriptionsState();
 }
 
+// [[ TO DO ]]
+// Automatic subscriptions charging
+// import 'package:realm/realm.dart';
+
+// _Subscription createMonthlySubscription({
+//   required String name,
+//   required int amount,
+//   required DateTime createdAt,
+//   required DateTime chargeAt,
+//   _Duration? duration,
+//   _Wallet? wallet,
+// }) {
+//   // Calculate the next chargeAt date
+//   DateTime nextChargeAt = DateTime(
+//     chargeAt.year + ((chargeAt.month + 1) ~/ 12), // Increment year if necessary
+//     (chargeAt.month + 1) % 12, // Increment month, wrapping around to 1 if December
+//     chargeAt.day, // Preserve the day
+//     chargeAt.hour, // Preserve the hour
+//     chargeAt.minute, // Preserve the minute
+//     chargeAt.second, // Preserve the second
+//   );
+
+//   // Create and return a new _Subscription object
+//   return _Subscription()
+//     ..id = ObjectId() // Generate a new ObjectId
+//     ..name = name
+//     ..amount = amount
+//     ..createdAt = createdAt
+//     ..chargeAt = nextChargeAt // Set the next chargeAt date
+//     ..duration = duration
+//     ..wallet = wallet;
+// }
+
+// void main() {
+//   // Example usage:
+//   DateTime now = DateTime.now();
+  
+//   // Assuming today is the createdAt date and the initial chargeAt date
+//   DateTime createdAt = now;
+//   DateTime initialChargeAt = DateTime(now.year, now.month, 10); // Assuming the 10th of the month
+  
+//   // Create a monthly subscription
+//   _Subscription monthlySubscription = createMonthlySubscription(
+//     name: 'Monthly Subscription',
+//     amount: 50, // Example amount
+//     createdAt: createdAt,
+//     chargeAt: initialChargeAt,
+//     // Optionally, provide duration and wallet parameters
+//   );
+  
+//   print(monthlySubscription);
+// }
+
+
 class SubscriptionsState extends State<Subscriptions> {
   @override
   Widget build(BuildContext context) {
