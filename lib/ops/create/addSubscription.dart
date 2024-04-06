@@ -1,5 +1,4 @@
 import 'package:app/models/schemas.dart';
-import "package:app/providers/wallets_provider.dart";
 import "package:app/utility/schema/methods.dart";
 import 'package:app/models/schemas.dart' as subscription;
 import "package:flutter/material.dart";
@@ -65,12 +64,12 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
     super.dispose();
   }
 
+  Wallet selectedWallet = 
+      wallets.isEmpty ? Wallet(ObjectId(), "Flexible", 0, DateTime.now()) : wallets.first;
+
   @override
   Widget build(BuildContext context) {
 
-    final providerWallets = ref.watch(walletsNotifier);
-    Wallet selectedWallet = 
-      providerWallets.isEmpty ? Wallet(ObjectId(), "Flexible", 0, DateTime.now()) : providerWallets.first;
       
     return Scaffold(
       appBar: AppBar(
@@ -165,7 +164,7 @@ class AddSubscriptionCardState extends ConsumerState<AddSubscriptionCard> {
                         size: 30,
                         color: Color.fromARGB(255, 17, 221, 163),
                       ),
-                      items: providerWallets
+                      items: wallets
                           .map(
                             (wallet) => DropdownMenuItem(
                               value: wallet,
