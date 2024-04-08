@@ -16,36 +16,34 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 // - get the difference
 // - check if the amount is > the selected wallet's balance
 // - if it is < no problem saved to db
-// - is it less than 
+// - is it less than
 
 // What we want is
 // on save,
 // get the new amount
-// it can be 3 things 
+// it can be 3 things
 // 1. > the old amount
 // 2. < the old amount
-// = the old amount 
+// = the old amount
 //   (in this case it means we didn't touch the amount value)
 //   so we save to db
 
 // Work needs to be done in 1 and 2 above
-// 1. get the new amount 
+// 1. get the new amount
 // - is it less than(<) the selected wallet's balance?
-// if yes 
+// if yes
 //   proceed to deduct from the selected wallet's balance
 //   - save to db
 
 // if no
-//   go to 2 
+//   go to 2
 //   or save to db
 
-// 2. get the new amount 
+// 2. get the new amount
 // - is it greater than(>) the selected wallet's balance?
-// if yes 
+// if yes
 //   warn user of insufficient balance and return
 //   - save to db
-
-
 
 // get old amount
 // get new amount
@@ -70,8 +68,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
   late String amount = spendToEdit.amount.toString();
   late String spendAmount;
   late double balance = spendToEdit.wallet!.balance;
-    late double newBalance =
-      _selectedWallet.balance - double.parse(spendAmount);
+  late double newBalance = _selectedWallet.balance - double.parse(spendAmount);
 
   final _dateController = TextEditingController();
 
@@ -113,7 +110,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
     //   // leave this at the widget level so you can throw a warning to the user
     //   amount = typedAmount;
     // }
-    spendAmount = typedAmount;
+    amount = typedAmount;
   }
 
   void newDate(String typedDate) {
