@@ -5,9 +5,19 @@ import "package:realm/realm.dart";
 import 'package:app/utility/defaults/categories.dart';
 
 final getCategory = Provider.family<Category, ObjectId>((ref, id) {
-  final category =
-      ref.watch(categoriesNotifier).where((category) => category.id == id).first;
-      return category;
+  final category = ref
+      .watch(categoriesNotifier)
+      .where((category) => category.id == id)
+      .first;
+  return category;
+});
+
+final getIncomeCategory = Provider((ref) {
+  final category = ref
+      .watch(categoriesNotifier)
+      .where((c) => c.name.toLowerCase() == "Income".toLowerCase())
+      .firstOrNull;
+  return category;
 });
 
 // Returns all the spends recorded under a particular category
