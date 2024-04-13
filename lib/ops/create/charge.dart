@@ -23,18 +23,20 @@ class ChargeCardState extends ConsumerState<ChargeCard> {
     Category subscriptionToChargeCategory = categories.isEmpty
         ? Category(ObjectId(), "Subscriptions", "💞", "", DateTime.now())
         : categories.first;
+    final newBalance =
+        subscriptionToCharge.wallet!.balance - subscriptionToCharge.amount;
 
     final dateString = DateFormat("EEEE, dd MMMM, yyyy").format(DateTime.now());
 
     return Container(
       padding: const EdgeInsets.all(20),
       height: 350,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: const Color.fromARGB(255, 227, 226, 226),
-            ),
-            borderRadius: BorderRadius.circular(20.0),
-          ),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: const Color.fromARGB(255, 227, 226, 226),
+        ),
+        borderRadius: BorderRadius.circular(20.0),
+      ),
       child: Scaffold(
         bottomSheet: Container(
           padding: const EdgeInsets.all(20),
@@ -58,12 +60,10 @@ class ChargeCardState extends ConsumerState<ChargeCard> {
               const Text("Charge is how you pay your Subscriptions."),
               Text(
                   "If you Charge, GHS ${subscriptionToCharge.getAmount} will be deducted from ${subscriptionToCharge.wallet!.name} to pay for ${subscriptionToCharge.name} and Recorded as a Spend"),
-
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0),
                 child: Text("Proceed to Charge."),
               ),
-
               FloatingActionButton.extended(
                 elevation: 1,
                 shape: RoundedRectangleBorder(
@@ -119,7 +119,7 @@ class ChargeCardState extends ConsumerState<ChargeCard> {
                           Wallet(
                             subscriptionToCharge.wallet!.id,
                             subscriptionToCharge.wallet!.name,
-                            subscriptionToCharge.amount,
+                            newBalance,
                             DateTime.now(),
                           ),
                         );
