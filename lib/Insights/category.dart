@@ -25,8 +25,6 @@ class CategoryItem extends ConsumerWidget {
     final double totalSpendAmountPerCategory =
         ref.watch(getTotalSpendAmountPerCategory(category.name));
 
-    final categoriesCount = ref.watch(categoriesNotifier).length;
-
     // We are pulling the Category color from the database,
     // Remember that it was stored as an String so we have to convert it back into an
     // Integer before we can reconstruct the Color and use in the UI
@@ -50,7 +48,7 @@ class CategoryItem extends ConsumerWidget {
 
               // A pane can dismiss the Slidable.
               dismissible: DismissiblePane(onDismissed: () {
-                if (categoriesCount > 0) {
+                if (spendsPerCategory > 0) {
                   ScaffoldMessenger.of(context).clearSnackBars();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(

@@ -32,7 +32,9 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
 
   late double newBalance =
       _selectedWallet.balance - double.parse(_amountController.text);
-  late double newBalance2 =
+      
+  // [[ TO DO ]]
+  late double incomeBalance =
       _selectedWallet.balance + double.parse(_amountController.text);
 
   DateTime date = DateTime.now();
@@ -376,7 +378,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                                     DateTime.now(),
                               ),
                             );
-                            if (_selectedCategory.name != incomeCategory!.name) {
+                            if (_selectedCategory.name != incomeCategory.name) {
                               ref.read(P.walletsNotifier.notifier).updateWallet(
                                     Wallet(_selectedWallet.id, _selectedWallet.name,
                                         newBalance, DateTime.now()),
@@ -384,7 +386,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                             }
                         ref.read(P.walletsNotifier.notifier).updateWallet(
                               Wallet(_selectedWallet.id, _selectedWallet.name,
-                                  newBalance2, DateTime.now()),
+                                  incomeBalance, DateTime.now()),
                             );
                         _nameController.clear();
                         _notesController.clear();

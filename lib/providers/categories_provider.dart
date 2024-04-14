@@ -12,12 +12,24 @@ final getCategory = Provider.family<Category, ObjectId>((ref, id) {
   return category;
 });
 
+// [[ TO DO ]]
+// Rollback Rudimentary Income Impl
 final getIncomeCategory = Provider((ref) {
-  final category = ref
+  final incomeCategoryStatus = ref
+      .watch(categoriesNotifier)
+      .where((w) => w.name.toLowerCase() == "Income".toLowerCase())
+      .firstOrNull;
+
+  final incomeCategory = ref
       .watch(categoriesNotifier)
       .where((c) => c.name.toLowerCase() == "Income".toLowerCase())
-      .firstOrNull;
-  return category;
+      .first;
+
+  final income = incomeCategoryStatus == null
+      ? Category(ObjectId(), "Income", "", "", DateTime.now())
+      : incomeCategory;
+
+  return income;
 });
 
 // Returns all the spends recorded under a particular category
