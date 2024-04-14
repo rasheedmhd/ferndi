@@ -1,4 +1,5 @@
 import "package:app/cards/info/info.dart";
+import "package:app/utility/util/fmt_neg_bal.dart";
 import "package:flutter/material.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:app/providers/wallets_provider.dart";
@@ -35,7 +36,7 @@ class BalanceCard extends ConsumerWidget {
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             Row(
@@ -55,7 +56,7 @@ class BalanceCard extends ConsumerWidget {
                           onTap: showInfo,
                           child: const FaIcon(
                             FontAwesomeIcons.circleQuestion,
-                            size: 13,
+                            size: 15,
                             color: Color.fromARGB(255, 255, 255, 255),
                           ),
                         ),
@@ -64,7 +65,7 @@ class BalanceCard extends ConsumerWidget {
                     Row(
                       children: [
                         Text(
-                          "GHS ${balance.toStringAsFixed(2)}",
+                          fmtBalance(balance.toStringAsFixed(2)),
                           style: const TextStyle(
                             fontSize: 35.0,
                             fontWeight: FontWeight.w600,
@@ -77,44 +78,47 @@ class BalanceCard extends ConsumerWidget {
                 )
               ],
             ),
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Income",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 228, 255, 239),
-                        )),
-                    Text(
-                      "GHS ${income.toStringAsFixed(2)}",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  width: 100,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Spend",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 228, 255, 239),
-                        )),
-                    Text(
-                      "GHS ${totalSpend.toStringAsFixed(2)}",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    )
-                  ],
-                )
-              ],
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("Income",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 228, 255, 239),
+                          )),
+                      Text(
+                        fmtBalance(income.toStringAsFixed(2)),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 100,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("Spend",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 228, 255, 239),
+                          )),
+                      Text(
+                        fmtBalance(totalSpend.toStringAsFixed(2)),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
             )
           ],
         ),

@@ -48,7 +48,7 @@ class Spending extends ConsumerWidget {
                 onTap: showInfo,
                 child: const FaIcon(
                   FontAwesomeIcons.circleQuestion,
-                  size: 15,
+                  size: 17,
                   color: Color.fromARGB(255, 5, 61, 135),
                 ),
               ),

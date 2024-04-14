@@ -132,7 +132,7 @@ class TransactionItem extends ConsumerWidget {
                     ),
                     Text("On $date, you spent, "),
                     Text(
-                      "GHS ${spend.getAmount}",
+                      "GHS${spend.getAmount}",
                       style: const TextStyle(
                         fontSize: 20,
                         color: Color.fromARGB(255, 163, 9, 71),
