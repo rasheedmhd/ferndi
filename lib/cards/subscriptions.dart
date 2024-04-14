@@ -6,7 +6,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/subs_provider.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
-import "package:app/utility/util/subString.dart";
+import "package:app/utility/util/sub_string.dart";
 import "package:intl/intl.dart";
 
 class SubscriptionItem extends ConsumerWidget {

@@ -4,7 +4,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:app/providers/wallets_provider.dart";
-import "package:app/utility/util/subString.dart";
+import "package:app/utility/util/sub_string.dart";
 
 class TransactionsPage extends ConsumerStatefulWidget {
   final Wallet wallet;

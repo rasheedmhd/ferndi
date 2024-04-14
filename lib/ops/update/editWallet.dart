@@ -16,7 +16,7 @@ class EditWalletCardState extends ConsumerState<EditWalletCard> {
   late Wallet? walletToEdit = ref.read(getWallet(widget.wallet.id));
 
   late String name = walletToEdit!.name;
-  late String balance = walletToEdit!.balance.toString();
+  late String balance = walletToEdit!.bal;
 
   void _newName(String typedName) {
     name = typedName;

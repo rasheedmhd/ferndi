@@ -1,5 +1,6 @@
 import "package:app/accounts/transactions.dart";
 import "package:app/ops/update/topUpWallet.dart";
+import "package:app/utility/util/fmt_neg_bal.dart";
 import "package:flutter/material.dart";
 import "package:app/models/schemas.dart";
 import "package:app/ops/update/editWallet.dart";
@@ -174,9 +175,9 @@ class WalletItem extends ConsumerWidget {
                     ),
                   ),
                 subtitle: Text(
-                  "GHS ${wallet.bal}",
+                  fmtBalance(wallet.bal),
                   style: const TextStyle(
-                    fontSize: 19.0,
+                    fontSize: 21.0,
                     color: Color.fromARGB(255, 48, 136, 6),
                   ),
                 ),

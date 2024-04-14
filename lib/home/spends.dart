@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/spends_provider.dart";
 import "package:app/models/schemas.dart";
-import "package:app/utility/util/subString.dart";
+import "package:app/utility/util/sub_string.dart";
 import "package:app/ops/update/editSpend.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 

@@ -3,7 +3,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:app/providers/wallets_provider.dart";
 import 'package:flutter/services.dart';
-import "package:app/utility/util/subString.dart";
+import "package:app/utility/util/sub_string.dart";
+import "package:app/utility/util/fmt_neg_bal.dart";
 
 class TopUpWalletCard extends ConsumerStatefulWidget {
   final Wallet wallet;
@@ -20,6 +21,7 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
 
   late String name = walletToEdit!.name;
   late double balance = walletToEdit!.balance;
+  late String balanceAsString = walletToEdit!.balance.toStringAsFixed(2);
 
   void _newBalance(String typedBalance) {
     balance += double.parse(_balanceController.text);
@@ -75,7 +77,7 @@ class TopUpWalletCardState extends ConsumerState<TopUpWalletCard> {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "GHS ${walletToEdit!.balance.toStringAsFixed(2)}",
+                  fmtBalance(balanceAsString),
                   style: const TextStyle(
                     fontSize: 30.0,
                     color: Color.fromARGB(255, 5, 61, 135),
