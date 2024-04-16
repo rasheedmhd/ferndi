@@ -26,7 +26,7 @@ final getWallet = Provider.family<Wallet?, ObjectId>((ref, id) {
   return wallet;
 });
 
-final selectedWallet = Provider.family<Wallet?, String>((ref, walletName) {
+final selectedWallet = Provider.family<Wallet, String>((ref, walletName) {
   // Since we already have a stream provider returning all wallets and all changes to the wallets table
   // in the database, we rely on the provider to get updated wallet information any time
   // By relying on the Wallets provided in real time we can query and get only the wallet we need

@@ -74,6 +74,24 @@ class _Spend {
   String? get getWallet => wallet?.name;
 }
 
+// [[ TOD DO ]]
+// @RealmModel()
+// class _Savings {
+//   @PrimaryKey()
+//   late ObjectId id;
+//   // amount spent
+//   late double amount;
+//   late DateTime createdAt;
+//   // wallet paid from for the spend
+//   late _Wallet? wallet;
+
+//   @Backlink(#savings)
+//   late Iterable<_Wallet> linkedWallet;
+
+//   String get getAmount => amount.toStringAsFixed(2);
+//   String? get getWallet => wallet?.name;
+// }
+
 @RealmModel()
 class _Category {
   @PrimaryKey()

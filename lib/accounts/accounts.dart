@@ -88,19 +88,11 @@ class AccountsState extends ConsumerState<Accounts> {
         slivers: [
           SliverAppBar(
             backgroundColor: const Color.fromARGB(255, 19, 194, 110),
-            expandedHeight: 170,
+            expandedHeight: 230,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
                 decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    transform: GradientRotation(3.142 / 6),
-                    colors: [
-                      Color.fromARGB(255, 19, 194, 110),
-                      Color.fromARGB(255, 201, 249, 226),
-                    ],
-                  ),
+                  color: Color.fromARGB(255, 19, 194, 110),
                 ),
                 child: PageView(
                   children: [
