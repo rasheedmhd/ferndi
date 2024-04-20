@@ -81,7 +81,7 @@ class SelectedWallets extends ConsumerWidget {
             ],
           ),
           const SizedBox(
-            height: 10,
+            height: 30,
           ),
           Row(
             // mainAxisAlignment: MainAxisAlignment.spaceAround,

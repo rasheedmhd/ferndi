@@ -182,6 +182,10 @@ class WalletItem extends ConsumerWidget {
                   ),
                 ),
                 children: [
+                  const Divider(
+                    // height: 0,
+                    color: Color.fromARGB(255, 204, 241, 228),
+                  ),
                   Row(
                     children: [
                       const Padding(padding: EdgeInsets.all(7)),
@@ -248,28 +252,28 @@ class WalletItem extends ConsumerWidget {
                       ),
                     ],
                   ),
-                   const SizedBox(
-                        height: 10,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          showTopUpWalletPage();
-                        },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Container(
-                            padding: const EdgeInsets.all(7),
-                            color: const Color.fromARGB(255, 10, 16, 96),
-                            child: const Text(
-                              " + Income ",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                  //  const SizedBox(
+                  //       height: 10,
+                  //     ),
+                  //     GestureDetector(
+                  //       onTap: () {
+                  //         showTopUpWalletPage();
+                  //       },
+                  //       child: ClipRRect(
+                  //         borderRadius: BorderRadius.circular(50),
+                  //         child: Container(
+                  //           padding: const EdgeInsets.all(7),
+                  //           color: const Color.fromARGB(255, 10, 16, 96),
+                  //           child: const Text(
+                  //             " + Income ",
+                  //             style: TextStyle(
+                  //               color: Colors.white,
+                  //               fontWeight: FontWeight.w600,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
                   const SizedBox(
                     height: 10,
                   ),

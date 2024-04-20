@@ -88,7 +88,7 @@ class AccountsState extends ConsumerState<Accounts> {
         slivers: [
           SliverAppBar(
             backgroundColor: const Color.fromARGB(255, 19, 194, 110),
-            expandedHeight: 230,
+            expandedHeight: 220,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
                 decoration: const BoxDecoration(
