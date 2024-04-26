@@ -136,8 +136,7 @@ class Onboarding extends ConsumerWidget {
                             SizedBox(
                               height: 12,
                             ),
-                            Text(
-                                "In the Balance field, feel free to type in an estimate."),
+                            Text("In the Balance field, type in an estimate."),
                             Text("Don't worry, you can edit it later."),
                             SizedBox(
                               height: 24,

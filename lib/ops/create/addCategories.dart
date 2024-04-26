@@ -11,7 +11,6 @@ class AddCategoriesCard extends ConsumerStatefulWidget {
 }
 
 class AddCategoriesCardState extends ConsumerState<AddCategoriesCard> {
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -75,7 +74,7 @@ class AddCategoriesCardState extends ConsumerState<AddCategoriesCard> {
               borderRadius: BorderRadius.circular(50.0),
             ),
             label: const Text(
-              "          add all          ",
+              "          Add All          ",
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.w700,

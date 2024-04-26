@@ -1,5 +1,5 @@
 import "package:app/models/schemas.dart";
-import "package:app/providers/categories_provider.dart";
+// import "package:app/providers/categories_provider.dart";
 import "package:app/providers/spends_provider.dart";
 import 'package:app/providers/wallets_provider.dart' as P;
 import "package:app/utility/schema/methods.dart";
@@ -78,7 +78,7 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
 
   @override
   Widget build(BuildContext context) {
-    final incomeCategory = ref.watch(getIncomeCategory);
+    // final incomeCategory = ref.watch(getIncomeCategory);
 
     return Scaffold(
       appBar: AppBar(
@@ -378,12 +378,12 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                                     DateTime.now(),
                               ),
                             );
-                            if (_selectedCategory.name != incomeCategory.name) {
-                              ref.read(P.walletsNotifier.notifier).updateWallet(
-                                    Wallet(_selectedWallet.id, _selectedWallet.name,
-                                        newBalance, DateTime.now()),
-                                  );
-                            }
+                            // if (_selectedCategory.name != incomeCategory.name) {
+                            //   ref.read(P.walletsNotifier.notifier).updateWallet(
+                            //         Wallet(_selectedWallet.id, _selectedWallet.name,
+                            //             newBalance, DateTime.now()),
+                            //       );
+                            // }
                         ref.read(P.walletsNotifier.notifier).updateWallet(
                               Wallet(_selectedWallet.id, _selectedWallet.name,
                                   incomeBalance, DateTime.now()),

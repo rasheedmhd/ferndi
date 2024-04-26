@@ -5,8 +5,6 @@ import "package:realm/realm.dart";
 import 'package:app/providers/wallets_provider.dart';
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-
-
 class AddIncomeCard extends ConsumerStatefulWidget {
   const AddIncomeCard({super.key});
 
@@ -16,6 +14,7 @@ class AddIncomeCard extends ConsumerStatefulWidget {
 
 class AddIncomeCardState extends ConsumerState<AddIncomeCard> {
   final _balanceController = TextEditingController();
+  bool incomeWalletExist = false;
 
   @override
   void dispose() {
@@ -78,34 +77,58 @@ class AddIncomeCardState extends ConsumerState<AddIncomeCard> {
             foregroundColor: Colors.white,
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
             onPressed: () {
-              ref.read(walletsNotifier.notifier).createWallet(Wallet(
-                ObjectId(),
-                "Income",
-                double.tryParse(_balanceController.text) ?? 0,
-                DateTime.now()
-              ));
-              _balanceController.clear();
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                backgroundColor: Color.fromARGB(255, 231, 255, 245),
-                content: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Income Wallet successfully created. ",
-                          style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
-                        ),
-                        Icon(Icons.sentiment_very_satisfied, color: Color.fromARGB(255, 9, 163, 9))
-                      ],
-                    ),
-                    Text(
-                      "Now Swipe right to add Categories",
-                      style: TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
-                    ),
-                  ],
-                ),
-              ));
+              if (incomeWalletExist == false) {
+                ref.read(walletsNotifier.notifier).createWallet(Wallet(
+                    ObjectId(),
+                    "Income",
+                    double.tryParse(_balanceController.text) ?? 0,
+                    DateTime.now()));
+                _balanceController.clear();
+                incomeWalletExist = true;
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  backgroundColor: Color.fromARGB(255, 231, 255, 245),
+                  content: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Income Wallet successfully created. ",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 9, 163, 99)),
+                          ),
+                          Icon(Icons.sentiment_very_satisfied,
+                              color: Color.fromARGB(255, 9, 163, 9))
+                        ],
+                      ),
+                      Text(
+                        "Now Swipe right to add Categories",
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 9, 163, 99)),
+                      ),
+                    ],
+                  ),
+                ));
+              } else {
+                ScaffoldMessenger.of(context).clearSnackBars();
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                  content: Column(
+                    children: [
+                      Text(
+                        "Income Wallet already exist. ",
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
+                      ),
+                      Text(
+                        "Please Swipe right to add Categories",
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
+                      ),
+                    ],
+                  ),
+                ));
+              }
             },
           ),
         ],
