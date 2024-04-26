@@ -108,7 +108,7 @@ class SubscriptionsState extends State<Subscriptions> {
                   height: 12,
                 ),
                 Text(
-                  "Your Subscriptions",
+                  "My Subscriptions",
                   style: TextStyle(
                     fontSize: 30.0,
                     color: Color.fromARGB(255, 5, 61, 135),

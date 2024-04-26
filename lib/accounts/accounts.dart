@@ -113,7 +113,7 @@ class AccountsState extends ConsumerState<Accounts> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Your Wallets",
+                    "My Wallets",
                     style: TextStyle(
                       fontSize: 30.0,
                       color: Color.fromARGB(255, 48, 136, 6),
