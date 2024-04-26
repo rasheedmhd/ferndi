@@ -14,6 +14,7 @@ class Onboarding extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final categoriesCount = ref.watch(categoriesNotifier).length;
+    final incomeWalletExist = ref.read(getWalletByName("Income"));
 
     return MaterialApp(
       title: "ferndi",
@@ -230,7 +231,11 @@ class Onboarding extends ConsumerWidget {
                             ref
                                 .read(subscriptionsNotifier.notifier)
                                 .addDurations();
-                            ref.read(walletsNotifier.notifier).addWallets();
+                            if (incomeWalletExist!.name.isEmpty) {
+                              ref.read(walletsNotifier.notifier).addWallets();
+                            } else {
+                              ref.read(walletsNotifier.notifier).noIncomeWallets();
+                            }
                             if (categoriesCount == 0) {
                               ref
                                   .read(categoriesNotifier.notifier)

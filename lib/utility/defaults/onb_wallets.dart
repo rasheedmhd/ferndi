@@ -8,3 +8,9 @@ final List<Wallet> onboardWallets = [
   Wallet(ObjectId(), "Income", 0, DateTime.now()),
 ];
 
+final List<Wallet> noIncomeWallet = [
+  Wallet(ObjectId(), "Savings", 0, DateTime.now()),
+  Wallet(ObjectId(), "Debts", 0, DateTime.now()),
+  Wallet(ObjectId(), "Flexible", 0, DateTime.now()),
+];
+

@@ -121,4 +121,10 @@ class WalletNotifier extends Notifier<List<Wallet>> {
       realm.addAll(onboardWallets);
     });
   }
+
+  void noIncomeWallets() {
+    realm.write(() {
+      realm.addAll(noIncomeWallet);
+    });
+  }
 }
