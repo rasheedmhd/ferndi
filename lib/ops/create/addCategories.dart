@@ -11,6 +11,8 @@ class AddCategoriesCard extends ConsumerStatefulWidget {
 }
 
 class AddCategoriesCardState extends ConsumerState<AddCategoriesCard> {
+  bool categoriesCreated = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -83,29 +85,56 @@ class AddCategoriesCardState extends ConsumerState<AddCategoriesCard> {
             foregroundColor: Colors.white,
             backgroundColor: const Color.fromARGB(255, 5, 61, 135),
             onPressed: () {
-              ref.read(categoriesNotifier.notifier).addCategories();
-              ScaffoldMessenger.of(context).clearSnackBars();
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  backgroundColor: Color.fromARGB(255, 231, 255, 245),
-                  content: Column(
-                    children: [
-                      Text(
-                        "Categories successfully created.",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 9, 163, 99),
+              if (categoriesCreated == false) {
+                ref.read(categoriesNotifier.notifier).addCategories();
+                ScaffoldMessenger.of(context).clearSnackBars();
+                categoriesCreated = true;
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    backgroundColor: Color.fromARGB(255, 231, 255, 245),
+                    content: Column(
+                      children: [
+                        Text(
+                          "Categories successfully created.",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 9, 163, 99),
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Swipe right to get started.",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 9, 163, 99),
+                        Text(
+                          "Swipe right to get started.",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 9, 163, 99),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              );
+                );
+              } else {
+                ref.read(categoriesNotifier.notifier).addCategories();
+                ScaffoldMessenger.of(context).clearSnackBars();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    backgroundColor: Color.fromARGB(255, 255, 231, 241),
+                    content: Column(
+                      children: [
+                        Text(
+                          "Categories created already.",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 163, 9, 71),
+                          ),
+                        ),
+                        Text(
+                          "Swipe right to get started.",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 163, 9, 71),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }
             },
           ),
           const SizedBox(

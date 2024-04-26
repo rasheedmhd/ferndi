@@ -117,8 +117,7 @@ class AddIncomeCardState extends ConsumerState<AddIncomeCard> {
                     children: [
                       Text(
                         "Income Wallet already exist. ",
-                        style:
-                            TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
+                        style: TextStyle(color: Color.fromARGB(255, 163, 9, 71)),
                       ),
                       Text(
                         "Please Swipe right to add Categories",
