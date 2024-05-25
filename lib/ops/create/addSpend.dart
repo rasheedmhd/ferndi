@@ -1,5 +1,4 @@
 import "package:app/models/schemas.dart";
-// import "package:app/providers/categories_provider.dart";
 import "package:app/providers/spends_provider.dart";
 import 'package:app/providers/wallets_provider.dart' as P;
 import "package:app/utility/schema/methods.dart";
@@ -78,7 +77,6 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
 
   @override
   Widget build(BuildContext context) {
-    // final incomeCategory = ref.watch(getIncomeCategory);
 
     return Scaffold(
       appBar: AppBar(
@@ -366,28 +364,24 @@ class AddSpendCardState extends ConsumerState<AddSpendCard> {
                         return;
                       } else {
                         ref.read(spendsNotifier.notifier).recordSpend(
-                              Spend(
-                                ObjectId(),
-                                _nameController.text,
-                                _notesController.text,
-                                double.parse(_amountController.text),
-                                category: _selectedCategory,
-                                wallet: _selectedWallet,
-                                DateFormat("EEEE, dd MMMM, yyyy")
-                                        .tryParse(_dateController.text) ??
-                                    DateTime.now(),
-                              ),
-                            );
-                            // if (_selectedCategory.name != incomeCategory.name) {
-                            //   ref.read(P.walletsNotifier.notifier).updateWallet(
-                            //         Wallet(_selectedWallet.id, _selectedWallet.name,
-                            //             newBalance, DateTime.now()),
-                            //       );
-                            // }
+                          Spend(
+                            ObjectId(),
+                            _nameController.text,
+                            _notesController.text,
+                            double.parse(_amountController.text),
+                            category: _selectedCategory,
+                            wallet: _selectedWallet,
+                            DateFormat("EEEE, dd MMMM, yyyy")
+                                    .tryParse(_dateController.text) ??
+                                DateTime.now(),
+                          ),
+                        );
+
                         ref.read(P.walletsNotifier.notifier).updateWallet(
-                              Wallet(_selectedWallet.id, _selectedWallet.name,
-                                  incomeBalance, DateTime.now()),
-                            );
+                          Wallet(_selectedWallet.id, _selectedWallet.name,
+                              newBalance, DateTime.now()),
+                        );
+
                         _nameController.clear();
                         _notesController.clear();
                         _amountController.clear();

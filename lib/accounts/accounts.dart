@@ -49,16 +49,18 @@ class AccountsState extends ConsumerState<Accounts> {
 
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: addCategory,
-            icon: const Icon(
-              Icons.add,
-              size: 34,
-              color: Color.fromARGB(255, 255, 255, 255),
-            ),
-          )
-        ],
+        // [[ TO DO ]]
+        // Add User Profile
+        // actions: [
+          // IconButton(
+          //   onPressed: addCategory,
+          //   icon: const Icon(
+          //     Icons.p,
+          //     size: 34,
+          //     color: Color.fromARGB(255, 255, 255, 255),
+          //   ),
+          // )
+        // ],
         title: const Text(
           "Accounts",
           style: TextStyle(
