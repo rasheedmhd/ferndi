@@ -66,9 +66,9 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
   late String notes = spendToEdit.notes;
   late DateTime date = spendToEdit.createdAt;
   late String amount = spendToEdit.amount.toString();
-  late String spendAmount;
-  late double balance = spendToEdit.wallet!.balance;
-  late double newBalance = _selectedWallet.balance - double.parse(spendAmount);
+  // late String spendAmount;
+  // late double balance = spendToEdit.wallet!.balance;
+  // late double newBalance = _selectedWallet.balance - double.parse(spendAmount);
 
   final _dateController = TextEditingController();
 
@@ -99,17 +99,6 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
   }
 
   void _newAmount(String typedAmount) {
-    // final double spendAmount = double.parse(typedAmount);
-    // final double initAmount = double.parse(amount);
-    // switch (spendAmount) {
-    //   case (spendAmount > double.parse(amount)):
-    // }
-
-    // if (spendAmount > initAmount) {
-    //   //  && spendAmount > balance
-    //   // leave this at the widget level so you can throw a warning to the user
-    //   amount = typedAmount;
-    // }
     amount = typedAmount;
   }
 
@@ -352,10 +341,12 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                     foregroundColor: const Color.fromARGB(255, 255, 255, 255),
                     backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                     onPressed: () {
-                      if (name.isEmpty ||
-                          amount.isEmpty ||
-                          _selectedCategory.name.isEmpty ||
-                          _selectedWallet.name.isEmpty) {
+                      if (
+                          name.isEmpty 
+                          || amount.isEmpty 
+                          || _selectedCategory.name.isEmpty 
+                          || _selectedWallet.name.isEmpty
+                        ) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             backgroundColor: Color.fromARGB(255, 255, 231, 241),
@@ -363,7 +354,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Spend details incomplete",
+                                  "Spend details incomplete, Please",
                                   style: TextStyle(
                                     color: Color.fromARGB(255, 163, 9, 71),
                                   ),
@@ -372,7 +363,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "Please add name, amount, wallet and category.",
+                                      "add a Spend Name, Amount, Wallet and Category.",
                                       style: TextStyle(
                                           color:
                                               Color.fromARGB(255, 163, 9, 71)),
@@ -385,25 +376,6 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                         );
                         return;
                       }
-                      // if (double.parse(spendAmount) < _selectedWallet.balance) {
-                      //   ref.read(P.walletsNotifier.notifier).updateWallet(
-                      //         Wallet(_selectedWallet.id, _selectedWallet.name,
-                      //             newBalance, DateTime.now()),
-                      //       );
-                      //   // balance to add to amount
-                      //   // before saving amount to db
-                      //   final amountToAdd =
-                      //       double.parse(spendAmount) - double.parse(amount);
-                      //   // amount += amountToAdd;
-                      //   // if (double.parse(spendAmount) > balance) {
-                      //   // }
-                      // } else if (double.parse(spendAmount) <
-                      //     double.parse(amount)) {
-                      //   // balance to subtract from amount
-                      //   // before saving amount to db
-                      //   final amountToSubtract =
-                      //       double.parse(amount) - double.parse(spendAmount);
-                      // }
                       if (double.parse(amount) > _selectedWallet.balance) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -426,22 +398,23 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                             ),
                           ),
                         );
-                      } else {
-                        ref.read(spendsNotifier.notifier).updateSpend(
-                              Spend(
-                                spendToEdit.id,
-                                name,
-                                notes,
-                                double.parse(
-                                  amount.toString(),
-                                ),
-                                category: _selectedCategory,
-                                wallet: _selectedWallet,
-                                DateFormat("EEEE, dd MMMM, yyyy")
-                                        .tryParse(_dateController.text) ??
-                                    date,
-                              ),
-                            );
+                      } 
+                      
+                      ref.read(spendsNotifier.notifier).updateSpend(
+                          Spend(
+                            spendToEdit.id,
+                            name,
+                            notes,
+                            double.parse(
+                              amount.toString(),
+                            ),
+                            category: _selectedCategory,
+                            wallet: _selectedWallet,
+                            DateFormat("EEEE, dd MMMM, yyyy")
+                                    .tryParse(_dateController.text) ??
+                                date,
+                          ),
+                        );
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             backgroundColor: Color.fromARGB(255, 231, 255, 245),
@@ -467,7 +440,7 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                             ),
                           ),
                         );
-                      }
+                      // }
                       Navigator.of(context).pop();
                     },
                   ),
