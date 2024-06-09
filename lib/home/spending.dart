@@ -6,19 +6,17 @@ import "package:app/cards/balance.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
-
 class Spending extends ConsumerWidget {
   const Spending({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
-  void showInfo() {
-    showModalBottomSheet(
-      context: context,
-      builder: (ctx) => HistoryInfoCard(),
-    );
-  }
+    void showInfo() {
+      showModalBottomSheet(
+        context: context,
+        builder: (ctx) => const HistoryInfoCard(),
+      );
+    }
 
     return ListView(
       padding: const EdgeInsets.all(15),

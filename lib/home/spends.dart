@@ -4,6 +4,7 @@ import "package:app/providers/spends_provider.dart";
 import "package:app/models/schemas.dart";
 import "package:app/utility/util/sub_string.dart";
 import "package:app/ops/update/editSpend.dart";
+import "package:app/cards/info/deleteDialog.dart";
 import "package:flutter_slidable/flutter_slidable.dart";
 
 class SpendItem extends ConsumerWidget {
@@ -13,6 +14,13 @@ class SpendItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    void showDeleteDialog() {
+      showModalBottomSheet(
+        context: context,
+        builder: (ctx) => const DeleteDialogCard(),
+      );
+    }
+
     void showSpendEditForm() {
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -39,7 +47,8 @@ class SpendItem extends ConsumerWidget {
               // A pane can dismiss the Slidable.
               dismissible: DismissiblePane(
                 onDismissed: () {
-                  ref.read(spendsNotifier.notifier).deleteSpend(spend);
+                  // ref.read(spendsNotifier.notifier).deleteSpend(spend);
+                  showDeleteDialog();
                   ScaffoldMessenger.of(context).clearSnackBars();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
@@ -65,23 +74,24 @@ class SpendItem extends ConsumerWidget {
                 // A SlidableAction can have an icon and/or a label.
                 SlidableAction(
                   onPressed: (context) {
-                    ScaffoldMessenger.of(context).clearSnackBars();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        backgroundColor: Color.fromARGB(255, 230, 243, 255),
-                        content: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Slide through to delete",
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 0, 128, 255),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
+                    showDeleteDialog();
+                    // ScaffoldMessenger.of(context).clearSnackBars();
+                    // ScaffoldMessenger.of(context).showSnackBar(
+                    //   const SnackBar(
+                    //     backgroundColor: Color.fromARGB(255, 230, 243, 255),
+                    //     content: Column(
+                    //       mainAxisAlignment: MainAxisAlignment.center,
+                    //       children: [
+                    //         Text(
+                    //           "Slide through to delete",
+                    //           style: TextStyle(
+                    //             color: Color.fromARGB(255, 0, 128, 255),
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // );
                   },
                   foregroundColor: const Color(0xFFFE4A49),
                   backgroundColor: Colors.white,

@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
-class HistoryInfoCard extends StatelessWidget {
-  const HistoryInfoCard({super.key});
+class DeleteDialogCard extends StatelessWidget {
+  const DeleteDialogCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +27,20 @@ class HistoryInfoCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Spend History",
+                "Delete Spend",
                 style: TextStyle(
                     fontSize: 30.0, color: Color.fromARGB(255, 5, 61, 135)),
               ),
               SizedBox(
                 height: 10,
               ),
-              Text(
-                  "This is a list of all your Spends recorded within this month"),
-              Text(
-                  "To view all your Spends recorded since you started using Ferndi, click on View all at the right"),
+              Text("Are you sure you want to delete this Spend?"),
+              Row(
+                children: [
+                  Text("Cancel"),
+                  Text("Delete")
+                ],
+              )
             ],
           ),
         ),
