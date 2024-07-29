@@ -1,4 +1,4 @@
-import "package:app/ops/create/addCategory.dart";
+// import "package:app/ops/create/addCategory.dart";
 import "package:app/ops/create/addWallet.dart";
 import "package:app/cards/wallets.dart";
 import "package:app/cards/savings.dart";
@@ -29,14 +29,14 @@ class AccountsState extends ConsumerState<Accounts> {
     final debts = ref.watch(
       selectedWallet("Debts"),
     );
-    void addCategory() {
-      showModalBottomSheet(
-        showDragHandle: true,
-        context: context,
-        isScrollControlled: true,
-        builder: (ctx) => const AddCategoryCard(),
-      );
-    }
+    // void addCategory() {
+    //   showModalBottomSheet(
+    //     showDragHandle: true,
+    //     context: context,
+    //     isScrollControlled: true,
+    //     builder: (ctx) => const AddCategoryCard(),
+    //   );
+    // }
 
     void addWallet() {
       showModalBottomSheet(

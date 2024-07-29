@@ -341,12 +341,10 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                     foregroundColor: const Color.fromARGB(255, 255, 255, 255),
                     backgroundColor: const Color.fromARGB(255, 5, 61, 135),
                     onPressed: () {
-                      if (
-                          name.isEmpty 
-                          || amount.isEmpty 
-                          || _selectedCategory.name.isEmpty 
-                          || _selectedWallet.name.isEmpty
-                        ) {
+                      if (name.isEmpty ||
+                          amount.isEmpty ||
+                          _selectedCategory.name.isEmpty ||
+                          _selectedWallet.name.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             backgroundColor: Color.fromARGB(255, 255, 231, 241),
@@ -398,48 +396,49 @@ class EditSpendCardState extends ConsumerState<EditSpendCard> {
                             ),
                           ),
                         );
-                      } 
-                      
+                        return;
+                      }
+
                       ref.read(spendsNotifier.notifier).updateSpend(
-                          Spend(
-                            spendToEdit.id,
-                            name,
-                            notes,
-                            double.parse(
-                              amount.toString(),
+                            Spend(
+                              spendToEdit.id,
+                              name,
+                              notes,
+                              double.parse(
+                                amount.toString(),
+                              ),
+                              category: _selectedCategory,
+                              wallet: _selectedWallet,
+                              DateFormat("EEEE, dd MMMM, yyyy")
+                                      .tryParse(_dateController.text) ??
+                                  date,
                             ),
-                            category: _selectedCategory,
-                            wallet: _selectedWallet,
-                            DateFormat("EEEE, dd MMMM, yyyy")
-                                    .tryParse(_dateController.text) ??
-                                date,
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            backgroundColor: Color.fromARGB(255, 231, 255, 245),
-                            content: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Spend edited and Saved successfully. ",
-                                      style: TextStyle(
-                                        color: Color.fromARGB(255, 9, 163, 99),
-                                      ),
+                          );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: Color.fromARGB(255, 231, 255, 245),
+                          content: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Spend edited and Saved successfully. ",
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 9, 163, 99),
                                     ),
-                                    Icon(
-                                      Icons.sentiment_very_satisfied,
-                                      color: Color.fromARGB(255, 9, 163, 9),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
+                                  ),
+                                  Icon(
+                                    Icons.sentiment_very_satisfied,
+                                    color: Color.fromARGB(255, 9, 163, 9),
+                                  )
+                                ],
+                              ),
+                            ],
                           ),
-                        );
+                        ),
+                      );
                       // }
                       Navigator.of(context).pop();
                     },
