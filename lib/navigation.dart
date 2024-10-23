@@ -1,3 +1,4 @@
+import "package:app/accessibility/shortcuts.dart";
 import "package:flutter/material.dart";
 import "package:app/subscriptions/list.dart";
 import 'package:app/accounts/accounts.dart';
@@ -28,8 +29,10 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
     switch (_selectedPageIndex) {
       case 1:
-        activePage = const Subscriptions();
+        activePage = const Accessibility();
       case 2:
+        activePage = const Subscriptions();
+      case 3:
         activePage = const Accounts();
     }
 
@@ -43,6 +46,10 @@ class _NavigationScreenState extends State<NavigationScreen> {
             BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.wallet),
               label: "Spending",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.accessibility),
+              label: "Shortcuts",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.card_membership_sharp),
