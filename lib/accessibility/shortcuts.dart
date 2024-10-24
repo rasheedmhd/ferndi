@@ -2,6 +2,7 @@
 // import "package:app/cards/subsBalanceCard.dart";
 import "package:flutter/material.dart";
 import "package:app/ops/create/addSubscription.dart";
+import 'package:speech_to_text/speech_to_text.dart';
 
 class Accessibility extends StatefulWidget {
   const Accessibility({super.key});
@@ -36,7 +37,7 @@ class AccessibilityState extends State<Accessibility> {
           )
         ],
         title: const Text(
-          "Accessibility",
+          "Voice UI",
           style: TextStyle(color: Color.fromARGB(255, 5, 61, 135)),
         ),
         backgroundColor: const Color.fromARGB(255, 234, 246, 255),
@@ -55,7 +56,14 @@ class AccessibilityState extends State<Accessibility> {
                   height: 12,
                 ),
                 Text(
-                  "My Accessibility",
+                  "Voice UI",
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    color: Color.fromARGB(255, 5, 61, 135),
+                  ),
+                ),
+                Text(
+                  "Sign Language Tutorials",
                   style: TextStyle(
                     fontSize: 30.0,
                     color: Color.fromARGB(255, 5, 61, 135),

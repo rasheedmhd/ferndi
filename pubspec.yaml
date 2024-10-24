@@ -43,6 +43,7 @@ dependencies:
   uuid: ^4.2.1
   font_awesome_flutter: ^10.4.0
   realm: ^1.6.1
+  speech_to_text: ^6.6.2
 
 dev_dependencies:
   flutter_test:

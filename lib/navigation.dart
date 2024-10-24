@@ -1,4 +1,5 @@
 import "package:app/accessibility/shortcuts.dart";
+import "package:app/voice/voice.dart";
 import "package:flutter/material.dart";
 import "package:app/subscriptions/list.dart";
 import 'package:app/accounts/accounts.dart';
@@ -34,6 +35,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
         activePage = const Subscriptions();
       case 3:
         activePage = const Accounts();
+      case 4:
+        activePage = const Voice();
     }
 
     return MaterialApp(
@@ -48,8 +51,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
               label: "Spending",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.accessibility),
-              label: "Shortcuts",
+              icon: Icon(Icons.voicemail),
+              label: "Voice UI",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.card_membership_sharp),
@@ -58,6 +61,10 @@ class _NavigationScreenState extends State<NavigationScreen> {
             BottomNavigationBarItem(
               icon: Icon(Icons.account_balance),
               label: "Accounts",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.help),
+              label: "Alex",
             ),
           ],
           
