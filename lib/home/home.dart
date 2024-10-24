@@ -12,7 +12,6 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
-
   void addSpend() {
     showModalBottomSheet(
       showDragHandle: true,
@@ -53,11 +52,11 @@ class HomeState extends State<Home> {
         appBar: AppBar(
           title: const Center(
             child: Text(
-            "Ferndi",
-            style: TextStyle(
-              color: Color.fromARGB(255, 255, 255, 255),
+              "Ferndi",
+              style: TextStyle(
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
             ),
-                    ),
           ),
           // title: Row(
           //   mainAxisAlignment: MainAxisAlignment.spaceAround,

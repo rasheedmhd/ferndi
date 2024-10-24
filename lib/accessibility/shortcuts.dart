@@ -2,7 +2,7 @@
 // import "package:app/cards/subsBalanceCard.dart";
 import "package:flutter/material.dart";
 import "package:app/ops/create/addSubscription.dart";
-import 'package:speech_to_text/speech_to_text.dart';
+// import 'package:speech_to_text/speech_to_text.dart';
 
 class Accessibility extends StatefulWidget {
   const Accessibility({super.key});
@@ -22,7 +22,7 @@ class AccessibilityState extends State<Accessibility> {
         builder: (ctx) => const AddSubscriptionCard(),
       );
     }
-    
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -71,11 +71,11 @@ class AccessibilityState extends State<Accessibility> {
                 ),
               ],
             ),
-            // TO DO  
+            // TO DO
             // Padding(
             //   padding: EdgeInsets.symmetric(vertical: 10.0),
             //   // child: AccessibilityCard(),
-            // ),   
+            // ),
           ],
         ),
       ),

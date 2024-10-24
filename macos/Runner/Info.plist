@@ -29,4 +29,8 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
+<key>NSSpeechRecognitionUsageDescription</key>
+<string>Permission required to use speech recognition</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>Permission required to use speech recognition</string>
 </plist>

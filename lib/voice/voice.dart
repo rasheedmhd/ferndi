@@ -54,22 +54,22 @@ class VoiceState extends State<Voice> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Speech Demo'),
+        title: const Text('Alex'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(16),
-              child: Text(
-                'Recognized words:',
+              padding: const EdgeInsets.all(16),
+              child: const Text(
+                'You said...',
                 style: TextStyle(fontSize: 20.0),
               ),
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Text(
                   // If listening is active show the recognized words
                   _speechToText.isListening
@@ -79,7 +79,7 @@ class VoiceState extends State<Voice> {
                       // recognition is not yet ready or not supported on
                       // the target device
                       : _speechEnabled
-                          ? 'Tap the microphone to start listening...'
+                          ? 'Tap the microphone to talk to Alex...'
                           : 'Speech not available',
                 ),
               ),
