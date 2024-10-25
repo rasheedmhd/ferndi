@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 
 class Voice extends StatefulWidget {
   // const Voice({Key? key}) : super(key: key);
@@ -13,7 +14,8 @@ class Voice extends StatefulWidget {
 class VoiceState extends State<Voice> {
   final SpeechToText _speechToText = SpeechToText();
   bool _speechEnabled = false;
-  String _lastWords = '';
+  String _recognizedWords = '';
+  double confidenceLevel = 0;
 
   @override
   void initState() {
@@ -30,7 +32,9 @@ class VoiceState extends State<Voice> {
   /// Each time to start a speech recognition session
   void _startListening() async {
     await _speechToText.listen(onResult: _onSpeechResult);
-    setState(() {});
+    setState(() {
+      confidenceLevel = 0;
+    });
   }
 
   /// Manually stop the active speech recognition session
@@ -46,24 +50,26 @@ class VoiceState extends State<Voice> {
   /// the platform returns recognized words.
   void _onSpeechResult(SpeechRecognitionResult result) {
     setState(() {
-      _lastWords = result.recognizedWords;
+      _recognizedWords = result.recognizedWords;
+      confidenceLevel = result.confidence;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
-        title: const Text('Alex'),
+        title: const Text("Alexandria"),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
               padding: const EdgeInsets.all(16),
               child: const Text(
-                'You said...',
+                "You said...",
                 style: TextStyle(fontSize: 20.0),
               ),
             ),
@@ -73,27 +79,40 @@ class VoiceState extends State<Voice> {
                 child: Text(
                   // If listening is active show the recognized words
                   _speechToText.isListening
-                      ? '$_lastWords'
+                      ? "$_recognizedWords"
                       // If listening isn't active but could be tell the user
                       // how to start it, otherwise indicate that speech
                       // recognition is not yet ready or not supported on
                       // the target device
                       : _speechEnabled
-                          ? 'Tap the microphone to talk to Alex...'
-                          : 'Speech not available',
+                          ? "Tap the microphone to talk to Alex..."
+                          : "Speech not available yet",
                 ),
               ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed:
-            // If not yet listening for speech start, otherwise stop
-            _speechToText.isNotListening ? _startListening : _stopListening,
-        tooltip: 'Listen',
-        child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
-      ),
+      floatingActionButton: AvatarGlow(
+        animate: !_speechToText.isNotListening,
+        glowColor: const Color.fromARGB(255, 5, 61, 135),
+        // endRadius: 60.0,
+        child: Material(
+          // Replace this child with your own
+          elevation: 8.0,
+          shape: const CircleBorder(),
+          child: FloatingActionButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0),
+              ),
+              onPressed:
+                  // If not yet listening for speech start, otherwise stop
+                  _speechToText.isNotListening ? _startListening : _stopListening,
+              tooltip: "Listen",
+              child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+            ),
+          ),
+        ),
     );
   }
 }
